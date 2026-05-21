@@ -1,0 +1,6224 @@
+{
+  "meta": {
+    "title": "PANINI FIFA WORLD CUP 2026 TRACKER",
+    "source_file": "Copia de PANINI_WORLD_CUP_2026_TRACKER_PUBLIC.xlsx"
+  },
+  "groups": {
+    "A": [
+      {
+        "country": "MEXICO",
+        "stickers": [
+          {
+            "id": "MEX01",
+            "team": "MEXICO",
+            "type": "ESCUDO",
+            "name": "SELECCION MEXICANA DE FÚTBOL"
+          },
+          {
+            "id": "MEX02",
+            "team": "MEXICO",
+            "type": "NORMAL",
+            "name": "LUIS MALAGÓN"
+          },
+          {
+            "id": "MEX03",
+            "team": "MEXICO",
+            "type": "NORMAL",
+            "name": "JOHAN VÁSQUEZ"
+          },
+          {
+            "id": "MEX04",
+            "team": "MEXICO",
+            "type": "NORMAL",
+            "name": "JORGE SÁNCHEZ"
+          },
+          {
+            "id": "MEX05",
+            "team": "MEXICO",
+            "type": "NORMAL",
+            "name": "CÉSAR MONTES"
+          },
+          {
+            "id": "MEX06",
+            "team": "MEXICO",
+            "type": "NORMAL",
+            "name": "JESÚS GALLARDO"
+          },
+          {
+            "id": "MEX07",
+            "team": "MEXICO",
+            "type": "NORMAL",
+            "name": "ISRAEL REYES"
+          },
+          {
+            "id": "MEX08",
+            "team": "MEXICO",
+            "type": "NORMAL",
+            "name": "DIEGO LAINEZ"
+          },
+          {
+            "id": "MEX09",
+            "team": "MEXICO",
+            "type": "NORMAL",
+            "name": "CARLOS RODRÍGUEZ"
+          },
+          {
+            "id": "MEX10",
+            "team": "MEXICO",
+            "type": "NORMAL",
+            "name": "EDSON ÁLVAREZ"
+          },
+          {
+            "id": "MEX11",
+            "team": "MEXICO",
+            "type": "NORMAL",
+            "name": "ORBELÍN PINEDA"
+          },
+          {
+            "id": "MEX12",
+            "team": "MEXICO",
+            "type": "NORMAL",
+            "name": "MARCEL RUÍZ"
+          },
+          {
+            "id": "MEX13",
+            "team": "MEXICO",
+            "type": "EQUIPO",
+            "name": "SELECCION MEXICANA DE FÚTBOL"
+          },
+          {
+            "id": "MEX14",
+            "team": "MEXICO",
+            "type": "NORMAL",
+            "name": "ERICK SÁNCHEZ"
+          },
+          {
+            "id": "MEX15",
+            "team": "MEXICO",
+            "type": "NORMAL",
+            "name": "HIRVING LOZANO"
+          },
+          {
+            "id": "MEX16",
+            "team": "MEXICO",
+            "type": "NORMAL",
+            "name": "SANTIAGO GIMÉNEZ"
+          },
+          {
+            "id": "MEX17",
+            "team": "MEXICO",
+            "type": "NORMAL",
+            "name": "RAÚL JIMÉNEZ"
+          },
+          {
+            "id": "MEX18",
+            "team": "MEXICO",
+            "type": "NORMAL",
+            "name": "ALEXIS VEGA"
+          },
+          {
+            "id": "MEX19",
+            "team": "MEXICO",
+            "type": "NORMAL",
+            "name": "ROBERTO ALVARADO"
+          },
+          {
+            "id": "MEX20",
+            "team": "MEXICO",
+            "type": "NORMAL",
+            "name": "CÉSAR HUERTA"
+          }
+        ],
+        "flag": "🇲🇽"
+      },
+      {
+        "country": "SUDAFRICA",
+        "stickers": [
+          {
+            "id": "RSA01",
+            "team": "SUDAFRICA",
+            "type": "ESCUDO",
+            "name": "SELECCION SUDAFRICANA DE FUTBOL"
+          },
+          {
+            "id": "RSA02",
+            "team": "SUDAFRICA",
+            "type": "NORMAL",
+            "name": "RONWEN WILLIAMS"
+          },
+          {
+            "id": "RSA03",
+            "team": "SUDAFRICA",
+            "type": "NORMAL",
+            "name": "SIPHO CHAINE"
+          },
+          {
+            "id": "RSA04",
+            "team": "SUDAFRICA",
+            "type": "NORMAL",
+            "name": "AUBREY MODIBA"
+          },
+          {
+            "id": "RSA05",
+            "team": "SUDAFRICA",
+            "type": "NORMAL",
+            "name": "SAMUKELE KABINI"
+          },
+          {
+            "id": "RSA06",
+            "team": "SUDAFRICA",
+            "type": "NORMAL",
+            "name": "MBEKEZLI MBOKAZI"
+          },
+          {
+            "id": "RSA07",
+            "team": "SUDAFRICA",
+            "type": "NORMAL",
+            "name": "KHULUMANI NDAMANE"
+          },
+          {
+            "id": "RSA08",
+            "team": "SUDAFRICA",
+            "type": "NORMAL",
+            "name": "SIVABONGA NGEZANA"
+          },
+          {
+            "id": "RSA09",
+            "team": "SUDAFRICA",
+            "type": "NORMAL",
+            "name": "KHULISO MUDAU"
+          },
+          {
+            "id": "RSA10",
+            "team": "SUDAFRICA",
+            "type": "NORMAL",
+            "name": "NKOSINATHI SIBISI"
+          },
+          {
+            "id": "RSA11",
+            "team": "SUDAFRICA",
+            "type": "NORMAL",
+            "name": "TEBOHO MOKOENA"
+          },
+          {
+            "id": "RSA12",
+            "team": "SUDAFRICA",
+            "type": "NORMAL",
+            "name": "THALENTE MBATHA"
+          },
+          {
+            "id": "RSA13",
+            "team": "SUDAFRICA",
+            "type": "EQUIPO",
+            "name": "SELECCION SUDAFRICANA DE FUTBOL"
+          },
+          {
+            "id": "RSA14",
+            "team": "SUDAFRICA",
+            "type": "NORMAL",
+            "name": "BATHUSI AUBAAS"
+          },
+          {
+            "id": "RSA15",
+            "team": "SUDAFRICA",
+            "type": "NORMAL",
+            "name": "VAYA SITHOLE"
+          },
+          {
+            "id": "RSA16",
+            "team": "SUDAFRICA",
+            "type": "NORMAL",
+            "name": "SIPHO MBULE"
+          },
+          {
+            "id": "RSA17",
+            "team": "SUDAFRICA",
+            "type": "NORMAL",
+            "name": "LYLE FOSTER"
+          },
+          {
+            "id": "RSA18",
+            "team": "SUDAFRICA",
+            "type": "NORMAL",
+            "name": "IORAAM RAVNERS"
+          },
+          {
+            "id": "RSA19",
+            "team": "SUDAFRICA",
+            "type": "NORMAL",
+            "name": "MOHAU NKOTA"
+          },
+          {
+            "id": "RSA20",
+            "team": "SUDAFRICA",
+            "type": "NORMAL",
+            "name": "OSWIN APOLLIS"
+          }
+        ],
+        "flag": "🇿🇦"
+      },
+      {
+        "country": "COREA DEL SUR",
+        "stickers": [
+          {
+            "id": "KOR01",
+            "team": "COREA DEL SUR",
+            "type": "ESCUDO",
+            "name": "SELECCION NACIONAL DE COREA DEL SUR"
+          },
+          {
+            "id": "KOR02",
+            "team": "COREA DEL SUR",
+            "type": "NORMAL",
+            "name": "HYEONWOO JO"
+          },
+          {
+            "id": "KOR03",
+            "team": "COREA DEL SUR",
+            "type": "NORMAL",
+            "name": "SEUNGGYU KIM"
+          },
+          {
+            "id": "KOR04",
+            "team": "COREA DEL SUR",
+            "type": "NORMAL",
+            "name": "MIJNAE KIM"
+          },
+          {
+            "id": "KOR05",
+            "team": "COREA DEL SUR",
+            "type": "NORMAL",
+            "name": "YUMIN CHO"
+          },
+          {
+            "id": "KOR06",
+            "team": "COREA DEL SUR",
+            "type": "NORMAL",
+            "name": "YOUNGWOO SEOL"
+          },
+          {
+            "id": "KOR07",
+            "team": "COREA DEL SUR",
+            "type": "NORMAL",
+            "name": "HANBEOM LEE"
+          },
+          {
+            "id": "KOR08",
+            "team": "COREA DEL SUR",
+            "type": "NORMAL",
+            "name": "TAESEOK LEE"
+          },
+          {
+            "id": "KOR09",
+            "team": "COREA DEL SUR",
+            "type": "NORMAL",
+            "name": "MUYNGJAE LEE"
+          },
+          {
+            "id": "KOR10",
+            "team": "COREA DEL SUR",
+            "type": "NORMAL",
+            "name": "JAESUNG LEE"
+          },
+          {
+            "id": "KOR11",
+            "team": "COREA DEL SUR",
+            "type": "NORMAL",
+            "name": "INBEOM HWANG"
+          },
+          {
+            "id": "KOR12",
+            "team": "COREA DEL SUR",
+            "type": "NORMAL",
+            "name": "KANGIN LEE"
+          },
+          {
+            "id": "KOR13",
+            "team": "COREA DEL SUR",
+            "type": "EQUIPO",
+            "name": "SELECCION NACIONAL DE COREA DEL SUR"
+          },
+          {
+            "id": "KOR14",
+            "team": "COREA DEL SUR",
+            "type": "NORMAL",
+            "name": "SEUNGHO PAIK"
+          },
+          {
+            "id": "KOR15",
+            "team": "COREA DEL SUR",
+            "type": "NORMAL",
+            "name": "JENS CASTROP"
+          },
+          {
+            "id": "KOR16",
+            "team": "COREA DEL SUR",
+            "type": "NORMAL",
+            "name": "DONGGYEONG LEE"
+          },
+          {
+            "id": "KOR17",
+            "team": "COREA DEL SUR",
+            "type": "NORMAL",
+            "name": "GUESUNG CHO"
+          },
+          {
+            "id": "KOR18",
+            "team": "COREA DEL SUR",
+            "type": "NORMAL",
+            "name": "HEUNGMIN SON"
+          },
+          {
+            "id": "KOR19",
+            "team": "COREA DEL SUR",
+            "type": "NORMAL",
+            "name": "HEECHAN HWANG"
+          },
+          {
+            "id": "KOR20",
+            "team": "COREA DEL SUR",
+            "type": "NORMAL",
+            "name": "HYEONGYU OH"
+          }
+        ],
+        "flag": "🇰🇷"
+      },
+      {
+        "country": "REPÚBLICA CHECA",
+        "stickers": [
+          {
+            "id": "CZE01",
+            "team": "REPÚBLICA CHECA",
+            "type": "ESCUDO",
+            "name": "SELECCION NACIONAL DE REPÚBLICA CHECA"
+          },
+          {
+            "id": "CZE02",
+            "team": "REPÚBLICA CHECA",
+            "type": "NORMAL",
+            "name": "MATEJ KOVAR"
+          },
+          {
+            "id": "CZE03",
+            "team": "REPÚBLICA CHECA",
+            "type": "NORMAL",
+            "name": "JINDRICH STANEK"
+          },
+          {
+            "id": "CZE04",
+            "team": "REPÚBLICA CHECA",
+            "type": "NORMAL",
+            "name": "LADISLAV KREJCI"
+          },
+          {
+            "id": "CZE05",
+            "team": "REPÚBLICA CHECA",
+            "type": "NORMAL",
+            "name": "VLADIMIR COUFAL"
+          },
+          {
+            "id": "CZE06",
+            "team": "REPÚBLICA CHECA",
+            "type": "NORMAL",
+            "name": "JAROSLAV ZELENY"
+          },
+          {
+            "id": "CZE07",
+            "team": "REPÚBLICA CHECA",
+            "type": "NORMAL",
+            "name": "TOMAS HOLES"
+          },
+          {
+            "id": "CZE08",
+            "team": "REPÚBLICA CHECA",
+            "type": "NORMAL",
+            "name": "DAVID ZIMA"
+          },
+          {
+            "id": "CZE09",
+            "team": "REPÚBLICA CHECA",
+            "type": "NORMAL",
+            "name": "MICHAL SADILEK"
+          },
+          {
+            "id": "CZE10",
+            "team": "REPÚBLICA CHECA",
+            "type": "NORMAL",
+            "name": "LUKAS PROVOD"
+          },
+          {
+            "id": "CZE11",
+            "team": "REPÚBLICA CHECA",
+            "type": "NORMAL",
+            "name": "LUKAS CERV"
+          },
+          {
+            "id": "CZE12",
+            "team": "REPÚBLICA CHECA",
+            "type": "NORMAL",
+            "name": "TOMAS SOUCEK"
+          },
+          {
+            "id": "CZE13",
+            "team": "REPÚBLICA CHECA",
+            "type": "EQUIPO",
+            "name": "SELECCION NACIONAL DE REPÚBLICA CHECA"
+          },
+          {
+            "id": "CZE14",
+            "team": "REPÚBLICA CHECA",
+            "type": "NORMAL",
+            "name": "PAVEL SULC"
+          },
+          {
+            "id": "CZE15",
+            "team": "REPÚBLICA CHECA",
+            "type": "NORMAL",
+            "name": "MATEJ VYDRA"
+          },
+          {
+            "id": "CZE16",
+            "team": "REPÚBLICA CHECA",
+            "type": "NORMAL",
+            "name": "VASIL KUSEJ"
+          },
+          {
+            "id": "CZE17",
+            "team": "REPÚBLICA CHECA",
+            "type": "NORMAL",
+            "name": "TOMAS CHORY"
+          },
+          {
+            "id": "CZE18",
+            "team": "REPÚBLICA CHECA",
+            "type": "NORMAL",
+            "name": "VACLAV CHERNY"
+          },
+          {
+            "id": "CZE19",
+            "team": "REPÚBLICA CHECA",
+            "type": "NORMAL",
+            "name": "ADAM HLOZEK"
+          },
+          {
+            "id": "CZE20",
+            "team": "REPÚBLICA CHECA",
+            "type": "NORMAL",
+            "name": "PATRICK SHICK"
+          }
+        ],
+        "flag": "🇨🇿"
+      }
+    ],
+    "B": [
+      {
+        "country": "CANADA",
+        "stickers": [
+          {
+            "id": "CAN01",
+            "team": "CANADA",
+            "type": "ESCUDO",
+            "name": "SELECCION CANADIENSE DE FÚTBOL"
+          },
+          {
+            "id": "CAN02",
+            "team": "CANADA",
+            "type": "NORMAL",
+            "name": "DAYNE ST. CLAIR"
+          },
+          {
+            "id": "CAN03",
+            "team": "CANADA",
+            "type": "NORMAL",
+            "name": "ALPHONSO DAVIES"
+          },
+          {
+            "id": "CAN04",
+            "team": "CANADA",
+            "type": "NORMAL",
+            "name": "ALISTAIR JOHNSTON"
+          },
+          {
+            "id": "CAN05",
+            "team": "CANADA",
+            "type": "NORMAL",
+            "name": "SAMUEL ADEKUGBE"
+          },
+          {
+            "id": "CAN06",
+            "team": "CANADA",
+            "type": "NORMAL",
+            "name": "RICHIE LARVEA"
+          },
+          {
+            "id": "CAN07",
+            "team": "CANADA",
+            "type": "NORMAL",
+            "name": "DEREK CORNELIUS"
+          },
+          {
+            "id": "CAN08",
+            "team": "CANADA",
+            "type": "NORMAL",
+            "name": "MOISE BOMBITO"
+          },
+          {
+            "id": "CAN09",
+            "team": "CANADA",
+            "type": "NORMAL",
+            "name": "KAMAL MILLER"
+          },
+          {
+            "id": "CAN10",
+            "team": "CANADA",
+            "type": "NORMAL",
+            "name": "STEPHEN EUSTAQUIO"
+          },
+          {
+            "id": "CAN11",
+            "team": "CANADA",
+            "type": "NORMAL",
+            "name": "ISMAEL KONE"
+          },
+          {
+            "id": "CAN12",
+            "team": "CANADA",
+            "type": "NORMAL",
+            "name": "JONATHAN OSORIO"
+          },
+          {
+            "id": "CAN13",
+            "team": "CANADA",
+            "type": "EQUIPO",
+            "name": "SELECCION CANADIENSE DE FUTBOL"
+          },
+          {
+            "id": "CAN14",
+            "team": "CANADA",
+            "type": "NORMAL",
+            "name": "JACOB SHAFFELBURG"
+          },
+          {
+            "id": "CAN15",
+            "team": "CANADA",
+            "type": "NORMAL",
+            "name": "MATHIEU CHOINIERE"
+          },
+          {
+            "id": "CAN16",
+            "team": "CANADA",
+            "type": "NORMAL",
+            "name": "NIKO SIGUR"
+          },
+          {
+            "id": "CAN17",
+            "team": "CANADA",
+            "type": "NORMAL",
+            "name": "TAJON BUCHANAN"
+          },
+          {
+            "id": "CAN18",
+            "team": "CANADA",
+            "type": "NORMAL",
+            "name": "LIAM MILLAR"
+          },
+          {
+            "id": "CAN19",
+            "team": "CANADA",
+            "type": "NORMAL",
+            "name": "CYLE LARIN"
+          },
+          {
+            "id": "CAN20",
+            "team": "CANADA",
+            "type": "NORMAL",
+            "name": "JONATHAN DAVID"
+          }
+        ],
+        "flag": "🇨🇦"
+      },
+      {
+        "country": "BOSNIA HERZEGOVINA",
+        "stickers": [
+          {
+            "id": "BIH01",
+            "team": "BOSNIA HERZEGOVINA",
+            "type": "ESCUDO",
+            "name": "SELECCION DE FUTBOL DE BOSNIA HERZEGOVINA"
+          },
+          {
+            "id": "BIH02",
+            "team": "BOSNIA HERZEGOVINA",
+            "type": "NORMAL",
+            "name": "NIKOLA VASILJ"
+          },
+          {
+            "id": "BIH03",
+            "team": "BOSNIA HERZEGOVINA",
+            "type": "NORMAL",
+            "name": "AMAR DEDIC"
+          },
+          {
+            "id": "BIH04",
+            "team": "BOSNIA HERZEGOVINA",
+            "type": "NORMAL",
+            "name": "SEAD KOLASINAC"
+          },
+          {
+            "id": "BIH05",
+            "team": "BOSNIA HERZEGOVINA",
+            "type": "NORMAL",
+            "name": "TARIK MUHAREMOVIC"
+          },
+          {
+            "id": "BIH06",
+            "team": "BOSNIA HERZEGOVINA",
+            "type": "NORMAL",
+            "name": "NIIHAD MUJAKIC"
+          },
+          {
+            "id": "BIH07",
+            "team": "BOSNIA HERZEGOVINA",
+            "type": "NORMAL",
+            "name": "NICOLA KATIC"
+          },
+          {
+            "id": "BIH08",
+            "team": "BOSNIA HERZEGOVINA",
+            "type": "NORMAL",
+            "name": "AMIR HADZIAHMETOVIC"
+          },
+          {
+            "id": "BIH09",
+            "team": "BOSNIA HERZEGOVINA",
+            "type": "NORMAL",
+            "name": "BENJAMIN TAHIROVIC"
+          },
+          {
+            "id": "BIH10",
+            "team": "BOSNIA HERZEGOVINA",
+            "type": "NORMAL",
+            "name": "ARMIN GIGOVIC"
+          },
+          {
+            "id": "BIH11",
+            "team": "BOSNIA HERZEGOVINA",
+            "type": "NORMAL",
+            "name": "IVAN SUNJIC"
+          },
+          {
+            "id": "BIH12",
+            "team": "BOSNIA HERZEGOVINA",
+            "type": "NORMAL",
+            "name": "IVAN BASIC"
+          },
+          {
+            "id": "BIH13",
+            "team": "BOSNIA HERZEGOVINA",
+            "type": "EQUIPO",
+            "name": "SELECCION DE FUTBOL DE BOSNIA HERZEGOVINA"
+          },
+          {
+            "id": "BIH14",
+            "team": "BOSNIA HERZEGOVINA",
+            "type": "NORMAL",
+            "name": "DZENIS BURNIC"
+          },
+          {
+            "id": "BIH15",
+            "team": "BOSNIA HERZEGOVINA",
+            "type": "NORMAL",
+            "name": "ESMIR BAJRAKTAREVIC"
+          },
+          {
+            "id": "BIH16",
+            "team": "BOSNIA HERZEGOVINA",
+            "type": "NORMAL",
+            "name": "AMAR MEMIC"
+          },
+          {
+            "id": "BIH17",
+            "team": "BOSNIA HERZEGOVINA",
+            "type": "NORMAL",
+            "name": "ERMEDIN DEMIROVIC"
+          },
+          {
+            "id": "BIH18",
+            "team": "BOSNIA HERZEGOVINA",
+            "type": "NORMAL",
+            "name": "EDIN DZEKO"
+          },
+          {
+            "id": "BIH19",
+            "team": "BOSNIA HERZEGOVINA",
+            "type": "NORMAL",
+            "name": "SAMED BAZDAR"
+          },
+          {
+            "id": "BIH20",
+            "team": "BOSNIA HERZEGOVINA",
+            "type": "NORMAL",
+            "name": "HARIS TABAKOVIC"
+          }
+        ],
+        "flag": "🇧🇦"
+      },
+      {
+        "country": "QATAR",
+        "stickers": [
+          {
+            "id": "QAT01",
+            "team": "QATAR",
+            "type": "ESCUDO",
+            "name": "SELECCION NACIONAL DE QATAR"
+          },
+          {
+            "id": "QAT02",
+            "team": "QATAR",
+            "type": "NORMAL",
+            "name": "MESHAAL BARSHAM"
+          },
+          {
+            "id": "QAT03",
+            "team": "QATAR",
+            "type": "NORMAL",
+            "name": "SULTAN ALBRAKE"
+          },
+          {
+            "id": "QAT04",
+            "team": "QATAR",
+            "type": "NORMAL",
+            "name": "LUCAS MENDES"
+          },
+          {
+            "id": "QAT05",
+            "team": "QATAR",
+            "type": "NORMAL",
+            "name": "HOMAM AHMED"
+          },
+          {
+            "id": "QAT06",
+            "team": "QATAR",
+            "type": "NORMAL",
+            "name": "BOUALEM KHOUKHI"
+          },
+          {
+            "id": "QAT07",
+            "team": "QATAR",
+            "type": "NORMAL",
+            "name": "PEDRO MIGUEL"
+          },
+          {
+            "id": "QAT08",
+            "team": "QATAR",
+            "type": "NORMAL",
+            "name": "TAREK SALMAN"
+          },
+          {
+            "id": "QAT09",
+            "team": "QATAR",
+            "type": "NORMAL",
+            "name": "MOHAMMED MANNAI"
+          },
+          {
+            "id": "QAT10",
+            "team": "QATAR",
+            "type": "NORMAL",
+            "name": "KARIM BOUDIAF"
+          },
+          {
+            "id": "QAT11",
+            "team": "QATAR",
+            "type": "NORMAL",
+            "name": "ASSIM MADIBO"
+          },
+          {
+            "id": "QAT12",
+            "team": "QATAR",
+            "type": "NORMAL",
+            "name": "HAMED FATEHI"
+          },
+          {
+            "id": "QAT13",
+            "team": "QATAR",
+            "type": "EQUIPO",
+            "name": "SELECCION NACIONAL DE QATAR"
+          },
+          {
+            "id": "QAT14",
+            "team": "QATAR",
+            "type": "NORMAL",
+            "name": "MOHAMMED WAAD"
+          },
+          {
+            "id": "QAT15",
+            "team": "QATAR",
+            "type": "NORMAL",
+            "name": "ABDULAZIZ HATEM"
+          },
+          {
+            "id": "QAT16",
+            "team": "QATAR",
+            "type": "NORMAL",
+            "name": "HASSAN AL-HAVDOS"
+          },
+          {
+            "id": "QAT17",
+            "team": "QATAR",
+            "type": "NORMAL",
+            "name": "EDMILSON JUNIOR"
+          },
+          {
+            "id": "QAT18",
+            "team": "QATAR",
+            "type": "NORMAL",
+            "name": "AKRAM HASSAN AFIF"
+          },
+          {
+            "id": "QAT19",
+            "team": "QATAR",
+            "type": "NORMAL",
+            "name": "AHMED AL-GANEHI"
+          },
+          {
+            "id": "QAT20",
+            "team": "QATAR",
+            "type": "NORMAL",
+            "name": "ALMOEZ ALI"
+          }
+        ],
+        "flag": "🇶🇦"
+      },
+      {
+        "country": "SUIZA",
+        "stickers": [
+          {
+            "id": "SUI01",
+            "team": "SUIZA",
+            "type": "ESCUDO",
+            "name": "SELECCION NACIONAL DE SUIZA"
+          },
+          {
+            "id": "SUI02",
+            "team": "SUIZA",
+            "type": "NORMAL",
+            "name": "GREGOR KOBEL"
+          },
+          {
+            "id": "SUI03",
+            "team": "SUIZA",
+            "type": "NORMAL",
+            "name": "YVON MVOGO"
+          },
+          {
+            "id": "SUI04",
+            "team": "SUIZA",
+            "type": "NORMAL",
+            "name": "MANUEL AKANJI"
+          },
+          {
+            "id": "SUI05",
+            "team": "SUIZA",
+            "type": "NORMAL",
+            "name": "RICARDO RODRIGUEZ"
+          },
+          {
+            "id": "SUI06",
+            "team": "SUIZA",
+            "type": "NORMAL",
+            "name": "NICO ELVEDI"
+          },
+          {
+            "id": "SUI07",
+            "team": "SUIZA",
+            "type": "NORMAL",
+            "name": "AURELE AMENDA"
+          },
+          {
+            "id": "SUI08",
+            "team": "SUIZA",
+            "type": "NORMAL",
+            "name": "SILVAN WIDMER"
+          },
+          {
+            "id": "SUI09",
+            "team": "SUIZA",
+            "type": "NORMAL",
+            "name": "GRANIT XHAKA"
+          },
+          {
+            "id": "SUI10",
+            "team": "SUIZA",
+            "type": "NORMAL",
+            "name": "DENIS ZAKARIA"
+          },
+          {
+            "id": "SUI11",
+            "team": "SUIZA",
+            "type": "NORMAL",
+            "name": "REMO FREULER"
+          },
+          {
+            "id": "SUI12",
+            "team": "SUIZA",
+            "type": "NORMAL",
+            "name": "FABIAN RIEDER"
+          },
+          {
+            "id": "SUI13",
+            "team": "SUIZA",
+            "type": "EQUIPO",
+            "name": "SELECCION NACIONAL DE SUIZA"
+          },
+          {
+            "id": "SUI14",
+            "team": "SUIZA",
+            "type": "NORMAL",
+            "name": "AARON JASHARI"
+          },
+          {
+            "id": "SUI15",
+            "team": "SUIZA",
+            "type": "NORMAL",
+            "name": "JOHAN MANZAMBI"
+          },
+          {
+            "id": "SUI16",
+            "team": "SUIZA",
+            "type": "NORMAL",
+            "name": "MICHEL AEBISCHER"
+          },
+          {
+            "id": "SUI17",
+            "team": "SUIZA",
+            "type": "NORMAL",
+            "name": "BREEL EMBOLO"
+          },
+          {
+            "id": "SUI18",
+            "team": "SUIZA",
+            "type": "NORMAL",
+            "name": "RUBEN VARGAS"
+          },
+          {
+            "id": "SUI19",
+            "team": "SUIZA",
+            "type": "NORMAL",
+            "name": "DAN NDOVE"
+          },
+          {
+            "id": "SUI20",
+            "team": "SUIZA",
+            "type": "NORMAL",
+            "name": "ZEKI AMDOUNI"
+          }
+        ],
+        "flag": "🇨🇭"
+      }
+    ],
+    "C": [
+      {
+        "country": "BRASIL",
+        "stickers": [
+          {
+            "id": "BRA01",
+            "team": "BRASIL",
+            "type": "ESCUDO",
+            "name": "SELECCION BRASILEÑA DE FÚTBOL"
+          },
+          {
+            "id": "BRA02",
+            "team": "BRASIL",
+            "type": "NORMAL",
+            "name": "ALISSON"
+          },
+          {
+            "id": "BRA03",
+            "team": "BRASIL",
+            "type": "NORMAL",
+            "name": "BENTO"
+          },
+          {
+            "id": "BRA04",
+            "team": "BRASIL",
+            "type": "NORMAL",
+            "name": "MARQUINOS"
+          },
+          {
+            "id": "BRA05",
+            "team": "BRASIL",
+            "type": "NORMAL",
+            "name": "EDER MILITAO"
+          },
+          {
+            "id": "BRA06",
+            "team": "BRASIL",
+            "type": "NORMAL",
+            "name": "GABRIEL MAGALHAES"
+          },
+          {
+            "id": "BRA07",
+            "team": "BRASIL",
+            "type": "NORMAL",
+            "name": "DANILO"
+          },
+          {
+            "id": "BRA08",
+            "team": "BRASIL",
+            "type": "NORMAL",
+            "name": "WESLEY"
+          },
+          {
+            "id": "BRA09",
+            "team": "BRASIL",
+            "type": "NORMAL",
+            "name": "LUCAS PAQUETÁ"
+          },
+          {
+            "id": "BRA10",
+            "team": "BRASIL",
+            "type": "NORMAL",
+            "name": "CASEMIRO"
+          },
+          {
+            "id": "BRA11",
+            "team": "BRASIL",
+            "type": "NORMAL",
+            "name": "BRUNO GUIMARAES"
+          },
+          {
+            "id": "BRA12",
+            "team": "BRASIL",
+            "type": "NORMAL",
+            "name": "LUIZ HENRIQUE"
+          },
+          {
+            "id": "BRA13",
+            "team": "BRASIL",
+            "type": "EQUIPO",
+            "name": "SELECCION BRASILEÑA DE FÚTBOL"
+          },
+          {
+            "id": "BRA14",
+            "team": "BRASIL",
+            "type": "NORMAL",
+            "name": "VINICIUS JUNIOR"
+          },
+          {
+            "id": "BRA15",
+            "team": "BRASIL",
+            "type": "NORMAL",
+            "name": "RODRYGO"
+          },
+          {
+            "id": "BRA16",
+            "team": "BRASIL",
+            "type": "NORMAL",
+            "name": "JOAO PEDRO"
+          },
+          {
+            "id": "BRA17",
+            "team": "BRASIL",
+            "type": "NORMAL",
+            "name": "MATHEUS CUNHA"
+          },
+          {
+            "id": "BRA18",
+            "team": "BRASIL",
+            "type": "NORMAL",
+            "name": "GABRIEL MARTINELLI"
+          },
+          {
+            "id": "BRA19",
+            "team": "BRASIL",
+            "type": "NORMAL",
+            "name": "RAPHINHA"
+          },
+          {
+            "id": "BRA20",
+            "team": "BRASIL",
+            "type": "NORMAL",
+            "name": "ESTEVAO"
+          }
+        ],
+        "flag": "🇧🇷"
+      },
+      {
+        "country": "MARRUECOS",
+        "stickers": [
+          {
+            "id": "MAR01",
+            "team": "MARRUECOS",
+            "type": "ESCUDO",
+            "name": "SELECCION DE FUTBOL DE MARRUECOS"
+          },
+          {
+            "id": "MAR02",
+            "team": "MARRUECOS",
+            "type": "NORMAL",
+            "name": "YASSINE BOUNOU"
+          },
+          {
+            "id": "MAR03",
+            "team": "MARRUECOS",
+            "type": "NORMAL",
+            "name": "MUNIR EL KAJOUR"
+          },
+          {
+            "id": "MAR04",
+            "team": "MARRUECOS",
+            "type": "NORMAL",
+            "name": "ACHRAF HAKIMI"
+          },
+          {
+            "id": "MAR05",
+            "team": "MARRUECOS",
+            "type": "NORMAL",
+            "name": "NOUSSAIR MAZRAOUI"
+          },
+          {
+            "id": "MAR06",
+            "team": "MARRUECOS",
+            "type": "NORMAL",
+            "name": "NAYEF AGUERD"
+          },
+          {
+            "id": "MAR07",
+            "team": "MARRUECOS",
+            "type": "NORMAL",
+            "name": "ROMAIN SAISS"
+          },
+          {
+            "id": "MAR08",
+            "team": "MARRUECOS",
+            "type": "NORMAL",
+            "name": "JAWAD EL YAMIQ"
+          },
+          {
+            "id": "MAR09",
+            "team": "MARRUECOS",
+            "type": "NORMAL",
+            "name": "ADAM MASINA"
+          },
+          {
+            "id": "MAR10",
+            "team": "MARRUECOS",
+            "type": "NORMAL",
+            "name": "SOFYAN AMRABAT"
+          },
+          {
+            "id": "MAR11",
+            "team": "MARRUECOS",
+            "type": "NORMAL",
+            "name": "AZZEDINE OUNAHI"
+          },
+          {
+            "id": "MAR12",
+            "team": "MARRUECOS",
+            "type": "NORMAL",
+            "name": "ELIESSE BEN SEGHIR"
+          },
+          {
+            "id": "MAR13",
+            "team": "MARRUECOS",
+            "type": "EQUIPO",
+            "name": "SELECCION DE FUTBOL DE MARRUECOS"
+          },
+          {
+            "id": "MAR14",
+            "team": "MARRUECOS",
+            "type": "NORMAL",
+            "name": "BILAL EL KHANNOUSS"
+          },
+          {
+            "id": "MAR15",
+            "team": "MARRUECOS",
+            "type": "NORMAL",
+            "name": "ISMAEL SAIBARI"
+          },
+          {
+            "id": "MAR16",
+            "team": "MARRUECOS",
+            "type": "NORMAL",
+            "name": "YOUSSEF EN-NESYRI"
+          },
+          {
+            "id": "MAR17",
+            "team": "MARRUECOS",
+            "type": "NORMAL",
+            "name": "ABDE EZZALZOULI"
+          },
+          {
+            "id": "MAR18",
+            "team": "MARRUECOS",
+            "type": "NORMAL",
+            "name": "SOUFIANE RAHIMI"
+          },
+          {
+            "id": "MAR19",
+            "team": "MARRUECOS",
+            "type": "NORMAL",
+            "name": "BRAHIM DIAZ"
+          },
+          {
+            "id": "MAR20",
+            "team": "MARRUECOS",
+            "type": "NORMAL",
+            "name": "AYOUB EL KAABI"
+          }
+        ],
+        "flag": "🇲🇦"
+      },
+      {
+        "country": "HAITI",
+        "stickers": [
+          {
+            "id": "HAI 01",
+            "team": "HAITI",
+            "type": "ESCUDO",
+            "name": "SELECCION NACIONAL DE HAITI"
+          },
+          {
+            "id": "HAI 02",
+            "team": "HAITI",
+            "type": "NORMAL",
+            "name": "JOHNY PLACIDE"
+          },
+          {
+            "id": "HAI 03",
+            "team": "HAITI",
+            "type": "NORMAL",
+            "name": "CARLENS ARCUS"
+          },
+          {
+            "id": "HAI 04",
+            "team": "HAITI",
+            "type": "NORMAL",
+            "name": "MARTIN EXPERIENCE"
+          },
+          {
+            "id": "HAI 05",
+            "team": "HAITI",
+            "type": "NORMAL",
+            "name": "JEAN KEVIN DUVERNE"
+          },
+          {
+            "id": "HAI 06",
+            "team": "HAITI",
+            "type": "NORMAL",
+            "name": "RICARDO ADÉ"
+          },
+          {
+            "id": "HAI 07",
+            "team": "HAITI",
+            "type": "NORMAL",
+            "name": "DUKE LACROIX"
+          },
+          {
+            "id": "HAI 08",
+            "team": "HAITI",
+            "type": "NORMAL",
+            "name": "GARVEN METUSALA"
+          },
+          {
+            "id": "HAI 09",
+            "team": "HAITI",
+            "type": "NORMAL",
+            "name": "HANNES DEL CROIX"
+          },
+          {
+            "id": "HAI 10",
+            "team": "HAITI",
+            "type": "NORMAL",
+            "name": "LEVERTON PIERRE"
+          },
+          {
+            "id": "HAI 11",
+            "team": "HAITI",
+            "type": "NORMAL",
+            "name": "DANLEY JEAN JACQUES"
+          },
+          {
+            "id": "HAI 12",
+            "team": "HAITI",
+            "type": "NORMAL",
+            "name": "JEAN RICNER BELLEGARDE"
+          },
+          {
+            "id": "HAI 13",
+            "team": "HAITI",
+            "type": "EQUIPO",
+            "name": "SELECCION NACIONAL DE HAITI"
+          },
+          {
+            "id": "HAI 14",
+            "team": "HAITI",
+            "type": "NORMAL",
+            "name": "CHRISTOPHER ATTYS"
+          },
+          {
+            "id": "HAI 15",
+            "team": "HAITI",
+            "type": "NORMAL",
+            "name": "DERRICK ETIENNER JR."
+          },
+          {
+            "id": "HAI 16",
+            "team": "HAITI",
+            "type": "NORMAL",
+            "name": "JOSUÉ CASIMIR"
+          },
+          {
+            "id": "HAI 17",
+            "team": "HAITI",
+            "type": "NORMAL",
+            "name": "RUBEN PROVIDENCE"
+          },
+          {
+            "id": "HAI 18",
+            "team": "HAITI",
+            "type": "NORMAL",
+            "name": "DUCKENS NAZON"
+          },
+          {
+            "id": "HAI 19",
+            "team": "HAITI",
+            "type": "NORMAL",
+            "name": "LOUICIUS DEEDSON"
+          },
+          {
+            "id": "HAI 20",
+            "team": "HAITI",
+            "type": "NORMAL",
+            "name": "FRANTZDY PIERROT"
+          }
+        ],
+        "flag": "🇭🇹"
+      },
+      {
+        "country": "ESCOCIA",
+        "stickers": [
+          {
+            "id": "SCO01",
+            "team": "ESCOCIA",
+            "type": "ESCUDO",
+            "name": "SELECCION NACIONAL DE ESCOCIA"
+          },
+          {
+            "id": "SCO02",
+            "team": "ESCOCIA",
+            "type": "NORMAL",
+            "name": "ANGUS GUNN"
+          },
+          {
+            "id": "SCO03",
+            "team": "ESCOCIA",
+            "type": "NORMAL",
+            "name": "JACK HENDRY"
+          },
+          {
+            "id": "SCO04",
+            "team": "ESCOCIA",
+            "type": "NORMAL",
+            "name": "KIERAN TIERNEY"
+          },
+          {
+            "id": "SCO05",
+            "team": "ESCOCIA",
+            "type": "NORMAL",
+            "name": "AARON HICKEY"
+          },
+          {
+            "id": "SCO06",
+            "team": "ESCOCIA",
+            "type": "NORMAL",
+            "name": "ANDREW ROBERTSON"
+          },
+          {
+            "id": "SCO07",
+            "team": "ESCOCIA",
+            "type": "NORMAL",
+            "name": "SCOTT MCKENNA"
+          },
+          {
+            "id": "SCO08",
+            "team": "ESCOCIA",
+            "type": "NORMAL",
+            "name": "JOHN SOUTTAR"
+          },
+          {
+            "id": "SCO09",
+            "team": "ESCOCIA",
+            "type": "NORMAL",
+            "name": "ANTHONY RALSTON"
+          },
+          {
+            "id": "SCO10",
+            "team": "ESCOCIA",
+            "type": "NORMAL",
+            "name": "GRANT HANLEY"
+          },
+          {
+            "id": "SCO11",
+            "team": "ESCOCIA",
+            "type": "NORMAL",
+            "name": "SCOTT MCTOMMINAY"
+          },
+          {
+            "id": "SCO12",
+            "team": "ESCOCIA",
+            "type": "NORMAL",
+            "name": "BILLY GILMOUR"
+          },
+          {
+            "id": "SCO13",
+            "team": "ESCOCIA",
+            "type": "EQUIPO",
+            "name": "SELECCION NACIONAL DE ESCOCIA"
+          },
+          {
+            "id": "SCO14",
+            "team": "ESCOCIA",
+            "type": "NORMAL",
+            "name": "LEWIS FERGUSON"
+          },
+          {
+            "id": "SCO15",
+            "team": "ESCOCIA",
+            "type": "NORMAL",
+            "name": "RYAN CHRISTIE"
+          },
+          {
+            "id": "SCO16",
+            "team": "ESCOCIA",
+            "type": "NORMAL",
+            "name": "KENNY MCLEAN"
+          },
+          {
+            "id": "SCO17",
+            "team": "ESCOCIA",
+            "type": "NORMAL",
+            "name": "JOHN MCGINN"
+          },
+          {
+            "id": "SCO18",
+            "team": "ESCOCIA",
+            "type": "NORMAL",
+            "name": "LYNDON DYKES"
+          },
+          {
+            "id": "SCO19",
+            "team": "ESCOCIA",
+            "type": "NORMAL",
+            "name": "CHE ADAMS"
+          },
+          {
+            "id": "SCO20",
+            "team": "ESCOCIA",
+            "type": "NORMAL",
+            "name": "BEN GANNON-DOAK"
+          }
+        ],
+        "flag": "🏴"
+      }
+    ],
+    "D": [
+      {
+        "country": "ESTADOS UNIDOS",
+        "stickers": [
+          {
+            "id": "USA01",
+            "team": "ESTADOS UNIDOS",
+            "type": "ESCUDO",
+            "name": "SELECCION DE FUTBOL DE ESTADOS UNIDOS"
+          },
+          {
+            "id": "USA02",
+            "team": "ESTADOS UNIDOS",
+            "type": "NORMAL",
+            "name": "MATT FREESE"
+          },
+          {
+            "id": "USA03",
+            "team": "ESTADOS UNIDOS",
+            "type": "NORMAL",
+            "name": "CHRIS RICHARDS"
+          },
+          {
+            "id": "USA04",
+            "team": "ESTADOS UNIDOS",
+            "type": "NORMAL",
+            "name": "TIM REAM"
+          },
+          {
+            "id": "USA05",
+            "team": "ESTADOS UNIDOS",
+            "type": "NORMAL",
+            "name": "MARK MCKENZIE"
+          },
+          {
+            "id": "USA06",
+            "team": "ESTADOS UNIDOS",
+            "type": "NORMAL",
+            "name": "ALEX FREEMAN"
+          },
+          {
+            "id": "USA07",
+            "team": "ESTADOS UNIDOS",
+            "type": "NORMAL",
+            "name": "ANTONEE ROBINSON"
+          },
+          {
+            "id": "USA08",
+            "team": "ESTADOS UNIDOS",
+            "type": "NORMAL",
+            "name": "TYLER ADAMS"
+          },
+          {
+            "id": "USA09",
+            "team": "ESTADOS UNIDOS",
+            "type": "NORMAL",
+            "name": "TANNER TESSMANN"
+          },
+          {
+            "id": "USA10",
+            "team": "ESTADOS UNIDOS",
+            "type": "NORMAL",
+            "name": "WESTON MCKENNIE"
+          },
+          {
+            "id": "USA11",
+            "team": "ESTADOS UNIDOS",
+            "type": "NORMAL",
+            "name": "CRISTIAN ROLDAN"
+          },
+          {
+            "id": "USA12",
+            "team": "ESTADOS UNIDOS",
+            "type": "NORMAL",
+            "name": "TIMOTHY WEAH"
+          },
+          {
+            "id": "USA13",
+            "team": "ESTADOS UNIDOS",
+            "type": "EQUIPO",
+            "name": "SELECCION DE FUTBOL DE ESTADOS UNIDOS"
+          },
+          {
+            "id": "USA14",
+            "team": "ESTADOS UNIDOS",
+            "type": "NORMAL",
+            "name": "DIEGO LUNA"
+          },
+          {
+            "id": "USA15",
+            "team": "ESTADOS UNIDOS",
+            "type": "NORMAL",
+            "name": "MALIK TILLMAN"
+          },
+          {
+            "id": "USA16",
+            "team": "ESTADOS UNIDOS",
+            "type": "NORMAL",
+            "name": "CHRISTIAN PULISIC"
+          },
+          {
+            "id": "USA17",
+            "team": "ESTADOS UNIDOS",
+            "type": "NORMAL",
+            "name": "BRENDEN AARONSON"
+          },
+          {
+            "id": "USA18",
+            "team": "ESTADOS UNIDOS",
+            "type": "NORMAL",
+            "name": "RICARDO PEPI"
+          },
+          {
+            "id": "USA19",
+            "team": "ESTADOS UNIDOS",
+            "type": "NORMAL",
+            "name": "HAJI WRIGHT"
+          },
+          {
+            "id": "USA20",
+            "team": "ESTADOS UNIDOS",
+            "type": "NORMAL",
+            "name": "FOLARIN BALOGUN"
+          }
+        ],
+        "flag": "🇺🇸"
+      },
+      {
+        "country": "PARAGUAY",
+        "stickers": [
+          {
+            "id": "PAR01",
+            "team": "PARAGUAY",
+            "type": "ESCUDO",
+            "name": "SELECCION DE FUTBOL DE PARAGUAY"
+          },
+          {
+            "id": "PAR02",
+            "team": "PARAGUAY",
+            "type": "NORMAL",
+            "name": "ROBERTO FERNANDEZ"
+          },
+          {
+            "id": "PAR03",
+            "team": "PARAGUAY",
+            "type": "NORMAL",
+            "name": "ORLANDO GILL"
+          },
+          {
+            "id": "PAR04",
+            "team": "PARAGUAY",
+            "type": "NORMAL",
+            "name": "GUSTAVO GOMEZ"
+          },
+          {
+            "id": "PAR05",
+            "team": "PARAGUAY",
+            "type": "NORMAL",
+            "name": "FABIAN BALBUENA"
+          },
+          {
+            "id": "PAR06",
+            "team": "PARAGUAY",
+            "type": "NORMAL",
+            "name": "JUAN JOSE CACERES"
+          },
+          {
+            "id": "PAR07",
+            "team": "PARAGUAY",
+            "type": "NORMAL",
+            "name": "OMAR ALDRETE"
+          },
+          {
+            "id": "PAR08",
+            "team": "PARAGUAY",
+            "type": "NORMAL",
+            "name": "JUNIOR ALONSO"
+          },
+          {
+            "id": "PAR09",
+            "team": "PARAGUAY",
+            "type": "NORMAL",
+            "name": "MATHIAS VILLASANTI"
+          },
+          {
+            "id": "PAR10",
+            "team": "PARAGUAY",
+            "type": "NORMAL",
+            "name": "DIEGO GOMEZ"
+          },
+          {
+            "id": "PAR11",
+            "team": "PARAGUAY",
+            "type": "NORMAL",
+            "name": "DAMIAN BOBADILLA"
+          },
+          {
+            "id": "PAR12",
+            "team": "PARAGUAY",
+            "type": "NORMAL",
+            "name": "ANDRÉS CUBAS"
+          },
+          {
+            "id": "PAR13",
+            "team": "PARAGUAY",
+            "type": "EQUIPO",
+            "name": "SELECCION DE FUTBOL DE PARAGUAY"
+          },
+          {
+            "id": "PAR14",
+            "team": "PARAGUAY",
+            "type": "NORMAL",
+            "name": "MATIAS GALARZA FONDA"
+          },
+          {
+            "id": "PAR15",
+            "team": "PARAGUAY",
+            "type": "NORMAL",
+            "name": "JULIO ENCISO"
+          },
+          {
+            "id": "PAR16",
+            "team": "PARAGUAY",
+            "type": "NORMAL",
+            "name": "ALEJANDRO ROMERO GAMARRA"
+          },
+          {
+            "id": "PAR17",
+            "team": "PARAGUAY",
+            "type": "NORMAL",
+            "name": "MIGUEL ALMIRON"
+          },
+          {
+            "id": "PAR18",
+            "team": "PARAGUAY",
+            "type": "NORMAL",
+            "name": "RAMON SOSA"
+          },
+          {
+            "id": "PAR19",
+            "team": "PARAGUAY",
+            "type": "NORMAL",
+            "name": "ANGEL ROMERO"
+          },
+          {
+            "id": "PAR20",
+            "team": "PARAGUAY",
+            "type": "NORMAL",
+            "name": "ANTONIO SANABRIA"
+          }
+        ],
+        "flag": "🇵🇾"
+      },
+      {
+        "country": "AUSTRALIA",
+        "stickers": [
+          {
+            "id": "AUS01",
+            "team": "AUSTRALIA",
+            "type": "ESCUDO",
+            "name": "SELECCION NACIONAL DE AUSTRALIA"
+          },
+          {
+            "id": "AUS02",
+            "team": "AUSTRALIA",
+            "type": "NORMAL",
+            "name": "MATTHEW RYAN"
+          },
+          {
+            "id": "AUS03",
+            "team": "AUSTRALIA",
+            "type": "NORMAL",
+            "name": "JOE GAUCI"
+          },
+          {
+            "id": "AUS04",
+            "team": "AUSTRALIA",
+            "type": "NORMAL",
+            "name": "HARRY SOUTTAR"
+          },
+          {
+            "id": "AUS05",
+            "team": "AUSTRALIA",
+            "type": "NORMAL",
+            "name": "ALESSANDRO CIRCATI"
+          },
+          {
+            "id": "AUS06",
+            "team": "AUSTRALIA",
+            "type": "NORMAL",
+            "name": "JORDAN BOS"
+          },
+          {
+            "id": "AUS07",
+            "team": "AUSTRALIA",
+            "type": "NORMAL",
+            "name": "AZIZ BEHICH"
+          },
+          {
+            "id": "AUS08",
+            "team": "AUSTRALIA",
+            "type": "NORMAL",
+            "name": "CAMERON BURGESS"
+          },
+          {
+            "id": "AUS09",
+            "team": "AUSTRALIA",
+            "type": "NORMAL",
+            "name": "LEWIS MILLER"
+          },
+          {
+            "id": "AUS10",
+            "team": "AUSTRALIA",
+            "type": "NORMAL",
+            "name": "MILOS DEGENEK"
+          },
+          {
+            "id": "AUS11",
+            "team": "AUSTRALIA",
+            "type": "NORMAL",
+            "name": "JACKSON IRVINE"
+          },
+          {
+            "id": "AUS12",
+            "team": "AUSTRALIA",
+            "type": "NORMAL",
+            "name": "RILEY MCGREE"
+          },
+          {
+            "id": "AUS13",
+            "team": "AUSTRALIA",
+            "type": "EQUIPO",
+            "name": "SELECCION NACIONAL DE AUSTRALIA"
+          },
+          {
+            "id": "AUS14",
+            "team": "AUSTRALIA",
+            "type": "NORMAL",
+            "name": "AIDEN O´NEILL"
+          },
+          {
+            "id": "AUS15",
+            "team": "AUSTRALIA",
+            "type": "NORMAL",
+            "name": "CONNOR METCALFE"
+          },
+          {
+            "id": "AUS16",
+            "team": "AUSTRALIA",
+            "type": "NORMAL",
+            "name": "PATRICK YAZBECK"
+          },
+          {
+            "id": "AUS17",
+            "team": "AUSTRALIA",
+            "type": "NORMAL",
+            "name": "CRAIG GOODWIN"
+          },
+          {
+            "id": "AUS18",
+            "team": "AUSTRALIA",
+            "type": "NORMAL",
+            "name": "KUSINI VENGI"
+          },
+          {
+            "id": "AUS19",
+            "team": "AUSTRALIA",
+            "type": "NORMAL",
+            "name": "NESTORY IRANKUNDA"
+          },
+          {
+            "id": "AUS20",
+            "team": "AUSTRALIA",
+            "type": "NORMAL",
+            "name": "MOHAMED TOURE"
+          }
+        ],
+        "flag": "🇦🇺"
+      },
+      {
+        "country": "TURQUIA",
+        "stickers": [
+          {
+            "id": "TUR01",
+            "team": "TURQUIA",
+            "type": "ESCUDO",
+            "name": "SELECCION NACIONAL DE TURQUIA"
+          },
+          {
+            "id": "TUR02",
+            "team": "TURQUIA",
+            "type": "NORMAL",
+            "name": "UGURCAN CAKIR"
+          },
+          {
+            "id": "TUR03",
+            "team": "TURQUIA",
+            "type": "NORMAL",
+            "name": "MERT MULDUR"
+          },
+          {
+            "id": "TUR04",
+            "team": "TURQUIA",
+            "type": "NORMAL",
+            "name": "ZEKI CELIK"
+          },
+          {
+            "id": "TUR05",
+            "team": "TURQUIA",
+            "type": "NORMAL",
+            "name": "ABDULKERIM BARDAKCI"
+          },
+          {
+            "id": "TUR06",
+            "team": "TURQUIA",
+            "type": "NORMAL",
+            "name": "CAGLAR SOYUNCU"
+          },
+          {
+            "id": "TUR07",
+            "team": "TURQUIA",
+            "type": "NORMAL",
+            "name": "MERIH DEMIRAL"
+          },
+          {
+            "id": "TUR08",
+            "team": "TURQUIA",
+            "type": "NORMAL",
+            "name": "FERDI KADIOGLU"
+          },
+          {
+            "id": "TUR09",
+            "team": "TURQUIA",
+            "type": "NORMAL",
+            "name": "KAAN AYHAN"
+          },
+          {
+            "id": "TUR10",
+            "team": "TURQUIA",
+            "type": "NORMAL",
+            "name": "ISMAIL YUKSEK"
+          },
+          {
+            "id": "TUR11",
+            "team": "TURQUIA",
+            "type": "NORMAL",
+            "name": "HAKAN CALHANOGLU"
+          },
+          {
+            "id": "TUR12",
+            "team": "TURQUIA",
+            "type": "NORMAL",
+            "name": "ORKUN KOKCU"
+          },
+          {
+            "id": "TUR13",
+            "team": "TURQUIA",
+            "type": "EQUIPO",
+            "name": "SELECCION NACIONAL DE TURQUIA"
+          },
+          {
+            "id": "TUR14",
+            "team": "TURQUIA",
+            "type": "NORMAL",
+            "name": "ARDA GULER"
+          },
+          {
+            "id": "TUR15",
+            "team": "TURQUIA",
+            "type": "NORMAL",
+            "name": "IRFAN CAN KAHVECI"
+          },
+          {
+            "id": "TUR16",
+            "team": "TURQUIA",
+            "type": "NORMAL",
+            "name": "YUNUS AKGUN"
+          },
+          {
+            "id": "TUR17",
+            "team": "TURQUIA",
+            "type": "NORMAL",
+            "name": "CAN UZUN"
+          },
+          {
+            "id": "TUR18",
+            "team": "TURQUIA",
+            "type": "NORMAL",
+            "name": "BARIS ALPER YILMAZ"
+          },
+          {
+            "id": "TUR19",
+            "team": "TURQUIA",
+            "type": "NORMAL",
+            "name": "KEREM AKTURKOGLU"
+          },
+          {
+            "id": "TUR20",
+            "team": "TURQUIA",
+            "type": "NORMAL",
+            "name": "KENAN YILDIZ"
+          }
+        ],
+        "flag": "🇹🇷"
+      }
+    ],
+    "E": [
+      {
+        "country": "ALEMANIA",
+        "stickers": [
+          {
+            "id": "GER01",
+            "team": "ALEMANIA",
+            "type": "ESCUDO",
+            "name": "SELECCION DE FUTBOL DE ALEMANIA"
+          },
+          {
+            "id": "GER02",
+            "team": "ALEMANIA",
+            "type": "NORMAL",
+            "name": "MARC-ANDRE TER STEGEN"
+          },
+          {
+            "id": "GER03",
+            "team": "ALEMANIA",
+            "type": "NORMAL",
+            "name": "JONATHAN TAH"
+          },
+          {
+            "id": "GER04",
+            "team": "ALEMANIA",
+            "type": "NORMAL",
+            "name": "DAIVD RAUM"
+          },
+          {
+            "id": "GER05",
+            "team": "ALEMANIA",
+            "type": "NORMAL",
+            "name": "NICO SCHLOTTERBECK"
+          },
+          {
+            "id": "GER06",
+            "team": "ALEMANIA",
+            "type": "NORMAL",
+            "name": "ANTONIO RUDIGER"
+          },
+          {
+            "id": "GER07",
+            "team": "ALEMANIA",
+            "type": "NORMAL",
+            "name": "WALDEMAR ANTON"
+          },
+          {
+            "id": "GER08",
+            "team": "ALEMANIA",
+            "type": "NORMAL",
+            "name": "RIDLE BAKU"
+          },
+          {
+            "id": "GER09",
+            "team": "ALEMANIA",
+            "type": "NORMAL",
+            "name": "MAXIMILIAN MITTELSTADT"
+          },
+          {
+            "id": "GER10",
+            "team": "ALEMANIA",
+            "type": "NORMAL",
+            "name": "JOSHUA KIMMICH"
+          },
+          {
+            "id": "GER11",
+            "team": "ALEMANIA",
+            "type": "NORMAL",
+            "name": "FLORIAN WIRTZ"
+          },
+          {
+            "id": "GER12",
+            "team": "ALEMANIA",
+            "type": "NORMAL",
+            "name": "FELIZ NMECHA"
+          },
+          {
+            "id": "GER13",
+            "team": "ALEMANIA",
+            "type": "EQUIPO",
+            "name": "SELECCION DE FUTBOL DE ALEMANIA"
+          },
+          {
+            "id": "GER14",
+            "team": "ALEMANIA",
+            "type": "NORMAL",
+            "name": "LEON GORETZKA"
+          },
+          {
+            "id": "GER15",
+            "team": "ALEMANIA",
+            "type": "NORMAL",
+            "name": "JAMAL MUSIALA"
+          },
+          {
+            "id": "GER16",
+            "team": "ALEMANIA",
+            "type": "NORMAL",
+            "name": "SERGE GNABRY"
+          },
+          {
+            "id": "GER17",
+            "team": "ALEMANIA",
+            "type": "NORMAL",
+            "name": "KAI HAVERTZ"
+          },
+          {
+            "id": "GER18",
+            "team": "ALEMANIA",
+            "type": "NORMAL",
+            "name": "LEROY SANE"
+          },
+          {
+            "id": "GER19",
+            "team": "ALEMANIA",
+            "type": "NORMAL",
+            "name": "KARIM ADEYEMI"
+          },
+          {
+            "id": "GER20",
+            "team": "ALEMANIA",
+            "type": "NORMAL",
+            "name": "NICK WOLTEMADE"
+          }
+        ],
+        "flag": "🇩🇪"
+      },
+      {
+        "country": "CURAZAO",
+        "stickers": [
+          {
+            "id": "CUW01",
+            "team": "CURAZAO",
+            "type": "ESCUDO",
+            "name": "SELECCION DE FUTBOL DE CURAZAO"
+          },
+          {
+            "id": "CUW02",
+            "team": "CURAZAO",
+            "type": "NORMAL",
+            "name": "ELOY ROOM"
+          },
+          {
+            "id": "CUW03",
+            "team": "CURAZAO",
+            "type": "NORMAL",
+            "name": "ARMANDO OBISPO"
+          },
+          {
+            "id": "CUW04",
+            "team": "CURAZAO",
+            "type": "NORMAL",
+            "name": "SHEREL FLORANUS"
+          },
+          {
+            "id": "CUW05",
+            "team": "CURAZAO",
+            "type": "NORMAL",
+            "name": "JURIEN GAARI"
+          },
+          {
+            "id": "CUW06",
+            "team": "CURAZAO",
+            "type": "NORMAL",
+            "name": "JOSHUA BRENET"
+          },
+          {
+            "id": "CUW07",
+            "team": "CURAZAO",
+            "type": "NORMAL",
+            "name": "ROSHON VAN EIJMA"
+          },
+          {
+            "id": "CUW08",
+            "team": "CURAZAO",
+            "type": "NORMAL",
+            "name": "SHURANDY SAMBO"
+          },
+          {
+            "id": "CUW09",
+            "team": "CURAZAO",
+            "type": "NORMAL",
+            "name": "LIVANO COMENENCIA"
+          },
+          {
+            "id": "CUW10",
+            "team": "CURAZAO",
+            "type": "NORMAL",
+            "name": "GODFRIED ROEMERATOE"
+          },
+          {
+            "id": "CUW11",
+            "team": "CURAZAO",
+            "type": "NORMAL",
+            "name": "JUNINHO BACUNA"
+          },
+          {
+            "id": "CUW12",
+            "team": "CURAZAO",
+            "type": "NORMAL",
+            "name": "LEANDRO BACUNA"
+          },
+          {
+            "id": "CUW13",
+            "team": "CURAZAO",
+            "type": "EQUIPO",
+            "name": "SELECCION DE FUTBOL DE CURAZAO"
+          },
+          {
+            "id": "CUW14",
+            "team": "CURAZAO",
+            "type": "NORMAL",
+            "name": "TAHITH CHONG"
+          },
+          {
+            "id": "CUW15",
+            "team": "CURAZAO",
+            "type": "NORMAL",
+            "name": "KENJI GORRE"
+          },
+          {
+            "id": "CUW16",
+            "team": "CURAZAO",
+            "type": "NORMAL",
+            "name": "JEARL MARGARITHA"
+          },
+          {
+            "id": "CUW17",
+            "team": "CURAZAO",
+            "type": "NORMAL",
+            "name": "JURGEN LOCADIA"
+          },
+          {
+            "id": "CUW18",
+            "team": "CURAZAO",
+            "type": "NORMAL",
+            "name": "JEREMY ANTONISSE"
+          },
+          {
+            "id": "CUW19",
+            "team": "CURAZAO",
+            "type": "NORMAL",
+            "name": "GERVANE KASTANEER"
+          },
+          {
+            "id": "CUW20",
+            "team": "CURAZAO",
+            "type": "NORMAL",
+            "name": "SONTJE HANSEN"
+          }
+        ],
+        "flag": "🇨🇼"
+      },
+      {
+        "country": "COSTA DE MARFIL",
+        "stickers": [
+          {
+            "id": "CIV01",
+            "team": "COSTA DE MARFIL",
+            "type": "ESCUDO",
+            "name": "SELECCION NACIONAL DE COSTA DE MARFIL"
+          },
+          {
+            "id": "CIV02",
+            "team": "COSTA DE MARFIL",
+            "type": "NORMAL",
+            "name": "YAHIA FOFANA"
+          },
+          {
+            "id": "CIV03",
+            "team": "COSTA DE MARFIL",
+            "type": "NORMAL",
+            "name": "GHISLAIN KONAN"
+          },
+          {
+            "id": "CIV04",
+            "team": "COSTA DE MARFIL",
+            "type": "NORMAL",
+            "name": "WILFRIED SINGO"
+          },
+          {
+            "id": "CIV05",
+            "team": "COSTA DE MARFIL",
+            "type": "NORMAL",
+            "name": "ODILON KOSSOUNOU"
+          },
+          {
+            "id": "CIV06",
+            "team": "COSTA DE MARFIL",
+            "type": "NORMAL",
+            "name": "EVAN NDICKA"
+          },
+          {
+            "id": "CIV07",
+            "team": "COSTA DE MARFIL",
+            "type": "NORMAL",
+            "name": "WILLY BOLY"
+          },
+          {
+            "id": "CIV08",
+            "team": "COSTA DE MARFIL",
+            "type": "NORMAL",
+            "name": "EMMANUEL AGBADOU"
+          },
+          {
+            "id": "CIV09",
+            "team": "COSTA DE MARFIL",
+            "type": "NORMAL",
+            "name": "OUSMANE DOIMANDE"
+          },
+          {
+            "id": "CIV10",
+            "team": "COSTA DE MARFIL",
+            "type": "NORMAL",
+            "name": "FRACNK KESSIE"
+          },
+          {
+            "id": "CIV11",
+            "team": "COSTA DE MARFIL",
+            "type": "NORMAL",
+            "name": "SEKO FOFANA"
+          },
+          {
+            "id": "CIV12",
+            "team": "COSTA DE MARFIL",
+            "type": "NORMAL",
+            "name": "IBAHIM SANGARE"
+          },
+          {
+            "id": "CIV13",
+            "team": "COSTA DE MARFIL",
+            "type": "EQUIPO",
+            "name": "SELECCION NACIONAL DE COSTA DE MARFIL"
+          },
+          {
+            "id": "CIV14",
+            "team": "COSTA DE MARFIL",
+            "type": "NORMAL",
+            "name": "JEAN PHILIPPE GBAMIN"
+          },
+          {
+            "id": "CIV15",
+            "team": "COSTA DE MARFIL",
+            "type": "NORMAL",
+            "name": "AMAD DIALLO"
+          },
+          {
+            "id": "CIV16",
+            "team": "COSTA DE MARFIL",
+            "type": "NORMAL",
+            "name": "SEBASTIEN HALLER"
+          },
+          {
+            "id": "CIV17",
+            "team": "COSTA DE MARFIL",
+            "type": "NORMAL",
+            "name": "SIMON ADINGRA"
+          },
+          {
+            "id": "CIV18",
+            "team": "COSTA DE MARFIL",
+            "type": "NORMAL",
+            "name": "YAN DIOMANDE"
+          },
+          {
+            "id": "CIV19",
+            "team": "COSTA DE MARFIL",
+            "type": "NORMAL",
+            "name": "EVANN GUESSAND"
+          },
+          {
+            "id": "CIV20",
+            "team": "COSTA DE MARFIL",
+            "type": "NORMAL",
+            "name": "OUMAR DIAKITE"
+          }
+        ],
+        "flag": "🇨🇮"
+      },
+      {
+        "country": "ECUADOR",
+        "stickers": [
+          {
+            "id": "ECU01",
+            "team": "ECUADOR",
+            "type": "ESCUDO",
+            "name": "SELECCION NACIONAL DE ECUADOR"
+          },
+          {
+            "id": "ECU02",
+            "team": "ECUADOR",
+            "type": "NORMAL",
+            "name": "HERNAN GALINDEZ"
+          },
+          {
+            "id": "ECU03",
+            "team": "ECUADOR",
+            "type": "NORMAL",
+            "name": "GONZALO VALLE"
+          },
+          {
+            "id": "ECU04",
+            "team": "ECUADOR",
+            "type": "NORMAL",
+            "name": "PIERO HINCAPIE"
+          },
+          {
+            "id": "ECU05",
+            "team": "ECUADOR",
+            "type": "NORMAL",
+            "name": "PERVIS ESTUPIÑAN"
+          },
+          {
+            "id": "ECU06",
+            "team": "ECUADOR",
+            "type": "NORMAL",
+            "name": "WILLIAN PACHO"
+          },
+          {
+            "id": "ECU07",
+            "team": "ECUADOR",
+            "type": "NORMAL",
+            "name": "ANGELO PRECIADO"
+          },
+          {
+            "id": "ECU08",
+            "team": "ECUADOR",
+            "type": "NORMAL",
+            "name": "JOEL ORDOÑEZ"
+          },
+          {
+            "id": "ECU09",
+            "team": "ECUADOR",
+            "type": "NORMAL",
+            "name": "MOISES CAICEDO"
+          },
+          {
+            "id": "ECU10",
+            "team": "ECUADOR",
+            "type": "NORMAL",
+            "name": "ALAN FRANCO"
+          },
+          {
+            "id": "ECU11",
+            "team": "ECUADOR",
+            "type": "NORMAL",
+            "name": "KENDRY PAEZ"
+          },
+          {
+            "id": "ECU12",
+            "team": "ECUADOR",
+            "type": "NORMAL",
+            "name": "PEDRO VITE"
+          },
+          {
+            "id": "ECU13",
+            "team": "ECUADOR",
+            "type": "EQUIPO",
+            "name": "SELECCION NACIONAL DE ECUADOR"
+          },
+          {
+            "id": "ECU14",
+            "team": "ECUADOR",
+            "type": "NORMAL",
+            "name": "JOHN YEBOAH"
+          },
+          {
+            "id": "ECU15",
+            "team": "ECUADOR",
+            "type": "NORMAL",
+            "name": "LEONARDO CAMPANA"
+          },
+          {
+            "id": "ECU16",
+            "team": "ECUADOR",
+            "type": "NORMAL",
+            "name": "GONZALO PLATA"
+          },
+          {
+            "id": "ECU17",
+            "team": "ECUADOR",
+            "type": "NORMAL",
+            "name": "NILSON ANGULO"
+          },
+          {
+            "id": "ECU18",
+            "team": "ECUADOR",
+            "type": "NORMAL",
+            "name": "ALAN MINDA"
+          },
+          {
+            "id": "ECU19",
+            "team": "ECUADOR",
+            "type": "NORMAL",
+            "name": "KEVIN RODRIGUEZ"
+          },
+          {
+            "id": "ECU20",
+            "team": "ECUADOR",
+            "type": "NORMAL",
+            "name": "ENNER VALENCIA"
+          }
+        ],
+        "flag": "🇪🇨"
+      }
+    ],
+    "F": [
+      {
+        "country": "HOLANDA",
+        "stickers": [
+          {
+            "id": "NED01",
+            "team": "HOLANDA",
+            "type": "ESCUDO",
+            "name": "SELECCION DE FUTBOL DE HOLANDA"
+          },
+          {
+            "id": "NED02",
+            "team": "HOLANDA",
+            "type": "NORMAL",
+            "name": "BART VERBRUGGEN"
+          },
+          {
+            "id": "NED03",
+            "team": "HOLANDA",
+            "type": "NORMAL",
+            "name": "VIRGIL VAN DIJK"
+          },
+          {
+            "id": "NED04",
+            "team": "HOLANDA",
+            "type": "NORMAL",
+            "name": "MICKY VAN DE VEN"
+          },
+          {
+            "id": "NED05",
+            "team": "HOLANDA",
+            "type": "NORMAL",
+            "name": "JURRIEN TIMBER"
+          },
+          {
+            "id": "NED06",
+            "team": "HOLANDA",
+            "type": "NORMAL",
+            "name": "DENZEL DUMFRIES"
+          },
+          {
+            "id": "NED07",
+            "team": "HOLANDA",
+            "type": "NORMAL",
+            "name": "NATHAN AKE"
+          },
+          {
+            "id": "NED08",
+            "team": "HOLANDA",
+            "type": "NORMAL",
+            "name": "JAREMIE FRIMPONG"
+          },
+          {
+            "id": "NED09",
+            "team": "HOLANDA",
+            "type": "NORMAL",
+            "name": "JAN PAUL VAN HECKE"
+          },
+          {
+            "id": "NED10",
+            "team": "HOLANDA",
+            "type": "NORMAL",
+            "name": "TIJJANI REIJNDERS"
+          },
+          {
+            "id": "NED11",
+            "team": "HOLANDA",
+            "type": "NORMAL",
+            "name": "RYAN GRAVENBERCH"
+          },
+          {
+            "id": "NED12",
+            "team": "HOLANDA",
+            "type": "NORMAL",
+            "name": "TEUN KOOPMEINERS"
+          },
+          {
+            "id": "NED13",
+            "team": "HOLANDA",
+            "type": "EQUIPO",
+            "name": "SELECCION DE FUTBOL DE HOLANDA"
+          },
+          {
+            "id": "NED14",
+            "team": "HOLANDA",
+            "type": "NORMAL",
+            "name": "FRENKIE DE JONG"
+          },
+          {
+            "id": "NED15",
+            "team": "HOLANDA",
+            "type": "NORMAL",
+            "name": "XAVI SIMMONS"
+          },
+          {
+            "id": "NED16",
+            "team": "HOLANDA",
+            "type": "NORMAL",
+            "name": "JUSTIN KLUIVERT"
+          },
+          {
+            "id": "NED17",
+            "team": "HOLANDA",
+            "type": "NORMAL",
+            "name": "MEMPHIS DEPAY"
+          },
+          {
+            "id": "NED18",
+            "team": "HOLANDA",
+            "type": "NORMAL",
+            "name": "DONYELL MALEN"
+          },
+          {
+            "id": "NED19",
+            "team": "HOLANDA",
+            "type": "NORMAL",
+            "name": "WOUT WEGHORST"
+          },
+          {
+            "id": "NED20",
+            "team": "HOLANDA",
+            "type": "NORMAL",
+            "name": "CODY GAKPO"
+          }
+        ],
+        "flag": "🇳🇱"
+      },
+      {
+        "country": "JAPON",
+        "stickers": [
+          {
+            "id": "JAP01",
+            "team": "JAPON",
+            "type": "ESCUDO",
+            "name": "SELECCION DE FUTBOL DE JAPON"
+          },
+          {
+            "id": "JAP02",
+            "team": "JAPON",
+            "type": "NORMAL",
+            "name": "ZION SUZUKI"
+          },
+          {
+            "id": "JAP03",
+            "team": "JAPON",
+            "type": "NORMAL",
+            "name": "HENRY HEROKI MOCHIZUKI"
+          },
+          {
+            "id": "JAP04",
+            "team": "JAPON",
+            "type": "NORMAL",
+            "name": "AYUMU SEKO"
+          },
+          {
+            "id": "JAP05",
+            "team": "JAPON",
+            "type": "NORMAL",
+            "name": "JUNNOSUKE SUZUKI"
+          },
+          {
+            "id": "JAP06",
+            "team": "JAPON",
+            "type": "NORMAL",
+            "name": "SHOGO TANIGUCHI"
+          },
+          {
+            "id": "JAP07",
+            "team": "JAPON",
+            "type": "NORMAL",
+            "name": "TSUYOSHI WATANABE"
+          },
+          {
+            "id": "JAP08",
+            "team": "JAPON",
+            "type": "NORMAL",
+            "name": "KAISHU SANO"
+          },
+          {
+            "id": "JAP09",
+            "team": "JAPON",
+            "type": "NORMAL",
+            "name": "YUKI SOMA"
+          },
+          {
+            "id": "JAP10",
+            "team": "JAPON",
+            "type": "NORMAL",
+            "name": "AO TANAKA"
+          },
+          {
+            "id": "JAP11",
+            "team": "JAPON",
+            "type": "NORMAL",
+            "name": "DAICHI KAMADA"
+          },
+          {
+            "id": "JAP12",
+            "team": "JAPON",
+            "type": "NORMAL",
+            "name": "TAKEFUSA KUBO"
+          },
+          {
+            "id": "JAP13",
+            "team": "JAPON",
+            "type": "EQUIPO",
+            "name": "SELECCION DE FUTBOL DE JAPON"
+          },
+          {
+            "id": "JAP14",
+            "team": "JAPON",
+            "type": "NORMAL",
+            "name": "RITSU DOAN"
+          },
+          {
+            "id": "JAP15",
+            "team": "JAPON",
+            "type": "NORMAL",
+            "name": "KEITO NAKAMURA"
+          },
+          {
+            "id": "JAP16",
+            "team": "JAPON",
+            "type": "NORMAL",
+            "name": "TAKUMI MINAMINO"
+          },
+          {
+            "id": "JAP17",
+            "team": "JAPON",
+            "type": "NORMAL",
+            "name": "SHUTO MACHINO"
+          },
+          {
+            "id": "JAP18",
+            "team": "JAPON",
+            "type": "NORMAL",
+            "name": "JUNYA ITO"
+          },
+          {
+            "id": "JAP19",
+            "team": "JAPON",
+            "type": "NORMAL",
+            "name": "KOKI OGAWA"
+          },
+          {
+            "id": "JAP20",
+            "team": "JAPON",
+            "type": "NORMAL",
+            "name": "AYASE UEDA"
+          }
+        ],
+        "flag": "🇯🇵"
+      },
+      {
+        "country": "SUECIA",
+        "stickers": [
+          {
+            "id": "SWE01",
+            "team": "SUECIA",
+            "type": "ESCUDO",
+            "name": "SELECCION NACIONAL DE SUECIA"
+          },
+          {
+            "id": "SWE02",
+            "team": "SUECIA",
+            "type": "NORMAL",
+            "name": "VIKTOR JOHANSSON"
+          },
+          {
+            "id": "SWE03",
+            "team": "SUECIA",
+            "type": "NORMAL",
+            "name": "ISAK HEIN"
+          },
+          {
+            "id": "SWE04",
+            "team": "SUECIA",
+            "type": "NORMAL",
+            "name": "GABRIEL GUDMUNDSSON"
+          },
+          {
+            "id": "SWE05",
+            "team": "SUECIA",
+            "type": "NORMAL",
+            "name": "EMIL HOLM"
+          },
+          {
+            "id": "SWE06",
+            "team": "SUECIA",
+            "type": "NORMAL",
+            "name": "VICTOR NILSSON LINDELOF"
+          },
+          {
+            "id": "SWE07",
+            "team": "SUECIA",
+            "type": "NORMAL",
+            "name": "GUSTAF LAGERBIELKE"
+          },
+          {
+            "id": "SWE08",
+            "team": "SUECIA",
+            "type": "NORMAL",
+            "name": "LUCAS BERGVALL"
+          },
+          {
+            "id": "SWE09",
+            "team": "SUECIA",
+            "type": "NORMAL",
+            "name": "HUGO LARSSON"
+          },
+          {
+            "id": "SWE10",
+            "team": "SUECIA",
+            "type": "NORMAL",
+            "name": "JESPER KARLSTROM"
+          },
+          {
+            "id": "SWE11",
+            "team": "SUECIA",
+            "type": "NORMAL",
+            "name": "YASIN AYARI"
+          },
+          {
+            "id": "SWE12",
+            "team": "SUECIA",
+            "type": "NORMAL",
+            "name": "MATTIAS SVANBERG"
+          },
+          {
+            "id": "SWE13",
+            "team": "SUECIA",
+            "type": "EQUIPO",
+            "name": "SELECCION NACIONAL DE SUECIA"
+          },
+          {
+            "id": "SWE14",
+            "team": "SUECIA",
+            "type": "NORMAL",
+            "name": "DANIEL SVENSSON"
+          },
+          {
+            "id": "SWE15",
+            "team": "SUECIA",
+            "type": "NORMAL",
+            "name": "KEN SEMA"
+          },
+          {
+            "id": "SWE16",
+            "team": "SUECIA",
+            "type": "NORMAL",
+            "name": "ROONY BARDGHJI"
+          },
+          {
+            "id": "SWE17",
+            "team": "SUECIA",
+            "type": "NORMAL",
+            "name": "DEJAN KULUSEVSKI"
+          },
+          {
+            "id": "SWE18",
+            "team": "SUECIA",
+            "type": "NORMAL",
+            "name": "ANTHONY ELANGA"
+          },
+          {
+            "id": "SWE19",
+            "team": "SUECIA",
+            "type": "NORMAL",
+            "name": "ALEXANDER ISAK"
+          },
+          {
+            "id": "SWE20",
+            "team": "SUECIA",
+            "type": "NORMAL",
+            "name": "VIKTOR GYOKERES"
+          }
+        ],
+        "flag": "🇸🇪"
+      },
+      {
+        "country": "TUNEZ",
+        "stickers": [
+          {
+            "id": "TUN01",
+            "team": "TUNEZ",
+            "type": "ESCUDO",
+            "name": "SELECCION NACIONAL DE TUNEZ"
+          },
+          {
+            "id": "TUN02",
+            "team": "TUNEZ",
+            "type": "NORMAL",
+            "name": "BECHIR BEN SAID"
+          },
+          {
+            "id": "TUN03",
+            "team": "TUNEZ",
+            "type": "NORMAL",
+            "name": "AYMEHN DAHMEN"
+          },
+          {
+            "id": "TUN04",
+            "team": "TUNEZ",
+            "type": "NORMAL",
+            "name": "VAN VALERY"
+          },
+          {
+            "id": "TUN05",
+            "team": "TUNEZ",
+            "type": "NORMAL",
+            "name": "MONTASSAR TALBI"
+          },
+          {
+            "id": "TUN06",
+            "team": "TUNEZ",
+            "type": "NORMAL",
+            "name": "YASSINE MERIAH"
+          },
+          {
+            "id": "TUN07",
+            "team": "TUNEZ",
+            "type": "NORMAL",
+            "name": "ALI ABDI"
+          },
+          {
+            "id": "TUN08",
+            "team": "TUNEZ",
+            "type": "NORMAL",
+            "name": "DYLAN BRONN"
+          },
+          {
+            "id": "TUN09",
+            "team": "TUNEZ",
+            "type": "NORMAL",
+            "name": "ELLYES SKHIRI"
+          },
+          {
+            "id": "TUN10",
+            "team": "TUNEZ",
+            "type": "NORMAL",
+            "name": "AISSA LAIDOUNI"
+          },
+          {
+            "id": "TUN11",
+            "team": "TUNEZ",
+            "type": "NORMAL",
+            "name": "FERJANI SASSI"
+          },
+          {
+            "id": "TUN12",
+            "team": "TUNEZ",
+            "type": "NORMAL",
+            "name": "MIOHAMED ALI BEN ROMDHANE"
+          },
+          {
+            "id": "TUN13",
+            "team": "TUNEZ",
+            "type": "EQUIPO",
+            "name": "SELECCION NACIONAL DE TUNEZ"
+          },
+          {
+            "id": "TUN14",
+            "team": "TUNEZ",
+            "type": "NORMAL",
+            "name": "HANNIBAL MEJBRI"
+          },
+          {
+            "id": "TUN15",
+            "team": "TUNEZ",
+            "type": "NORMAL",
+            "name": "ELIAS ACHOURI"
+          },
+          {
+            "id": "TUN16",
+            "team": "TUNEZ",
+            "type": "NORMAL",
+            "name": "ELIAS SAAD"
+          },
+          {
+            "id": "TUN17",
+            "team": "TUNEZ",
+            "type": "NORMAL",
+            "name": "HAZEM MASTOURI"
+          },
+          {
+            "id": "TUN18",
+            "team": "TUNEZ",
+            "type": "NORMAL",
+            "name": "ISMAEL GHARBI"
+          },
+          {
+            "id": "TUN19",
+            "team": "TUNEZ",
+            "type": "NORMAL",
+            "name": "SAYFALLAH LTAIEF"
+          },
+          {
+            "id": "TUN20",
+            "team": "TUNEZ",
+            "type": "NORMAL",
+            "name": "NAIM SLITTI"
+          }
+        ],
+        "flag": "🇹🇳"
+      }
+    ],
+    "G": [
+      {
+        "country": "BELGICA",
+        "stickers": [
+          {
+            "id": "BEL01",
+            "team": "BELGICA",
+            "type": "ESCUDO",
+            "name": "SELECCION DE FUTBOL DE BELGICA"
+          },
+          {
+            "id": "BEL02",
+            "team": "BELGICA",
+            "type": "NORMAL",
+            "name": "THIBAUT COURTOIS"
+          },
+          {
+            "id": "BEL03",
+            "team": "BELGICA",
+            "type": "NORMAL",
+            "name": "ARTHUR THEATE"
+          },
+          {
+            "id": "BEL04",
+            "team": "BELGICA",
+            "type": "NORMAL",
+            "name": "TIMOTHY CASTAGNE"
+          },
+          {
+            "id": "BEL05",
+            "team": "BELGICA",
+            "type": "NORMAL",
+            "name": "ZENO DEBASR"
+          },
+          {
+            "id": "BEL06",
+            "team": "BELGICA",
+            "type": "NORMAL",
+            "name": "BRANDON MECHELE"
+          },
+          {
+            "id": "BEL07",
+            "team": "BELGICA",
+            "type": "NORMAL",
+            "name": "MAXIM DE CUYPER"
+          },
+          {
+            "id": "BEL08",
+            "team": "BELGICA",
+            "type": "NORMAL",
+            "name": "THOMAS MEUNIER"
+          },
+          {
+            "id": "BEL09",
+            "team": "BELGICA",
+            "type": "NORMAL",
+            "name": "YOURI TIELEMANS"
+          },
+          {
+            "id": "BEL10",
+            "team": "BELGICA",
+            "type": "NORMAL",
+            "name": "AMADOU ONANA"
+          },
+          {
+            "id": "BEL11",
+            "team": "BELGICA",
+            "type": "NORMAL",
+            "name": "NICOLAS RASKIN"
+          },
+          {
+            "id": "BEL12",
+            "team": "BELGICA",
+            "type": "NORMAL",
+            "name": "ALEXIS SAELEMAEKERS"
+          },
+          {
+            "id": "BEL13",
+            "team": "BELGICA",
+            "type": "EQUIPO",
+            "name": "SELECCION DE FUTBOL DE BELGICA"
+          },
+          {
+            "id": "BEL14",
+            "team": "BELGICA",
+            "type": "NORMAL",
+            "name": "HANS VANAKEN"
+          },
+          {
+            "id": "BEL15",
+            "team": "BELGICA",
+            "type": "NORMAL",
+            "name": "KEVIN DEBRUYNE"
+          },
+          {
+            "id": "BEL16",
+            "team": "BELGICA",
+            "type": "NORMAL",
+            "name": "JEREMY DOKU"
+          },
+          {
+            "id": "BEL17",
+            "team": "BELGICA",
+            "type": "NORMAL",
+            "name": "CHARLES DE KETELAERE"
+          },
+          {
+            "id": "BEL18",
+            "team": "BELGICA",
+            "type": "NORMAL",
+            "name": "LEANDRO TROSSARD"
+          },
+          {
+            "id": "BEL19",
+            "team": "BELGICA",
+            "type": "NORMAL",
+            "name": "LIOS OPENDA"
+          },
+          {
+            "id": "BEL20",
+            "team": "BELGICA",
+            "type": "NORMAL",
+            "name": "ROMELU LUKAKU"
+          }
+        ],
+        "flag": "🇧🇪"
+      },
+      {
+        "country": "EGIPTO",
+        "stickers": [
+          {
+            "id": "EGY01",
+            "team": "EGIPTO",
+            "type": "ESCUDO",
+            "name": "SELECCION DE FUTBOL DE EGIPTO"
+          },
+          {
+            "id": "EGY02",
+            "team": "EGIPTO",
+            "type": "NORMAL",
+            "name": "MOHAMED ELSHENAWY"
+          },
+          {
+            "id": "EGY03",
+            "team": "EGIPTO",
+            "type": "NORMAL",
+            "name": "MOHAMED HANY"
+          },
+          {
+            "id": "EGY04",
+            "team": "EGIPTO",
+            "type": "NORMAL",
+            "name": "MOHAMED HAMBY"
+          },
+          {
+            "id": "EGY05",
+            "team": "EGIPTO",
+            "type": "NORMAL",
+            "name": "YASSER IBRAHIM"
+          },
+          {
+            "id": "EGY06",
+            "team": "EGIPTO",
+            "type": "NORMAL",
+            "name": "KHALED SOBHI"
+          },
+          {
+            "id": "EGY07",
+            "team": "EGIPTO",
+            "type": "NORMAL",
+            "name": "RAMY RABIA"
+          },
+          {
+            "id": "EGY08",
+            "team": "EGIPTO",
+            "type": "NORMAL",
+            "name": "HOSSAM ABDELMAGUID"
+          },
+          {
+            "id": "EGY09",
+            "team": "EGIPTO",
+            "type": "NORMAL",
+            "name": "AHMED FATOUH"
+          },
+          {
+            "id": "EGY10",
+            "team": "EGIPTO",
+            "type": "NORMAL",
+            "name": "MARWAN ATTIA"
+          },
+          {
+            "id": "EGY11",
+            "team": "EGIPTO",
+            "type": "NORMAL",
+            "name": "ZIZO"
+          },
+          {
+            "id": "EGY12",
+            "team": "EGIPTO",
+            "type": "NORMAL",
+            "name": "HAMDY FATHY"
+          },
+          {
+            "id": "EGY13",
+            "team": "EGIPTO",
+            "type": "EQUIPO",
+            "name": "SELECCION DE FUTBOL DE EGIPTO"
+          },
+          {
+            "id": "EGY14",
+            "team": "EGIPTO",
+            "type": "NORMAL",
+            "name": "MOHANAD LASHEEN"
+          },
+          {
+            "id": "EGY15",
+            "team": "EGIPTO",
+            "type": "NORMAL",
+            "name": "EMAM ASHOUR"
+          },
+          {
+            "id": "EGY16",
+            "team": "EGIPTO",
+            "type": "NORMAL",
+            "name": "OSAMA FAISAL"
+          },
+          {
+            "id": "EGY17",
+            "team": "EGIPTO",
+            "type": "NORMAL",
+            "name": "MOHAMED SALAH"
+          },
+          {
+            "id": "EGY18",
+            "team": "EGIPTO",
+            "type": "NORMAL",
+            "name": "MOSTAFA MOHAMED"
+          },
+          {
+            "id": "EGY19",
+            "team": "EGIPTO",
+            "type": "NORMAL",
+            "name": "TREZEGUET"
+          },
+          {
+            "id": "EGY20",
+            "team": "EGIPTO",
+            "type": "NORMAL",
+            "name": "OMAR MARMOUSH"
+          }
+        ],
+        "flag": "🇪🇬"
+      },
+      {
+        "country": "IRAN",
+        "stickers": [
+          {
+            "id": "IRN01",
+            "team": "IRAN",
+            "type": "ESCUDO",
+            "name": "SELECCION NACIONAL DE IRAN"
+          },
+          {
+            "id": "IRN02",
+            "team": "IRAN",
+            "type": "NORMAL",
+            "name": "ALIREZA BEIRANVAND"
+          },
+          {
+            "id": "IRN03",
+            "team": "IRAN",
+            "type": "NORMAL",
+            "name": "MORTEZA POURALIGANJI"
+          },
+          {
+            "id": "IRN04",
+            "team": "IRAN",
+            "type": "NORMAL",
+            "name": "EHSAN HAJSAFI"
+          },
+          {
+            "id": "IRN05",
+            "team": "IRAN",
+            "type": "NORMAL",
+            "name": "MILAD MOHAMMADI"
+          },
+          {
+            "id": "IRN06",
+            "team": "IRAN",
+            "type": "NORMAL",
+            "name": "SHOJAE KHALILZAEDH"
+          },
+          {
+            "id": "IRN07",
+            "team": "IRAN",
+            "type": "NORMAL",
+            "name": "RAMIN REZAEIAN"
+          },
+          {
+            "id": "IRN08",
+            "team": "IRAN",
+            "type": "NORMAL",
+            "name": "HOSSEIN KANAANI"
+          },
+          {
+            "id": "IRN09",
+            "team": "IRAN",
+            "type": "NORMAL",
+            "name": "SADEGH MOHARRAMI"
+          },
+          {
+            "id": "IRN10",
+            "team": "IRAN",
+            "type": "NORMAL",
+            "name": "SALEH HARDANI"
+          },
+          {
+            "id": "IRN11",
+            "team": "IRAN",
+            "type": "NORMAL",
+            "name": "SAEED EZTOLAHI"
+          },
+          {
+            "id": "IRN12",
+            "team": "IRAN",
+            "type": "NORMAL",
+            "name": "SAMAN GHODDOS"
+          },
+          {
+            "id": "IRN13",
+            "team": "IRAN",
+            "type": "EQUIPO",
+            "name": "SELECCION NACIONAL DE IRAN"
+          },
+          {
+            "id": "IRN14",
+            "team": "IRAN",
+            "type": "NORMAL",
+            "name": "OMID NOORAFKAN"
+          },
+          {
+            "id": "IRN15",
+            "team": "IRAN",
+            "type": "NORMAL",
+            "name": "ROOZBEH CHESHMI"
+          },
+          {
+            "id": "IRN16",
+            "team": "IRAN",
+            "type": "NORMAL",
+            "name": "MOHAMMAD MOHEBI"
+          },
+          {
+            "id": "IRN17",
+            "team": "IRAN",
+            "type": "NORMAL",
+            "name": "SARDAR AZMOUN"
+          },
+          {
+            "id": "IRN18",
+            "team": "IRAN",
+            "type": "NORMAL",
+            "name": "MEHDI TAREMI"
+          },
+          {
+            "id": "IRN19",
+            "team": "IRAN",
+            "type": "NORMAL",
+            "name": "ALIREZA JAHANBAKHSH"
+          },
+          {
+            "id": "IRN20",
+            "team": "IRAN",
+            "type": "NORMAL",
+            "name": "ALI GHOLIZADEH"
+          }
+        ],
+        "flag": "🇮🇷"
+      },
+      {
+        "country": "NUEVA ZELANDA",
+        "stickers": [
+          {
+            "id": "NZL01",
+            "team": "NUEVA ZELANDA",
+            "type": "ESCUDO",
+            "name": "SELECCION NACIONAL DE NUEVA ZELANDA"
+          },
+          {
+            "id": "NZL02",
+            "team": "NUEVA ZELANDA",
+            "type": "NORMAL",
+            "name": "MAX CROCOMBE"
+          },
+          {
+            "id": "NZL03",
+            "team": "NUEVA ZELANDA",
+            "type": "NORMAL",
+            "name": "ALEX PAULSEN"
+          },
+          {
+            "id": "NZL04",
+            "team": "NUEVA ZELANDA",
+            "type": "NORMAL",
+            "name": "MICHAEL BOXALL"
+          },
+          {
+            "id": "NZL05",
+            "team": "NUEVA ZELANDA",
+            "type": "NORMAL",
+            "name": "LIBERATO CACACE"
+          },
+          {
+            "id": "NZL06",
+            "team": "NUEVA ZELANDA",
+            "type": "NORMAL",
+            "name": "TIM PAYNE"
+          },
+          {
+            "id": "NZL07",
+            "team": "NUEVA ZELANDA",
+            "type": "NORMAL",
+            "name": "TYLER BINDON"
+          },
+          {
+            "id": "NZL08",
+            "team": "NUEVA ZELANDA",
+            "type": "NORMAL",
+            "name": "FRANCIS DE VRIES"
+          },
+          {
+            "id": "NZL09",
+            "team": "NUEVA ZELANDA",
+            "type": "NORMAL",
+            "name": "FINN SURMAN"
+          },
+          {
+            "id": "NZL10",
+            "team": "NUEVA ZELANDA",
+            "type": "NORMAL",
+            "name": "JOE BELL"
+          },
+          {
+            "id": "NZL11",
+            "team": "NUEVA ZELANDA",
+            "type": "NORMAL",
+            "name": "SARPREET SINGH"
+          },
+          {
+            "id": "NZL12",
+            "team": "NUEVA ZELANDA",
+            "type": "NORMAL",
+            "name": "RYAN THOMAS"
+          },
+          {
+            "id": "NZL13",
+            "team": "NUEVA ZELANDA",
+            "type": "EQUIPO",
+            "name": "SELECCION NACIONAL DE NUEVA ZELANDA"
+          },
+          {
+            "id": "NZL14",
+            "team": "NUEVA ZELANDA",
+            "type": "NORMAL",
+            "name": "MATTHEW GARBETT"
+          },
+          {
+            "id": "NZL15",
+            "team": "NUEVA ZELANDA",
+            "type": "NORMAL",
+            "name": "MARKO STAMENIC"
+          },
+          {
+            "id": "NZL16",
+            "team": "NUEVA ZELANDA",
+            "type": "NORMAL",
+            "name": "BEN OLD"
+          },
+          {
+            "id": "NZL17",
+            "team": "NUEVA ZELANDA",
+            "type": "NORMAL",
+            "name": "CHRIS WOOD"
+          },
+          {
+            "id": "NZL18",
+            "team": "NUEVA ZELANDA",
+            "type": "NORMAL",
+            "name": "ELIJAH JUST"
+          },
+          {
+            "id": "NZL19",
+            "team": "NUEVA ZELANDA",
+            "type": "NORMAL",
+            "name": "CALLUM MCCOWATT"
+          },
+          {
+            "id": "NZL20",
+            "team": "NUEVA ZELANDA",
+            "type": "NORMAL",
+            "name": "KOSTA BARBAROUSES"
+          }
+        ],
+        "flag": "🇳🇿"
+      }
+    ],
+    "H": [
+      {
+        "country": "ESPAÑA",
+        "stickers": [
+          {
+            "id": "ESP01",
+            "team": "ESPAÑA",
+            "type": "ESCUDO",
+            "name": "SELECCION DE FUTBOL DE ESPAÑA"
+          },
+          {
+            "id": "ESP02",
+            "team": "ESPAÑA",
+            "type": "NORMAL",
+            "name": "UNAI SIMON"
+          },
+          {
+            "id": "ESP03",
+            "team": "ESPAÑA",
+            "type": "NORMAL",
+            "name": "ROBIN LE NORMAND"
+          },
+          {
+            "id": "ESP04",
+            "team": "ESPAÑA",
+            "type": "NORMAL",
+            "name": "AYMERIC LAPORTE"
+          },
+          {
+            "id": "ESP05",
+            "team": "ESPAÑA",
+            "type": "NORMAL",
+            "name": "DEAN HUIJSEN"
+          },
+          {
+            "id": "ESP06",
+            "team": "ESPAÑA",
+            "type": "NORMAL",
+            "name": "PEDRO PORRO"
+          },
+          {
+            "id": "ESP07",
+            "team": "ESPAÑA",
+            "type": "NORMAL",
+            "name": "DANI CARVAJAL"
+          },
+          {
+            "id": "ESP08",
+            "team": "ESPAÑA",
+            "type": "NORMAL",
+            "name": "MARC CUCURELLA"
+          },
+          {
+            "id": "ESP09",
+            "team": "ESPAÑA",
+            "type": "NORMAL",
+            "name": "MARTIN ZUBIMENDI"
+          },
+          {
+            "id": "ESP10",
+            "team": "ESPAÑA",
+            "type": "NORMAL",
+            "name": "RODRI"
+          },
+          {
+            "id": "ESP11",
+            "team": "ESPAÑA",
+            "type": "NORMAL",
+            "name": "PEDRI"
+          },
+          {
+            "id": "ESP12",
+            "team": "ESPAÑA",
+            "type": "NORMAL",
+            "name": "FABIAN RUIZ"
+          },
+          {
+            "id": "ESP13",
+            "team": "ESPAÑA",
+            "type": "EQUIPO",
+            "name": "SELECCION DE FUTBOL DE ESPAÑA"
+          },
+          {
+            "id": "ESP14",
+            "team": "ESPAÑA",
+            "type": "NORMAL",
+            "name": "MIKEL MERINO"
+          },
+          {
+            "id": "ESP15",
+            "team": "ESPAÑA",
+            "type": "NORMAL",
+            "name": "LAMINE YAMAL"
+          },
+          {
+            "id": "ESP16",
+            "team": "ESPAÑA",
+            "type": "NORMAL",
+            "name": "DANI OLMO"
+          },
+          {
+            "id": "ESP17",
+            "team": "ESPAÑA",
+            "type": "NORMAL",
+            "name": "NICO WILLIAMS"
+          },
+          {
+            "id": "ESP18",
+            "team": "ESPAÑA",
+            "type": "NORMAL",
+            "name": "FERRAN TORRES"
+          },
+          {
+            "id": "ESP19",
+            "team": "ESPAÑA",
+            "type": "NORMAL",
+            "name": "ALVARO MORATA"
+          },
+          {
+            "id": "ESP20",
+            "team": "ESPAÑA",
+            "type": "NORMAL",
+            "name": "MIKEL OYARZABAL"
+          }
+        ],
+        "flag": "🇪🇸"
+      },
+      {
+        "country": "CABO VERDE",
+        "stickers": [
+          {
+            "id": "CPV01",
+            "team": "CABO VERDE",
+            "type": "ESCUDO",
+            "name": "SELECCION DE FUTBOL DE CABO VERDE"
+          },
+          {
+            "id": "CPV02",
+            "team": "CABO VERDE",
+            "type": "NORMAL",
+            "name": "VOZINHA"
+          },
+          {
+            "id": "CPV03",
+            "team": "CABO VERDE",
+            "type": "NORMAL",
+            "name": "LOGAN COSTA"
+          },
+          {
+            "id": "CPV04",
+            "team": "CABO VERDE",
+            "type": "NORMAL",
+            "name": "PICO"
+          },
+          {
+            "id": "CPV05",
+            "team": "CABO VERDE",
+            "type": "NORMAL",
+            "name": "DINEY"
+          },
+          {
+            "id": "CPV06",
+            "team": "CABO VERDE",
+            "type": "NORMAL",
+            "name": "STEVEN MOREIRA"
+          },
+          {
+            "id": "CPV07",
+            "team": "CABO VERDE",
+            "type": "NORMAL",
+            "name": "WAGNER PINA"
+          },
+          {
+            "id": "CPV08",
+            "team": "CABO VERDE",
+            "type": "NORMAL",
+            "name": "JOAO PAULO"
+          },
+          {
+            "id": "CPV09",
+            "team": "CABO VERDE",
+            "type": "NORMAL",
+            "name": "YANNICK SEMEDO"
+          },
+          {
+            "id": "CPV10",
+            "team": "CABO VERDE",
+            "type": "NORMAL",
+            "name": "KEVIN PINA"
+          },
+          {
+            "id": "CPV11",
+            "team": "CABO VERDE",
+            "type": "NORMAL",
+            "name": "PATRICK ANDRADE"
+          },
+          {
+            "id": "CPV12",
+            "team": "CABO VERDE",
+            "type": "NORMAL",
+            "name": "JAMIRO MONTEIRO"
+          },
+          {
+            "id": "CPV13",
+            "team": "CABO VERDE",
+            "type": "EQUIPO",
+            "name": "SELECCION DE FUTBOL DE CABO VERDE"
+          },
+          {
+            "id": "CPV14",
+            "team": "CABO VERDE",
+            "type": "NORMAL",
+            "name": "DEROY DUARTE"
+          },
+          {
+            "id": "CPV15",
+            "team": "CABO VERDE",
+            "type": "NORMAL",
+            "name": "GARRY RODRÍGUES"
+          },
+          {
+            "id": "CPV16",
+            "team": "CABO VERDE",
+            "type": "NORMAL",
+            "name": "JOVANE CABRAL"
+          },
+          {
+            "id": "CPV17",
+            "team": "CABO VERDE",
+            "type": "NORMAL",
+            "name": "RYAN MENDES"
+          },
+          {
+            "id": "CPV18",
+            "team": "CABO VERDE",
+            "type": "NORMAL",
+            "name": "DAILON LIVRAMENTO"
+          },
+          {
+            "id": "CPV19",
+            "team": "CABO VERDE",
+            "type": "NORMAL",
+            "name": "WILLY SEMEDO"
+          },
+          {
+            "id": "CPV20",
+            "team": "CABO VERDE",
+            "type": "NORMAL",
+            "name": "BEBE"
+          }
+        ],
+        "flag": "🇨🇻"
+      },
+      {
+        "country": "ARABIA SAUDITA",
+        "stickers": [
+          {
+            "id": "KSA01",
+            "team": "ARABIA SAUDITA",
+            "type": "ESCUDO",
+            "name": "SELECCION NACIONAL DE ARABIA SAUDITA"
+          },
+          {
+            "id": "KSA02",
+            "team": "ARABIA SAUDITA",
+            "type": "NORMAL",
+            "name": "NAWAF ALAQIDI"
+          },
+          {
+            "id": "KSA03",
+            "team": "ARABIA SAUDITA",
+            "type": "NORMAL",
+            "name": "ABDULRAHMAN ALSANBI"
+          },
+          {
+            "id": "KSA04",
+            "team": "ARABIA SAUDITA",
+            "type": "NORMAL",
+            "name": "SAUD ABDULHAMID"
+          },
+          {
+            "id": "KSA05",
+            "team": "ARABIA SAUDITA",
+            "type": "NORMAL",
+            "name": "NAWAF BUWASHL"
+          },
+          {
+            "id": "KSA06",
+            "team": "ARABIA SAUDITA",
+            "type": "NORMAL",
+            "name": "JEHAD THIKRI"
+          },
+          {
+            "id": "KSA07",
+            "team": "ARABIA SAUDITA",
+            "type": "NORMAL",
+            "name": "MOTEB ALHARBI"
+          },
+          {
+            "id": "KSA08",
+            "team": "ARABIA SAUDITA",
+            "type": "NORMAL",
+            "name": "HASSAN ALTAMBAKTI"
+          },
+          {
+            "id": "KSA09",
+            "team": "ARABIA SAUDITA",
+            "type": "NORMAL",
+            "name": "MUSAB ALJUWAYR"
+          },
+          {
+            "id": "KSA10",
+            "team": "ARABIA SAUDITA",
+            "type": "NORMAL",
+            "name": "ZIYAD ALJOHANI"
+          },
+          {
+            "id": "KSA11",
+            "team": "ARABIA SAUDITA",
+            "type": "NORMAL",
+            "name": "ABDULLAH ALKHAIBARI"
+          },
+          {
+            "id": "KSA12",
+            "team": "ARABIA SAUDITA",
+            "type": "NORMAL",
+            "name": "NASSER ALDAWSARI"
+          },
+          {
+            "id": "KSA13",
+            "team": "ARABIA SAUDITA",
+            "type": "EQUIPO",
+            "name": "SELECCION NACIONAL DE ARABIA SAUDITA"
+          },
+          {
+            "id": "KSA14",
+            "team": "ARABIA SAUDITA",
+            "type": "NORMAL",
+            "name": "SALEH ABU ALSHAMAT"
+          },
+          {
+            "id": "KSA15",
+            "team": "ARABIA SAUDITA",
+            "type": "NORMAL",
+            "name": "MARWAN ALSAHAFI"
+          },
+          {
+            "id": "KSA16",
+            "team": "ARABIA SAUDITA",
+            "type": "NORMAL",
+            "name": "SALEM ALDAWSARI"
+          },
+          {
+            "id": "KSA17",
+            "team": "ARABIA SAUDITA",
+            "type": "NORMAL",
+            "name": "ABDULRAHMAN ALOBUD"
+          },
+          {
+            "id": "KSA18",
+            "team": "ARABIA SAUDITA",
+            "type": "NORMAL",
+            "name": "FERAS ALBRIKAN"
+          },
+          {
+            "id": "KSA19",
+            "team": "ARABIA SAUDITA",
+            "type": "NORMAL",
+            "name": "SALEH ALSHEHRI"
+          },
+          {
+            "id": "KSA20",
+            "team": "ARABIA SAUDITA",
+            "type": "NORMAL",
+            "name": "ABDULLAH ALHAMDAN"
+          }
+        ],
+        "flag": "🇸🇦"
+      },
+      {
+        "country": "URUGUAY",
+        "stickers": [
+          {
+            "id": "URU01",
+            "team": "URUGUAY",
+            "type": "ESCUDO",
+            "name": "SELECCION NACIONAL DE URUGUAY"
+          },
+          {
+            "id": "URU02",
+            "team": "URUGUAY",
+            "type": "NORMAL",
+            "name": "SERGIO ROCHET"
+          },
+          {
+            "id": "URU03",
+            "team": "URUGUAY",
+            "type": "NORMAL",
+            "name": "SANTIAGO MELE"
+          },
+          {
+            "id": "URU04",
+            "team": "URUGUAY",
+            "type": "NORMAL",
+            "name": "RONALD ARAUJO"
+          },
+          {
+            "id": "URU05",
+            "team": "URUGUAY",
+            "type": "NORMAL",
+            "name": "JOSE MARIA GIMENEZ"
+          },
+          {
+            "id": "URU06",
+            "team": "URUGUAY",
+            "type": "NORMAL",
+            "name": "SEBASTIAN CACERES"
+          },
+          {
+            "id": "URU07",
+            "team": "URUGUAY",
+            "type": "NORMAL",
+            "name": "MATHIAS OLIVERA"
+          },
+          {
+            "id": "URU08",
+            "team": "URUGUAY",
+            "type": "NORMAL",
+            "name": "GUILLERMO VARELA"
+          },
+          {
+            "id": "URU09",
+            "team": "URUGUAY",
+            "type": "NORMAL",
+            "name": "NAHITAN NANDEZ"
+          },
+          {
+            "id": "URU10",
+            "team": "URUGUAY",
+            "type": "NORMAL",
+            "name": "FEDERICO VALVERDE"
+          },
+          {
+            "id": "URU11",
+            "team": "URUGUAY",
+            "type": "NORMAL",
+            "name": "GIORGIAN DE ARRASCAETA"
+          },
+          {
+            "id": "URU12",
+            "team": "URUGUAY",
+            "type": "NORMAL",
+            "name": "RODRIGO BETANCOUR"
+          },
+          {
+            "id": "URU13",
+            "team": "URUGUAY",
+            "type": "EQUIPO",
+            "name": "SELECCION NACIONAL DE URUGUAY"
+          },
+          {
+            "id": "URU14",
+            "team": "URUGUAY",
+            "type": "NORMAL",
+            "name": "MANUEL UGARTE"
+          },
+          {
+            "id": "URU15",
+            "team": "URUGUAY",
+            "type": "NORMAL",
+            "name": "NICOLAS DE LA CRUZ"
+          },
+          {
+            "id": "URU16",
+            "team": "URUGUAY",
+            "type": "NORMAL",
+            "name": "MAXI ARAUJO"
+          },
+          {
+            "id": "URU17",
+            "team": "URUGUAY",
+            "type": "NORMAL",
+            "name": "DARWIN NUÑEZ"
+          },
+          {
+            "id": "URU18",
+            "team": "URUGUAY",
+            "type": "NORMAL",
+            "name": "FEDERICO VIÑAS"
+          },
+          {
+            "id": "URU19",
+            "team": "URUGUAY",
+            "type": "NORMAL",
+            "name": "RODRIGO AGUIRRE"
+          },
+          {
+            "id": "URU20",
+            "team": "URUGUAY",
+            "type": "NORMAL",
+            "name": "FACUNDO PELLISTRI"
+          }
+        ],
+        "flag": "🇺🇾"
+      }
+    ],
+    "I": [
+      {
+        "country": "FRANCIA",
+        "stickers": [
+          {
+            "id": "FRA01",
+            "team": "FRANCIA",
+            "type": "ESCUDO",
+            "name": "SELECCION DE FUTBOL DE FRANCIA"
+          },
+          {
+            "id": "FRA02",
+            "team": "FRANCIA",
+            "type": "NORMAL",
+            "name": "MIKE MAIGNAN"
+          },
+          {
+            "id": "FRA03",
+            "team": "FRANCIA",
+            "type": "NORMAL",
+            "name": "THEO HERNANDEZ"
+          },
+          {
+            "id": "FRA04",
+            "team": "FRANCIA",
+            "type": "NORMAL",
+            "name": "WILLIAM SALIBA"
+          },
+          {
+            "id": "FRA05",
+            "team": "FRANCIA",
+            "type": "NORMAL",
+            "name": "JULES KOUNDE"
+          },
+          {
+            "id": "FRA06",
+            "team": "FRANCIA",
+            "type": "NORMAL",
+            "name": "IBRAHIMA KONATE"
+          },
+          {
+            "id": "FRA07",
+            "team": "FRANCIA",
+            "type": "NORMAL",
+            "name": "DAYOT UPAMECANO"
+          },
+          {
+            "id": "FRA08",
+            "team": "FRANCIA",
+            "type": "NORMAL",
+            "name": "LUCAS DIGNE"
+          },
+          {
+            "id": "FRA09",
+            "team": "FRANCIA",
+            "type": "NORMAL",
+            "name": "AURELIEN TCHOUAMENI"
+          },
+          {
+            "id": "FRA10",
+            "team": "FRANCIA",
+            "type": "NORMAL",
+            "name": "EDUARDO CAMAVINGA"
+          },
+          {
+            "id": "FRA11",
+            "team": "FRANCIA",
+            "type": "NORMAL",
+            "name": "MANU KONE"
+          },
+          {
+            "id": "FRA12",
+            "team": "FRANCIA",
+            "type": "NORMAL",
+            "name": "ADRIEN RABIOT"
+          },
+          {
+            "id": "FRA13",
+            "team": "FRANCIA",
+            "type": "EQUIPO",
+            "name": "SELECCION DE FUTBOL DE FRANCIA"
+          },
+          {
+            "id": "FRA14",
+            "team": "FRANCIA",
+            "type": "NORMAL",
+            "name": "MICHAEL OLISE"
+          },
+          {
+            "id": "FRA15",
+            "team": "FRANCIA",
+            "type": "NORMAL",
+            "name": "OUSMANE DEMBELE"
+          },
+          {
+            "id": "FRA16",
+            "team": "FRANCIA",
+            "type": "NORMAL",
+            "name": "BRADLEY BARCOLA"
+          },
+          {
+            "id": "FRA17",
+            "team": "FRANCIA",
+            "type": "NORMAL",
+            "name": "DESIRE DOUE"
+          },
+          {
+            "id": "FRA18",
+            "team": "FRANCIA",
+            "type": "NORMAL",
+            "name": "KINGSLEY COMAN"
+          },
+          {
+            "id": "FRA19",
+            "team": "FRANCIA",
+            "type": "NORMAL",
+            "name": "HUGO EKITIKE"
+          },
+          {
+            "id": "FRA20",
+            "team": "FRANCIA",
+            "type": "NORMAL",
+            "name": "KYLIAN MBAPPE"
+          }
+        ],
+        "flag": "🇫🇷"
+      },
+      {
+        "country": "SENEGAL",
+        "stickers": [
+          {
+            "id": "SEN01",
+            "team": "SENEGAL",
+            "type": "ESCUDO",
+            "name": "SELECCION DE FUTBOL DE SENEGAL"
+          },
+          {
+            "id": "SEN02",
+            "team": "SENEGAL",
+            "type": "NORMAL",
+            "name": "EDOUARD MENDY"
+          },
+          {
+            "id": "SEN03",
+            "team": "SENEGAL",
+            "type": "NORMAL",
+            "name": "YEHVANN DIOUF"
+          },
+          {
+            "id": "SEN04",
+            "team": "SENEGAL",
+            "type": "NORMAL",
+            "name": "MOUSSA NIAKHATE"
+          },
+          {
+            "id": "SEN05",
+            "team": "SENEGAL",
+            "type": "NORMAL",
+            "name": "ABDOULAYE SECK"
+          },
+          {
+            "id": "SEN06",
+            "team": "SENEGAL",
+            "type": "NORMAL",
+            "name": "ISMAIL JAKOBS"
+          },
+          {
+            "id": "SEN07",
+            "team": "SENEGAL",
+            "type": "NORMAL",
+            "name": "EL HADJI MALICK DIOUF"
+          },
+          {
+            "id": "SEN08",
+            "team": "SENEGAL",
+            "type": "NORMAL",
+            "name": "KALIDOU KOULIBALY"
+          },
+          {
+            "id": "SEN09",
+            "team": "SENEGAL",
+            "type": "NORMAL",
+            "name": "IDRISSA GANA GUEYE"
+          },
+          {
+            "id": "SEN10",
+            "team": "SENEGAL",
+            "type": "NORMAL",
+            "name": "PAPE MATAR SARR"
+          },
+          {
+            "id": "SEN11",
+            "team": "SENEGAL",
+            "type": "NORMAL",
+            "name": "PAPE GUEYE"
+          },
+          {
+            "id": "SEN12",
+            "team": "SENEGAL",
+            "type": "NORMAL",
+            "name": "HABIB DIARRA"
+          },
+          {
+            "id": "SEN13",
+            "team": "SENEGAL",
+            "type": "EQUIPO",
+            "name": "SELECCION DE FUTBOL DE SENEGAL"
+          },
+          {
+            "id": "SEN14",
+            "team": "SENEGAL",
+            "type": "NORMAL",
+            "name": "LAMINE CAMARA"
+          },
+          {
+            "id": "SEN15",
+            "team": "SENEGAL",
+            "type": "NORMAL",
+            "name": "SADIO MANE"
+          },
+          {
+            "id": "SEN16",
+            "team": "SENEGAL",
+            "type": "NORMAL",
+            "name": "ISMAILA SARR"
+          },
+          {
+            "id": "SEN17",
+            "team": "SENEGAL",
+            "type": "NORMAL",
+            "name": "BOULAYE DIA"
+          },
+          {
+            "id": "SEN18",
+            "team": "SENEGAL",
+            "type": "NORMAL",
+            "name": "ILIMAN NDIAYE"
+          },
+          {
+            "id": "SEN19",
+            "team": "SENEGAL",
+            "type": "NORMAL",
+            "name": "NICOLAS JACKSON"
+          },
+          {
+            "id": "SEN20",
+            "team": "SENEGAL",
+            "type": "NORMAL",
+            "name": "KREPIN DIATTA"
+          }
+        ],
+        "flag": "🇸🇳"
+      },
+      {
+        "country": "IRAQ",
+        "stickers": [
+          {
+            "id": "IRQ01",
+            "team": "IRAQ",
+            "type": "ESCUDO",
+            "name": "SELECCION NACIONAL DE IRAQ"
+          },
+          {
+            "id": "IRQ02",
+            "team": "IRAQ",
+            "type": "NORMAL",
+            "name": "JALAL HASSAN"
+          },
+          {
+            "id": "IRQ03",
+            "team": "IRAQ",
+            "type": "NORMAL",
+            "name": "REBIN SULAKA"
+          },
+          {
+            "id": "IRQ04",
+            "team": "IRAQ",
+            "type": "NORMAL",
+            "name": "HUSSEIN ALI"
+          },
+          {
+            "id": "IRQ05",
+            "team": "IRAQ",
+            "type": "NORMAL",
+            "name": "AKAM HASHEM"
+          },
+          {
+            "id": "IRQ06",
+            "team": "IRAQ",
+            "type": "NORMAL",
+            "name": "MERCHAS DOSKI"
+          },
+          {
+            "id": "IRQ07",
+            "team": "IRAQ",
+            "type": "NORMAL",
+            "name": "ZAID TAHSEEN"
+          },
+          {
+            "id": "IRQ08",
+            "team": "IRAQ",
+            "type": "NORMAL",
+            "name": "MANAF YOUNIS"
+          },
+          {
+            "id": "IRQ09",
+            "team": "IRAQ",
+            "type": "NORMAL",
+            "name": "ZIDANE IQBAL"
+          },
+          {
+            "id": "IRQ10",
+            "team": "IRAQ",
+            "type": "NORMAL",
+            "name": "AMIR AL-AMMARI"
+          },
+          {
+            "id": "IRQ11",
+            "team": "IRAQ",
+            "type": "NORMAL",
+            "name": "IBRAHIM BAYESH"
+          },
+          {
+            "id": "IRQ12",
+            "team": "IRAQ",
+            "type": "NORMAL",
+            "name": "ALI JASIM"
+          },
+          {
+            "id": "IRQ13",
+            "team": "IRAQ",
+            "type": "EQUIPO",
+            "name": "SELECCION NACIONAL DE IRAQ"
+          },
+          {
+            "id": "IRQ14",
+            "team": "IRAQ",
+            "type": "NORMAL",
+            "name": "YOUSSEF AMYN"
+          },
+          {
+            "id": "IRQ15",
+            "team": "IRAQ",
+            "type": "NORMAL",
+            "name": "AIMAR SHER"
+          },
+          {
+            "id": "IRQ16",
+            "team": "IRAQ",
+            "type": "NORMAL",
+            "name": "MARKO FARJI"
+          },
+          {
+            "id": "IRQ17",
+            "team": "IRAQ",
+            "type": "NORMAL",
+            "name": "OSAMA RASHID"
+          },
+          {
+            "id": "IRQ18",
+            "team": "IRAQ",
+            "type": "NORMAL",
+            "name": "ALI AL-HAMADI"
+          },
+          {
+            "id": "IRQ19",
+            "team": "IRAQ",
+            "type": "NORMAL",
+            "name": "AYMEN HUSSEIN"
+          },
+          {
+            "id": "IRQ20",
+            "team": "IRAQ",
+            "type": "NORMAL",
+            "name": "MOHANAD ALI"
+          }
+        ],
+        "flag": "🇮🇶"
+      },
+      {
+        "country": "NORUEGA",
+        "stickers": [
+          {
+            "id": "NOR01",
+            "team": "NORUEGA",
+            "type": "ESCUDO",
+            "name": "SELECCION NACIONAL DE NORUEGA"
+          },
+          {
+            "id": "NOR02",
+            "team": "NORUEGA",
+            "type": "NORMAL",
+            "name": "ORJAN NYLAND"
+          },
+          {
+            "id": "NOR03",
+            "team": "NORUEGA",
+            "type": "NORMAL",
+            "name": "JULIAN RYERSON"
+          },
+          {
+            "id": "NOR04",
+            "team": "NORUEGA",
+            "type": "NORMAL",
+            "name": "LEO OSTIGARD"
+          },
+          {
+            "id": "NOR05",
+            "team": "NORUEGA",
+            "type": "NORMAL",
+            "name": "KRISTOFFER VASSBAKK AJER"
+          },
+          {
+            "id": "NOR06",
+            "team": "NORUEGA",
+            "type": "NORMAL",
+            "name": "MARCUS HOLMGREN PEDERSEN"
+          },
+          {
+            "id": "NOR07",
+            "team": "NORUEGA",
+            "type": "NORMAL",
+            "name": "DAVID MOLLER WOLFE"
+          },
+          {
+            "id": "NOR08",
+            "team": "NORUEGA",
+            "type": "NORMAL",
+            "name": "TORBJORN HEGGEM"
+          },
+          {
+            "id": "NOR09",
+            "team": "NORUEGA",
+            "type": "NORMAL",
+            "name": "MORTEN THORSBY"
+          },
+          {
+            "id": "NOR10",
+            "team": "NORUEGA",
+            "type": "NORMAL",
+            "name": "MARTIN ODEGAARD"
+          },
+          {
+            "id": "NOR11",
+            "team": "NORUEGA",
+            "type": "NORMAL",
+            "name": "SANDER BERGE"
+          },
+          {
+            "id": "NOR12",
+            "team": "NORUEGA",
+            "type": "NORMAL",
+            "name": "ANDREAS SCHJELDERUP"
+          },
+          {
+            "id": "NOR13",
+            "team": "NORUEGA",
+            "type": "EQUIPO",
+            "name": "SELECCION NACIONAL DE NORUEGA"
+          },
+          {
+            "id": "NOR14",
+            "team": "NORUEGA",
+            "type": "NORMAL",
+            "name": "PATRICK BERG"
+          },
+          {
+            "id": "NOR15",
+            "team": "NORUEGA",
+            "type": "NORMAL",
+            "name": "ERLING HAALAND"
+          },
+          {
+            "id": "NOR16",
+            "team": "NORUEGA",
+            "type": "NORMAL",
+            "name": "ALEXANDER SORLOTH"
+          },
+          {
+            "id": "NOR17",
+            "team": "NORUEGA",
+            "type": "NORMAL",
+            "name": "ARON DONNUM"
+          },
+          {
+            "id": "NOR18",
+            "team": "NORUEGA",
+            "type": "NORMAL",
+            "name": "JORGEN STRAND LARSEN"
+          },
+          {
+            "id": "NOR19",
+            "team": "NORUEGA",
+            "type": "NORMAL",
+            "name": "ANTONIO NUSA"
+          },
+          {
+            "id": "NOR20",
+            "team": "NORUEGA",
+            "type": "NORMAL",
+            "name": "OSCAR BOBB"
+          }
+        ],
+        "flag": "🇳🇴"
+      }
+    ],
+    "J": [
+      {
+        "country": "ARGENTINA",
+        "stickers": [
+          {
+            "id": "ARG01",
+            "team": "ARGENTINA",
+            "type": "ESCUDO",
+            "name": "SELECCION DE FUTBOL DE ARGENTINA"
+          },
+          {
+            "id": "ARG02",
+            "team": "ARGENTINA",
+            "type": "NORMAL",
+            "name": "EMILIANO MARTINEZ"
+          },
+          {
+            "id": "ARG03",
+            "team": "ARGENTINA",
+            "type": "NORMAL",
+            "name": "NAHUEL MOLINA"
+          },
+          {
+            "id": "ARG04",
+            "team": "ARGENTINA",
+            "type": "NORMAL",
+            "name": "CRISTIAN ROMERO"
+          },
+          {
+            "id": "ARG05",
+            "team": "ARGENTINA",
+            "type": "NORMAL",
+            "name": "NICOLAS OTAMENDI"
+          },
+          {
+            "id": "ARG06",
+            "team": "ARGENTINA",
+            "type": "NORMAL",
+            "name": "NICOLAS TAGLIAFICO"
+          },
+          {
+            "id": "ARG07",
+            "team": "ARGENTINA",
+            "type": "NORMAL",
+            "name": "LEONARDO BALERDI"
+          },
+          {
+            "id": "ARG08",
+            "team": "ARGENTINA",
+            "type": "NORMAL",
+            "name": "ENZO FERNANDEZ"
+          },
+          {
+            "id": "ARG09",
+            "team": "ARGENTINA",
+            "type": "NORMAL",
+            "name": "ALEXIS MAC ALLISTER"
+          },
+          {
+            "id": "ARG10",
+            "team": "ARGENTINA",
+            "type": "NORMAL",
+            "name": "RODRIGO DE PAUL"
+          },
+          {
+            "id": "ARG11",
+            "team": "ARGENTINA",
+            "type": "NORMAL",
+            "name": "EXEQUIEL PALACIOS"
+          },
+          {
+            "id": "ARG12",
+            "team": "ARGENTINA",
+            "type": "NORMAL",
+            "name": "LEANDRO PAREDES"
+          },
+          {
+            "id": "ARG13",
+            "team": "ARGENTINA",
+            "type": "EQUIPO",
+            "name": "SELECCION DE FUTBOL DE ARGENTINA"
+          },
+          {
+            "id": "ARG14",
+            "team": "ARGENTINA",
+            "type": "NORMAL",
+            "name": "NICO PAZ"
+          },
+          {
+            "id": "ARG15",
+            "team": "ARGENTINA",
+            "type": "NORMAL",
+            "name": "FRANCO MASTANTUONO"
+          },
+          {
+            "id": "ARG16",
+            "team": "ARGENTINA",
+            "type": "NORMAL",
+            "name": "NICO GONZALEZ"
+          },
+          {
+            "id": "ARG17",
+            "team": "ARGENTINA",
+            "type": "NORMAL",
+            "name": "LIONEL MESSI"
+          },
+          {
+            "id": "ARG18",
+            "team": "ARGENTINA",
+            "type": "NORMAL",
+            "name": "LAUTARO MARTINEZ"
+          },
+          {
+            "id": "ARG19",
+            "team": "ARGENTINA",
+            "type": "NORMAL",
+            "name": "JULIAN ALVAREZ"
+          },
+          {
+            "id": "ARG20",
+            "team": "ARGENTINA",
+            "type": "NORMAL",
+            "name": "GIULIANO SIMEONE"
+          }
+        ],
+        "flag": "🇦🇷"
+      },
+      {
+        "country": "ALGERIA",
+        "stickers": [
+          {
+            "id": "ALG01",
+            "team": "ALGERIA",
+            "type": "ESCUDO",
+            "name": "SELECCION DE FUTBOL DE ALGERIA"
+          },
+          {
+            "id": "ALG02",
+            "team": "ALGERIA",
+            "type": "NORMAL",
+            "name": "ALEXIS GUENDOUZ"
+          },
+          {
+            "id": "ALG03",
+            "team": "ALGERIA",
+            "type": "NORMAL",
+            "name": "RAMY BENSEBAINI"
+          },
+          {
+            "id": "ALG04",
+            "team": "ALGERIA",
+            "type": "NORMAL",
+            "name": "YOUCEF ATAL"
+          },
+          {
+            "id": "ALG05",
+            "team": "ALGERIA",
+            "type": "NORMAL",
+            "name": "RAYAN AIT NOURI"
+          },
+          {
+            "id": "ALG06",
+            "team": "ALGERIA",
+            "type": "NORMAL",
+            "name": "MOHAMED AMINE TOUGAI"
+          },
+          {
+            "id": "ALG07",
+            "team": "ALGERIA",
+            "type": "NORMAL",
+            "name": "AISSA MANDI"
+          },
+          {
+            "id": "ALG08",
+            "team": "ALGERIA",
+            "type": "NORMAL",
+            "name": "ISMAEL BENNACER"
+          },
+          {
+            "id": "ALG09",
+            "team": "ALGERIA",
+            "type": "NORMAL",
+            "name": "HOUSSEM AOUAR"
+          },
+          {
+            "id": "ALG10",
+            "team": "ALGERIA",
+            "type": "NORMAL",
+            "name": "HICHAM BOUDAOUI"
+          },
+          {
+            "id": "ALG11",
+            "team": "ALGERIA",
+            "type": "NORMAL",
+            "name": "RAMIZ ZERROUKI"
+          },
+          {
+            "id": "ALG12",
+            "team": "ALGERIA",
+            "type": "NORMAL",
+            "name": "NABIL BENTALEB"
+          },
+          {
+            "id": "ALG13",
+            "team": "ALGERIA",
+            "type": "EQUIPO",
+            "name": "SELECCION DE FUTBOL DE ALGERIA"
+          },
+          {
+            "id": "ALG14",
+            "team": "ALGERIA",
+            "type": "NORMAL",
+            "name": "FARES CHAIBI"
+          },
+          {
+            "id": "ALG15",
+            "team": "ALGERIA",
+            "type": "NORMAL",
+            "name": "RIYAD MAHREZ"
+          },
+          {
+            "id": "ALG16",
+            "team": "ALGERIA",
+            "type": "NORMAL",
+            "name": "SAID BENRAHMA"
+          },
+          {
+            "id": "ALG17",
+            "team": "ALGERIA",
+            "type": "NORMAL",
+            "name": "ANIS HADJ MOUSSA"
+          },
+          {
+            "id": "ALG18",
+            "team": "ALGERIA",
+            "type": "NORMAL",
+            "name": "AMINE GOUIRI"
+          },
+          {
+            "id": "ALG19",
+            "team": "ALGERIA",
+            "type": "NORMAL",
+            "name": "BAGHDAD BOUNEDJAH"
+          },
+          {
+            "id": "ALG20",
+            "team": "ALGERIA",
+            "type": "NORMAL",
+            "name": "MOHAMMED AMOURA"
+          }
+        ],
+        "flag": "🇩🇿"
+      },
+      {
+        "country": "AUSTRIA",
+        "stickers": [
+          {
+            "id": "AUT01",
+            "team": "AUSTRIA",
+            "type": "ESCUDO",
+            "name": "SELECCION NACIONAL DE AUSTRIA"
+          },
+          {
+            "id": "AUT02",
+            "team": "AUSTRIA",
+            "type": "NORMAL",
+            "name": "ALEXANDER SCHLAGER"
+          },
+          {
+            "id": "AUT03",
+            "team": "AUSTRIA",
+            "type": "NORMAL",
+            "name": "PATRICK PENTZ"
+          },
+          {
+            "id": "AUT04",
+            "team": "AUSTRIA",
+            "type": "NORMAL",
+            "name": "DAVID ALABA"
+          },
+          {
+            "id": "AUT05",
+            "team": "AUSTRIA",
+            "type": "NORMAL",
+            "name": "KEVIN DANSO"
+          },
+          {
+            "id": "AUT06",
+            "team": "AUSTRIA",
+            "type": "NORMAL",
+            "name": "PHILLIP LIENHART"
+          },
+          {
+            "id": "AUT07",
+            "team": "AUSTRIA",
+            "type": "NORMAL",
+            "name": "STEFAN POSCH"
+          },
+          {
+            "id": "AUT08",
+            "team": "AUSTRIA",
+            "type": "NORMAL",
+            "name": "PHILLIP MWENE"
+          },
+          {
+            "id": "AUT09",
+            "team": "AUSTRIA",
+            "type": "NORMAL",
+            "name": "ALEXANDER PRASS"
+          },
+          {
+            "id": "AUT10",
+            "team": "AUSTRIA",
+            "type": "NORMAL",
+            "name": "XAVER SCHLAER"
+          },
+          {
+            "id": "AUT11",
+            "team": "AUSTRIA",
+            "type": "NORMAL",
+            "name": "MARCEL SABITZER"
+          },
+          {
+            "id": "AUT12",
+            "team": "AUSTRIA",
+            "type": "NORMAL",
+            "name": "KONRAD LAIMER"
+          },
+          {
+            "id": "AUT13",
+            "team": "AUSTRIA",
+            "type": "EQUIPO",
+            "name": "SELECCION NACIONAL DE AUSTRIA"
+          },
+          {
+            "id": "AUT14",
+            "team": "AUSTRIA",
+            "type": "NORMAL",
+            "name": "FLORIAN GRILLITSCH"
+          },
+          {
+            "id": "AUT15",
+            "team": "AUSTRIA",
+            "type": "NORMAL",
+            "name": "NICOLAS SEIWALD"
+          },
+          {
+            "id": "AUT16",
+            "team": "AUSTRIA",
+            "type": "NORMAL",
+            "name": "ROMANO SCHMID"
+          },
+          {
+            "id": "AUT17",
+            "team": "AUSTRIA",
+            "type": "NORMAL",
+            "name": "PATRICK WIMMER"
+          },
+          {
+            "id": "AUT18",
+            "team": "AUSTRIA",
+            "type": "NORMAL",
+            "name": "CHRISTOPH BAUMGARTNER"
+          },
+          {
+            "id": "AUT19",
+            "team": "AUSTRIA",
+            "type": "NORMAL",
+            "name": "MICHAEL GREGORITSCH"
+          },
+          {
+            "id": "AUT20",
+            "team": "AUSTRIA",
+            "type": "NORMAL",
+            "name": "MARKO ARNAUTOVIC"
+          }
+        ],
+        "flag": "🇦🇹"
+      },
+      {
+        "country": "JORDANIA",
+        "stickers": [
+          {
+            "id": "JOR01",
+            "team": "JORDANIA",
+            "type": "ESCUDO",
+            "name": "SELECCION NACIONAL DE JORDANIA"
+          },
+          {
+            "id": "JOR02",
+            "team": "JORDANIA",
+            "type": "NORMAL",
+            "name": "YAZEED ABULAILA"
+          },
+          {
+            "id": "JOR03",
+            "team": "JORDANIA",
+            "type": "NORMAL",
+            "name": "IHSAN HADDAD"
+          },
+          {
+            "id": "JOR04",
+            "team": "JORDANIA",
+            "type": "NORMAL",
+            "name": "MOHAMMAD ABU HASHISH"
+          },
+          {
+            "id": "JOR05",
+            "team": "JORDANIA",
+            "type": "NORMAL",
+            "name": "YAZAN AL-ARAB"
+          },
+          {
+            "id": "JOR06",
+            "team": "JORDANIA",
+            "type": "NORMAL",
+            "name": "ABDALLAH NASIB"
+          },
+          {
+            "id": "JOR07",
+            "team": "JORDANIA",
+            "type": "NORMAL",
+            "name": "SALLEM OBAID"
+          },
+          {
+            "id": "JOR08",
+            "team": "JORDANIA",
+            "type": "NORMAL",
+            "name": "MOHAMMAD ABUALNADI"
+          },
+          {
+            "id": "JOR09",
+            "team": "JORDANIA",
+            "type": "NORMAL",
+            "name": "IBRAHIM SAADEH"
+          },
+          {
+            "id": "JOR10",
+            "team": "JORDANIA",
+            "type": "NORMAL",
+            "name": "NIZAR AL-RASHDAN"
+          },
+          {
+            "id": "JOR11",
+            "team": "JORDANIA",
+            "type": "NORMAL",
+            "name": "NOOR AL-RAWABDEH"
+          },
+          {
+            "id": "JOR12",
+            "team": "JORDANIA",
+            "type": "NORMAL",
+            "name": "MOHAMMAD ABU TAHA"
+          },
+          {
+            "id": "JOR13",
+            "team": "JORDANIA",
+            "type": "EQUIPO",
+            "name": "SELECCION NACIONAL DE JORDANIA"
+          },
+          {
+            "id": "JOR14",
+            "team": "JORDANIA",
+            "type": "NORMAL",
+            "name": "AMER JAMOUS"
+          },
+          {
+            "id": "JOR15",
+            "team": "JORDANIA",
+            "type": "NORMAL",
+            "name": "MOUSA AL-TAAMARI"
+          },
+          {
+            "id": "JOR16",
+            "team": "JORDANIA",
+            "type": "NORMAL",
+            "name": "YAZAN AL-NAIMAT"
+          },
+          {
+            "id": "JOR17",
+            "team": "JORDANIA",
+            "type": "NORMAL",
+            "name": "MAHMOUD AL-MARDI"
+          },
+          {
+            "id": "JOR18",
+            "team": "JORDANIA",
+            "type": "NORMAL",
+            "name": "ALI OLWAN"
+          },
+          {
+            "id": "JOR19",
+            "team": "JORDANIA",
+            "type": "NORMAL",
+            "name": "MOHAMMAD ABU ZRAYQ"
+          },
+          {
+            "id": "JOR20",
+            "team": "JORDANIA",
+            "type": "NORMAL",
+            "name": "IBRAHIM SABRA"
+          }
+        ],
+        "flag": "🇯🇴"
+      }
+    ],
+    "K": [
+      {
+        "country": "PORTUGAL",
+        "stickers": [
+          {
+            "id": "POR 01",
+            "team": "PORTUGAL",
+            "type": "ESCUDO",
+            "name": "SELECCION DE FUTBOL DE PORTUGAL"
+          },
+          {
+            "id": "POR 02",
+            "team": "PORTUGAL",
+            "type": "NORMAL",
+            "name": "DIOGO COSTA"
+          },
+          {
+            "id": "POR 03",
+            "team": "PORTUGAL",
+            "type": "NORMAL",
+            "name": "JOSE SA"
+          },
+          {
+            "id": "POR 04",
+            "team": "PORTUGAL",
+            "type": "NORMAL",
+            "name": "RUBEN DIAS"
+          },
+          {
+            "id": "POR 05",
+            "team": "PORTUGAL",
+            "type": "NORMAL",
+            "name": "JOAO CANCELO"
+          },
+          {
+            "id": "POR 06",
+            "team": "PORTUGAL",
+            "type": "NORMAL",
+            "name": "DIOGO DALOT"
+          },
+          {
+            "id": "POR 07",
+            "team": "PORTUGAL",
+            "type": "NORMAL",
+            "name": "NUNO MENDES"
+          },
+          {
+            "id": "POR 08",
+            "team": "PORTUGAL",
+            "type": "NORMAL",
+            "name": "GONCALO INACIO"
+          },
+          {
+            "id": "POR 09",
+            "team": "PORTUGAL",
+            "type": "NORMAL",
+            "name": "BERNARDO SILVA"
+          },
+          {
+            "id": "POR 10",
+            "team": "PORTUGAL",
+            "type": "NORMAL",
+            "name": "BRUNO FERNANDES"
+          },
+          {
+            "id": "POR 11",
+            "team": "PORTUGAL",
+            "type": "NORMAL",
+            "name": "RUBEN NEVES"
+          },
+          {
+            "id": "POR 12",
+            "team": "PORTUGAL",
+            "type": "NORMAL",
+            "name": "VITINHA"
+          },
+          {
+            "id": "POR 13",
+            "team": "PORTUGAL",
+            "type": "EQUIPO",
+            "name": "SELECCION DE FUTBOL DE PORTUGAL"
+          },
+          {
+            "id": "POR 14",
+            "team": "PORTUGAL",
+            "type": "NORMAL",
+            "name": "RUBEN NEVES"
+          },
+          {
+            "id": "POR 15",
+            "team": "PORTUGAL",
+            "type": "NORMAL",
+            "name": "CRISTIANO RONALDO"
+          },
+          {
+            "id": "POR 16",
+            "team": "PORTUGAL",
+            "type": "NORMAL",
+            "name": "FRANCISCO TRINCAO"
+          },
+          {
+            "id": "POR 17",
+            "team": "PORTUGAL",
+            "type": "NORMAL",
+            "name": "JOAO FELIX"
+          },
+          {
+            "id": "POR 18",
+            "team": "PORTUGAL",
+            "type": "NORMAL",
+            "name": "GONCALO RAMOS"
+          },
+          {
+            "id": "POR 19",
+            "team": "PORTUGAL",
+            "type": "NORMAL",
+            "name": "PEDRO NETO"
+          },
+          {
+            "id": "POR 20",
+            "team": "PORTUGAL",
+            "type": "NORMAL",
+            "name": "RAFAEL LEAO"
+          }
+        ],
+        "flag": "🇵🇹"
+      },
+      {
+        "country": "REPUBLICA DEMOCRATICA DEL CONGO",
+        "stickers": [
+          {
+            "id": "COD01",
+            "team": "REPUBLICA DEMOCRATICA DEL CONGO",
+            "type": "ESCUDO",
+            "name": "SELECCION DE FUTBOL DE RD CONGO"
+          },
+          {
+            "id": "COD02",
+            "team": "REPUBLICA DEMOCRATICA DEL CONGO",
+            "type": "NORMAL",
+            "name": "LIONEL MPASI"
+          },
+          {
+            "id": "COD03",
+            "team": "REPUBLICA DEMOCRATICA DEL CONGO",
+            "type": "NORMAL",
+            "name": "AARON WAN-BISSAKA"
+          },
+          {
+            "id": "COD04",
+            "team": "REPUBLICA DEMOCRATICA DEL CONGO",
+            "type": "NORMAL",
+            "name": "AXEL TUANZEBE"
+          },
+          {
+            "id": "COD05",
+            "team": "REPUBLICA DEMOCRATICA DEL CONGO",
+            "type": "NORMAL",
+            "name": "ARTHUR MASUAKU"
+          },
+          {
+            "id": "COD06",
+            "team": "REPUBLICA DEMOCRATICA DEL CONGO",
+            "type": "NORMAL",
+            "name": "CHANCEL MBEMBA"
+          },
+          {
+            "id": "COD07",
+            "team": "REPUBLICA DEMOCRATICA DEL CONGO",
+            "type": "NORMAL",
+            "name": "JORIS KAYEMBE"
+          },
+          {
+            "id": "COD08",
+            "team": "REPUBLICA DEMOCRATICA DEL CONGO",
+            "type": "NORMAL",
+            "name": "CHARLES PICKEL"
+          },
+          {
+            "id": "COD09",
+            "team": "REPUBLICA DEMOCRATICA DEL CONGO",
+            "type": "NORMAL",
+            "name": "NGAL'AYEL MUKAU"
+          },
+          {
+            "id": "COD10",
+            "team": "REPUBLICA DEMOCRATICA DEL CONGO",
+            "type": "NORMAL",
+            "name": "EDO KAYEMBE"
+          },
+          {
+            "id": "COD11",
+            "team": "REPUBLICA DEMOCRATICA DEL CONGO",
+            "type": "NORMAL",
+            "name": "SAMUEL MOUTOUSSAMY"
+          },
+          {
+            "id": "COD12",
+            "team": "REPUBLICA DEMOCRATICA DEL CONGO",
+            "type": "NORMAL",
+            "name": "NOAH SADIKI"
+          },
+          {
+            "id": "COD13",
+            "team": "REPUBLICA DEMOCRATICA DEL CONGO",
+            "type": "EQUIPO",
+            "name": "SELECCION DE FUTBOL DE RD CONGO"
+          },
+          {
+            "id": "COD14",
+            "team": "REPUBLICA DEMOCRATICA DEL CONGO",
+            "type": "NORMAL",
+            "name": "THEO BONGONDA"
+          },
+          {
+            "id": "COD15",
+            "team": "REPUBLICA DEMOCRATICA DEL CONGO",
+            "type": "NORMAL",
+            "name": "MESCHACK ELIA"
+          },
+          {
+            "id": "COD16",
+            "team": "REPUBLICA DEMOCRATICA DEL CONGO",
+            "type": "NORMAL",
+            "name": "YOANE WISSA"
+          },
+          {
+            "id": "COD17",
+            "team": "REPUBLICA DEMOCRATICA DEL CONGO",
+            "type": "NORMAL",
+            "name": "BRIAN CIPENGA"
+          },
+          {
+            "id": "COD18",
+            "team": "REPUBLICA DEMOCRATICA DEL CONGO",
+            "type": "NORMAL",
+            "name": "FISTON MAYELE"
+          },
+          {
+            "id": "COD19",
+            "team": "REPUBLICA DEMOCRATICA DEL CONGO",
+            "type": "NORMAL",
+            "name": "CRDRIC BAKAMBU"
+          },
+          {
+            "id": "COD20",
+            "team": "REPUBLICA DEMOCRATICA DEL CONGO",
+            "type": "NORMAL",
+            "name": "NATHANAEL MBUKU"
+          }
+        ],
+        "flag": "🇨🇩"
+      },
+      {
+        "country": "UZBEKISTAN",
+        "stickers": [
+          {
+            "id": "UZB01",
+            "team": "UZBEKISTAN",
+            "type": "ESCUDO",
+            "name": "SELECCION NACIONAL DE UZBEKISTAN"
+          },
+          {
+            "id": "UZB02",
+            "team": "UZBEKISTAN",
+            "type": "NORMAL",
+            "name": "UTKIR YUSUPOV"
+          },
+          {
+            "id": "UZB03",
+            "team": "UZBEKISTAN",
+            "type": "NORMAL",
+            "name": "FARRUKH SAYFIEV"
+          },
+          {
+            "id": "UZB04",
+            "team": "UZBEKISTAN",
+            "type": "NORMAL",
+            "name": "SHERZOO NASRULLAEV"
+          },
+          {
+            "id": "UZB05",
+            "team": "UZBEKISTAN",
+            "type": "NORMAL",
+            "name": "UMAR ESHMURODOV"
+          },
+          {
+            "id": "UZB06",
+            "team": "UZBEKISTAN",
+            "type": "NORMAL",
+            "name": "HUSNIDDIN ALIQULOV"
+          },
+          {
+            "id": "UZB07",
+            "team": "UZBEKISTAN",
+            "type": "NORMAL",
+            "name": "RUSTAM ASHURMATOV"
+          },
+          {
+            "id": "UZB08",
+            "team": "UZBEKISTAN",
+            "type": "NORMAL",
+            "name": "KHOJIAKBAR ALIJONOV"
+          },
+          {
+            "id": "UZB09",
+            "team": "UZBEKISTAN",
+            "type": "NORMAL",
+            "name": "ABDUKODIR KHUSANOV"
+          },
+          {
+            "id": "UZB10",
+            "team": "UZBEKISTAN",
+            "type": "NORMAL",
+            "name": "ODILJON HAMROBEKOV"
+          },
+          {
+            "id": "UZB11",
+            "team": "UZBEKISTAN",
+            "type": "NORMAL",
+            "name": "OTABEK SHUKUROV"
+          },
+          {
+            "id": "UZB12",
+            "team": "UZBEKISTAN",
+            "type": "NORMAL",
+            "name": "JAMSHID ISKANDEROV"
+          },
+          {
+            "id": "UZB13",
+            "team": "UZBEKISTAN",
+            "type": "EQUIPO",
+            "name": "SELECCION NACIONAL DE UZBEKISTAN"
+          },
+          {
+            "id": "UZB14",
+            "team": "UZBEKISTAN",
+            "type": "NORMAL",
+            "name": "AZIZBEK TURGUNBOEV"
+          },
+          {
+            "id": "UZB15",
+            "team": "UZBEKISTAN",
+            "type": "NORMAL",
+            "name": "KHOJIMAT ERKINOV"
+          },
+          {
+            "id": "UZB16",
+            "team": "UZBEKISTAN",
+            "type": "NORMAL",
+            "name": "ELDOR SHOMURODOV"
+          },
+          {
+            "id": "UZB17",
+            "team": "UZBEKISTAN",
+            "type": "NORMAL",
+            "name": "OSTON URUNOV"
+          },
+          {
+            "id": "UZB18",
+            "team": "UZBEKISTAN",
+            "type": "NORMAL",
+            "name": "JALOLIDDIN MASHARIPOV"
+          },
+          {
+            "id": "UZB19",
+            "team": "UZBEKISTAN",
+            "type": "NORMAL",
+            "name": "IGOR SERGEEV"
+          },
+          {
+            "id": "UZB20",
+            "team": "UZBEKISTAN",
+            "type": "NORMAL",
+            "name": "ABBOSBEK FAYZULLAEV"
+          }
+        ],
+        "flag": "🇺🇿"
+      },
+      {
+        "country": "COLOMBIA",
+        "stickers": [
+          {
+            "id": "COL01",
+            "team": "COLOMBIA",
+            "type": "ESCUDO",
+            "name": "SELECCION NACIONAL DE COLOMBIA"
+          },
+          {
+            "id": "COL02",
+            "team": "COLOMBIA",
+            "type": "NORMAL",
+            "name": "CAMILO VARGAS"
+          },
+          {
+            "id": "COL03",
+            "team": "COLOMBIA",
+            "type": "NORMAL",
+            "name": "DAVID OSPINA"
+          },
+          {
+            "id": "COL04",
+            "team": "COLOMBIA",
+            "type": "NORMAL",
+            "name": "DAVINSON SANCHEZ"
+          },
+          {
+            "id": "COL05",
+            "team": "COLOMBIA",
+            "type": "NORMAL",
+            "name": "YERRY MINA"
+          },
+          {
+            "id": "COL06",
+            "team": "COLOMBIA",
+            "type": "NORMAL",
+            "name": "DANIEL MUÑOZ"
+          },
+          {
+            "id": "COL07",
+            "team": "COLOMBIA",
+            "type": "NORMAL",
+            "name": "JOHAN MOJICA"
+          },
+          {
+            "id": "COL08",
+            "team": "COLOMBIA",
+            "type": "NORMAL",
+            "name": "JHON LUCUMI"
+          },
+          {
+            "id": "COL09",
+            "team": "COLOMBIA",
+            "type": "NORMAL",
+            "name": "SANTIAGO ARIAS"
+          },
+          {
+            "id": "COL10",
+            "team": "COLOMBIA",
+            "type": "NORMAL",
+            "name": "JEFFERSON LERMA"
+          },
+          {
+            "id": "COL11",
+            "team": "COLOMBIA",
+            "type": "NORMAL",
+            "name": "KEVIN CASTAÑO"
+          },
+          {
+            "id": "COL12",
+            "team": "COLOMBIA",
+            "type": "NORMAL",
+            "name": "RICHARD RIOS"
+          },
+          {
+            "id": "COL13",
+            "team": "COLOMBIA",
+            "type": "EQUIPO",
+            "name": "SELECCION NACIONAL DE COLOMBIA"
+          },
+          {
+            "id": "COL14",
+            "team": "COLOMBIA",
+            "type": "NORMAL",
+            "name": "JAMES RODRIGUEZ"
+          },
+          {
+            "id": "COL15",
+            "team": "COLOMBIA",
+            "type": "NORMAL",
+            "name": "JUAN FERNANDO QUINTERO"
+          },
+          {
+            "id": "COL16",
+            "team": "COLOMBIA",
+            "type": "NORMAL",
+            "name": "JORGE CARRASCAL"
+          },
+          {
+            "id": "COL17",
+            "team": "COLOMBIA",
+            "type": "NORMAL",
+            "name": "JHON ARIAS"
+          },
+          {
+            "id": "COL18",
+            "team": "COLOMBIA",
+            "type": "NORMAL",
+            "name": "JHON CORDOBA"
+          },
+          {
+            "id": "COL19",
+            "team": "COLOMBIA",
+            "type": "NORMAL",
+            "name": "LUIS SUAREZ"
+          },
+          {
+            "id": "COL20",
+            "team": "COLOMBIA",
+            "type": "NORMAL",
+            "name": "LUIS DIAZ"
+          }
+        ],
+        "flag": "🇨🇴"
+      }
+    ],
+    "L": [
+      {
+        "country": "INGLATERRA",
+        "stickers": [
+          {
+            "id": "ENG 01",
+            "team": "INGLATERRA",
+            "type": "ESCUDO",
+            "name": "SELECCION DE FUTBOL DE INGLATERRA"
+          },
+          {
+            "id": "ENG 02",
+            "team": "INGLATERRA",
+            "type": "NORMAL",
+            "name": "JORDAN PICKFORD"
+          },
+          {
+            "id": "ENG 03",
+            "team": "INGLATERRA",
+            "type": "NORMAL",
+            "name": "JOHN STONES"
+          },
+          {
+            "id": "ENG 04",
+            "team": "INGLATERRA",
+            "type": "NORMAL",
+            "name": "MARC GUEHI"
+          },
+          {
+            "id": "ENG 05",
+            "team": "INGLATERRA",
+            "type": "NORMAL",
+            "name": "EZRI KONSA"
+          },
+          {
+            "id": "ENG 06",
+            "team": "INGLATERRA",
+            "type": "NORMAL",
+            "name": "TRENT ALEXANDER-ARNOLD"
+          },
+          {
+            "id": "ENG 07",
+            "team": "INGLATERRA",
+            "type": "NORMAL",
+            "name": "REECE JAMES"
+          },
+          {
+            "id": "ENG 08",
+            "team": "INGLATERRA",
+            "type": "NORMAL",
+            "name": "DAN BURN"
+          },
+          {
+            "id": "ENG 09",
+            "team": "INGLATERRA",
+            "type": "NORMAL",
+            "name": "JORDAN HENDERSON"
+          },
+          {
+            "id": "ENG 10",
+            "team": "INGLATERRA",
+            "type": "NORMAL",
+            "name": "DECLAN RICE"
+          },
+          {
+            "id": "ENG 11",
+            "team": "INGLATERRA",
+            "type": "NORMAL",
+            "name": "JUDE BELLINGHAM"
+          },
+          {
+            "id": "ENG 12",
+            "team": "INGLATERRA",
+            "type": "NORMAL",
+            "name": "COLE PALMER"
+          },
+          {
+            "id": "ENG 13",
+            "team": "INGLATERRA",
+            "type": "EQUIPO",
+            "name": "SELECCION DE FUTBOL DE INGLATERRA"
+          },
+          {
+            "id": "ENG 14",
+            "team": "INGLATERRA",
+            "type": "NORMAL",
+            "name": "MORGAN ROGERS"
+          },
+          {
+            "id": "ENG 15",
+            "team": "INGLATERRA",
+            "type": "NORMAL",
+            "name": "ANTHONY GORDON"
+          },
+          {
+            "id": "ENG 16",
+            "team": "INGLATERRA",
+            "type": "NORMAL",
+            "name": "PHIL FODEN"
+          },
+          {
+            "id": "ENG 17",
+            "team": "INGLATERRA",
+            "type": "NORMAL",
+            "name": "BUKAYO SAKA"
+          },
+          {
+            "id": "ENG 18",
+            "team": "INGLATERRA",
+            "type": "NORMAL",
+            "name": "HARRY KANE"
+          },
+          {
+            "id": "ENG 19",
+            "team": "INGLATERRA",
+            "type": "NORMAL",
+            "name": "MARCUS RASHFORD"
+          },
+          {
+            "id": "ENG 20",
+            "team": "INGLATERRA",
+            "type": "NORMAL",
+            "name": "OLLIE WATKINS"
+          }
+        ],
+        "flag": "🏴"
+      },
+      {
+        "country": "CROACIA",
+        "stickers": [
+          {
+            "id": "CRO01",
+            "team": "CROACIA",
+            "type": "ESCUDO",
+            "name": "SELECCION DE FUTBOL DE CROACIA"
+          },
+          {
+            "id": "CRO02",
+            "team": "CROACIA",
+            "type": "NORMAL",
+            "name": "DOMINIC LIVAKOVIC"
+          },
+          {
+            "id": "CRO03",
+            "team": "CROACIA",
+            "type": "NORMAL",
+            "name": "DUJE CALETA-CAR"
+          },
+          {
+            "id": "CRO04",
+            "team": "CROACIA",
+            "type": "NORMAL",
+            "name": "JOSKO GVARDIOL"
+          },
+          {
+            "id": "CRO05",
+            "team": "CROACIA",
+            "type": "NORMAL",
+            "name": "JOSIP STANISIC"
+          },
+          {
+            "id": "CRO06",
+            "team": "CROACIA",
+            "type": "NORMAL",
+            "name": "LUKA VUSKOVIC"
+          },
+          {
+            "id": "CRO07",
+            "team": "CROACIA",
+            "type": "NORMAL",
+            "name": "JOSIP SUTALO"
+          },
+          {
+            "id": "CRO08",
+            "team": "CROACIA",
+            "type": "NORMAL",
+            "name": "KRISTIAN JAKIC"
+          },
+          {
+            "id": "CRO09",
+            "team": "CROACIA",
+            "type": "NORMAL",
+            "name": "LUKA MODRIC"
+          },
+          {
+            "id": "CRO10",
+            "team": "CROACIA",
+            "type": "NORMAL",
+            "name": "MATO KOVACIC"
+          },
+          {
+            "id": "CRO11",
+            "team": "CROACIA",
+            "type": "NORMAL",
+            "name": "MARTIN BATURINA"
+          },
+          {
+            "id": "CRO12",
+            "team": "CROACIA",
+            "type": "NORMAL",
+            "name": "LOVRO MAJER"
+          },
+          {
+            "id": "CRO13",
+            "team": "CROACIA",
+            "type": "EQUIPO",
+            "name": "SELECCION DE FUTBOL DE CROACIA"
+          },
+          {
+            "id": "CRO14",
+            "team": "CROACIA",
+            "type": "NORMAL",
+            "name": "MARIO PASALIC"
+          },
+          {
+            "id": "CRO15",
+            "team": "CROACIA",
+            "type": "NORMAL",
+            "name": "PETAR SUCIC"
+          },
+          {
+            "id": "CRO16",
+            "team": "CROACIA",
+            "type": "NORMAL",
+            "name": "IVAN PERISIC"
+          },
+          {
+            "id": "CRO17",
+            "team": "CROACIA",
+            "type": "NORMAL",
+            "name": "MARCO PASALIC"
+          },
+          {
+            "id": "CRO18",
+            "team": "CROACIA",
+            "type": "NORMAL",
+            "name": "ANTE BUDIMIR"
+          },
+          {
+            "id": "CRO19",
+            "team": "CROACIA",
+            "type": "NORMAL",
+            "name": "ANDREJ KRAMARIC"
+          },
+          {
+            "id": "CRO20",
+            "team": "CROACIA",
+            "type": "NORMAL",
+            "name": "FRANJO IVANOVIC"
+          }
+        ],
+        "flag": "🇭🇷"
+      },
+      {
+        "country": "GHANA",
+        "stickers": [
+          {
+            "id": "GHA01",
+            "team": "GHANA",
+            "type": "ESCUDO",
+            "name": "SELECCION NACIONAL DE GHANA"
+          },
+          {
+            "id": "GHA02",
+            "team": "GHANA",
+            "type": "NORMAL",
+            "name": "LAWRENCE ATI ZIGI"
+          },
+          {
+            "id": "GHA03",
+            "team": "GHANA",
+            "type": "NORMAL",
+            "name": "TARIQ LAMPTEY"
+          },
+          {
+            "id": "GHA04",
+            "team": "GHANA",
+            "type": "NORMAL",
+            "name": "MOHAMMED SALISU"
+          },
+          {
+            "id": "GHA05",
+            "team": "GHANA",
+            "type": "NORMAL",
+            "name": "ALIDU SEIDU"
+          },
+          {
+            "id": "GHA06",
+            "team": "GHANA",
+            "type": "NORMAL",
+            "name": "ALEXANDER DJIKU"
+          },
+          {
+            "id": "GHA07",
+            "team": "GHANA",
+            "type": "NORMAL",
+            "name": "GIDEON MENSAH"
+          },
+          {
+            "id": "GHA08",
+            "team": "GHANA",
+            "type": "NORMAL",
+            "name": "CALEB YIRENKYI"
+          },
+          {
+            "id": "GHA09",
+            "team": "GHANA",
+            "type": "NORMAL",
+            "name": "ABDUL ISSAHAKU FATAWU"
+          },
+          {
+            "id": "GHA10",
+            "team": "GHANA",
+            "type": "NORMAL",
+            "name": "THOMAS PARTEY"
+          },
+          {
+            "id": "GHA11",
+            "team": "GHANA",
+            "type": "NORMAL",
+            "name": "SALIS ABDUL SAMED"
+          },
+          {
+            "id": "GHA12",
+            "team": "GHANA",
+            "type": "NORMAL",
+            "name": "KAMALDEEN SULEMANA"
+          },
+          {
+            "id": "GHA13",
+            "team": "GHANA",
+            "type": "EQUIPO",
+            "name": "SELECCION NACIONAL DE GHANA"
+          },
+          {
+            "id": "GHA14",
+            "team": "GHANA",
+            "type": "NORMAL",
+            "name": "MOHAMMED KUDUS"
+          },
+          {
+            "id": "GHA15",
+            "team": "GHANA",
+            "type": "NORMAL",
+            "name": "IÑAKI WILLIAMS"
+          },
+          {
+            "id": "GHA16",
+            "team": "GHANA",
+            "type": "NORMAL",
+            "name": "JORDAN AYEW"
+          },
+          {
+            "id": "GHA17",
+            "team": "GHANA",
+            "type": "NORMAL",
+            "name": "ANDRE AYEW"
+          },
+          {
+            "id": "GHA18",
+            "team": "GHANA",
+            "type": "NORMAL",
+            "name": "JOSEPH PAINTSIL"
+          },
+          {
+            "id": "GHA19",
+            "team": "GHANA",
+            "type": "NORMAL",
+            "name": "OSMAN BUKARI"
+          },
+          {
+            "id": "GHA20",
+            "team": "GHANA",
+            "type": "NORMAL",
+            "name": "ANTOINE SEMENYO"
+          }
+        ],
+        "flag": "🇬🇭"
+      },
+      {
+        "country": "PANAMA",
+        "stickers": [
+          {
+            "id": "PAN01",
+            "team": "PANAMA",
+            "type": "ESCUDO",
+            "name": "SELECCION NACIONAL DE PANAMA"
+          },
+          {
+            "id": "PAN02",
+            "team": "PANAMA",
+            "type": "NORMAL",
+            "name": "ORLANDO MOSQUERA"
+          },
+          {
+            "id": "PAN03",
+            "team": "PANAMA",
+            "type": "NORMAL",
+            "name": "LUIS MEJIA"
+          },
+          {
+            "id": "PAN04",
+            "team": "PANAMA",
+            "type": "NORMAL",
+            "name": "FIDEL ESCOBAR"
+          },
+          {
+            "id": "PAN05",
+            "team": "PANAMA",
+            "type": "NORMAL",
+            "name": "ANDRES ANDRADE"
+          },
+          {
+            "id": "PAN06",
+            "team": "PANAMA",
+            "type": "NORMAL",
+            "name": "MICHAEL AMIR MURILLO"
+          },
+          {
+            "id": "PAN07",
+            "team": "PANAMA",
+            "type": "NORMAL",
+            "name": "ERIC DAVIS"
+          },
+          {
+            "id": "PAN08",
+            "team": "PANAMA",
+            "type": "NORMAL",
+            "name": "JOSE CORDOBA"
+          },
+          {
+            "id": "PAN09",
+            "team": "PANAMA",
+            "type": "NORMAL",
+            "name": "CESAR BLACKMAN"
+          },
+          {
+            "id": "PAN10",
+            "team": "PANAMA",
+            "type": "NORMAL",
+            "name": "CRISTIAN MARTINEZ"
+          },
+          {
+            "id": "PAN11",
+            "team": "PANAMA",
+            "type": "NORMAL",
+            "name": "ANIBAL GODOY"
+          },
+          {
+            "id": "PAN12",
+            "team": "PANAMA",
+            "type": "NORMAL",
+            "name": "ADALBERTO CARRASQUILLA"
+          },
+          {
+            "id": "PAN13",
+            "team": "PANAMA",
+            "type": "EQUIPO",
+            "name": "SELECCION NACIONAL DE PANAMA"
+          },
+          {
+            "id": "PAN14",
+            "team": "PANAMA",
+            "type": "NORMAL",
+            "name": "EDGAR BARCENAS"
+          },
+          {
+            "id": "PAN15",
+            "team": "PANAMA",
+            "type": "NORMAL",
+            "name": "CARLOS HARVEY"
+          },
+          {
+            "id": "PAN16",
+            "team": "PANAMA",
+            "type": "NORMAL",
+            "name": "ISMAEL DIAZ"
+          },
+          {
+            "id": "PAN17",
+            "team": "PANAMA",
+            "type": "NORMAL",
+            "name": "JOSE FAJARDO"
+          },
+          {
+            "id": "PAN18",
+            "team": "PANAMA",
+            "type": "NORMAL",
+            "name": "CECILIO WATERMAN"
+          },
+          {
+            "id": "PAN19",
+            "team": "PANAMA",
+            "type": "NORMAL",
+            "name": "JOSE LUIS RODRIGUEZ"
+          },
+          {
+            "id": "PAN20",
+            "team": "PANAMA",
+            "type": "NORMAL",
+            "name": "ALBERTO QUINTERO"
+          }
+        ],
+        "flag": "🇵🇦"
+      }
+    ]
+  },
+  "specials": {
+    "fwc_panini": [
+      {
+        "id": "FWC 00",
+        "name": "PANINI"
+      },
+      {
+        "id": "FWC 1",
+        "name": "COPA 1"
+      },
+      {
+        "id": "FWC 2",
+        "name": "COPA 2"
+      },
+      {
+        "id": "FWC 3",
+        "name": "MASCOTAS"
+      },
+      {
+        "id": "FWC 4",
+        "name": "EMBLEMA"
+      },
+      {
+        "id": "FWC 5",
+        "name": "BALÓN OFICIAL"
+      },
+      {
+        "id": "FWC 6",
+        "name": "ANFITRIÓN CANADÁ"
+      },
+      {
+        "id": "FWC 7",
+        "name": "ANFITRIÓN MÉXICO"
+      },
+      {
+        "id": "FWC 8",
+        "name": "ANFITRIÓN USA"
+      }
+    ],
+    "fwc_champions": [
+      {
+        "id": "FWC 9",
+        "name": "ITALIA 1934"
+      },
+      {
+        "id": "FWC 10",
+        "name": "BRASIL 1950"
+      },
+      {
+        "id": "FWC 11",
+        "name": "SUIZA 1954"
+      },
+      {
+        "id": "FWC 12",
+        "name": "CHILE 1962"
+      },
+      {
+        "id": "FWC 13",
+        "name": "ALEMANIA 1974"
+      },
+      {
+        "id": "FWC 14",
+        "name": "MEXICO 1986"
+      },
+      {
+        "id": "FWC 15",
+        "name": "USA1994"
+      },
+      {
+        "id": "FWC 16",
+        "name": "COREA / JAPON 2002"
+      },
+      {
+        "id": "FWC 17",
+        "name": "ALEMANIA 2006 "
+      },
+      {
+        "id": "FWC 18",
+        "name": "BRASIL 2014 "
+      },
+      {
+        "id": "FWC 19",
+        "name": "QATAR 2022 "
+      }
+    ],
+    "coca_cola": [
+      {
+        "id": "CC 1",
+        "name": "LAMINE YAMAL"
+      },
+      {
+        "id": "CC 2",
+        "name": "JOSHUE KIMMICH"
+      },
+      {
+        "id": "CC 3",
+        "name": "HARRY KANE"
+      },
+      {
+        "id": "CC 4",
+        "name": "SANTIAGO GIMENEZ"
+      },
+      {
+        "id": "CC 5",
+        "name": "JOSKO GVARDIOL"
+      },
+      {
+        "id": "CC 6",
+        "name": "FEDERICO VALVERDE"
+      },
+      {
+        "id": "CC 7",
+        "name": "JEFFERSON LERMA"
+      },
+      {
+        "id": "CC 8",
+        "name": "ENNER VALENCIA"
+      },
+      {
+        "id": "CC 9",
+        "name": "GABRIEL MAGALHAES"
+      },
+      {
+        "id": "CC 10",
+        "name": "VIRGIL VAN DIJK"
+      },
+      {
+        "id": "CC 11",
+        "name": "ALPHONSO DAVIES"
+      },
+      {
+        "id": "CC 12",
+        "name": "EMILIANO MARTINEZ"
+      },
+      {
+        "id": "CC 13",
+        "name": "RAUL JIMENEZ"
+      },
+      {
+        "id": "CC 14",
+        "name": "LAUTARO MARTINEZ"
+      }
+    ]
+  }
+}
