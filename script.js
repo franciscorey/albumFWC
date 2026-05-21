@@ -1,102 +1,214 @@
-// GRUPOS OFICIALES SEGÚN PLANILLA 2026
-        const GROUPS_DATA = {
-            "A": { name: "Grupo A", teams: ["MEX", "RSA", "KOR", "CZE"] },
-            "B": { name: "Grupo B", teams: ["CAN", "BIH", "QAT", "SUI"] },
-            "C": { name: "Grupo C", teams: ["BRA", "MAR", "HAI", "SCO"] },
-            "D": { name: "Grupo D", teams: ["USA", "PAR", "AUS", "TUR"] },
-            "E": { name: "Grupo E", teams: ["GER", "CUW", "CIV", "ECU"] },
-            "F": { name: "Grupo F", teams: ["NED", "JPN", "SWE", "TUN"] },
-            "G": { name: "Grupo G", teams: ["BEL", "EGY", "IRN", "NZL"] },
-            "H": { name: "Grupo H", teams: ["ESP", "CPV", "KSA", "URU"] },
-            "I": { name: "Grupo I", teams: ["FRA", "SEN", "IRQ", "NOR"] },
-            "J": { name: "Grupo J", teams: ["ARG", "ALG", "AUT", "JOR"] },
-            "K": { name: "Grupo K", teams: ["POR", "COD", "UZB", "COL"] },
-            "L": { name: "Grupo L", teams: ["ENG", "CRO", "GHA", "PAN"] }
-        };
+// ============================================
+// CONFIGURACIÓN Y ESTADO GLOBAL
+// ============================================
 
-        // LISTADO DETALLADO DE PAÍSES
-        const TEAMS_MAP = {
-            "MEX": { name: "México", flag: "🇲🇽" },
-            "RSA": { name: "Sudáfrica", flag: "🇿🇦" },
-            "KOR": { name: "Corea del Sur", flag: "🇰🇷" },
-            "CZE": { name: "Rep. Checa", flag: "🇨🇿" },
-            "CAN": { name: "Canadá", flag: "🇨🇦" },
-            "BIH": { name: "Bosnia y H.", flag: "🇧🇦" },
-            "QAT": { name: "Catar", flag: "🇶🇦" },
-            "SUI": { name: "Suiza", flag: "🇨🇭" },
-            "BRA": { name: "Brasil", flag: "🇧🇷" },
-            "MAR": { name: "Marruecos", flag: "🇲🇦" },
-            "HAI": { name: "Haití", flag: "🇭🇹" },
-            "SCO": { name: "Escocia", flag: "🏴" },
-            "USA": { name: "EE. UU.", flag: "🇺🇸" },
-            "PAR": { name: "Paraguay", flag: "🇵🇾" },
-            "AUS": { name: "Australia", flag: "🇦🇺" },
-            "TUR": { name: "Turquía", flag: "🇹🇷" },
-            "GER": { name: "Alemania", flag: "🇩🇪" },
-            "CUW": { name: "Curazao", flag: "🇨🇼" },
-            "CIV": { name: "Costa de Marfil", flag: "🇨🇮" },
-            "ECU": { name: "Ecuador", flag: "🇪🇨" },
-            "NED": { name: "Países Bajos", flag: "🇳🇱" },
-            "JPN": { name: "Japón", flag: "🇯🇵" },
-            "SWE": { name: "Suecia", flag: "🇸🇪" },
-            "TUN": { name: "Túnez", flag: "🇹🇳" },
-            "BEL": { name: "Bélgica", flag: "🇧🇪" },
-            "EGY": { name: "Egipto", flag: "🇪🇬" },
-            "IRN": { name: "Irán", flag: "🇮🇷" },
-            "NZL": { name: "Nueva Zelanda", flag: "🇳🇿" },
-            "ESP": { name: "España", flag: "🇪🇸" },
-            "CPV": { name: "Cabo Verde", flag: "🇨🇻" },
-            "KSA": { name: "Arabia Saudita", flag: "🇸🇦" },
-            "URU": { name: "Uruguay", flag: "🇺🇾" },
-            "FRA": { name: "Francia", flag: "🇫🇷" },
-            "SEN": { name: "Senegal", flag: "🇸🇳" },
-            "IRQ": { name: "Irak", flag: "🇮🇶" },
-            "NOR": { name: "Noruega", flag: "🇳🇴" },
-            "ARG": { name: "Argentina", flag: "🇦🇷" },
-            "ALG": { name: "Argelia", flag: "🇩🇿" },
-            "AUT": { name: "Austria", flag: "🇦🇹" },
-            "JOR": { name: "Jordania", flag: "🇯🇴" },
-            "POR": { name: "Portugal", flag: "🇵🇹" },
-            "COD": { name: "R.D. Congo", flag: "🇨🇩" },
-            "UZB": { name: "Uzbekistán", flag: "🇺🇿" },
-            "COL": { name: "Colombia", flag: "🇨🇴" },
-            "ENG": { name: "Inglaterra", flag: "🏴" },
-            "CRO": { name: "Croacia", flag: "🇭🇷" },
-            "GHA": { name: "Ghana", flag: "🇬🇭" },
-            "PAN": { name: "Panamá", flag: "🇵🇦" }
-        };
+let STICKER_DATA = {}; // Se cargará desde el JSON
+let GROUPS_DATA = {};  // Se generará desde el JSON
+let TEAMS_MAP = {};    // Se generará desde el JSON
+let SPECIAL_SECTIONS = {
+    "FWC": { name: "Estadios y Leyendas", flag: "🏆", subtitle: "Especiales Panini (00, FWC 1-19)" },
+    "CC": { name: "Coca-Cola Specials", flag: "🥤", subtitle: "Láminas de Oro (CC1-CC14)" }
+};
 
-        const SPECIAL_SECTIONS = {
-            "FWC": { name: "Estadios y Leyendas", flag: "🏆", subtitle: "Especiales Panini (00, FWC 1-19)" },
-            "CC": { name: "Coca-Cola Specials", flag: "🥤", subtitle: "Láminas de Oro (CC1-CC14)" }
-        };
+let collection = {};
+let currentSectionId = "FWC";
+let activeFilter = "all";
+let dashboardSortType = "groups"; // "groups" | "az" | "progress"
+let selectedStickers = [];
+let pressTimer = null;
+let GRAND_TOTAL_STICKERS = 0;
 
-        const GRAND_TOTAL_STICKERS = 994;
+// ============================================
+// CARGA DE DATOS DESDE JSON
+// ============================================
 
-        // Estado Global de la aplicación
-        let collection = {};
-        let currentSectionId = "FWC";
-        let activeFilter = "all";
-        let dashboardSortType = "groups"; // "groups" | "az" | "progress"
-        let selectedStickers = [];
-        let pressTimer = null;
-
-        // Inicialización y carga de eventos seguros
-        document.addEventListener('DOMContentLoaded', () => {
-            // Verificar Tema
-            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
-
-            loadLocalStorage();
-            renderDashboardGroups();
-            buildHorizontalCapsuleBar();
-            renderActiveSection();
-            updateStats();
-            lucide.createIcons();
+async function loadStickerData() {
+    try {
+        const response = await fetch('panini_world_cup_2026.json');
+        if (!response.ok) throw new Error('No se pudo cargar el archivo JSON');
+        
+        const data = await response.json();
+        STICKER_DATA = data.groups;
+        
+        // Generar GROUPS_DATA y TEAMS_MAP desde el JSON
+        GROUPS_DATA = {};
+        TEAMS_MAP = {};
+        
+        for (const [groupKey, countries] of Object.entries(STICKER_DATA)) {
+            GROUPS_DATA[groupKey] = { 
+                name: `Grupo ${groupKey}`, 
+                teams: [] 
+            };
+            
+            countries.forEach(countryData => {
+                const teamId = countryData.country.substring(0, 3).toUpperCase();
+                // Crear un ID único basado en el nombre del país
+                const shortId = getTeamShortId(countryData.country);
+                
+                GROUPS_DATA[groupKey].teams.push(shortId);
+                TEAMS_MAP[shortId] = {
+                    name: countryData.country,
+                    flag: countryData.flag || "🏳️",
+                    stickers: countryData.stickers
+                };
+            });
+        }
+        
+        // Calcular el total de láminas
+        calculateTotalStickers();
+        
+        console.log('Datos cargados exitosamente:', {
+            grupos: Object.keys(GROUPS_DATA).length,
+            equipos: Object.keys(TEAMS_MAP).length
         });
+        
+    } catch (error) {
+        console.error('Error cargando datos:', error);
+        showToast('Error al cargar los datos del álbum', 'error');
+    }
+}
+
+function getTeamShortId(countryName) {
+    // Mapeo de nombres de país a IDs cortos
+    const teamIdMap = {
+        "MEXICO": "MEX",
+        "SUDAFRICA": "RSA",
+        "COREA DEL SUR": "KOR",
+        "REPÚBLICA CHECA": "CZE",
+        "CANADA": "CAN",
+        "BOSNIA Y HERZEGOVINA": "BIH",
+        "QATAR": "QAT",
+        "SUIZA": "SUI",
+        "BRASIL": "BRA",
+        "MARRUECOS": "MAR",
+        "HAITÍ": "HAI",
+        "ESCOCIA": "SCO",
+        "ESTADOS UNIDOS": "USA",
+        "PARAGUAY": "PAR",
+        "AUSTRALIA": "AUS",
+        "TURQUÍA": "TUR",
+        "ALEMANIA": "GER",
+        "CURAZAO": "CUW",
+        "COSTA DE MARFIL": "CIV",
+        "ECUADOR": "ECU",
+        "PAÍSES BAJOS": "NED",
+        "JAPÓN": "JPN",
+        "SUECIA": "SWE",
+        "TÚNEZ": "TUN",
+        "BÉLGICA": "BEL",
+        "EGIPTO": "EGY",
+        "IRÁN": "IRN",
+        "NUEVA ZELANDA": "NZL",
+        "ESPAÑA": "ESP",
+        "CABO VERDE": "CPV",
+        "ARABIA SAUDITA": "KSA",
+        "URUGUAY": "URU",
+        "FRANCIA": "FRA",
+        "SENEGAL": "SEN",
+        "IRAK": "IRQ",
+        "NORUEGA": "NOR",
+        "ARGENTINA": "ARG",
+        "ARGELIA": "ALG",
+        "AUSTRIA": "AUT",
+        "JORDANIA": "JOR",
+        "PORTUGAL": "POR",
+        "R.D. CONGO": "COD",
+        "UZBEKISTÁN": "UZB",
+        "COLOMBIA": "COL",
+        "INGLATERRA": "ENG",
+        "CROACIA": "CRO",
+        "GHANA": "GHA",
+        "PANAMÁ": "PAN"
+    };
+    
+    return teamIdMap[countryName] || countryName.substring(0, 3).toUpperCase();
+}
+
+function calculateTotalStickers() {
+    let total = 0;
+    
+    // Contar láminas de todos los equipos
+    for (const teamId in TEAMS_MAP) {
+        const stickers = TEAMS_MAP[teamId].stickers;
+        total += stickers.length;
+    }
+    
+    // Añadir láminas especiales (FWC y CC)
+    total += 20; // FWC: 00 + 1-19
+    total += 14; // CC: 1-14
+    
+    GRAND_TOTAL_STICKERS = total;
+}
+
+// ============================================
+// FUNCIONES AUXILIARES PARA OBTENER DATOS DE LÁMINAS
+// ============================================
+
+function getStickersForTeam(teamId) {
+    return TEAMS_MAP[teamId]?.stickers || [];
+}
+
+function getStickerByIndex(teamId, index) {
+    const stickers = getStickersForTeam(teamId);
+    return stickers[index - 1] || null;
+}
+
+function getStickerInfo(teamId, index) {
+    if (teamId === "FWC") {
+        if (index === 1) return { id: "FWC-00", name: "FWC 00", type: "ESPECIAL", emoji: "🏆" };
+        return { id: `FWC-${index - 1}`, name: `FWC ${index - 1}`, type: "ESPECIAL", emoji: "🏆" };
+    }
+    
+    if (teamId === "CC") {
+        return { id: `CC-${index}`, name: `CC ${index}`, type: "ESPECIAL", emoji: "🥤" };
+    }
+    
+    const sticker = getStickerByIndex(teamId, index);
+    if (!sticker) return { id: `${teamId}-${index}`, name: `${teamId} ${index}`, type: "DESCONOCIDO", emoji: "❓" };
+    
+    const typeEmoji = {
+        "ESCUDO": "🛡️",
+        "EQUIPO": "👥",
+        "NORMAL": "👤"
+    };
+    
+    return {
+        id: sticker.id,
+        name: sticker.name,
+        type: sticker.type,
+        emoji: typeEmoji[sticker.type] || "👤"
+    };
+}
+
+function getMaxStickersForTeam(teamId) {
+    if (teamId === "FWC") return 20;
+    if (teamId === "CC") return 14;
+    return getStickersForTeam(teamId).length;
+}
+
+// ============================================
+// INICIALIZACIÓN Y CARGA DE EVENTOS
+// ============================================
+
+document.addEventListener('DOMContentLoaded', async () => {
+    // Verificar Tema
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+    }
+
+    // Cargar datos desde JSON primero
+    await loadStickerData();
+    
+    // Luego cargar estado local y renderizar
+    loadLocalStorage();
+    renderDashboardGroups();
+    buildHorizontalCapsuleBar();
+    renderActiveSection();
+    updateStats();
+    lucide.createIcons();
+});
 
         // Guardar/Cargar LocalStorage de forma persistente
         function saveLocalStorage() {
@@ -120,7 +232,7 @@
         function getStickersCountForSection(secId) {
             if (secId === "FWC") return 20;
             if (secId === "CC") return 14;
-            return 20;
+            return getMaxStickersForTeam(secId);
         }
 
         // Formato para ID interno
@@ -132,7 +244,9 @@
             if (secId === "CC") {
                 return `CC-${index}`;
             }
-            return `${secId}-${index}`;
+            // Usar el ID real del JSON
+            const sticker = getStickerByIndex(secId, index);
+            return sticker ? sticker.id : `${secId}-${index}`;
         }
 
         function getStickerDisplayName(secId, index) {
@@ -143,7 +257,9 @@
             if (secId === "CC") {
                 return `CC ${index}`;
             }
-            return `${secId} ${index}`;
+            // Usar el nombre real del JSON
+            const sticker = getStickerByIndex(secId, index);
+            return sticker ? sticker.name : `${secId} ${index}`;
         }
 
         function getStickerMetadata(secId, index) {
@@ -153,10 +269,15 @@
             if (secId === "CC") {
                 return { label: "Coca-Cola ✨", isSpecial: true, category: "specials", emoji: "🥤" };
             }
-            if (index === 1) {
+            
+            // Obtener tipo desde el JSON
+            const sticker = getStickerByIndex(secId, index);
+            const type = sticker?.type || "NORMAL";
+            
+            if (type === "ESCUDO") {
                 return { label: "Escudo 🛡️", isSpecial: true, category: "shields", emoji: "🛡️" };
             }
-            if (index === 13) {
+            if (type === "EQUIPO") {
                 return { label: "Equipo 👥", isSpecial: true, category: "teams", emoji: "👥" };
             }
             return { label: "Jugador 👤", isSpecial: false, category: "players", emoji: "👤" };
@@ -169,21 +290,22 @@
             let playersOwned = 0;
 
             for (const secId in TEAMS_MAP) {
-                // Escudo (Lámina 1)
-                const sId = `${secId}-1`;
-                if ((collection[sId] || 0) > 0) shieldsOwned++;
-
-                // Equipo (Lámina 13)
-                const tId = `${secId}-13`;
-                if ((collection[tId] || 0) > 0) teamsOwned++;
-
-                // Jugadores (2-12 y 14-20)
-                for (let i = 1; i <= 20; i++) {
-                    if (i !== 1 && i !== 13) {
-                        const pId = `${secId}-${i}`;
-                        if ((collection[pId] || 0) > 0) playersOwned++;
+                const stickers = TEAMS_MAP[secId].stickers;
+                
+                stickers.forEach((sticker, idx) => {
+                    const sId = sticker.id;
+                    const qty = collection[sId] || 0;
+                    
+                    if (qty > 0) {
+                        if (sticker.type === "ESCUDO") {
+                            shieldsOwned++;
+                        } else if (sticker.type === "EQUIPO") {
+                            teamsOwned++;
+                        } else {
+                            playersOwned++;
+                        }
                     }
-                }
+                });
             }
 
             return {
@@ -369,17 +491,18 @@
                 const qty = collection[id] || 0;
                 if (qty > 0) { totalOwned++; if (qty > 1) totalRepeats += (qty - 1); }
             }
-            // Países
+            // Países - usando los datos reales del JSON
             for (const teamId in TEAMS_MAP) {
-                for (let i = 1; i <= 20; i++) {
-                    const id = getStickerId(teamId, i);
+                const stickers = TEAMS_MAP[teamId].stickers;
+                for (const sticker of stickers) {
+                    const id = sticker.id;
                     const qty = collection[id] || 0;
                     if (qty > 0) { totalOwned++; if (qty > 1) totalRepeats += (qty - 1); }
                 }
             }
 
             const missing = GRAND_TOTAL_STICKERS - totalOwned;
-            const pct = ((totalOwned / GRAND_TOTAL_STICKERS) * 100).toFixed(1);
+            const pct = GRAND_TOTAL_STICKERS > 0 ? ((totalOwned / GRAND_TOTAL_STICKERS) * 100).toFixed(1) : "0.0";
 
             // Actualizar textos de UI principal
             const statPctEl = document.getElementById('stat-progress-pct');
@@ -397,35 +520,49 @@
             // Categorías de Progreso Compactas con Barras
             const cat = getCategoryStats();
 
+            // Calcular totales reales desde el JSON
+            let totalShields = 0;
+            let totalTeams = 0;
+            let totalPlayers = 0;
+            
+            for (const teamId in TEAMS_MAP) {
+                const stickers = TEAMS_MAP[teamId].stickers;
+                stickers.forEach(sticker => {
+                    if (sticker.type === "ESCUDO") totalShields++;
+                    else if (sticker.type === "EQUIPO") totalTeams++;
+                    else totalPlayers++;
+                });
+            }
+
             // Shields Progress
             const catShieldsProgress = document.getElementById('cat-progress-shields');
             const catShieldsBar = document.getElementById('cat-bar-shields');
             const catShieldsMissing = document.getElementById('cat-missing-shields');
-            if (catShieldsProgress) catShieldsProgress.innerText = `${cat.shields} / 48`;
-            if (catShieldsBar) catShieldsBar.style.width = `${(cat.shields / 48) * 100}%`;
-            if (catShieldsMissing) catShieldsMissing.innerText = `Faltan ${48 - cat.shields}`;
+            if (catShieldsProgress) catShieldsProgress.innerText = `${cat.shields} / ${totalShields}`;
+            if (catShieldsBar) catShieldsBar.style.width = `${totalShields > 0 ? (cat.shields / totalShields) * 100 : 0}%`;
+            if (catShieldsMissing) catShieldsMissing.innerText = `Faltan ${totalShields - cat.shields}`;
 
             // Teams Progress
             const catTeamsProgress = document.getElementById('cat-progress-teams');
             const catTeamsBar = document.getElementById('cat-bar-teams');
             const catTeamsMissing = document.getElementById('cat-missing-teams');
-            if (catTeamsProgress) catTeamsProgress.innerText = `${cat.teams} / 48`;
-            if (catTeamsBar) catTeamsBar.style.width = `${(cat.teams / 48) * 100}%`;
-            if (catTeamsMissing) catTeamsMissing.innerText = `Faltan ${48 - cat.teams}`;
+            if (catTeamsProgress) catTeamsProgress.innerText = `${cat.teams} / ${totalTeams}`;
+            if (catTeamsBar) catTeamsBar.style.width = `${totalTeams > 0 ? (cat.teams / totalTeams) * 100 : 0}%`;
+            if (catTeamsMissing) catTeamsMissing.innerText = `Faltan ${totalTeams - cat.teams}`;
 
             // Players Progress
             const catPlayersProgress = document.getElementById('cat-progress-players');
             const catPlayersBar = document.getElementById('cat-bar-players');
             const catPlayersMissing = document.getElementById('cat-missing-players');
-            if (catPlayersProgress) catPlayersProgress.innerText = `${cat.players} / 864`;
-            if (catPlayersBar) catPlayersBar.style.width = `${(cat.players / 864) * 100}%`;
-            if (catPlayersMissing) catPlayersMissing.innerText = `Faltan ${864 - cat.players}`;
+            if (catPlayersProgress) catPlayersProgress.innerText = `${cat.players} / ${totalPlayers}`;
+            if (catPlayersBar) catPlayersBar.style.width = `${totalPlayers > 0 ? (cat.players / totalPlayers) * 100 : 0}%`;
+            if (catPlayersMissing) catPlayersMissing.innerText = `Faltan ${totalPlayers - cat.players}`;
 
             // Actualizar contadores dinámicos del Dashboard
             const groupRatioFwc = document.getElementById('group-ratio-FWC');
             const groupRatioCc = document.getElementById('group-ratio-CC');
-            if (groupRatioFwc) groupRatioFwc.innerText = `${fwcStat.owned} / 20`;
-            if (groupRatioCc) groupRatioCc.innerText = `${ccStat.owned} / 14`;
+            if (groupRatioFwc) groupRatioFwc.innerText = `${getSectionStatus("FWC").owned} / 20`;
+            if (groupRatioCc) groupRatioCc.innerText = `${getSectionStatus("CC").owned} / 14`;
         }
 
         // Construir barra deslizadora de cápsulas (Horizontal)
@@ -868,7 +1005,7 @@
             showToast("Lista copiada al portapapeles. ¡Lista para WhatsApp!", "success");
         }
 
-        // CARGA RÁPIDA DE SOBRES
+        // CARGA RÁPIDA DE SOBRES - Actualizado para usar IDs del JSON
         function submitBulkCodes(isAdding) {
             const txt = document.getElementById('bulk-text').value;
             if (!txt.trim()) {
@@ -884,7 +1021,7 @@
                 const clean = token.replace(/-/g, "").trim();
 
                 const matchCC = clean.match(/^CC([0-9]{1,2})$/);
-                const matchGeneral = clean.match(/^([A-Z]{3})([0-9]{1,2})$/);
+                const matchGeneral = clean.match(/^([A-Z]{3,4})([0-9]{1,2})$/);
 
                 if (matchCC) {
                     const num = parseInt(matchCC[1], 10);
@@ -912,8 +1049,10 @@
                                 updated++;
                             }
                         } else {
-                            if (num >= 1 && num <= 20) {
-                                const id = `${code}-${num}`;
+                            // Usar el ID real desde el JSON basado en el número
+                            const sticker = getStickerByIndex(code, num);
+                            if (sticker) {
+                                const id = sticker.id;
                                 const currentVal = collection[id] || 0;
                                 collection[id] = isAdding ? (currentVal + 1) : Math.max(0, currentVal - 1);
                                 updated++;
@@ -948,7 +1087,14 @@
                 } else if (randomSec === "CC") {
                     list.push(`CC${randomNum}`);
                 } else {
-                    list.push(`${randomSec}${randomNum}`);
+                    // Usar el ID real desde el JSON
+                    const sticker = getStickerByIndex(randomSec, randomNum);
+                    if (sticker) {
+                        // Extraer solo la parte alfabética del ID (ej: MEX01 -> MEX01)
+                        list.push(sticker.id.replace('-', ''));
+                    } else {
+                        list.push(`${randomSec}${randomNum}`);
+                    }
                 }
             }
 
