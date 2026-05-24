@@ -356,7 +356,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (!container) return;
             container.innerHTML = '';
 
-            // Grupo Especial Unificado "1 - FWC - CC" con estilo consistente
+            // Grupo Especial Unificado "1 - FWC - CC" con estilo consistente y barra de progreso horizontal
             const fwcStat = getSectionStatus("FWC");
             const ccStat = getSectionStatus("CC");
             const specialOwned = fwcStat.owned + ccStat.owned;
@@ -364,13 +364,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             const specialPct = ((specialOwned / specialTotal) * 100).toFixed(0);
 
             const specialCard = document.createElement('div');
-            specialCard.className = "bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-2.5 rounded-xl shadow-sm flex flex-col justify-between hover:border-emerald-500 hover:shadow-md transition-all";
+            specialCard.className = "bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-3 rounded-xl shadow-sm flex flex-col justify-between hover:border-emerald-500 hover:shadow-md transition-all";
             specialCard.innerHTML = `
-                <div class="flex justify-between items-center mb-2 border-b border-slate-100 dark:border-slate-800 pb-1">
+                <div class="flex justify-between items-center mb-2">
                     <span class="text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-wider flex items-center gap-1">🏆 1 - FWC - CC</span>
-                    <span class="text-[10px] bg-amber-500 text-slate-950 font-black px-1.5 py-0.5 rounded">${specialPct}%</span>
+                    <span class="text-[10px] bg-[#FFD700] text-slate-900 font-black px-2 py-1 rounded">${specialPct}%</span>
                 </div>
-                <div class="grid grid-cols-2 gap-1 mb-2">
+                <div class="grid grid-cols-2 gap-2 mb-2">
                     <button onclick="goToSectionAndSticker('FWC')" class="w-full flex flex-col items-center justify-center bg-slate-50 dark:bg-slate-950 hover:bg-emerald-50 dark:hover:bg-emerald-950/20 border border-slate-150 dark:border-slate-800 rounded-lg p-2 transition text-center">
                         <span class="text-base sm:text-lg leading-none">🏆</span>
                         <span class="text-[10px] sm:text-[11px] font-black text-slate-800 dark:text-slate-200 mt-0.5">FWC</span>
@@ -382,8 +382,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                         <span class="text-[9px] sm:text-[10px] font-bold ${ccStat.owned === 14 ? 'text-emerald-600' : 'text-slate-500'} mt-1">${ccStat.owned}/14</span>
                     </button>
                 </div>
-                <div class="w-full bg-slate-200 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden border border-slate-300 dark:border-slate-700 mt-1">
-                    <div class="bg-emerald-500 h-full" style="width: ${specialPct}%"></div>
+                <div class="relative w-full bg-slate-200 dark:bg-slate-800 h-3 rounded-full overflow-hidden border border-slate-300 dark:border-slate-700">
+                    <div class="absolute top-0 left-0 h-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-500" style="width: ${specialPct}%"></div>
                 </div>
             `;
             container.appendChild(specialCard);
@@ -843,10 +843,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                     const hasLamin = qty > 0;
                     const isCurrentlySelected = selectedStickers.includes(id);
 
-                    // Color VERDE CLARO PLANO para todas las láminas obtenidas
+                    // Color TURQUESA VIBRANTE (#40E0D0) para láminas pegadas
                     let bgStyleClass = "bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-400 dark:text-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800";
                     if (hasLamin) {
-                        bgStyleClass = "bg-[#4ade80] dark:bg-emerald-500 border-emerald-500 text-emerald-950 dark:text-emerald-50 shadow-sm";
+                        bgStyleClass = "bg-[#40E0D0] dark:bg-[#40E0D0] border-[#40E0D0] text-slate-900 dark:text-slate-900 shadow-sm font-bold";
                     }
 
                     // Formato corto: MEX-01 (solo sigla y número)
@@ -935,8 +935,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                     const hasLamin = qty > 0;
                     const isCurrentlySelected = selectedStickers.includes(id);
                     const statusText = hasLamin ? 'Pegada' : 'Vacía';
-                    const statusColor = hasLamin ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-400 dark:text-slate-600';
-                    const rowBgClass = hasLamin ? 'bg-emerald-50/70 dark:bg-emerald-900/20 border-emerald-300 dark:border-emerald-700/50' : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800';
+                    // Color TURQUESA VIBRANTE (#40E0D0) para láminas pegadas en vista lista
+                    const rowBgClass = hasLamin ? 'bg-[#40E0D0] dark:bg-[#40E0D0] border-[#40E0D0] text-slate-900 dark:text-slate-900' : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800';
 
                     const row = document.createElement('div');
                     row.id = `card-sticker-${id}`;
