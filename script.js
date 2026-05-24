@@ -356,7 +356,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (!container) return;
             container.innerHTML = '';
 
-            // Grupo Especial Unificado "1 - FWC - CC"
+            // Grupo Especial Unificado "1 - FWC - CC" con estilo consistente
             const fwcStat = getSectionStatus("FWC");
             const ccStat = getSectionStatus("CC");
             const specialOwned = fwcStat.owned + ccStat.owned;
@@ -364,20 +364,22 @@ document.addEventListener('DOMContentLoaded', async () => {
             const specialPct = ((specialOwned / specialTotal) * 100).toFixed(0);
 
             const specialCard = document.createElement('div');
-            specialCard.className = "bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 p-3 rounded-xl flex flex-col justify-between";
+            specialCard.className = "bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-2.5 rounded-xl shadow-sm flex flex-col justify-between hover:border-emerald-500 hover:shadow-md transition-all";
             specialCard.innerHTML = `
-                <div class="flex justify-between items-center mb-2 border-b border-slate-150 dark:border-slate-800 pb-1">
-                    <span class="text-xs font-black text-slate-900 dark:text-white uppercase flex items-center gap-1">🏆 1 - FWC - CC</span>
+                <div class="flex justify-between items-center mb-2 border-b border-slate-100 dark:border-slate-800 pb-1">
+                    <span class="text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-wider flex items-center gap-1">🏆 1 - FWC - CC</span>
                     <span class="text-[10px] bg-amber-500 text-slate-950 font-black px-1.5 py-0.5 rounded">${specialPct}%</span>
                 </div>
-                <div class="grid grid-cols-2 gap-1.5 mb-2">
-                    <button onclick="goToSectionAndSticker('FWC')" class="w-full flex items-center justify-between bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-1.5 transition text-left">
-                        <span class="text-[10px] font-black text-slate-700 dark:text-slate-300">🏆 FWC</span>
-                        <span class="text-[10px] font-black">${fwcStat.owned}/20</span>
+                <div class="grid grid-cols-2 gap-1 mb-2">
+                    <button onclick="goToSectionAndSticker('FWC')" class="w-full flex flex-col items-center justify-center bg-slate-50 dark:bg-slate-950 hover:bg-emerald-50 dark:hover:bg-emerald-950/20 border border-slate-150 dark:border-slate-800 rounded-lg p-2 transition text-center">
+                        <span class="text-base sm:text-lg leading-none">🏆</span>
+                        <span class="text-[10px] sm:text-[11px] font-black text-slate-800 dark:text-slate-200 mt-0.5">FWC</span>
+                        <span class="text-[9px] sm:text-[10px] font-bold ${fwcStat.owned === 20 ? 'text-emerald-600' : 'text-slate-500'} mt-1">${fwcStat.owned}/20</span>
                     </button>
-                    <button onclick="goToSectionAndSticker('CC')" class="w-full flex items-center justify-between bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-1.5 transition text-left">
-                        <span class="text-[10px] font-black text-slate-700 dark:text-slate-300">🥤 CC</span>
-                        <span class="text-[10px] font-black">${ccStat.owned}/14</span>
+                    <button onclick="goToSectionAndSticker('CC')" class="w-full flex flex-col items-center justify-center bg-slate-50 dark:bg-slate-950 hover:bg-emerald-50 dark:hover:bg-emerald-950/20 border border-slate-150 dark:border-slate-800 rounded-lg p-2 transition text-center">
+                        <span class="text-base sm:text-lg leading-none">🥤</span>
+                        <span class="text-[10px] sm:text-[11px] font-black text-slate-800 dark:text-slate-200 mt-0.5">CC</span>
+                        <span class="text-[9px] sm:text-[10px] font-bold ${ccStat.owned === 14 ? 'text-emerald-600' : 'text-slate-500'} mt-1">${ccStat.owned}/14</span>
                     </button>
                 </div>
                 <div class="w-full bg-slate-200 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden border border-slate-300 dark:border-slate-700 mt-1">
@@ -681,6 +683,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             clearStickerSelection();
         }
 
+        // Estado para la vista del álbum (grid o lista)
+        let albumViewMode = "grid"; // "grid" | "list"
+
         // GESTIÓN DE SELECCIÓN MÚLTIPLE DE LÁMINAS
         function toggleStickerSelection(id) {
             const index = selectedStickers.indexOf(id);
@@ -734,9 +739,24 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <button onclick="bulkMarkCurrentSection(false)" class="flex-1 sm:flex-none bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-750 text-slate-700 dark:text-slate-300 px-3 py-1.5 rounded-lg font-bold transition flex items-center justify-center gap-1 text-[10px]">
                         <i data-lucide="square" class="w-3.5 h-3.5"></i> Resetear
                     </button>
+                    <div class="flex border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden">
+                        <button onclick="setAlbumViewMode('grid')" class="px-2 py-1.5 ${albumViewMode === 'grid' ? 'bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300' : 'bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400'} hover:bg-slate-50 dark:hover:bg-slate-700 transition" title="Vista Grid">
+                            <i data-lucide="layout-grid" class="w-4 h-4"></i>
+                        </button>
+                        <button onclick="setAlbumViewMode('list')" class="px-2 py-1.5 ${albumViewMode === 'list' ? 'bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300' : 'bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400'} hover:bg-slate-50 dark:hover:bg-slate-700 transition" title="Vista Lista">
+                            <i data-lucide="list" class="w-4 h-4"></i>
+                        </button>
+                    </div>
                 `;
             }
             lucide.createIcons();
+        }
+
+        // Cambiar modo de vista del álbum
+        function setAlbumViewMode(mode) {
+            albumViewMode = mode;
+            renderActiveSection();
+            updateSelectionBarUI();
         }
 
         // Aplicar acción en lote
@@ -799,101 +819,172 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             let cardCount = 0;
 
-            for (let i = 1; i <= maxStickers; i++) {
-                const id = getStickerId(currentSectionId, i);
-                const displayCode = getStickerDisplayName(currentSectionId, i);
-                const qty = collection[id] || 0;
-                const metadata = getStickerMetadata(currentSectionId, i);
+            // Renderizar según el modo de vista seleccionado
+            if (albumViewMode === "grid") {
+                // MODO GRID: Vista actual con emoji y sigla
+                for (let i = 1; i <= maxStickers; i++) {
+                    const id = getStickerId(currentSectionId, i);
+                    const displayCode = getStickerDisplayName(currentSectionId, i);
+                    const qty = collection[id] || 0;
+                    const metadata = getStickerMetadata(currentSectionId, i);
 
-                // Filtro global de estado
-                if (activeFilter === "missing" && qty > 0) continue;
-                if (activeFilter === "owned" && qty === 0) continue;
-                if (activeFilter === "repeats" && qty <= 1) continue;
+                    // Filtro global de estado
+                    if (activeFilter === "missing" && qty > 0) continue;
+                    if (activeFilter === "owned" && qty === 0) continue;
+                    if (activeFilter === "repeats" && qty <= 1) continue;
 
-                cardCount++;
+                    cardCount++;
 
-                const hasLamin = qty > 0;
-                const isCurrentlySelected = selectedStickers.includes(id);
+                    const hasLamin = qty > 0;
+                    const isCurrentlySelected = selectedStickers.includes(id);
 
-                // Color VERDE CLARO PLANO para todas las láminas obtenidas
-                let bgStyleClass = "bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-400 dark:text-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800";
-                if (hasLamin) {
-                    bgStyleClass = "bg-[#4ade80] dark:bg-emerald-500 border-emerald-500 text-emerald-950 dark:text-emerald-50 shadow-sm";
-                }
+                    // Color VERDE CLARO PLANO para todas las láminas obtenidas
+                    let bgStyleClass = "bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-400 dark:text-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800";
+                    if (hasLamin) {
+                        bgStyleClass = "bg-[#4ade80] dark:bg-emerald-500 border-emerald-500 text-emerald-950 dark:text-emerald-50 shadow-sm";
+                    }
 
-                const numberText = displayCode.split(' ')[1] || displayCode;
+                    const numberText = displayCode.split(' ')[1] || displayCode;
 
-                const card = document.createElement('div');
-                card.id = `card-sticker-${id}`;
-                card.className = `sticker-card-el relative aspect-square flex flex-col items-center justify-between p-2 rounded-xl border cursor-pointer select-none transition-all duration-150 shadow-sm ${bgStyleClass} ${isCurrentlySelected ? 'ring-4 ring-emerald-500 scale-95' : ''
-                    }`;
+                    const card = document.createElement('div');
+                    card.id = `card-sticker-${id}`;
+                    card.className = `sticker-card-el relative aspect-square flex flex-col items-center justify-between p-2 rounded-xl border cursor-pointer select-none transition-all duration-150 shadow-sm ${bgStyleClass} ${isCurrentlySelected ? 'ring-4 ring-emerald-500 scale-95' : ''
+                        }`;
 
-                // Simulación limpia de click rápido e hold (Long Press) para lotes
-                let longPressTriggered = false;
+                    // Simulación limpia de click rápido e hold (Long Press) para lotes
+                    let longPressTriggered = false;
 
-                const startPress = () => {
-                    longPressTriggered = false;
-                    pressTimer = setTimeout(() => {
-                        longPressTriggered = true;
-                        toggleStickerSelection(id);
-                        card.classList.toggle('ring-4');
-                        card.classList.toggle('ring-emerald-500');
-                        card.classList.toggle('scale-95');
-                    }, 550);
-                };
-
-                const endPress = (e) => {
-                    if (pressTimer) clearTimeout(pressTimer);
-
-                    if (!longPressTriggered) {
-                        if (selectedStickers.length > 0) {
+                    const startPress = () => {
+                        longPressTriggered = false;
+                        pressTimer = setTimeout(() => {
+                            longPressTriggered = true;
                             toggleStickerSelection(id);
                             card.classList.toggle('ring-4');
                             card.classList.toggle('ring-emerald-500');
                             card.classList.toggle('scale-95');
-                        } else {
-                            // Toque normal: alternar estado inmediato (Tengo / Falta)
-                            const currentQty = collection[id] || 0;
-                            if (currentQty === 0) {
-                                collection[id] = 1;
-                                showToast(`Lámina pegada: ${id.replace('-', ' ')}`, 'success');
+                        }, 550);
+                    };
+
+                    const endPress = (e) => {
+                        if (pressTimer) clearTimeout(pressTimer);
+
+                        if (!longPressTriggered) {
+                            if (selectedStickers.length > 0) {
+                                toggleStickerSelection(id);
+                                card.classList.toggle('ring-4');
+                                card.classList.toggle('ring-emerald-500');
+                                card.classList.toggle('scale-95');
                             } else {
-                                collection[id] = 0;
-                                showToast(`Lámina removida: ${id.replace('-', ' ')}`, 'info');
+                                // Toque normal: solo seleccionar, no marcar como pegada
+                                toggleStickerSelection(id);
+                                card.classList.add('ring-4', 'ring-emerald-500', 'scale-95');
                             }
-                            saveLocalStorage();
-                            updateStats();
-                            buildHorizontalCapsuleBar();
-                            renderActiveSection();
                         }
+                    };
+
+                    // Eventos Mouse y Touch integrados
+                    card.addEventListener('mousedown', startPress);
+                    card.addEventListener('mouseup', endPress);
+                    card.addEventListener('mouseleave', () => { if (pressTimer) clearTimeout(pressTimer); });
+                    card.addEventListener('touchstart', (e) => { startPress(); });
+                    card.addEventListener('touchend', (e) => { e.preventDefault(); endPress(e); });
+
+                    let repeatsBadgeHTML = "";
+                    if (qty > 1) {
+                        repeatsBadgeHTML = `
+                            <span class="absolute top-1.5 right-1.5 bg-amber-500 text-slate-950 font-black text-[9px] px-1 rounded-full leading-none py-0.5 shadow-sm">
+                                +${qty - 1}
+                            </span>
+                        `;
                     }
-                };
 
-                // Eventos Mouse y Touch integrados
-                card.addEventListener('mousedown', startPress);
-                card.addEventListener('mouseup', endPress);
-                card.addEventListener('mouseleave', () => { if (pressTimer) clearTimeout(pressTimer); });
-                card.addEventListener('touchstart', (e) => { startPress(); });
-                card.addEventListener('touchend', (e) => { e.preventDefault(); endPress(e); });
-
-                let repeatsBadgeHTML = "";
-                if (qty > 1) {
-                    repeatsBadgeHTML = `
-                        <span class="absolute top-1.5 right-1.5 bg-amber-500 text-slate-950 font-black text-[9px] px-1 rounded-full leading-none py-0.5 shadow-sm">
-                            +${qty - 1}
+                    card.innerHTML = `
+                        ${repeatsBadgeHTML}
+                        <span class="text-base sm:text-lg mt-1.5">${metadata.emoji}</span>
+                        <span class="text-[9px] sm:text-[10px] font-black tracking-tight mb-0.5 truncate max-w-full uppercase">
+                            ${currentSectionId} ${numberText}
                         </span>
                     `;
+
+                    grid.appendChild(card);
+                }
+            } else {
+                // MODO LISTA: Vista detallada con sigla, nombre completo, estado y repetidas
+                const listContainer = document.createElement('div');
+                listContainer.className = "w-full space-y-1.5";
+
+                for (let i = 1; i <= maxStickers; i++) {
+                    const id = getStickerId(currentSectionId, i);
+                    const displayCode = getStickerDisplayName(currentSectionId, i);
+                    const qty = collection[id] || 0;
+                    const metadata = getStickerMetadata(currentSectionId, i);
+
+                    // Filtro global de estado
+                    if (activeFilter === "missing" && qty > 0) continue;
+                    if (activeFilter === "owned" && qty === 0) continue;
+                    if (activeFilter === "repeats" && qty <= 1) continue;
+
+                    cardCount++;
+
+                    const hasLamin = qty > 0;
+                    const isCurrentlySelected = selectedStickers.includes(id);
+                    const statusText = hasLamin ? 'Pegada' : 'Vacía';
+                    const statusColor = hasLamin ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-400 dark:text-slate-600';
+                    const rowBgClass = hasLamin ? 'bg-emerald-50/50 dark:bg-emerald-900/10 border-emerald-200 dark:border-emerald-800/30' : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800';
+
+                    const row = document.createElement('div');
+                    row.id = `card-sticker-${id}`;
+                    row.className = `sticker-card-el flex items-center justify-between p-2.5 rounded-xl border cursor-pointer select-none transition-all duration-150 ${rowBgClass} ${isCurrentlySelected ? 'ring-2 ring-emerald-500' : ''
+                        } hover:bg-slate-50 dark:hover:bg-slate-800`;
+
+                    // Click handler para selección
+                    row.addEventListener('click', () => {
+                        if (selectedStickers.length > 0) {
+                            toggleStickerSelection(id);
+                            row.classList.toggle('ring-2');
+                            row.classList.toggle('ring-emerald-500');
+                        } else {
+                            toggleStickerSelection(id);
+                            row.classList.add('ring-2', 'ring-emerald-500');
+                        }
+                    });
+
+                    let repeatsBadgeHTML = "";
+                    if (qty > 1) {
+                        repeatsBadgeHTML = `
+                            <span class="bg-amber-500 text-slate-950 font-black text-[10px] px-1.5 py-0.5 rounded-full leading-none shadow-sm">
+                                +${qty - 1}
+                            </span>
+                        `;
+                    }
+
+                    row.innerHTML = `
+                        <div class="flex items-center gap-3 min-w-0 flex-1">
+                            <span class="text-lg flex-shrink-0 w-8 text-center">${metadata.emoji}</span>
+                            <div class="min-w-0 flex-1">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[10px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                                        ${id}
+                                    </span>
+                                    <span class="text-[10px] font-bold ${statusColor}">
+                                        [${statusText}]
+                                    </span>
+                                </div>
+                                <span class="text-xs font-bold text-slate-800 dark:text-slate-200 truncate block">
+                                    ${displayCode}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 flex-shrink-0">
+                            ${repeatsBadgeHTML}
+                            <i data-lucide="${isCurrentlySelected ? 'check-circle-2' : 'circle'}" class="w-4 h-4 ${isCurrentlySelected ? 'text-emerald-500' : 'text-slate-300 dark:text-slate-700'}"></i>
+                        </div>
+                    `;
+
+                    listContainer.appendChild(row);
                 }
 
-                card.innerHTML = `
-                    ${repeatsBadgeHTML}
-                    <span class="text-base sm:text-lg mt-1.5">${metadata.emoji}</span>
-                    <span class="text-[9px] sm:text-[10px] font-black tracking-tight mb-0.5 truncate max-w-full uppercase">
-                        ${currentSectionId} ${numberText}
-                    </span>
-                `;
-
-                grid.appendChild(card);
+                grid.appendChild(listContainer);
             }
 
             if (cardCount === 0) {
