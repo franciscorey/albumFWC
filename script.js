@@ -817,10 +817,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Renderizar según el modo de vista seleccionado
             if (albumViewMode === "grid") {
-                // MODO GRID: Vista actual con emoji y sigla
+                // MODO GRID: Vista actual con emoji y sigla (solo ID corto)
                 for (let i = 1; i <= maxStickers; i++) {
                     const id = getStickerId(currentSectionId, i);
-                    const displayCode = getStickerDisplayName(currentSectionId, i);
                     const qty = collection[id] || 0;
                     const metadata = getStickerMetadata(currentSectionId, i);
 
@@ -840,7 +839,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                         bgStyleClass = "bg-[#4ade80] dark:bg-emerald-500 border-emerald-500 text-emerald-950 dark:text-emerald-50 shadow-sm";
                     }
 
-                    const numberText = displayCode.split(' ')[1] || displayCode;
+                    // Formato corto: MEX-01 (solo sigla y número)
+                    const shortId = `${currentSectionId}-${String(i).padStart(2, '0')}`;
 
                     const card = document.createElement('div');
                     card.id = `card-sticker-${id}`;
@@ -897,8 +897,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                     card.innerHTML = `
                         ${repeatsBadgeHTML}
                         <span class="text-base sm:text-lg mt-1.5">${metadata.emoji}</span>
-                        <span class="text-[9px] sm:text-[10px] font-black tracking-tight mb-0.5 truncate max-w-full uppercase">
-                            ${currentSectionId} ${numberText}
+                        <span class="text-[9px] sm:text-[10px] font-black tracking-tight mb-0.5 truncate max-w-full uppercase bg-white/50 dark:bg-black/20 px-1.5 py-0.5 rounded-md">
+                            ${shortId}
                         </span>
                     `;
 
@@ -911,7 +911,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 for (let i = 1; i <= maxStickers; i++) {
                     const id = getStickerId(currentSectionId, i);
-                    const displayCode = getStickerDisplayName(currentSectionId, i);
+                    const displayName = getStickerDisplayName(currentSectionId, i);
                     const qty = collection[id] || 0;
                     const metadata = getStickerMetadata(currentSectionId, i);
 
@@ -952,7 +952,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                         repeatsBadgeHTML = `\n                            <span class="inline-flex items-center justify-center bg-amber-400 dark:bg-amber-500 text-slate-950 font-black text-[10px] px-2 py-1 rounded-full leading-none shadow-sm min-w-[28px]">\n                                +${qty - 1}\n                            </span>\n                        `;
                     }
 
-                    row.innerHTML = `\n                        <div class="flex items-center gap-3 min-w-0 flex-1">\n                            <span class="text-xl sm:text-2xl flex-shrink-0 w-10 text-center">${metadata.emoji}</span>\n                            <div class="min-w-0 flex-1 grid grid-cols-1 sm:grid-cols-12 gap-1 sm:gap-2 items-center">\n                                <div class="sm:col-span-3 flex items-center gap-2">\n                                    <span class="text-[10px] sm:text-[11px] font-black text-slate-600 dark:text-slate-400 uppercase tracking-wide bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">\n                                        ${id}\n                                    </span>\n                                    <span class="text-[10px] sm:text-[11px] font-bold ${statusColor} whitespace-nowrap">\n                                        • ${statusText}\n                                    </span>\n                                </div>\n                                <div class="sm:col-span-7 min-w-0">\n                                    <span class="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200 truncate block">\n                                        ${displayCode}\n                                    </span>\n                                </div>\n                                <div class="sm:col-span-2 flex items-center justify-start sm:justify-end gap-2">\n                                    ${repeatsBadgeHTML}\n                                </div>\n                            </div>\n                        </div>\n                        <div class="flex items-center flex-shrink-0 pl-2">\n                            <i data-lucide="${isCurrentlySelected ? 'check-circle-2' : 'circle'}" class="w-5 h-5 ${isCurrentlySelected ? 'text-emerald-500 fill-emerald-100 dark:fill-emerald-900/50' : 'text-slate-300 dark:text-slate-700'}"></i>\n                        </div>\n                    `;
+                    // Formato corto: MEX-01
+                    const shortId = `${currentSectionId}-${String(i).padStart(2, '0')}`;
+
+                    row.innerHTML = `\n                        <div class="flex items-center gap-3 min-w-0 flex-1 w-full">\n                            <span class="text-xl sm:text-2xl flex-shrink-0 w-10 text-center">${metadata.emoji}</span>\n                            <div class="min-w-0 flex-1 grid grid-cols-12 gap-2 items-center">\n                                <div class="col-span-3 flex items-center gap-2 min-w-0">\n                                    <span class="text-[10px] sm:text-[11px] font-black text-slate-600 dark:text-slate-400 uppercase tracking-wide bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded whitespace-nowrap">\n                                        ${shortId}\n                                    </span>\n                                </div>\n                                <div class="col-span-6 min-w-0">\n                                    <span class="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200 truncate block pr-2">\n                                        ${displayName}\n                                    </span>\n                                </div>\n                                <div class="col-span-3 flex items-center justify-end gap-2">\n                                    ${repeatsBadgeHTML}\n                                    <span class="text-[10px] sm:text-[11px] font-bold ${statusColor} whitespace-nowrap">\n                                        ${statusText}\n                                    </span>\n                                </div>\n                            </div>\n                        </div>\n                        <div class="flex items-center flex-shrink-0 pl-2">\n                            <i data-lucide="${isCurrentlySelected ? 'check-circle-2' : 'circle'}" class="w-5 h-5 ${isCurrentlySelected ? 'text-emerald-500 fill-emerald-100 dark:fill-emerald-900/50' : 'text-slate-300 dark:text-slate-700'}"></i>\n                        </div>\n                    `;
 
                     listContainer.appendChild(row);
                 }
