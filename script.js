@@ -751,6 +751,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Cambiar modo de vista del álbum
         function setAlbumViewMode(mode) {
             albumViewMode = mode;
+            const grid = document.getElementById('stickers-grid');
+            if (grid) {
+                if (mode === 'list') {
+                    // En modo lista, quitar las clases de grid para que ocupe todo el ancho
+                    grid.className = 'block w-full';
+                } else {
+                    // En modo grid, restaurar las clases originales
+                    grid.className = 'grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-2';
+                }
+            }
             renderActiveSection();
             updateSelectionBarUI();
         }
@@ -952,10 +962,35 @@ document.addEventListener('DOMContentLoaded', async () => {
                         repeatsBadgeHTML = `\n                            <span class="inline-flex items-center justify-center bg-amber-400 dark:bg-amber-500 text-slate-950 font-black text-[10px] px-2 py-1 rounded-full leading-none shadow-sm min-w-[28px]">\n                                +${qty - 1}\n                            </span>\n                        `;
                     }
 
-                    // Formato corto: MEX-01
+                    // Formato corto: MEX-01 (solo sigla y número, sin nombre)
                     const shortId = `${currentSectionId}-${String(i).padStart(2, '0')}`;
 
-                    row.innerHTML = `\n                        <div class="flex items-center gap-3 min-w-0 flex-1 w-full">\n                            <span class="text-xl sm:text-2xl flex-shrink-0 w-10 text-center">${metadata.emoji}</span>\n                            <div class="min-w-0 flex-1 grid grid-cols-12 gap-2 items-center">\n                                <div class="col-span-3 flex items-center gap-2 min-w-0">\n                                    <span class="text-[10px] sm:text-[11px] font-black text-slate-600 dark:text-slate-400 uppercase tracking-wide bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded whitespace-nowrap">\n                                        ${shortId}\n                                    </span>\n                                </div>\n                                <div class="col-span-6 min-w-0">\n                                    <span class="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200 truncate block pr-2">\n                                        ${displayName}\n                                    </span>\n                                </div>\n                                <div class="col-span-3 flex items-center justify-end gap-2">\n                                    ${repeatsBadgeHTML}\n                                    <span class="text-[10px] sm:text-[11px] font-bold ${statusColor} whitespace-nowrap">\n                                        ${statusText}\n                                    </span>\n                                </div>\n                            </div>\n                        </div>\n                        <div class="flex items-center flex-shrink-0 pl-2">\n                            <i data-lucide="${isCurrentlySelected ? 'check-circle-2' : 'circle'}" class="w-5 h-5 ${isCurrentlySelected ? 'text-emerald-500 fill-emerald-100 dark:fill-emerald-900/50' : 'text-slate-300 dark:text-slate-700'}"></i>\n                        </div>\n                    `;
+                    row.innerHTML = `
+                        <div class="flex items-center gap-3 min-w-0 flex-1 w-full">
+                            <span class="text-xl sm:text-2xl flex-shrink-0 w-10 text-center">${metadata.emoji}</span>
+                            <div class="min-w-0 flex-1 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+                                <div class="flex items-center gap-2 min-w-0 sm:w-auto">
+                                    <span class="text-[10px] sm:text-[11px] font-black text-slate-600 dark:text-slate-400 uppercase tracking-wide bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded whitespace-nowrap">
+                                        ${shortId}
+                                    </span>
+                                </div>
+                                <div class="min-w-0 flex-1">
+                                    <span class="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200 truncate block">
+                                        ${displayName}
+                                    </span>
+                                </div>
+                                <div class="flex items-center gap-2 sm:ml-auto">
+                                    ${repeatsBadgeHTML}
+                                    <span class="text-[10px] sm:text-[11px] font-bold ${statusColor} whitespace-nowrap">
+                                        ${statusText}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center flex-shrink-0 pl-2">
+                            <i data-lucide="${isCurrentlySelected ? 'check-circle-2' : 'circle'}" class="w-5 h-5 ${isCurrentlySelected ? 'text-emerald-500 fill-emerald-100 dark:fill-emerald-900/50' : 'text-slate-300 dark:text-slate-700'}"></i>
+                        </div>
+                    `;
 
                     listContainer.appendChild(row);
                 }
