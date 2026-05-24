@@ -356,37 +356,49 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (!container) return;
             container.innerHTML = '';
 
-            // Grupo Especial Unificado "1 - FWC - CC" con estilo consistente y barra de progreso horizontal
+            // Tarjeta Especial FWC separada con estilo consistente y barra de progreso horizontal
             const fwcStat = getSectionStatus("FWC");
-            const ccStat = getSectionStatus("CC");
-            const specialOwned = fwcStat.owned + ccStat.owned;
-            const specialTotal = 20 + 14;
-            const specialPct = ((specialOwned / specialTotal) * 100).toFixed(0);
+            const fwcPct = ((fwcStat.owned / 20) * 100).toFixed(0);
 
-            const specialCard = document.createElement('div');
-            specialCard.className = "bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-3 rounded-xl shadow-sm flex flex-col justify-between hover:border-emerald-500 hover:shadow-md transition-all";
-            specialCard.innerHTML = `
+            const fwcCard = document.createElement('div');
+            fwcCard.className = "bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-3 rounded-xl shadow-sm flex flex-col justify-between hover:border-emerald-500 hover:shadow-md transition-all";
+            fwcCard.innerHTML = `
                 <div class="flex justify-between items-center mb-2">
-                    <span class="text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-wider flex items-center gap-1">🏆 1 - FWC - CC</span>
-                    <span class="text-[10px] bg-[#FFD700] text-slate-900 font-black px-2 py-1 rounded">${specialPct}%</span>
+                    <span class="text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-wider flex items-center gap-1">🏆 FWC</span>
+                    <span class="text-[10px] bg-[#FFD700] text-slate-900 font-black px-2 py-1 rounded">${fwcPct}%</span>
                 </div>
-                <div class="grid grid-cols-2 gap-2 mb-2">
-                    <button onclick="goToSectionAndSticker('FWC')" class="w-full flex flex-col items-center justify-center bg-slate-50 dark:bg-slate-950 hover:bg-emerald-50 dark:hover:bg-emerald-950/20 border border-slate-150 dark:border-slate-800 rounded-lg p-2 transition text-center">
-                        <span class="text-base sm:text-lg leading-none">🏆</span>
-                        <span class="text-[10px] sm:text-[11px] font-black text-slate-800 dark:text-slate-200 mt-0.5">FWC</span>
-                        <span class="text-[9px] sm:text-[10px] font-bold ${fwcStat.owned === 20 ? 'text-emerald-600' : 'text-slate-500'} mt-1">${fwcStat.owned}/20</span>
-                    </button>
-                    <button onclick="goToSectionAndSticker('CC')" class="w-full flex flex-col items-center justify-center bg-slate-50 dark:bg-slate-950 hover:bg-emerald-50 dark:hover:bg-emerald-950/20 border border-slate-150 dark:border-slate-800 rounded-lg p-2 transition text-center">
-                        <span class="text-base sm:text-lg leading-none">🥤</span>
-                        <span class="text-[10px] sm:text-[11px] font-black text-slate-800 dark:text-slate-200 mt-0.5">CC</span>
-                        <span class="text-[9px] sm:text-[10px] font-bold ${ccStat.owned === 14 ? 'text-emerald-600' : 'text-slate-500'} mt-1">${ccStat.owned}/14</span>
-                    </button>
-                </div>
+                <button onclick="goToSectionAndSticker('FWC')" class="w-full flex flex-col items-center justify-center bg-slate-50 dark:bg-slate-950 hover:bg-emerald-50 dark:hover:bg-emerald-950/20 border border-slate-150 dark:border-slate-800 rounded-lg p-2 transition text-center mb-2">
+                    <span class="text-base sm:text-lg leading-none">🏆</span>
+                    <span class="text-[10px] sm:text-[11px] font-black text-slate-800 dark:text-slate-200 mt-0.5">Estadios y Leyendas</span>
+                    <span class="text-[9px] sm:text-[10px] font-bold ${fwcStat.owned === 20 ? 'text-emerald-600' : 'text-slate-500'} mt-1">${fwcStat.owned}/20</span>
+                </button>
                 <div class="relative w-full bg-slate-200 dark:bg-slate-800 h-3 rounded-full overflow-hidden border border-slate-300 dark:border-slate-700">
-                    <div class="absolute top-0 left-0 h-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-500" style="width: ${specialPct}%"></div>
+                    <div class="absolute top-0 left-0 h-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-500" style="width: ${fwcPct}%"></div>
                 </div>
             `;
-            container.appendChild(specialCard);
+            container.appendChild(fwcCard);
+
+            // Tarjeta Especial CC separada con estilo consistente y barra de progreso horizontal
+            const ccStat = getSectionStatus("CC");
+            const ccPct = ((ccStat.owned / 14) * 100).toFixed(0);
+
+            const ccCard = document.createElement('div');
+            ccCard.className = "bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-3 rounded-xl shadow-sm flex flex-col justify-between hover:border-emerald-500 hover:shadow-md transition-all";
+            ccCard.innerHTML = `
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-wider flex items-center gap-1">🥤 CC</span>
+                    <span class="text-[10px] bg-[#FFD700] text-slate-900 font-black px-2 py-1 rounded">${ccPct}%</span>
+                </div>
+                <button onclick="goToSectionAndSticker('CC')" class="w-full flex flex-col items-center justify-center bg-slate-50 dark:bg-slate-950 hover:bg-emerald-50 dark:hover:bg-emerald-950/20 border border-slate-150 dark:border-slate-800 rounded-lg p-2 transition text-center mb-2">
+                    <span class="text-base sm:text-lg leading-none">🥤</span>
+                    <span class="text-[10px] sm:text-[11px] font-black text-slate-800 dark:text-slate-200 mt-0.5">Coca-Cola Specials</span>
+                    <span class="text-[9px] sm:text-[10px] font-bold ${ccStat.owned === 14 ? 'text-emerald-600' : 'text-slate-500'} mt-1">${ccStat.owned}/14</span>
+                </button>
+                <div class="relative w-full bg-slate-200 dark:bg-slate-800 h-3 rounded-full overflow-hidden border border-slate-300 dark:border-slate-700">
+                    <div class="absolute top-0 left-0 h-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-500" style="width: ${ccPct}%"></div>
+                </div>
+            `;
+            container.appendChild(ccCard);
 
             // Lista estructurada de países para ordenación dinámica
             let countriesList = [];
@@ -416,23 +428,29 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
             if (dashboardSortType === "groups") {
-                // Modo Por Grupos tradicional
+                // Modo Por Grupos tradicional con diseño de barras de progreso
                 for (const groupKey in GROUPS_DATA) {
                     const group = GROUPS_DATA[groupKey];
                     const card = document.createElement('div');
-                    card.className = "bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-2.5 rounded-xl shadow-sm flex flex-col justify-between hover:border-emerald-500 hover:shadow-md transition-all";
+                    card.className = "bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-3 rounded-xl shadow-sm flex flex-col justify-between hover:border-emerald-500 hover:shadow-md transition-all";
 
                     let countriesHTML = "";
                     group.teams.forEach(teamId => {
                         const country = TEAMS_MAP[teamId];
                         const stats = getSectionStatus(teamId);
                         const isCompleted = stats.owned === stats.total;
+                        const pctRounded = ((stats.owned / stats.total) * 100).toFixed(0);
 
                         countriesHTML += `
-                            <button onclick="goToSectionAndSticker('${teamId}')" class="w-full flex flex-col items-center justify-center bg-slate-50 dark:bg-slate-950 hover:bg-emerald-50 dark:hover:bg-emerald-950/20 border border-slate-150 dark:border-slate-800 rounded-lg p-2 transition text-center">
-                                <span class="text-base sm:text-lg leading-none">${country.flag}</span>
-                                <span class="text-[10px] sm:text-[11px] font-black text-slate-800 dark:text-slate-200 mt-0.5">${teamId}</span>
-                                <span class="text-[9px] sm:text-[10px] font-bold ${isCompleted ? 'text-emerald-600' : 'text-slate-500'} mt-1">${stats.owned}/${stats.total}</span>
+                            <button onclick="goToSectionAndSticker('${teamId}')" class="w-full bg-slate-50 dark:bg-slate-950 hover:bg-emerald-50 dark:hover:bg-emerald-950/20 border border-slate-150 dark:border-slate-800 rounded-lg p-2 transition text-left">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-xs font-black text-slate-800 dark:text-slate-200 truncate">${country.flag} ${teamId}</span>
+                                    <span class="text-[9px] bg-[#FFD700] text-slate-900 font-black px-1.5 py-0.5 rounded">${pctRounded}%</span>
+                                </div>
+                                <div class="relative w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden border border-slate-300 dark:border-slate-700">
+                                    <div class="absolute top-0 left-0 h-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-500" style="width: ${pctRounded}%"></div>
+                                </div>
+                                <span class="text-[9px] sm:text-[10px] font-bold ${isCompleted ? 'text-emerald-600' : 'text-slate-500'} mt-1 block text-center">${stats.owned}/${stats.total}</span>
                             </button>
                         `;
                     });
@@ -440,9 +458,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                     card.innerHTML = `
                         <div class="flex items-center justify-between mb-2 border-b border-slate-100 dark:border-slate-800 pb-1">
                             <span class="text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-wider">${group.name}</span>
-                            <span class="text-[10px] font-black text-emerald-600 dark:text-emerald-400">GP ${groupKey}</span>
                         </div>
-                        <div class="grid grid-cols-2 gap-1">
+                        <div class="grid grid-cols-2 gap-2">
                             ${countriesHTML}
                         </div>
                     `;
@@ -981,7 +998,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                                 </div>
                                 <div class="flex items-center gap-2 sm:ml-auto">
                                     ${repeatsBadgeHTML}
-                                    <span class="text-[10px] sm:text-[11px] font-bold ${statusColor} whitespace-nowrap">
+                                    <span class="text-[10px] sm:text-[11px] font-bold whitespace-nowrap">
                                         ${statusText}
                                     </span>
                                 </div>
