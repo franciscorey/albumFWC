@@ -733,18 +733,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             } else {
                 bar.classList.add('hidden');
                 actionsContainer.innerHTML = `
-                    <button onclick="bulkMarkCurrentSection(true)" class="flex-1 sm:flex-none bg-emerald-100 hover:bg-emerald-200 dark:bg-emerald-900/30 dark:hover:bg-emerald-900/50 text-emerald-800 dark:text-emerald-300 px-3 py-1.5 rounded-lg font-bold transition flex items-center justify-center gap-1 text-[10px]">
-                        <i data-lucide="check-square" class="w-3.5 h-3.5"></i> Tener Todos
-                    </button>
-                    <button onclick="bulkMarkCurrentSection(false)" class="flex-1 sm:flex-none bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-750 text-slate-700 dark:text-slate-300 px-3 py-1.5 rounded-lg font-bold transition flex items-center justify-center gap-1 text-[10px]">
-                        <i data-lucide="square" class="w-3.5 h-3.5"></i> Resetear
-                    </button>
-                    <div class="flex border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden">
-                        <button onclick="setAlbumViewMode('grid')" class="px-2 py-1.5 ${albumViewMode === 'grid' ? 'bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300' : 'bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400'} hover:bg-slate-50 dark:hover:bg-slate-700 transition" title="Vista Grid">
-                            <i data-lucide="layout-grid" class="w-4 h-4"></i>
+                    <div class="flex border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden w-full sm:w-auto">
+                        <button onclick="setAlbumViewMode('grid')" class="px-3 py-1.5 ${albumViewMode === 'grid' ? 'bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300' : 'bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400'} hover:bg-slate-50 dark:hover:bg-slate-700 transition flex items-center gap-1.5 text-[10px] font-bold" title="Vista Grid">
+                            <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
+                            <span class="hidden sm:inline">Grid</span>
                         </button>
-                        <button onclick="setAlbumViewMode('list')" class="px-2 py-1.5 ${albumViewMode === 'list' ? 'bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300' : 'bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400'} hover:bg-slate-50 dark:hover:bg-slate-700 transition" title="Vista Lista">
-                            <i data-lucide="list" class="w-4 h-4"></i>
+                        <button onclick="setAlbumViewMode('list')" class="px-3 py-1.5 ${albumViewMode === 'list' ? 'bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300' : 'bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400'} hover:bg-slate-50 dark:hover:bg-slate-700 transition flex items-center gap-1.5 text-[10px] font-bold" title="Vista Lista">
+                            <i data-lucide="list" class="w-3.5 h-3.5"></i>
+                            <span class="hidden sm:inline">Lista</span>
                         </button>
                     </div>
                 `;
@@ -911,7 +907,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             } else {
                 // MODO LISTA: Vista detallada con sigla, nombre completo, estado y repetidas
                 const listContainer = document.createElement('div');
-                listContainer.className = "w-full space-y-1.5";
+                listContainer.className = "w-full space-y-2";
 
                 for (let i = 1; i <= maxStickers; i++) {
                     const id = getStickerId(currentSectionId, i);
@@ -930,12 +926,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                     const isCurrentlySelected = selectedStickers.includes(id);
                     const statusText = hasLamin ? 'Pegada' : 'Vacía';
                     const statusColor = hasLamin ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-400 dark:text-slate-600';
-                    const rowBgClass = hasLamin ? 'bg-emerald-50/50 dark:bg-emerald-900/10 border-emerald-200 dark:border-emerald-800/30' : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800';
+                    const rowBgClass = hasLamin ? 'bg-emerald-50/70 dark:bg-emerald-900/20 border-emerald-300 dark:border-emerald-700/50' : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800';
 
                     const row = document.createElement('div');
                     row.id = `card-sticker-${id}`;
-                    row.className = `sticker-card-el flex items-center justify-between p-2.5 rounded-xl border cursor-pointer select-none transition-all duration-150 ${rowBgClass} ${isCurrentlySelected ? 'ring-2 ring-emerald-500' : ''
-                        } hover:bg-slate-50 dark:hover:bg-slate-800`;
+                    row.className = `sticker-card-el flex items-center gap-3 p-3 sm:p-3.5 rounded-xl border cursor-pointer select-none transition-all duration-150 shadow-sm ${rowBgClass} ${isCurrentlySelected ? 'ring-2 ring-emerald-500 bg-emerald-100/50 dark:bg-emerald-900/30' : ''
+                        } hover:shadow-md hover:border-emerald-300 dark:hover:border-emerald-600`;
 
                     // Click handler para selección
                     row.addEventListener('click', () => {
@@ -943,43 +939,20 @@ document.addEventListener('DOMContentLoaded', async () => {
                             toggleStickerSelection(id);
                             row.classList.toggle('ring-2');
                             row.classList.toggle('ring-emerald-500');
+                            row.classList.toggle('bg-emerald-100/50');
+                            row.classList.toggle('dark:bg-emerald-900/30');
                         } else {
                             toggleStickerSelection(id);
-                            row.classList.add('ring-2', 'ring-emerald-500');
+                            row.classList.add('ring-2', 'ring-emerald-500', 'bg-emerald-100/50', 'dark:bg-emerald-900/30');
                         }
                     });
 
                     let repeatsBadgeHTML = "";
                     if (qty > 1) {
-                        repeatsBadgeHTML = `
-                            <span class="bg-amber-500 text-slate-950 font-black text-[10px] px-1.5 py-0.5 rounded-full leading-none shadow-sm">
-                                +${qty - 1}
-                            </span>
-                        `;
+                        repeatsBadgeHTML = `\n                            <span class="inline-flex items-center justify-center bg-amber-400 dark:bg-amber-500 text-slate-950 font-black text-[10px] px-2 py-1 rounded-full leading-none shadow-sm min-w-[28px]">\n                                +${qty - 1}\n                            </span>\n                        `;
                     }
 
-                    row.innerHTML = `
-                        <div class="flex items-center gap-3 min-w-0 flex-1">
-                            <span class="text-lg flex-shrink-0 w-8 text-center">${metadata.emoji}</span>
-                            <div class="min-w-0 flex-1">
-                                <div class="flex items-center gap-2">
-                                    <span class="text-[10px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-wide">
-                                        ${id}
-                                    </span>
-                                    <span class="text-[10px] font-bold ${statusColor}">
-                                        [${statusText}]
-                                    </span>
-                                </div>
-                                <span class="text-xs font-bold text-slate-800 dark:text-slate-200 truncate block">
-                                    ${displayCode}
-                                </span>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-2 flex-shrink-0">
-                            ${repeatsBadgeHTML}
-                            <i data-lucide="${isCurrentlySelected ? 'check-circle-2' : 'circle'}" class="w-4 h-4 ${isCurrentlySelected ? 'text-emerald-500' : 'text-slate-300 dark:text-slate-700'}"></i>
-                        </div>
-                    `;
+                    row.innerHTML = `\n                        <div class="flex items-center gap-3 min-w-0 flex-1">\n                            <span class="text-xl sm:text-2xl flex-shrink-0 w-10 text-center">${metadata.emoji}</span>\n                            <div class="min-w-0 flex-1 grid grid-cols-1 sm:grid-cols-12 gap-1 sm:gap-2 items-center">\n                                <div class="sm:col-span-3 flex items-center gap-2">\n                                    <span class="text-[10px] sm:text-[11px] font-black text-slate-600 dark:text-slate-400 uppercase tracking-wide bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">\n                                        ${id}\n                                    </span>\n                                    <span class="text-[10px] sm:text-[11px] font-bold ${statusColor} whitespace-nowrap">\n                                        • ${statusText}\n                                    </span>\n                                </div>\n                                <div class="sm:col-span-7 min-w-0">\n                                    <span class="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200 truncate block">\n                                        ${displayCode}\n                                    </span>\n                                </div>\n                                <div class="sm:col-span-2 flex items-center justify-start sm:justify-end gap-2">\n                                    ${repeatsBadgeHTML}\n                                </div>\n                            </div>\n                        </div>\n                        <div class="flex items-center flex-shrink-0 pl-2">\n                            <i data-lucide="${isCurrentlySelected ? 'check-circle-2' : 'circle'}" class="w-5 h-5 ${isCurrentlySelected ? 'text-emerald-500 fill-emerald-100 dark:fill-emerald-900/50' : 'text-slate-300 dark:text-slate-700'}"></i>\n                        </div>\n                    `;
 
                     listContainer.appendChild(row);
                 }
