@@ -30,6 +30,10 @@ async function loadStickerData() {
         const data = await response.json();
         STICKER_DATA = data.groups;
         
+        // Cargar secciones especiales desde el JSON
+        SPECIAL_SECTIONS["FWC"].stickers = data.specials?.fwc || [];
+        SPECIAL_SECTIONS["CC"].stickers = data.specials?.coca_cola || [];
+        
         // Generar GROUPS_DATA y TEAMS_MAP desde el JSON
         GROUPS_DATA = {};
         TEAMS_MAP = {};
@@ -59,7 +63,9 @@ async function loadStickerData() {
         
         console.log('Datos cargados exitosamente:', {
             grupos: Object.keys(GROUPS_DATA).length,
-            equipos: Object.keys(TEAMS_MAP).length
+            equipos: Object.keys(TEAMS_MAP).length,
+            fwc: SPECIAL_SECTIONS["FWC"].stickers.length,
+            cc: SPECIAL_SECTIONS["CC"].stickers.length
         });
         
     } catch (error) {
@@ -168,7 +174,7 @@ function getStickerInfo(teamId, index) {
     
     const typeEmoji = {
         "ESCUDO": "🛡️",
-        "EQUIPO": "👥",
+        "EQUIPO": "⚽",
         "NORMAL": "👤"
     };
     
@@ -251,23 +257,40 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         function getStickerDisplayName(secId, index) {
             if (secId === "FWC") {
-                if (index === 1) return "FWC 00";
-                return `FWC ${index - 1}`;
+                // Usar nombre del JSON para FWC
+                const sticker = SPECIAL_SECTIONS["FWC"].stickers[index - 1];
+                return sticker ? sticker.name : `FWC ${index - 1}`;
             }
             if (secId === "CC") {
-                return `CC ${index}`;
+                // Usar nombre del JSON para CC
+                const sticker = SPECIAL_SECTIONS["CC"].stickers[index - 1];
+                return sticker ? sticker.name : `CC ${index}`;
             }
-            // Usar el nombre real del JSON
+            // Usar el nombre real del JSON para países
             const sticker = getStickerByIndex(secId, index);
             return sticker ? sticker.name : `${secId} ${index}`;
         }
 
         function getStickerMetadata(secId, index) {
             if (secId === "FWC") {
-                return { label: "Especial 🏆", isSpecial: true, category: "specials", emoji: "🏆" };
+                const sticker = SPECIAL_SECTIONS["FWC"].stickers[index - 1];
+                return { 
+                    label: "Especial 🏆", 
+                    isSpecial: true, 
+                    category: "specials", 
+                    emoji: "🏆",
+                    name: sticker?.name || `FWC ${index - 1}`
+                };
             }
             if (secId === "CC") {
-                return { label: "Coca-Cola ✨", isSpecial: true, category: "specials", emoji: "🥤" };
+                const sticker = SPECIAL_SECTIONS["CC"].stickers[index - 1];
+                return { 
+                    label: "Coca-Cola ✨", 
+                    isSpecial: true, 
+                    category: "specials", 
+                    emoji: "🥤",
+                    name: sticker?.name || `CC ${index}`
+                };
             }
             
             // Obtener tipo desde el JSON
@@ -278,7 +301,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 return { label: "Escudo 🛡️", isSpecial: true, category: "shields", emoji: "🛡️" };
             }
             if (type === "EQUIPO") {
-                return { label: "Equipo 👥", isSpecial: true, category: "teams", emoji: "👥" };
+                return { label: "Equipo ⚽", isSpecial: true, category: "teams", emoji: "⚽" };
             }
             return { label: "Jugador 👤", isSpecial: false, category: "players", emoji: "👤" };
         }
@@ -733,30 +756,30 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             if (selectedStickers.length > 0) {
                 bar.classList.remove('hidden');
-                countText.innerText = `${selectedStickers.length} seleccionadas`;
+                countText.innerText = `${selectedStickers.length} seleccionada${selectedStickers.length > 1 ? 's' : ''}`;
 
-                // Botones dinámicos para operaciones colectivas
+                // Botones dinámicos para operaciones colectivas - Menú flotante inferior
                 actionsContainer.innerHTML = `
-                    <button onclick="applyBatchAction('add')" class="flex-1 sm:flex-none bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-lg font-black transition flex items-center justify-center gap-1 text-[10px] shadow-sm">
-                        <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Obtener (${selectedStickers.length})
+                    <button onclick="applyBatchAction('add')" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-xl font-black transition flex items-center justify-center gap-2 text-xs shadow-lg active:scale-95">
+                        <i data-lucide="check-circle" class="w-4 h-4"></i> Obtener
                     </button>
-                    <button onclick="applyBatchAction('remove')" class="flex-1 sm:flex-none bg-rose-600 hover:bg-rose-500 text-white px-3 py-1.5 rounded-lg font-black transition flex items-center justify-center gap-1 text-[10px] shadow-sm">
-                        <i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Quitar (${selectedStickers.length})
+                    <button onclick="applyBatchAction('remove')" class="flex-1 bg-rose-600 hover:bg-rose-500 text-white px-4 py-2.5 rounded-xl font-black transition flex items-center justify-center gap-2 text-xs shadow-lg active:scale-95">
+                        <i data-lucide="trash-2" class="w-4 h-4"></i> Quitar
                     </button>
-                    <button onclick="applyBatchAction('repeat')" class="flex-1 sm:flex-none bg-amber-500 hover:bg-amber-400 text-slate-950 px-3 py-1.5 rounded-lg font-black transition flex items-center justify-center gap-1 text-[10px] shadow-sm">
-                        <i data-lucide="plus" class="w-3.5 h-3.5"></i> Repe (+1)
+                    <button onclick="applyBatchAction('repeat')" class="flex-1 bg-amber-500 hover:bg-amber-400 text-slate-950 px-4 py-2.5 rounded-xl font-black transition flex items-center justify-center gap-2 text-xs shadow-lg active:scale-95">
+                        <i data-lucide="plus" class="w-4 h-4"></i> +1
                     </button>
                 `;
             } else {
                 bar.classList.add('hidden');
                 actionsContainer.innerHTML = `
-                    <div class="flex border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden w-full sm:w-auto">
-                        <button onclick="setAlbumViewMode('grid')" class="px-3 py-1.5 ${albumViewMode === 'grid' ? 'bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300' : 'bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400'} hover:bg-slate-50 dark:hover:bg-slate-700 transition flex items-center gap-1.5 text-[10px] font-bold" title="Vista Grid">
-                            <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
+                    <div class="flex border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden w-full sm:w-auto">
+                        <button onclick="setAlbumViewMode('grid')" class="px-4 py-2 ${albumViewMode === 'grid' ? 'bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300' : 'bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400'} hover:bg-slate-50 dark:hover:bg-slate-700 transition flex items-center gap-2 text-xs font-bold" title="Vista Grid">
+                            <i data-lucide="layout-grid" class="w-4 h-4"></i>
                             <span class="hidden sm:inline">Grid</span>
                         </button>
-                        <button onclick="setAlbumViewMode('list')" class="px-3 py-1.5 ${albumViewMode === 'list' ? 'bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300' : 'bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400'} hover:bg-slate-50 dark:hover:bg-slate-700 transition flex items-center gap-1.5 text-[10px] font-bold" title="Vista Lista">
-                            <i data-lucide="list" class="w-3.5 h-3.5"></i>
+                        <button onclick="setAlbumViewMode('list')" class="px-4 py-2 ${albumViewMode === 'list' ? 'bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300' : 'bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400'} hover:bg-slate-50 dark:hover:bg-slate-700 transition flex items-center gap-2 text-xs font-bold" title="Vista Lista">
+                            <i data-lucide="list" class="w-4 h-4"></i>
                             <span class="hidden sm:inline">Lista</span>
                         </button>
                     </div>

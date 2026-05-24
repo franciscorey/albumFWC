@@ -386,13 +386,23 @@
                     </div>
                 </div>
 
-                <!-- Indicador de selección activa -->
+                <!-- Indicador de selección activa y menú flotante -->
                 <div id="selection-indicator-bar"
-                    class="hidden bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-800/50 p-2 rounded-xl flex items-center justify-between text-xs font-bold text-emerald-800 dark:text-emerald-300">
-                    <span id="selection-count-text">0 seleccionadas</span>
-                    <button onclick="clearStickerSelection()"
-                        class="text-[10px] bg-emerald-100 hover:bg-emerald-200 dark:bg-emerald-900 dark:hover:bg-emerald-800 px-2 py-0.5 rounded transition">Cancelar</button>
+                    class="hidden fixed bottom-0 left-0 right-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm border-t border-emerald-200 dark:border-emerald-800/50 p-3 pb-safe z-50 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
+                    <div class="max-w-4xl mx-auto flex items-center justify-between gap-2">
+                        <span id="selection-count-text" class="text-xs font-black text-emerald-700 dark:text-emerald-300 whitespace-nowrap">0 seleccionadas</span>
+                        <div class="flex items-center gap-1.5 flex-1 justify-end" id="album-actions-container">
+                            <!-- Botones dinámicos -->
+                        </div>
+                        <button onclick="clearStickerSelection()"
+                            class="text-[10px] bg-emerald-100 hover:bg-emerald-200 dark:bg-emerald-900 dark:hover:bg-emerald-800 px-2.5 py-1.5 rounded-lg transition font-bold text-emerald-700 dark:text-emerald-300">
+                            Cancelar
+                        </button>
+                    </div>
                 </div>
+
+                <!-- Espaciador para el menú flotante -->
+                <div class="h-20"></div>
 
                 <!-- GRILLA DE LÁMINAS - ULTRA SIMPLIFICADA (Emoji arriba, Sigla y número abajo) -->
                 <div id="stickers-grid" class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-2">
