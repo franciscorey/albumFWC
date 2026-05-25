@@ -6,8 +6,8 @@ let STICKER_DATA = {}; // Se cargará desde el JSON
 let GROUPS_DATA = {};  // Se generará desde el JSON
 let TEAMS_MAP = {};    // Se generará desde el JSON
 let SPECIAL_SECTIONS = {
-    "FWC": { name: "Estadios y Leyendas", flag: "🏆", subtitle: "Especiales Panini (00, FWC 1-19)" },
-    "CC": { name: "Coca-Cola Specials", flag: "🥤", subtitle: "Láminas de Oro (CC1-CC14)" }
+    "FWC": { name: "Estadios y Leyendas", flag: "🏆", subtitle: "Especiales Panini (00, FWC 1-19)", stickers: [] },
+    "CC": { name: "Coca-Cola Specials", flag: "🥤", subtitle: "Láminas de Oro (CC1-CC14)", stickers: [] }
 };
 
 let collection = {};
@@ -31,7 +31,10 @@ async function loadStickerData() {
         STICKER_DATA = data.groups;
         
         // Cargar secciones especiales desde el JSON
-        SPECIAL_SECTIONS["FWC"].stickers = data.specials?.fwc || [];
+        // Combinar fwc_panini y fwc_champions en una sola lista para FWC
+        const fwcPanini = data.specials?.fwc_panini || [];
+        const fwcChampions = data.specials?.fwc_champions || [];
+        SPECIAL_SECTIONS["FWC"].stickers = [...fwcPanini, ...fwcChampions];
         SPECIAL_SECTIONS["CC"].stickers = data.specials?.coca_cola || [];
         
         // Generar GROUPS_DATA y TEAMS_MAP desde el JSON
@@ -257,7 +260,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         function getStickerDisplayName(secId, index) {
             if (secId === "FWC") {
-                // Usar nombre del JSON para FWC
+                // Usar nombre del JSON para FWC (índice base 1, array base 0)
                 const sticker = SPECIAL_SECTIONS["FWC"].stickers[index - 1];
                 return sticker ? sticker.name : `FWC ${index - 1}`;
             }
@@ -269,6 +272,22 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Usar el nombre real del JSON para países
             const sticker = getStickerByIndex(secId, index);
             return sticker ? sticker.name : `${secId} ${index}`;
+        }
+
+        function getStickerEmoji(secId, index) {
+            if (secId === "FWC") {
+                return "🏆";
+            }
+            if (secId === "CC") {
+                return "🥤";
+            }
+            const sticker = getStickerByIndex(secId, index);
+            if (!sticker) return "❓";
+            
+            // Asignar emojis según tipo
+            if (sticker.type === "ESCUDO") return "🛡️";
+            if (sticker.type === "EQUIPO") return "⚽";
+            return "👤";
         }
 
         function getStickerMetadata(secId, index) {
@@ -1004,10 +1023,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                     // Formato corto: MEX-01 (solo sigla y número, sin nombre)
                     const shortId = `${currentSectionId}-${String(i).padStart(2, '0')}`;
+                    
+                    // Usar el emoji correcto según tipo de lámina
+                    const stickerEmoji = getStickerEmoji(currentSectionId, i);
 
                     row.innerHTML = `
                         <div class="flex items-center gap-3 min-w-0 flex-1 w-full">
-                            <span class="text-xl sm:text-2xl flex-shrink-0 w-10 text-center">${metadata.emoji}</span>
+                            <span class="text-xl sm:text-2xl flex-shrink-0 w-10 text-center">${stickerEmoji}</span>
                             <div class="min-w-0 flex-1 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
                                 <div class="flex items-center gap-2 min-w-0 sm:w-auto">
                                     <span class="text-[10px] sm:text-[11px] font-black text-slate-600 dark:text-slate-400 uppercase tracking-wide bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded whitespace-nowrap">
