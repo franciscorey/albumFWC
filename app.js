@@ -660,81 +660,87 @@ function exportToPDF() {
 /**
  * Comparte lista de faltantes por WhatsApp (formato compacto)
  */
+
 function shareToWhatsApp() {
-    const missing = AppState.stickers.filter(s => s.count === 0);
-    
-    if (missing.length === 0) {
-        showToast('¡No tienes láminas faltantes!', 'success');
-        return;
-    }
+    const missing = [];
 
-    // Agrupar por país
-    const byCountry = {};
-    missing.forEach(sticker => {
-        if (!byCountry[sticker.country]) {
-            byCountry[sticker.country] = [];
-        }
-        byCountry[sticker.country].push(sticker.id);
-    });
-
-    // Construir mensaje compacto
-    let message = `🏆 *FWC 2026 - Láminas Faltantes*\n`;
-    message += `Total: *${missing.length}*\n\n`;
-    
-    // Ordenar países y listar IDs
-    Object.keys(byCountry).sort().forEach(country => {
-        const flag = getCountryFlag(country);
-        const ids = byCountry[country].join(' | ');
-        message += `${flag} ${country}: | ${ids} |\n`;
-    });
-    
-    message += `\n¿Quién tiene estas para intercambiar? 🙏`;
-
-    const encoded = encodeURIComponent(message);
-    window.open(`https://wa.me/?text=${encoded}`, '_blank');
-}
-
-/**
- * Comparte lista de repetidas por WhatsApp (formato compacto)
- */
-function shareDuplicatesToWhatsApp() {
-    const duplicates = AppState.stickers.filter(s => s.count > 1);
-    
-    if (duplicates.length === 0) {
-        showToast('¡No tienes láminas repetidas!', 'info');
-        return;
-    }
-
-    // Agrupar por país
-    const byCountry = {};
-    duplicates.forEach(sticker => {
-        if (!byCountry[sticker.country]) {
-            byCountry[sticker.country] = [];
-        }
-        byCountry[sticker.country].push({
-            id: sticker.id,
-            count: sticker.count
+    // Recorremos el álbum para encontrar lo que no está en inventory
+    Object.keys(AppState.albumData.groups).forEach(groupKey => {
+        AppState.albumData.groups[groupKey].forEach(countryData => {
+            countryData.stickers.forEach(s => {
+                if (!AppState.inventory[s.id] || AppState.inventory[s.id] === 0) {
+                    missing.push({ id: s.id, country: countryData.country, team: countryData.team });
+                }
+            });
         });
     });
 
-    // Construir mensaje compacto
-    let message = `🔄 *FWC 2026 - Láminas Repetidas*\n`;
-    message += `Total: *${duplicates.length}* (para cambio)\n\n`;
+    if (missing.length === 0) {
+        showToast('¡Álbum completo!', 'success');
+        return;
+    }
+
+    const byCountry = {};
+    missing.forEach(s => {
+        if (!byCountry[s.country]) byCountry[s.country] = [];
+        byCountry[s.country].push(s.id);
+    });
+
+    let message = `🏆 *FWC 2026 - Láminas Faltantes*\nTotal: *${missing.length}*\n\n`;
     
-    // Ordenar países y listar IDs con cantidad si es > 2
     Object.keys(byCountry).sort().forEach(country => {
-        const flag = getCountryFlag(country);
-        const items = byCountry[country].map(item => 
-            item.count > 2 ? `${item.id}(x${item.count})` : item.id
-        );
-        const ids = items.join(' | ');
-        message += `${flag} ${country}: | ${ids} |\n`;
+        // Obtenemos el prefijo del país (ej: MEX) para la bandera
+        const teamCode = AppState.albumData.groups['A']?.find(c => c.country === country)?.team.substring(0,3).toUpperCase() || 'XXX';
+        message += `${getCountryFlag(teamCode)} *${country}*: ${byCountry[country].join(', ')}\n`;
     });
     
-    message += `\n¡Tengo estas disponibles para intercambio! 🤝`;
+    message += `\n¿Quién tiene estas para intercambiar? 🙏`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+}
 
-    const encoded = encodeURIComponent(message);
-    window.open(`https://wa.me/?text=${encoded}`, '_blank');
+/**
+ * Comparte lista de repetidas por WhatsApp
+ */
+function shareDuplicatesToWhatsApp() {
+    const duplicates = [];
+
+    // Recorremos el inventario
+    Object.entries(AppState.inventory).forEach(([id, count]) => {
+        if (count > 1) {
+            // Buscamos info del sticker en el JSON
+            let stickerInfo = null;
+            Object.values(AppState.albumData.groups).flat().forEach(c => {
+                const found = c.stickers.find(s => s.id === id);
+                if (found) stickerInfo = { country: c.country, team: c.team };
+            });
+
+            if (stickerInfo) {
+                duplicates.push({ id, country: stickerInfo.country, team: stickerInfo.team, count });
+            }
+        }
+    });
+
+    if (duplicates.length === 0) {
+        showToast('No tienes repetidas.', 'info');
+        return;
+    }
+
+    const byCountry = {};
+    duplicates.forEach(s => {
+        if (!byCountry[s.country]) byCountry[s.country] = [];
+        byCountry[s.country].push(s);
+    });
+
+    let message = `🔄 *FWC 2026 - Repetidas*\nTotal: *${duplicates.length}* para cambio\n\n`;
+    
+    Object.keys(byCountry).sort().forEach(country => {
+        const teamCode = byCountry[country][0].team.substring(0,3).toUpperCase();
+        const items = byCountry[country].map(i => i.count > 2 ? `${i.id}(x${i.count-1})` : i.id);
+        message += `${getCountryFlag(teamCode)} *${country}*: ${items.join(', ')}\n`;
+    });
+    
+    message += `\n¡Tengo estas disponibles! 🤝`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
 }
 
 
