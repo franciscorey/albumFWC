@@ -658,88 +658,161 @@ function exportToPDF() {
 }
 
 /**
- * Comparte lista de faltantes por WhatsApp (formato compacto)
+ * Comparte lista de faltantes por WhatsApp (Soporta Grupos y Especiales de forma segura)
  */
-
 function shareToWhatsApp() {
     const missing = [];
 
-    // Recorremos el álbum para encontrar lo que no está en inventory
-    Object.keys(AppState.albumData.groups).forEach(groupKey => {
-        AppState.albumData.groups[groupKey].forEach(countryData => {
-            countryData.stickers.forEach(s => {
+    // 1. Procesar grupos regulares (A, B, C...)
+    if (AppState.albumData.groups) {
+        Object.keys(AppState.albumData.groups).forEach(groupKey => {
+            AppState.albumData.groups[groupKey].forEach(countryData => {
+                countryData.stickers.forEach(s => {
+                    if (!AppState.inventory[s.id] || AppState.inventory[s.id] === 0) {
+                        missing.push({ 
+                            id: s.id, 
+                            section: countryData.country, 
+                            isSpecial: false,
+                            teamCode: countryData.team ? countryData.team.substring(0, 3).toUpperCase() : 'FFF'
+                        });
+                    }
+                });
+            });
+        });
+    }
+
+    // 2. Procesar secciones especiales (FWC, Coca-Cola...) de forma segura
+    if (AppState.albumData.specials) {
+        Object.keys(AppState.albumData.specials).forEach(specialKey => {
+            AppState.albumData.specials[specialKey].forEach(s => {
                 if (!AppState.inventory[s.id] || AppState.inventory[s.id] === 0) {
-                    missing.push({ id: s.id, country: countryData.country, team: countryData.team });
+                    missing.push({ 
+                        id: s.id, 
+                        section: specialKey.replace('_', ' ').toUpperCase(), 
+                        isSpecial: true,
+                        teamCode: ''
+                    });
                 }
             });
         });
-    });
+    }
 
     if (missing.length === 0) {
-        showToast('¡Álbum completo!', 'success');
+        showToast('¡No tienes láminas faltantes! 😎', 'success');
         return;
     }
 
-    const byCountry = {};
+    // 3. Agrupar por sección/país para el mensaje compacto
+    const bySection = {};
     missing.forEach(s => {
-        if (!byCountry[s.country]) byCountry[s.country] = [];
-        byCountry[s.country].push(s.id);
+        if (!bySection[s.section]) bySection[s.section] = [];
+        // Guardamos un objeto con los datos limpios
+        bySection[s.section].push(s);
     });
 
-    let message = `🏆 *FWC 2026 - Láminas Faltantes*\nTotal: *${missing.length}*\n\n`;
+    // 4. Construir el mensaje formateado para WhatsApp
+    let message = `🏆 *FWC 2026 - LÁMINAS FALTANTES*\n`;
+    message += `Total por conseguir: *${missing.length}*\n\n`;
     
-    Object.keys(byCountry).sort().forEach(country => {
-        // Obtenemos el prefijo del país (ej: MEX) para la bandera
-        const teamCode = AppState.albumData.groups['A']?.find(c => c.country === country)?.team.substring(0,3).toUpperCase() || 'XXX';
-        message += `${getCountryFlag(teamCode)} *${country}*: ${byCountry[country].join(', ')}\n`;
+    Object.keys(bySection).sort().forEach(section => {
+        const firstItem = bySection[section][0];
+        const ids = bySection[section].map(item => item.id.split(' ').pop()).join(', '); // Formato ultra compacto solo con números
+        
+        if (firstItem.isSpecial) {
+            message += `⭐ *${section}*: ${ids}\n`;
+        } else {
+            message += `${getCountryFlag(firstItem.teamCode)} *${section}*: ${ids}\n`;
+        }
     });
     
-    message += `\n¿Quién tiene estas para intercambiar? 🙏`;
+    message += `\n¿Quién tiene algunas para intercambiar? 🙏`;
+    
+    // 5. Enviar de forma segura abriendo la pestaña limpia
     window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
 }
 
 /**
- * Comparte lista de repetidas por WhatsApp
+ * Comparte lista de repetidas por WhatsApp (Soporta Grupos y Especiales de forma segura)
  */
 function shareDuplicatesToWhatsApp() {
     const duplicates = [];
 
-    // Recorremos el inventario
+    // Recorremos el inventario mapeado para encontrar repetidas
     Object.entries(AppState.inventory).forEach(([id, count]) => {
         if (count > 1) {
-            // Buscamos info del sticker en el JSON
-            let stickerInfo = null;
-            Object.values(AppState.albumData.groups).flat().forEach(c => {
-                const found = c.stickers.find(s => s.id === id);
-                if (found) stickerInfo = { country: c.country, team: c.team };
-            });
+            let foundInfo = null;
 
-            if (stickerInfo) {
-                duplicates.push({ id, country: stickerInfo.country, team: stickerInfo.team, count });
+            // Buscar en grupos regulares
+            if (AppState.albumData.groups) {
+                Object.values(AppState.albumData.groups).flat().forEach(c => {
+                    const found = c.stickers.find(s => s.id === id);
+                    if (found) {
+                        foundInfo = { 
+                            section: c.country, 
+                            isSpecial: false, 
+                            teamCode: c.team ? c.team.substring(0, 3).toUpperCase() : 'FFF' 
+                        };
+                    }
+                });
+            }
+
+            // Si no se encontró, buscar en las especiales
+            if (!foundInfo && AppState.albumData.specials) {
+                Object.keys(AppState.albumData.specials).forEach(specialKey => {
+                    const found = AppState.albumData.specials[specialKey].find(s => s.id === id);
+                    if (found) {
+                        foundInfo = { 
+                            section: specialKey.replace('_', ' ').toUpperCase(), 
+                            isSpecial: true, 
+                            teamCode: '' 
+                        };
+                    }
+                });
+            }
+
+            // Si encontramos la lámina en la base de datos, la añadimos al set de cambios
+            if (foundInfo) {
+                duplicates.push({
+                    id: id,
+                    count: count,
+                    ...foundInfo
+                });
             }
         }
     });
 
     if (duplicates.length === 0) {
-        showToast('No tienes repetidas.', 'info');
+        showToast('¡No tienes láminas repetidas para cambiar! 🔄', 'info');
         return;
     }
 
-    const byCountry = {};
+    // Agrupar por sección
+    const bySection = {};
     duplicates.forEach(s => {
-        if (!byCountry[s.country]) byCountry[s.country] = [];
-        byCountry[s.country].push(s);
+        if (!bySection[s.section]) bySection[s.section] = [];
+        bySection[s.section].push(s);
     });
 
-    let message = `🔄 *FWC 2026 - Repetidas*\nTotal: *${duplicates.length}* para cambio\n\n`;
+    // Construir mensaje
+    let message = `🔄 *FWC 2026 - LÁMINAS REPETIDAS*\n`;
+    message += `¡Tengo estas disponibles para cambio! 🤝\n\n`;
     
-    Object.keys(byCountry).sort().forEach(country => {
-        const teamCode = byCountry[country][0].team.substring(0,3).toUpperCase();
-        const items = byCountry[country].map(i => i.count > 2 ? `${i.id}(x${i.count-1})` : i.id);
-        message += `${getCountryFlag(teamCode)} *${country}*: ${items.join(', ')}\n`;
+    Object.keys(bySection).sort().forEach(section => {
+        const firstItem = bySection[section][0];
+        const items = bySection[section].map(item => {
+            const shortId = item.id.split(' ').pop();
+            return item.count > 2 ? `${shortId}(x${item.count - 1})` : shortId;
+        });
+
+        if (firstItem.isSpecial) {
+            message += `⭐ *${section}*: ${items.join(', ')}\n`;
+        } else {
+            message += `${getCountryFlag(firstItem.teamCode)} *${section}*: ${items.join(', ')}\n`;
+        }
     });
     
-    message += `\n¡Tengo estas disponibles! 🤝`;
+    message += `\n¿A quién le sirven? ¡Hablemos por interno! 📝`;
+    
     window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
 }
 
