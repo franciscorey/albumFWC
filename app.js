@@ -660,10 +660,13 @@ function exportToPDF() {
 /**
  * Comparte lista de faltantes por WhatsApp (Soporta Grupos y Especiales de forma segura)
  */
+/**
+ * Comparte lista de faltantes por WhatsApp (Formato compacto y limpio)
+ */
 function shareToWhatsApp() {
     const missing = [];
 
-    // 1. Procesar grupos regulares (A, B, C...)
+    // 1. Recorrer grupos regulares (A, B, C...)
     if (AppState.albumData.groups) {
         Object.keys(AppState.albumData.groups).forEach(groupKey => {
             AppState.albumData.groups[groupKey].forEach(countryData => {
@@ -671,9 +674,8 @@ function shareToWhatsApp() {
                     if (!AppState.inventory[s.id] || AppState.inventory[s.id] === 0) {
                         missing.push({ 
                             id: s.id, 
-                            section: countryData.country, 
-                            isSpecial: false,
-                            teamCode: countryData.team ? countryData.team.substring(0, 3).toUpperCase() : 'FFF'
+                            sectionName: countryData.country, 
+                            flag: countryData.flag || '🏳️'
                         });
                     }
                 });
@@ -681,16 +683,15 @@ function shareToWhatsApp() {
         });
     }
 
-    // 2. Procesar secciones especiales (FWC, Coca-Cola...) de forma segura
+    // 2. Recorrer secciones especiales (Coca-Cola, Leyendas, etc.)
     if (AppState.albumData.specials) {
         Object.keys(AppState.albumData.specials).forEach(specialKey => {
             AppState.albumData.specials[specialKey].forEach(s => {
                 if (!AppState.inventory[s.id] || AppState.inventory[s.id] === 0) {
                     missing.push({ 
                         id: s.id, 
-                        section: specialKey.replace('_', ' ').toUpperCase(), 
-                        isSpecial: true,
-                        teamCode: ''
+                        sectionName: specialKey.replace('_', ' ').toUpperCase(), 
+                        flag: '⭐'
                     });
                 }
             });
@@ -702,12 +703,16 @@ function shareToWhatsApp() {
         return;
     }
 
-    // 3. Agrupar por sección/país para el mensaje compacto
+    // 3. Agrupar los IDs encontrados por País o Sección Especial
     const bySection = {};
     missing.forEach(s => {
-        if (!bySection[s.section]) bySection[s.section] = [];
-        // Guardamos un objeto con los datos limpios
-        bySection[s.section].push(s);
+        if (!bySection[s.sectionName]) {
+            bySection[s.sectionName] = {
+                flag: s.flag,
+                ids: []
+            };
+        }
+        bySection[s.sectionName].ids.push(s.id);
     });
 
     // 4. Construir el mensaje formateado para WhatsApp
@@ -715,104 +720,91 @@ function shareToWhatsApp() {
     message += `Total por conseguir: *${missing.length}*\n\n`;
     
     Object.keys(bySection).sort().forEach(section => {
-        const firstItem = bySection[section][0];
-        const ids = bySection[section].map(item => item.id.split(' ').pop()).join(', '); // Formato ultra compacto solo con números
-        
-        if (firstItem.isSpecial) {
-            message += `⭐ *${section}*: ${ids}\n`;
-        } else {
-            message += `${getCountryFlag(firstItem.teamCode)} *${section}*: ${ids}\n`;
-        }
+        const sectionData = bySection[section];
+        const idsString = sectionData.ids.join(', ');
+        message += `${sectionData.flag} *${section}*: ${idsString}\n`;
     });
     
     message += `\n¿Quién tiene algunas para intercambiar? 🙏`;
-    
-    // 5. Enviar de forma segura abriendo la pestaña limpia
+
+    // 5. Abrir la ventana de WhatsApp Web/App
     window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
 }
 
 /**
- * Comparte lista de repetidas por WhatsApp (Soporta Grupos y Especiales de forma segura)
+ * Comparte lista de repetidas por WhatsApp (Formato compacto y limpio)
  */
 function shareDuplicatesToWhatsApp() {
     const duplicates = [];
 
-    // Recorremos el inventario mapeado para encontrar repetidas
-    Object.entries(AppState.inventory).forEach(([id, count]) => {
-        if (count > 1) {
-            let foundInfo = null;
-
-            // Buscar en grupos regulares
-            if (AppState.albumData.groups) {
-                Object.values(AppState.albumData.groups).flat().forEach(c => {
-                    const found = c.stickers.find(s => s.id === id);
-                    if (found) {
-                        foundInfo = { 
-                            section: c.country, 
-                            isSpecial: false, 
-                            teamCode: c.team ? c.team.substring(0, 3).toUpperCase() : 'FFF' 
-                        };
+    // 1. Recorrer grupos regulares buscando repetidas
+    if (AppState.albumData.groups) {
+        Object.keys(AppState.albumData.groups).forEach(groupKey => {
+            AppState.albumData.groups[groupKey].forEach(countryData => {
+                countryData.stickers.forEach(s => {
+                    const count = AppState.inventory[s.id] || 0;
+                    if (count > 1) {
+                        duplicates.push({ 
+                            id: s.id, 
+                            sectionName: countryData.country, 
+                            flag: countryData.flag || '🏳️',
+                            count: count
+                        });
                     }
                 });
-            }
+            });
+        });
+    }
 
-            // Si no se encontró, buscar en las especiales
-            if (!foundInfo && AppState.albumData.specials) {
-                Object.keys(AppState.albumData.specials).forEach(specialKey => {
-                    const found = AppState.albumData.specials[specialKey].find(s => s.id === id);
-                    if (found) {
-                        foundInfo = { 
-                            section: specialKey.replace('_', ' ').toUpperCase(), 
-                            isSpecial: true, 
-                            teamCode: '' 
-                        };
-                    }
-                });
-            }
-
-            // Si encontramos la lámina en la base de datos, la añadimos al set de cambios
-            if (foundInfo) {
-                duplicates.push({
-                    id: id,
-                    count: count,
-                    ...foundInfo
-                });
-            }
-        }
-    });
+    // 2. Recorrer secciones especiales buscando repetidas
+    if (AppState.albumData.specials) {
+        Object.keys(AppState.albumData.specials).forEach(specialKey => {
+            AppState.albumData.specials[specialKey].forEach(s => {
+                const count = AppState.inventory[s.id] || 0;
+                if (count > 1) {
+                    duplicates.push({ 
+                        id: s.id, 
+                        sectionName: specialKey.replace('_', ' ').toUpperCase(), 
+                        flag: '⭐',
+                        count: count
+                    });
+                }
+            });
+        });
+    }
 
     if (duplicates.length === 0) {
         showToast('¡No tienes láminas repetidas para cambiar! 🔄', 'info');
         return;
     }
 
-    // Agrupar por sección
+    // 3. Agrupar las repetidas por Sección
     const bySection = {};
     duplicates.forEach(s => {
-        if (!bySection[s.section]) bySection[s.section] = [];
-        bySection[s.section].push(s);
+        if (!bySection[s.sectionName]) {
+            bySection[s.sectionName] = {
+                flag: s.flag,
+                items: []
+            };
+        }
+        // Si tienes más de 1 repetida de la misma lámina, añade el multiplicador: ej. MEX02(x2)
+        const displayId = s.count > 2 ? `${s.id}(x${s.count - 1})` : s.id;
+        bySection[s.sectionName].items.push(displayId);
     });
 
-    // Construir mensaje
+    // 4. Construir el mensaje
     let message = `🔄 *FWC 2026 - LÁMINAS REPETIDAS*\n`;
     message += `¡Tengo estas disponibles para cambio! 🤝\n\n`;
     
     Object.keys(bySection).sort().forEach(section => {
-        const firstItem = bySection[section][0];
-        const items = bySection[section].map(item => {
-            const shortId = item.id.split(' ').pop();
-            return item.count > 2 ? `${shortId}(x${item.count - 1})` : shortId;
-        });
-
-        if (firstItem.isSpecial) {
-            message += `⭐ *${section}*: ${items.join(', ')}\n`;
-        } else {
-            message += `${getCountryFlag(firstItem.teamCode)} *${section}*: ${items.join(', ')}\n`;
-        }
+        const sectionData = bySection[section];
+        const idsString = sectionData.items.join(', ');
+        message += `${sectionData.flag} *${section}*: ${idsString}\n`;
     });
     
     message += `\n¿A quién le sirven? ¡Hablemos por interno! 📝`;
-    
+
+    // 5. Abrir WhatsApp
     window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
 }
 
