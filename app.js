@@ -737,6 +737,25 @@ function shareDuplicatesToWhatsApp() {
     window.open(`https://wa.me/?text=${encoded}`, '_blank');
 }
 
+
+/**
+ * Obtiene la bandera emoji para un código de país
+ */
+function getCountryFlag(countryCode) {
+    // Mapa de códigos de país a emojis de banderas
+    const flagMap = {
+        'ARG': '🇦🇷', 'AUS': '🇦🇺', 'BEL': '🇧🇪', 'BRA': '🇧🇷', 'CMR': '🇨🇲',
+        'CAN': '🇨🇦', 'CHI': '🇨🇱', 'CHN': '🇨🇳', 'COL': '🇨🇴', 'CRC': '🇨🇷',
+        'CRO': '🇭🇷', 'CZE': '🇨🇿', 'DEN': '🇩🇰', 'ECU': '🇪🇨', 'EGY': '🇪🇬',
+        'ENG': '🏴󠁧󠁢󠁥󠁮󠁧󠁿', 'FRA': '🇫🇷', 'GER': '🇩🇪', 'GHA': '🇬🇭', 'GRE': '🇬🇷',
+        'IRN': '🇮🇷', 'ITA': '🇮🇹', 'JPN': '🇯🇵', 'KOR': '🇰🇷', 'MAR': '🇲🇦',
+        'MEX': '🇲🇽', 'NED': '🇳🇱', 'NGA': '🇳🇬', 'NOR': '🇳🇴', 'POL': '🇵🇱',
+        'POR': '🇵🇹', 'QAT': '🇶🇦', 'KSA': '🇸🇦', 'SEN': '🇸🇳', 'SRB': '🇷🇸',
+        'ESP': '🇪🇸', 'SWE': '🇸🇪', 'SUI': '🇨🇭', 'TUN': '🇹🇳', 'TUR': '🇹🇷',
+        'UKR': '🇺🇦', 'URU': '🇺🇾', 'USA': '🇺🇸', 'WAL': '🏴󠁧󠁢󠁷󠁬󠁳󠁿'
+    };
+    return flagMap[countryCode] || '🏳️';
+}
 /**
  * Muestra notificación toast
  */
