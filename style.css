@@ -1,0 +1,210 @@
+:root {
+    --bg-color: #f4f4f0;
+    --text-color: #111111;
+    --brand-color: #111111; 
+    --repeated-color: #ff3b3b; /* Rojo intenso para repetidas, fácil de escanear */
+    --border-radius: 0px; /* Bordes duros, máxima legibilidad */
+    --border-thick: 3px solid var(--text-color);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding-bottom: 3rem;
+}
+
+/* Cabecera, Progreso y Buscador */
+.app-header {
+    background-color: #ffffff;
+    border-bottom: var(--border-thick);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.header-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.progress-container {
+    padding: 0 1rem 1rem 1rem;
+}
+
+.progress-text {
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+}
+
+.progress-bar-bg {
+    width: 100%;
+    height: 12px;
+    background-color: var(--bg-color);
+    border: 2px solid var(--text-color);
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background-color: var(--text-color);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.search-container {
+    padding: 0 1rem 1rem 1rem;
+}
+
+.brutal-input {
+    width: 100%;
+    padding: 0.75rem;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 1rem;
+    border: 2px solid var(--text-color);
+    background-color: #ffffff;
+    box-shadow: 3px 3px 0px var(--text-color);
+    outline: none;
+}
+
+.brutal-input:focus {
+    background-color: #e8e8e8;
+}
+
+.scroll-nav {
+    display: flex;
+    overflow-x: auto;
+    padding: 0 1rem 1rem 1rem;
+    gap: 0.5rem;
+    scrollbar-width: none;
+}
+.scroll-nav::-webkit-scrollbar { display: none; }
+
+/* Botones */
+.brutal-btn {
+    font-family: inherit;
+    font-weight: 700;
+    padding: 0.5rem 1rem;
+    background-color: #ffffff;
+    color: var(--text-color);
+    border: 2px solid var(--text-color);
+    box-shadow: 3px 3px 0px var(--text-color);
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.brutal-btn:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0px 0px 0px var(--text-color);
+}
+
+.brutal-btn.active-nav {
+    background-color: var(--text-color);
+    color: #ffffff;
+}
+
+.mode-add { background-color: #a8ffb2; } /* Verde suave */
+.mode-sub { background-color: #ffb2a8; } /* Rojo suave */
+
+/* Grilla y Láminas */
+#app-main { padding: 1.5rem 1rem; }
+
+.country-section { margin-bottom: 3rem; }
+
+.country-header {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--text-color);
+    padding-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.sticker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+    gap: 0.5rem;
+}
+
+/* Sistema de Estados Visuales */
+.sticker-item {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    border: 2px solid var(--text-color);
+    box-shadow: 2px 2px 0px var(--text-color);
+    cursor: pointer;
+    user-select: none;
+    font-weight: 700;
+    position: relative;
+}
+
+.sticker-item:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0px var(--text-color);
+}
+
+/* Estado: La tengo (1) */
+.sticker-item.owned {
+    background-color: var(--text-color);
+    color: #ffffff;
+}
+
+/* Estado: Repetida (>1) */
+.sticker-item.repeated {
+    background-color: var(--repeated-color);
+    color: #ffffff;
+}
+
+.repeated-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #ffffff;
+    color: var(--text-color);
+    border: 2px solid var(--text-color);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.sticker-name {
+    font-size: 0.5rem;
+    text-align: center;
+    margin-top: 4px;
+    padding: 0 2px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Utilidad para ocultar por búsqueda */
+.hidden { display: none !important; }
+
+/* Impresión */
+.print-only { display: none; }
+@media print {
+    .hide-print { display: none !important; }
+    .print-only { display: block; }
+    #print-content { column-count: 4; column-gap: 20px; font-size: 10px; font-family: monospace; }
+    .print-missing-item { margin-bottom: 4px; border-bottom: 1px solid #ccc; page-break-inside: avoid; }
+}
