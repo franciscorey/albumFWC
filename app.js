@@ -44,6 +44,7 @@ function cacheDOM() {
     DOM.btnMode = document.getElementById('btn-mode');
     DOM.btnExport = document.getElementById('btn-export');
     DOM.btnWhatsapp = document.getElementById('btn-whatsapp');
+    DOM.btnWhatsappDup = document.getElementById('btn-whatsapp-dup');
     DOM.dashboard = document.getElementById('dashboard');
     DOM.progressBarFill = document.getElementById('progress-bar-fill');
     DOM.progressPercentage = document.getElementById('progress-percentage');
@@ -211,8 +212,13 @@ function setupEventListeners() {
     // Botón exportar PDF
     DOM.btnExport.addEventListener('click', exportToPDF);
     
-    // Botón WhatsApp
+    // Botón WhatsApp - Faltantes
     DOM.btnWhatsapp.addEventListener('click', shareToWhatsApp);
+    
+    // Botón WhatsApp - Repetidas
+    if (DOM.btnWhatsappDup) {
+        DOM.btnWhatsappDup.addEventListener('click', shareDuplicatesToWhatsApp);
+    }
     
     // Búsqueda - mejorada para buscar por nombre de jugador
     DOM.searchInput.addEventListener('input', handleSearch);
@@ -652,62 +658,83 @@ function exportToPDF() {
 }
 
 /**
- * Comparte lista de faltantes por WhatsApp
+ * Comparte lista de faltantes por WhatsApp (formato compacto)
  */
 function shareToWhatsApp() {
-    let missingList = [];
-    let missingCount = 0;
-
-    // Recopilar faltantes por país
-    Object.entries(AppState.albumData.groups).forEach(([groupName, countries]) => {
-        countries.forEach(country => {
-            const missing = country.stickers.filter(s => !AppState.inventory[s.id] || AppState.inventory[s.id] === 0);
-            
-            if (missing.length > 0) {
-                missingCount += missing.length;
-                missingList.push(`*${country.flag} ${country.country}* (${missing.length}):`);
-                missing.forEach(s => {
-                    missingList.push(`  ${s.id} - ${s.name || ''}`);
-                });
-            }
-        });
-    });
-
-    // Especiales
-    Object.entries(AppState.albumData.specials).forEach(([key, stickers]) => {
-        const missing = stickers.filter(s => !AppState.inventory[s.id] || AppState.inventory[s.id] === 0);
-        
-        if (missing.length > 0) {
-            missingCount += missing.length;
-            missingList.push(`*⭐ ${key.replace('_', ' ').toUpperCase()}* (${missing.length}):`);
-            missing.forEach(s => {
-                missingList.push(`  ${s.id} - ${s.name || ''}`);
-            });
-        }
-    });
-
-    if (missingCount === 0) {
-        showToast('¡🎉 Álbum completado! Nada que compartir', 'success');
+    const missing = AppState.stickers.filter(s => s.count === 0);
+    
+    if (missing.length === 0) {
+        showToast('¡No tienes láminas faltantes!', 'success');
         return;
     }
 
-    // Construir mensaje
-    const message = `🏆 *FWC 2026 - Láminas Faltantes*\n` +
-                   `━━━━━━━━━━━━━━━━━━━━\n` +
-                   `📊 Me faltan: *${missingCount}* de ${AppState.stats.total}\n` +
-                   `📅 ${new Date().toLocaleDateString('es-ES')}\n` +
-                   `━━━━━━━━━━━━━━━━━━━━\n\n` +
-                   missingList.join('\n') +
-                   `\n━━━━━━━━━━━━━━━━━━━━\n` +
-                   `¿Alguien tiene para intercambiar? 🔄`;
+    // Agrupar por país
+    const byCountry = {};
+    missing.forEach(sticker => {
+        if (!byCountry[sticker.country]) {
+            byCountry[sticker.country] = [];
+        }
+        byCountry[sticker.country].push(sticker.id);
+    });
 
-    // Codificar para URL
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/?text=${encodedMessage}`;
+    // Construir mensaje compacto
+    let message = `🏆 *FWC 2026 - Láminas Faltantes*\n`;
+    message += `Total: *${missing.length}*\n\n`;
+    
+    // Ordenar países y listar IDs
+    Object.keys(byCountry).sort().forEach(country => {
+        const flag = getCountryFlag(country);
+        const ids = byCountry[country].join(' | ');
+        message += `${flag} ${country}: | ${ids} |\n`;
+    });
+    
+    message += `\n¿Quién tiene estas para intercambiar? 🙏`;
 
-    // Abrir WhatsApp
-    window.open(whatsappUrl, '_blank');
-    showToast('Abriendo WhatsApp...', 'success');
+    const encoded = encodeURIComponent(message);
+    window.open(`https://wa.me/?text=${encoded}`, '_blank');
+}
+
+/**
+ * Comparte lista de repetidas por WhatsApp (formato compacto)
+ */
+function shareDuplicatesToWhatsApp() {
+    const duplicates = AppState.stickers.filter(s => s.count > 1);
+    
+    if (duplicates.length === 0) {
+        showToast('¡No tienes láminas repetidas!', 'info');
+        return;
+    }
+
+    // Agrupar por país
+    const byCountry = {};
+    duplicates.forEach(sticker => {
+        if (!byCountry[sticker.country]) {
+            byCountry[sticker.country] = [];
+        }
+        byCountry[sticker.country].push({
+            id: sticker.id,
+            count: sticker.count
+        });
+    });
+
+    // Construir mensaje compacto
+    let message = `🔄 *FWC 2026 - Láminas Repetidas*\n`;
+    message += `Total: *${duplicates.length}* (para cambio)\n\n`;
+    
+    // Ordenar países y listar IDs con cantidad si es > 2
+    Object.keys(byCountry).sort().forEach(country => {
+        const flag = getCountryFlag(country);
+        const items = byCountry[country].map(item => 
+            item.count > 2 ? `${item.id}(x${item.count})` : item.id
+        );
+        const ids = items.join(' | ');
+        message += `${flag} ${country}: | ${ids} |\n`;
+    });
+    
+    message += `\n¡Tengo estas disponibles para intercambio! 🤝`;
+
+    const encoded = encodeURIComponent(message);
+    window.open(`https://wa.me/?text=${encoded}`, '_blank');
 }
 
 /**
