@@ -2,43 +2,82 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FWC 2026 Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>FWC 2026 Tracker - Álbum Panini</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="description" content="Tracker del álbum Panini FIFA World Cup 2026">
 </head>
 <body>
     <header class="app-header hide-print">
-        <div class="header-main">
-            <h1>FWC 2026</h1>
-            <div class="header-controls">
-                <button id="btn-mode" class="brutal-btn mode-add">➕ Sumar</button>
-                <button id="btn-export" class="brutal-btn">PDF Faltantes</button>
+        <div class="header-top">
+            <div class="brand">
+                <h1>🏆 FWC 2026</h1>
+                <span class="subtitle">Álbum Panini Tracker</span>
+            </div>
+            <div class="header-actions">
+                <button id="btn-mode" class="action-btn mode-add" title="Cambiar modo">
+                    <span class="btn-icon">➕</span>
+                    <span class="btn-text">Sumar</span>
+                </button>
+                <button id="btn-export" class="action-btn btn-export" title="Exportar faltantes">
+                    <span class="btn-icon">📄</span>
+                    <span class="btn-text">PDF</span>
+                </button>
             </div>
         </div>
         
-        <div class="progress-container">
-            <div class="progress-text">Progreso: <span id="progress-percentage">0%</span> (<span id="progress-count">0/0</span>)</div>
+        <div class="progress-section">
+            <div class="progress-info">
+                <span class="progress-label">Progreso del álbum</span>
+                <span class="progress-value"><span id="progress-percentage">0%</span></span>
+            </div>
             <div class="progress-bar-bg">
                 <div id="progress-bar-fill" class="progress-bar-fill"></div>
             </div>
+            <div class="progress-stats">
+                <span class="stat-mini"><strong id="progress-count">0/0</strong> completadas</span>
+                <span class="stat-mini"><strong id="unique-owned">0</strong> únicas</span>
+                <span class="stat-mini"><strong id="total-repeated">0</strong> repetidas</span>
+            </div>
         </div>
 
-        <div class="search-container">
-            <input type="text" id="search-input" class="brutal-input" placeholder="🔍 Buscar lámina (ej: MEX01, Messi...)">
+        <div class="search-filter-container">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="search-input" class="search-input" placeholder="Buscar lámina (ID, jugador, país...)">
+            </div>
+            <button id="btn-filter-country" class="filter-btn" title="Filtrar por país">
+                🌎 Países
+            </button>
         </div>
 
         <nav id="nav-groups" class="scroll-nav"></nav>
+        
+        <div id="country-filter-panel" class="country-filter-panel hide-print">
+            <div class="filter-header">
+                <span>Filtrar por país</span>
+                <button id="btn-close-filter" class="close-filter">×</button>
+            </div>
+            <div id="country-list" class="country-list"></div>
+        </div>
     </header>
 
     <main id="app-main" class="hide-print">
         <div id="dashboard" class="dashboard-grid"></div>
-        </main>
+    </main>
 
     <div id="print-view" class="print-only">
-        <h2>Láminas Faltantes - FWC 2026</h2>
+        <div class="print-header">
+            <h1>🏆 Láminas Faltantes - FWC 2026</h1>
+            <p class="print-date">Generado: <span id="print-date"></span></p>
+            <p class="print-summary">Total faltantes: <span id="print-total-missing">0</span> de <span id="print-total">0</span></p>
+        </div>
         <div id="print-content"></div>
     </div>
+
+    <div id="toast" class="toast hide-print"></div>
 
     <script src="app.js"></script>
 </body>
