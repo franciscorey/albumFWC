@@ -17,7 +17,9 @@ const AppState = {
     isAddMode: true,
     activeGroup: null,
     activeCountry: null,
-    allCountries: []
+    allCountries: [],
+    viewMode: 'all', // all, missing, owned, repeated
+    listMode: false // false = grid, true = list
 };
 
 // Referencias DOM cacheadas
@@ -41,6 +43,7 @@ function cacheDOM() {
     DOM.searchInput = document.getElementById('search-input');
     DOM.btnMode = document.getElementById('btn-mode');
     DOM.btnExport = document.getElementById('btn-export');
+    DOM.btnWhatsapp = document.getElementById('btn-whatsapp');
     DOM.dashboard = document.getElementById('dashboard');
     DOM.progressBarFill = document.getElementById('progress-bar-fill');
     DOM.progressPercentage = document.getElementById('progress-percentage');
@@ -52,6 +55,9 @@ function cacheDOM() {
     DOM.btnFilterCountry = document.getElementById('btn-filter-country');
     DOM.btnCloseFilter = document.getElementById('btn-close-filter');
     DOM.toast = document.getElementById('toast');
+    DOM.viewModeSelect = document.getElementById('view-mode-select');
+    DOM.btnViewGrid = document.getElementById('btn-view-grid');
+    DOM.btnViewList = document.getElementById('btn-view-list');
 }
 
 /**
@@ -205,7 +211,10 @@ function setupEventListeners() {
     // Botón exportar PDF
     DOM.btnExport.addEventListener('click', exportToPDF);
     
-    // Búsqueda
+    // Botón WhatsApp
+    DOM.btnWhatsapp.addEventListener('click', shareToWhatsApp);
+    
+    // Búsqueda - mejorada para buscar por nombre de jugador
     DOM.searchInput.addEventListener('input', handleSearch);
     
     // Filtro por país
@@ -214,6 +223,16 @@ function setupEventListeners() {
         DOM.countryFilterPanel.classList.remove('open');
         DOM.btnFilterCountry.classList.remove('active');
     });
+    
+    // Filtro por tipo de lámina (faltantes, repetidas, etc.)
+    DOM.viewModeSelect.addEventListener('change', (e) => {
+        AppState.viewMode = e.target.value;
+        applyViewFilters();
+    });
+    
+    // Cambiar vista grilla/lista
+    DOM.btnViewGrid.addEventListener('click', () => setListView(false));
+    DOM.btnViewList.addEventListener('click', () => setListView(true));
     
     // Tecla Escape para cerrar filtros
     document.addEventListener('keydown', (e) => {
@@ -263,7 +282,13 @@ function updateStickerVisual(element) {
     const stickerId = element.dataset.id;
     const count = AppState.inventory[stickerId] || 0;
     
+    // Verificar si debe estar oculto por filtro de vista
+    const isHiddenByFilter = shouldHideByFilter(count);
+    
     element.className = 'sticker-item';
+    if (isHiddenByFilter) {
+        element.classList.add('filter-hidden');
+    }
     element.innerHTML = element.dataset.originalHtml;
     
     if (count === 1) {
@@ -271,6 +296,22 @@ function updateStickerVisual(element) {
     } else if (count > 1) {
         element.classList.add('repeated');
         element.innerHTML += `<div class="repeated-badge">+${count - 1}</div>`;
+    }
+}
+
+/**
+ * Determina si una lámina debe ocultarse según el filtro activo
+ */
+function shouldHideByFilter(count) {
+    switch (AppState.viewMode) {
+        case 'missing':
+            return count !== 0;
+        case 'owned':
+            return count !== 1;
+        case 'repeated':
+            return count <= 1;
+        default:
+            return false;
     }
 }
 
@@ -287,7 +328,10 @@ function createStickerElement(sticker, prefixToRemove = '') {
         <div class="sticker-id">${displayId}</div>
         <div class="sticker-name">${name}</div>
     `;
-    el.dataset.searchable = `${sticker.id.toLowerCase()} ${name.toLowerCase()}`;
+    // Mejora: búsqueda incluye ID, nombre y país
+    el.dataset.searchable = `${sticker.id.toLowerCase()} ${name.toLowerCase()}`.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    el.dataset.stickerName = name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    el.dataset.stickerId = sticker.id.toLowerCase();
     
     updateStickerVisual(el);
     el.onclick = () => handleStickerClick(sticker.id, el);
@@ -475,14 +519,22 @@ function renderSpecial(specialKey) {
 }
 
 /**
- * Maneja la búsqueda de láminas
+ * Maneja la búsqueda de láminas - mejorada para buscar por nombre
  */
 function handleSearch(e) {
-    const term = e.target.value.toLowerCase().trim();
+    const term = e.target.value.toLowerCase().trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     
     DOM.mainContainer.querySelectorAll('.sticker-item').forEach(el => {
         const searchable = el.dataset.searchable || '';
-        el.classList.toggle('hidden', !searchable.includes(term));
+        const stickerName = el.dataset.stickerName || '';
+        const stickerId = el.dataset.stickerId || '';
+        
+        // Búsqueda flexible: coincide con ID o nombre (sin acentos)
+        const matches = searchable.includes(term) || 
+                       stickerName.includes(term) || 
+                       stickerId.includes(term);
+        
+        el.classList.toggle('hidden', !matches);
     });
     
     // Ocultar secciones vacías
@@ -490,6 +542,56 @@ function handleSearch(e) {
         const visibleStickers = section.querySelectorAll('.sticker-item:not(.hidden)').length;
         section.style.display = visibleStickers === 0 ? 'none' : 'block';
     });
+}
+
+/**
+ * Aplica filtros por tipo de lámina (faltantes, repetidas, etc.)
+ */
+function applyViewFilters() {
+    DOM.mainContainer.querySelectorAll('.sticker-item').forEach(el => {
+        const stickerId = el.dataset.id;
+        const count = AppState.inventory[stickerId] || 0;
+        let show = true;
+        
+        switch (AppState.viewMode) {
+            case 'missing':
+                show = count === 0;
+                break;
+            case 'owned':
+                show = count === 1;
+                break;
+            case 'repeated':
+                show = count > 1;
+                break;
+            case 'all':
+            default:
+                show = true;
+        }
+        
+        el.classList.toggle('filter-hidden', !show);
+    });
+    
+    // Actualizar visibilidad de secciones
+    DOM.mainContainer.querySelectorAll('.country-section').forEach(section => {
+        const visibleStickers = section.querySelectorAll('.sticker-item:not(.hidden):not(.filter-hidden)').length;
+        section.style.display = visibleStickers === 0 ? 'none' : 'block';
+    });
+}
+
+/**
+ * Cambia entre vista grilla y lista
+ */
+function setListView(isList) {
+    AppState.listMode = isList;
+    
+    DOM.btnViewGrid.classList.toggle('active', !isList);
+    DOM.btnViewList.classList.toggle('active', isList);
+    
+    DOM.mainContainer.querySelectorAll('.sticker-grid').forEach(grid => {
+        grid.classList.toggle('list-view', isList);
+    });
+    
+    showToast(isList ? 'Vista: Lista' : 'Vista: Grilla');
 }
 
 /**
@@ -547,6 +649,65 @@ function exportToPDF() {
     // Mostrar toast y abrir diálogo de impresión
     showToast('Abriendo vista de impresión...', 'success');
     setTimeout(() => window.print(), 500);
+}
+
+/**
+ * Comparte lista de faltantes por WhatsApp
+ */
+function shareToWhatsApp() {
+    let missingList = [];
+    let missingCount = 0;
+
+    // Recopilar faltantes por país
+    Object.entries(AppState.albumData.groups).forEach(([groupName, countries]) => {
+        countries.forEach(country => {
+            const missing = country.stickers.filter(s => !AppState.inventory[s.id] || AppState.inventory[s.id] === 0);
+            
+            if (missing.length > 0) {
+                missingCount += missing.length;
+                missingList.push(`*${country.flag} ${country.country}* (${missing.length}):`);
+                missing.forEach(s => {
+                    missingList.push(`  ${s.id} - ${s.name || ''}`);
+                });
+            }
+        });
+    });
+
+    // Especiales
+    Object.entries(AppState.albumData.specials).forEach(([key, stickers]) => {
+        const missing = stickers.filter(s => !AppState.inventory[s.id] || AppState.inventory[s.id] === 0);
+        
+        if (missing.length > 0) {
+            missingCount += missing.length;
+            missingList.push(`*⭐ ${key.replace('_', ' ').toUpperCase()}* (${missing.length}):`);
+            missing.forEach(s => {
+                missingList.push(`  ${s.id} - ${s.name || ''}`);
+            });
+        }
+    });
+
+    if (missingCount === 0) {
+        showToast('¡🎉 Álbum completado! Nada que compartir', 'success');
+        return;
+    }
+
+    // Construir mensaje
+    const message = `🏆 *FWC 2026 - Láminas Faltantes*\n` +
+                   `━━━━━━━━━━━━━━━━━━━━\n` +
+                   `📊 Me faltan: *${missingCount}* de ${AppState.stats.total}\n` +
+                   `📅 ${new Date().toLocaleDateString('es-ES')}\n` +
+                   `━━━━━━━━━━━━━━━━━━━━\n\n` +
+                   missingList.join('\n') +
+                   `\n━━━━━━━━━━━━━━━━━━━━\n` +
+                   `¿Alguien tiene para intercambiar? 🔄`;
+
+    // Codificar para URL
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/?text=${encodedMessage}`;
+
+    // Abrir WhatsApp
+    window.open(whatsappUrl, '_blank');
+    showToast('Abriendo WhatsApp...', 'success');
 }
 
 /**

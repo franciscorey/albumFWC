@@ -101,7 +101,105 @@ body {
 
 .mode-add { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
 .mode-sub { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); }
-.btn-export { background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); }
+.btn-whatsapp { background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); }
+
+/* ==================== VIEW CONTROLS ==================== */
+.view-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filter-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.view-select {
+    padding: 0.5rem 0.75rem;
+    background: #f1f3f5;
+    border: none;
+    border-radius: var(--border-radius-md);
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: var(--transition);
+    color: var(--text-primary);
+}
+
+.view-select:focus {
+    outline: 2px solid var(--brand-accent);
+}
+
+.view-btn {
+    padding: 0.5rem 0.75rem;
+    background: #f1f3f5;
+    border: none;
+    border-radius: var(--border-radius-md);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    color: var(--text-secondary);
+}
+
+.view-btn:hover {
+    background: #e9ecef;
+}
+
+.view-btn.active {
+    background: var(--brand-primary);
+    color: white;
+}
+
+/* Vista lista */
+.sticker-grid.list-view {
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem;
+}
+
+.sticker-grid.list-view .sticker-item {
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 0.75rem 1rem;
+    aspect-ratio: auto;
+    height: auto;
+    min-height: 50px;
+}
+
+.sticker-grid.list-view .sticker-id {
+    font-size: 0.85rem;
+    margin-bottom: 0;
+    margin-right: 1rem;
+    min-width: 50px;
+}
+
+.sticker-grid.list-view .sticker-name {
+    font-size: 0.75rem;
+    -webkit-line-clamp: 1;
+    text-align: left;
+    flex: 1;
+}
+
+.sticker-grid.list-view .sticker-item.owned::after,
+.sticker-grid.list-view .repeated-badge {
+    position: static;
+    margin-left: auto;
+}
 
 /* ==================== PROGRESS SECTION ==================== */
 .progress-section {
@@ -572,7 +670,8 @@ body {
 }
 
 /* Hidden state */
-.sticker-item.hidden {
+.sticker-item.hidden,
+.sticker-item.filter-hidden {
     display: none;
 }
 

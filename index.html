@@ -25,6 +25,10 @@
                     <span class="btn-icon">📄</span>
                     <span class="btn-text">PDF</span>
                 </button>
+                <button id="btn-whatsapp" class="action-btn btn-whatsapp" title="Compartir en WhatsApp">
+                    <span class="btn-icon">📱</span>
+                    <span class="btn-text">WhatsApp</span>
+                </button>
             </div>
         </div>
         
@@ -46,7 +50,7 @@
         <div class="search-filter-container">
             <div class="search-box">
                 <span class="search-icon">🔍</span>
-                <input type="text" id="search-input" class="search-input" placeholder="Buscar lámina (ID, jugador, país...)">
+                <input type="text" id="search-input" class="search-input" placeholder="Buscar lámina (ID, jugador, país...)" autocomplete="off">
             </div>
             <button id="btn-filter-country" class="filter-btn" title="Filtrar por país">
                 🌎 Países
@@ -54,6 +58,24 @@
         </div>
 
         <nav id="nav-groups" class="scroll-nav"></nav>
+        
+        <!-- Nuevo menú de filtros y vistas -->
+        <div class="view-controls hide-print">
+            <div class="filter-group">
+                <label class="filter-label">Ver:</label>
+                <select id="view-mode-select" class="view-select">
+                    <option value="all">Todas</option>
+                    <option value="missing">Faltantes</option>
+                    <option value="owned">Completadas</option>
+                    <option value="repeated">Repetidas</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label class="filter-label">Vista:</label>
+                <button id="btn-view-grid" class="view-btn active" title="Vista grilla">▦</button>
+                <button id="btn-view-list" class="view-btn" title="Vista lista">☰</button>
+            </div>
+        </div>
         
         <div id="country-filter-panel" class="country-filter-panel hide-print">
             <div class="filter-header">
