@@ -6,25 +6,40 @@ let inventory = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
 let stats = { total: 0, groups: 0, countries: 0, specials: 0 };
 let isAddMode = true;
 
-const navContainer = document.getElementById('nav-groups');
-const mainContainer = document.getElementById('app-main');
-const searchInput = document.getElementById('search-input');
-const btnMode = document.getElementById('btn-mode');
-const dashboard = document.getElementById('dashboard');
+// Definimos los selectores globales
+let navContainer, mainContainer, searchInput, btnMode, dashboard;
+
+// Inicialización segura
+document.addEventListener('DOMContentLoaded', () => {
+    // Asignar los elementos una vez que el DOM existe
+    navContainer = document.getElementById('nav-groups');
+    mainContainer = document.getElementById('app-main');
+    searchInput = document.getElementById('search-input');
+    btnMode = document.getElementById('btn-mode');
+    dashboard = document.getElementById('dashboard');
+    
+    initApp();
+});
 
 async function initApp() {
     try {
         const response = await fetch(JSON_FILE);
         if (!response.ok) throw new Error("No se pudo cargar el archivo JSON");
+        
         albumData = await response.json();
+        
         calculateStats();
-        renderDashboard();
-        buildNavigation();
+        // Verificación extra antes de renderizar
+        if (dashboard) renderDashboard(); 
+        if (navContainer) buildNavigation();
         renderSection('A');
         updateProgress();
+        
     } catch (error) {
         console.error("Error cargando JSON:", error);
-        mainContainer.innerHTML = '<div class="error-msg"><h2>⚠️ Error de carga</h2><p>Revisa la consola (F12) o asegúrate de usar un servidor local.</p></div>';
+        if (mainContainer) {
+            mainContainer.innerHTML = '<div class="error-msg"><h2>⚠️ Error de carga</h2><p>Revisa la consola (F12) o asegúrate de usar un servidor local (Live Server).</p></div>';
+        }
     }
 }
 
