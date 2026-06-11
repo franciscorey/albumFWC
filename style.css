@@ -869,6 +869,65 @@ body {
     color: var(--text-primary, #1a1a2e);
 }
 
+/* ==================== BARRA DE PROGRESO POR SECCIÓN ==================== */
+.country-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap; /* Evita que colapse en pantallas pequeñas */
+}
+
+.country-title-side {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.section-progress-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f1f5f9;
+    padding: 4px 10px;
+    border: 2px solid var(--text-primary, #1a1a2e);
+    border-radius: var(--border-radius-sm, 6px);
+}
+
+.sec-progress-bar {
+    width: 70px;
+    height: 8px;
+    background-color: #e2e8f0;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--text-primary, #1a1a2e);
+}
+
+.sec-progress-fill {
+    width: 0%;
+    height: 100%;
+    background-color: var(--brand-accent, #00d4aa);
+    transition: width 0.25s ease;
+}
+
+.sec-progress-text {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-primary, #1a1a2e);
+    min-width: 35px;
+    text-align: right;
+}
+
+/* Ajuste responsive básico para barras de sección */
+@media (max-width: 480px) {
+    .section-progress-container {
+        padding: 2px 6px;
+    }
+    .sec-progress-bar {
+        width: 50px;
+    }
+}
+
 /* ==================== CURSORES INTERACTIVOS POR MODOS ==================== */
 body.cursor-safe .sticker-item {
     cursor: help;
@@ -884,3 +943,4 @@ body.cursor-remove .sticker-item {
 .action-btn.mode-safe { background-color: #f1f5f9; color: #64748b; }
 .action-btn.mode-adding { background-color: var(--owned-color, #10b981); color: #ffffff; }
 .action-btn.mode-removing { background-color: var(--repeated-color, #ff6b6b); color: #ffffff; }
+
