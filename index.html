@@ -17,22 +17,44 @@
                 <span class="subtitle">Álbum Panini Tracker</span>
             </div>
             <div class="header-actions">
-                <button id="btn-mode" class="action-btn mode-add" title="Cambiar modo">
-                    <span class="btn-icon">➕</span>
-                    <span class="btn-text">Sumar</span>
+                <button id="btn-menu-toggle" class="action-btn btn-menu" title="Menú de opciones">
+                    <span class="btn-icon">☰</span>
+                    <span class="btn-text">Opciones</span>
                 </button>
-                <button id="btn-export" class="action-btn btn-export" title="Exportar faltantes">
-                    <span class="btn-icon">📄</span>
-                    <span class="btn-text">PDF</span>
-                </button>
-                <button id="btn-whatsapp" class="action-btn btn-whatsapp" title="Compartir Faltantes en WhatsApp">
-                    <span class="btn-icon">📱</span>
-                    <span class="btn-text">Faltantes</span>
-                </button>
-                <button id="btn-whatsapp-dup" class="action-btn btn-whatsapp-dup" title="Compartir Repetidas en WhatsApp">
-                    <span class="btn-icon">🔄</span>
-                    <span class="btn-text">Repetidas</span>
-                </button>
+            </div>
+        </div>
+        
+        <!-- Menú expandible de acciones -->
+        <div id="actions-menu" class="actions-menu collapsed">
+            <div class="menu-section">
+                <span class="menu-label">Modo</span>
+                <div class="menu-buttons">
+                    <button id="btn-mode" class="action-btn mode-add" title="Cambiar modo">
+                        <span class="btn-icon">➕</span>
+                        <span class="btn-text">Sumar</span>
+                    </button>
+                    <button id="btn-select-all" class="action-btn btn-select" title="Seleccionar todas">
+                        <span class="btn-icon">✓</span>
+                        <span class="btn-text">Seleccionar</span>
+                    </button>
+                </div>
+            </div>
+            <div class="menu-section">
+                <span class="menu-label">Exportar</span>
+                <div class="menu-buttons">
+                    <button id="btn-export" class="action-btn btn-export" title="Exportar faltantes">
+                        <span class="btn-icon">📄</span>
+                        <span class="btn-text">PDF</span>
+                    </button>
+                    <button id="btn-whatsapp" class="action-btn btn-whatsapp" title="Compartir Faltantes en WhatsApp">
+                        <span class="btn-icon">📱</span>
+                        <span class="btn-text">Faltantes</span>
+                    </button>
+                    <button id="btn-whatsapp-dup" class="action-btn btn-whatsapp-dup" title="Compartir Repetidas en WhatsApp">
+                        <span class="btn-icon">🔄</span>
+                        <span class="btn-text">Repetidas</span>
+                    </button>
+                </div>
             </div>
         </div>
         

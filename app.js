@@ -59,6 +59,9 @@ function cacheDOM() {
     DOM.viewModeSelect = document.getElementById('view-mode-select');
     DOM.btnViewGrid = document.getElementById('btn-view-grid');
     DOM.btnViewList = document.getElementById('btn-view-list');
+    DOM.btnMenuToggle = document.getElementById('btn-menu-toggle');
+    DOM.actionsMenu = document.getElementById('actions-menu');
+    DOM.btnSelectAll = document.getElementById('btn-select-all');
 }
 
 /**
@@ -206,8 +209,16 @@ function updateProgress() {
  * Configura todos los event listeners
  */
 function setupEventListeners() {
+    // Menú expandible de acciones
+    DOM.btnMenuToggle.addEventListener('click', toggleActionsMenu);
+    
     // Botón modo añadir/quitar
     DOM.btnMode.addEventListener('click', toggleMode);
+    
+    // Botón seleccionar todas
+    if (DOM.btnSelectAll) {
+        DOM.btnSelectAll.addEventListener('click', selectAllVisible);
+    }
     
     // Botón exportar PDF
     DOM.btnExport.addEventListener('click', exportToPDF);
@@ -245,8 +256,41 @@ function setupEventListeners() {
         if (e.key === 'Escape') {
             DOM.countryFilterPanel.classList.remove('open');
             DOM.btnFilterCountry.classList.remove('active');
+            if (DOM.actionsMenu && DOM.actionsMenu.classList.contains('expanded')) {
+                DOM.actionsMenu.classList.remove('expanded');
+            }
         }
     });
+}
+
+/**
+ * Alterna el menú de acciones
+ */
+function toggleActionsMenu() {
+    DOM.actionsMenu.classList.toggle('expanded');
+}
+
+/**
+ * Selecciona todas las láminas visibles
+ */
+function selectAllVisible() {
+    const visibleStickers = document.querySelectorAll('.sticker-item:not(.filter-hidden)');
+    let count = 0;
+    visibleStickers.forEach(sticker => {
+        const stickerId = sticker.dataset.id;
+        if (AppState.isAddMode && (!AppState.inventory[stickerId] || AppState.inventory[stickerId] === 0)) {
+            AppState.inventory[stickerId] = 1;
+            updateStickerVisual(sticker);
+            count++;
+        } else if (!AppState.isAddMode && AppState.inventory[stickerId] > 0) {
+            delete AppState.inventory[stickerId];
+            updateStickerVisual(sticker);
+            count++;
+        }
+    });
+    saveInventory();
+    updateProgress();
+    showToast(`${count} láminas ${AppState.isAddMode ? 'añadidas' : 'quitadas'}`);
 }
 
 /**
@@ -343,8 +387,8 @@ function createStickerElement(sticker, prefixToRemove = '', countryData = null, 
         } else {
             emoji = '👤';
         }
-        // Mostrar sigla + nombre
-        displayName = `${displayId} ${name}`;
+        // Mostrar solo nombre (sin prefijo repetido)
+        displayName = name;
     } else if (specialKey) {
         // Láminas especiales
         if (specialKey === 'fwc_panini') {
@@ -354,7 +398,8 @@ function createStickerElement(sticker, prefixToRemove = '', countryData = null, 
         } else if (specialKey === 'coca_cola') {
             emoji = '🥤';
         }
-        displayName = `${displayId} ${name}`;
+        // Mostrar solo nombre (sin prefijo repetido)
+        displayName = name;
     }
     
     el.dataset.id = sticker.id;
@@ -374,9 +419,12 @@ function createStickerElement(sticker, prefixToRemove = '', countryData = null, 
         el.dataset.group = Object.keys(AppState.albumData.groups).find(g => 
             AppState.albumData.groups[g].some(c => c.country === countryData.country)
         );
+        el.dataset.flag = countryData.flag || '🏳️';
+        el.dataset.prefix = prefixToRemove;
     }
     if (specialKey) {
         el.dataset.special = specialKey;
+        el.dataset.prefix = '';
     }
     
     updateStickerVisual(el);
@@ -662,6 +710,15 @@ function displaySearchResults(results, term) {
         if (result.type === 'country') {
             const prefix = result.sticker.id.match(/^[A-Z]+/)[0];
             stickerElement = createStickerElement(result.sticker, prefix, { country: result.country, flag: result.flag });
+            // Actualizar el nombre para mostrar en resultados de búsqueda: emoji + sigla + nombre
+            const idNum = result.sticker.id.replace(prefix, '');
+            const fullName = `${prefix}${idNum} - ${result.sticker.name}`;
+            stickerElement.dataset.originalHtml = stickerElement.dataset.originalHtml.replace(
+                /<div class="sticker-name">.*?<\/div>/,
+                `<div class="sticker-name">${fullName}</div>`
+            );
+            // Refrescar visual si no está filtrado
+            updateStickerVisual(stickerElement);
         } else {
             stickerElement = createStickerElement(result.sticker, '', null, result.special);
         }
