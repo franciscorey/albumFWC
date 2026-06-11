@@ -836,13 +836,15 @@ body {
     display: none;
     position: absolute;
     right: 0;
-    top: 105%;
-    background-color: #ffffff;
-    min-width: 220px;
-    border: 3px solid #1a1a2e;
-    box-shadow: 5px 5px 0px #1a1a2e;
-    z-index: 2000;
-    padding: 5px 0;
+    top: 110%;
+    background-color: var(--bg-secondary, #ffffff);
+    min-width: 210px;
+    border: 2px solid var(--text-primary, #1a1a2e);
+    border-radius: var(--border-radius-md, 10px);
+    box-shadow: var(--shadow-lg, 0 8px 24px rgba(0,0,0,0.12));
+    z-index: 3000;
+    padding: 6px 0;
+    overflow: hidden;
 }
 
 .dropdown-menu.show {
@@ -857,30 +859,28 @@ body {
     text-align: left;
     font-family: 'Space Grotesk', sans-serif;
     font-size: 0.95rem;
-    font-weight: 500;
-    color: #1a1a2e;
+    color: var(--text-primary, #1a1a2e);
     cursor: pointer;
-    transition: background 0.1s ease;
+    transition: background 0.15s ease;
 }
 
 .dropdown-menu button:hover {
-    background-color: #00d4aa;
+    background-color: var(--brand-accent, #00d4aa);
+    color: var(--text-primary, #1a1a2e);
 }
 
 /* ==================== CURSORES INTERACTIVOS POR MODOS ==================== */
 body.cursor-safe .sticker-item {
-    cursor: help; /* Muestra el signo de ayuda "?" indicando que es seguro inspeccionar */
+    cursor: help;
 }
-
 body.cursor-add .sticker-item {
-    cursor: cell; /* Cursor con forma de cruz "+" para añadir de forma precisa */
+    cursor: cell;
 }
-
 body.cursor-remove .sticker-item {
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill:red"><text y="20" font-size="20">➖</text></svg>'), pointer;
+    cursor: no-drop;
 }
 
-/* Estados de botones superiores */
-.action-btn.mode-safe { background-color: #e2e8f0; color: #4a5568; border-color: #1a1a2e; }
-.action-btn.mode-adding { background-color: #00d4aa; color: #1a1a2e; border-color: #1a1a2e; box-shadow: 3px 3px 0px #1a1a2e; }
-.action-btn.mode-removing { background-color: #ff6b6b; color: #ffffff; border-color: #1a1a2e; box-shadow: 3px 3px 0px #1a1a2e; }
+/* Clases de estado dinámico para el botón superior de modos */
+.action-btn.mode-safe { background-color: #f1f5f9; color: #64748b; }
+.action-btn.mode-adding { background-color: var(--owned-color, #10b981); color: #ffffff; }
+.action-btn.mode-removing { background-color: var(--repeated-color, #ff6b6b); color: #ffffff; }
