@@ -17,23 +17,16 @@ venv/
 .venv/
 .env
 .env.local
-*.env.*
+.env.*
 
-# Build directories
-dist/
-build/
-target/
-*.jar
-*.war
-*.class
-*.pyc
-__pycache__/
-
-# Logs and temporary files
+# Logs and temp files
 *.log
 *.tmp
 *.swp
-*.swo
+
+# Editors
+.vscode/
+.idea/
 
 # OS generated files
 .DS_Store
@@ -44,14 +37,13 @@ coverage/
 htmlcov/
 .coverage
 
-# IDE specific
-.vscode/
-.idea/
-*.iml
-*.ipr
-*.iws
+# Build directories
+dist/
+build/
+target/
+.gradle/
 
-# MyPy cache
+# Python specific
 .mypy_cache/
 .pytest_cache/
 

@@ -17,28 +17,21 @@
                 <span class="subtitle">Álbum Panini Tracker</span>
             </div>
             <div class="header-actions">
-                <button id="btn-menu-toggle" class="action-btn btn-menu" title="Menú de opciones">
-                    <span class="btn-icon">☰</span>
-                    <span class="btn-text">Opciones</span>
+                <!-- Botón switch de modo (3 estados) -->
+                <button id="btn-mode-switch" class="action-btn mode-add" title="Cambiar modo">
+                    <span class="btn-icon">➕</span>
+                    <span class="btn-text">Sumar</span>
+                </button>
+                <!-- Botón menú exportación -->
+                <button id="btn-export-menu" class="action-btn btn-export-menu" title="Menú de exportación">
+                    <span class="btn-icon">📤</span>
+                    <span class="btn-text">Exportar</span>
                 </button>
             </div>
         </div>
         
-        <!-- Menú expandible de acciones -->
-        <div id="actions-menu" class="actions-menu collapsed">
-            <div class="menu-section">
-                <span class="menu-label">Modo</span>
-                <div class="menu-buttons">
-                    <button id="btn-mode" class="action-btn mode-add" title="Cambiar modo">
-                        <span class="btn-icon">➕</span>
-                        <span class="btn-text">Sumar</span>
-                    </button>
-                    <button id="btn-select-all" class="action-btn btn-select" title="Seleccionar todas">
-                        <span class="btn-icon">✓</span>
-                        <span class="btn-text">Seleccionar</span>
-                    </button>
-                </div>
-            </div>
+        <!-- Menú expandible de exportación -->
+        <div id="export-menu" class="export-menu collapsed">
             <div class="menu-section">
                 <span class="menu-label">Exportar</span>
                 <div class="menu-buttons">

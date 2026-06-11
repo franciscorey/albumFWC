@@ -14,7 +14,7 @@ const AppState = {
     albumData: null,
     inventory: {},
     stats: { total: 0, groups: 0, countries: 0, specials: 0 },
-    isAddMode: true,
+    modeState: 0, // 0 = ninguno (gris), 1 = añadir (verde), 2 = quitar (rojo)
     activeGroup: null,
     activeCountry: null,
     allCountries: [],
@@ -41,7 +41,7 @@ function cacheDOM() {
     DOM.navContainer = document.getElementById('nav-groups');
     DOM.mainContainer = document.getElementById('app-main');
     DOM.searchInput = document.getElementById('search-input');
-    DOM.btnMode = document.getElementById('btn-mode');
+    DOM.btnModeSwitch = document.getElementById('btn-mode-switch');
     DOM.btnExport = document.getElementById('btn-export');
     DOM.btnWhatsapp = document.getElementById('btn-whatsapp');
     DOM.btnWhatsappDup = document.getElementById('btn-whatsapp-dup');
@@ -59,9 +59,8 @@ function cacheDOM() {
     DOM.viewModeSelect = document.getElementById('view-mode-select');
     DOM.btnViewGrid = document.getElementById('btn-view-grid');
     DOM.btnViewList = document.getElementById('btn-view-list');
-    DOM.btnMenuToggle = document.getElementById('btn-menu-toggle');
-    DOM.actionsMenu = document.getElementById('actions-menu');
-    DOM.btnSelectAll = document.getElementById('btn-select-all');
+    DOM.btnExportMenu = document.getElementById('btn-export-menu');
+    DOM.exportMenu = document.getElementById('export-menu');
 }
 
 /**
@@ -209,16 +208,11 @@ function updateProgress() {
  * Configura todos los event listeners
  */
 function setupEventListeners() {
-    // Menú expandible de acciones
-    DOM.btnMenuToggle.addEventListener('click', toggleActionsMenu);
+    // Botón switch de modo (3 estados: ninguno, añadir, quitar)
+    DOM.btnModeSwitch.addEventListener('click', cycleMode);
     
-    // Botón modo añadir/quitar
-    DOM.btnMode.addEventListener('click', toggleMode);
-    
-    // Botón seleccionar todas
-    if (DOM.btnSelectAll) {
-        DOM.btnSelectAll.addEventListener('click', selectAllVisible);
-    }
+    // Botón menú exportación
+    DOM.btnExportMenu.addEventListener('click', toggleExportMenu);
     
     // Botón exportar PDF
     DOM.btnExport.addEventListener('click', exportToPDF);
@@ -256,52 +250,46 @@ function setupEventListeners() {
         if (e.key === 'Escape') {
             DOM.countryFilterPanel.classList.remove('open');
             DOM.btnFilterCountry.classList.remove('active');
-            if (DOM.actionsMenu && DOM.actionsMenu.classList.contains('expanded')) {
-                DOM.actionsMenu.classList.remove('expanded');
+            if (DOM.exportMenu && DOM.exportMenu.classList.contains('expanded')) {
+                DOM.exportMenu.classList.remove('expanded');
             }
         }
     });
 }
 
 /**
- * Alterna el menú de acciones
+ * Alterna el menú de exportación
  */
-function toggleActionsMenu() {
-    DOM.actionsMenu.classList.toggle('expanded');
+function toggleExportMenu() {
+    DOM.exportMenu.classList.toggle('expanded');
 }
 
 /**
- * Selecciona todas las láminas visibles
+ * Cicla entre los 3 estados del modo: ninguno (gris), añadir (verde), quitar (rojo)
  */
-function selectAllVisible() {
-    const visibleStickers = document.querySelectorAll('.sticker-item:not(.filter-hidden)');
-    let count = 0;
-    visibleStickers.forEach(sticker => {
-        const stickerId = sticker.dataset.id;
-        if (AppState.isAddMode && (!AppState.inventory[stickerId] || AppState.inventory[stickerId] === 0)) {
-            AppState.inventory[stickerId] = 1;
-            updateStickerVisual(sticker);
-            count++;
-        } else if (!AppState.isAddMode && AppState.inventory[stickerId] > 0) {
-            delete AppState.inventory[stickerId];
-            updateStickerVisual(sticker);
-            count++;
-        }
-    });
-    saveInventory();
-    updateProgress();
-    showToast(`${count} láminas ${AppState.isAddMode ? 'añadidas' : 'quitadas'}`);
+function cycleMode() {
+    AppState.modeState = (AppState.modeState + 1) % 3;
+    updateModeButton();
+    
+    const modeNames = ['Ninguno', 'Sumar', 'Quitar'];
+    showToast(`Modo: ${modeNames[AppState.modeState]}`);
 }
 
 /**
- * Alterna entre modo añadir y quitar
+ * Actualiza el botón de modo según el estado actual
  */
-function toggleMode() {
-    AppState.isAddMode = !AppState.isAddMode;
-    DOM.btnMode.className = `action-btn ${AppState.isAddMode ? 'mode-add' : 'mode-sub'}`;
-    DOM.btnMode.querySelector('.btn-icon').textContent = AppState.isAddMode ? '➕' : '➖';
-    DOM.btnMode.querySelector('.btn-text').textContent = AppState.isAddMode ? 'Sumar' : 'Quitar';
-    showToast(AppState.isAddMode ? 'Modo: Añadir láminas' : 'Modo: Quitar láminas');
+function updateModeButton() {
+    const icons = ['⊘', '➕', '➖'];
+    const texts = ['Ninguno', 'Sumar', 'Quitar'];
+    const classes = ['mode-none', 'mode-add', 'mode-sub'];
+    
+    // Remover todas las clases de modo
+    DOM.btnModeSwitch.classList.remove('mode-none', 'mode-add', 'mode-sub');
+    
+    // Añadir la clase correspondiente
+    DOM.btnModeSwitch.classList.add(classes[AppState.modeState]);
+    DOM.btnModeSwitch.querySelector('.btn-icon').textContent = icons[AppState.modeState];
+    DOM.btnModeSwitch.querySelector('.btn-text').textContent = texts[AppState.modeState];
 }
 
 /**
@@ -310,20 +298,15 @@ function toggleMode() {
 function handleStickerClick(stickerId, element) {
     const currentCount = AppState.inventory[stickerId] || 0;
     
-    if (AppState.isAddMode) {
+    if (AppState.modeState === 1) { // Modo añadir
         AppState.inventory[stickerId] = currentCount + 1;
-    } else if (currentCount > 0) {
+    } else if (AppState.modeState === 2 && currentCount > 0) { // Modo quitar
         AppState.inventory[stickerId] = currentCount - 1;
     }
+    // Si modeState === 0, no hacer nada
     
     if (AppState.inventory[stickerId] === 0) {
         delete AppState.inventory[stickerId];
-    }
-    
-    updateStickerVisual(element);
-    saveInventory();
-    updateProgress();
-}
 
 /**
  * Actualiza el aspecto visual de una lámina
@@ -710,9 +693,10 @@ function displaySearchResults(results, term) {
         if (result.type === 'country') {
             const prefix = result.sticker.id.match(/^[A-Z]+/)[0];
             stickerElement = createStickerElement(result.sticker, prefix, { country: result.country, flag: result.flag });
-            // Actualizar el nombre para mostrar en resultados de búsqueda: emoji + sigla + nombre
+            // Actualizar el nombre para mostrar en resultados de búsqueda: emoji + sigla + numero - nombre
             const idNum = result.sticker.id.replace(prefix, '');
-            const fullName = `${prefix}${idNum} - ${result.sticker.name}`;
+            const emoji = stickerElement.querySelector('.sticker-emoji').textContent;
+            const fullName = `${emoji} ${prefix}${idNum} - ${result.sticker.name}`;
             stickerElement.dataset.originalHtml = stickerElement.dataset.originalHtml.replace(
                 /<div class="sticker-name">.*?<\/div>/,
                 `<div class="sticker-name">${fullName}</div>`
@@ -721,6 +705,16 @@ function displaySearchResults(results, term) {
             updateStickerVisual(stickerElement);
         } else {
             stickerElement = createStickerElement(result.sticker, '', null, result.special);
+            // Para especiales también mostrar formato completo
+            const emoji = stickerElement.querySelector('.sticker-emoji').textContent;
+            const idNum = result.sticker.id.replace(/^[A-Z]+/, '');
+            const sigla = result.sticker.id.match(/^[A-Z]+/) ? result.sticker.id.match(/^[A-Z]+/)[0] : '';
+            const fullName = `${emoji} ${sigla}${idNum} - ${result.sticker.name}`;
+            stickerElement.dataset.originalHtml = stickerElement.dataset.originalHtml.replace(
+                /<div class="sticker-name">.*?<\/div>/,
+                `<div class="sticker-name">${fullName}</div>`
+            );
+            updateStickerVisual(stickerElement);
         }
         
         // Añadir evento click para navegar al grupo/país
