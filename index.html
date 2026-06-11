@@ -16,23 +16,23 @@
                 <h1>🏆 FWC 2026</h1>
                 <span class="subtitle">Álbum Panini Tracker</span>
             </div>
-            <div class="header-actions">
-                <button id="btn-mode" class="action-btn mode-add" title="Cambiar modo">
-                    <span class="btn-icon">➕</span>
-                    <span class="btn-text">Sumar</span>
+           <div class="header-actions">
+                <button id="btn-mode" class="action-btn mode-none" title="Cambiar modo operativo">
+                    <span class="btn-icon">🔒</span>
+                    <span class="btn-text">Vista</span>
                 </button>
-                <button id="btn-export" class="action-btn btn-export" title="Exportar faltantes">
-                    <span class="btn-icon">📄</span>
-                    <span class="btn-text">PDF</span>
-                </button>
-                <button id="btn-whatsapp" class="action-btn btn-whatsapp" title="Compartir Faltantes en WhatsApp">
-                    <span class="btn-icon">📱</span>
-                    <span class="btn-text">Faltantes</span>
-                </button>
-                <button id="btn-whatsapp-dup" class="action-btn btn-whatsapp-dup" title="Compartir Repetidas en WhatsApp">
-                    <span class="btn-icon">🔄</span>
-                    <span class="btn-text">Repetidas</span>
-                </button>
+            
+                <div class="dropdown-container">
+                    <button id="dropdown-export-btn" class="action-btn dropdown-trigger" title="Opciones de exportación">
+                        <span class="btn-icon">📄</span>
+                        <span class="btn-text">Exportar</span>
+                    </button>
+                    <div id="dropdown-export-content" class="dropdown-content">
+                        <button id="btn-export">📄 Guardar como PDF</button>
+                        <button id="btn-whatsapp">🟢 Compartir Faltantes</button>
+                        <button id="btn-whatsapp-dup">🔄 Compartir Repetidas</button>
+                    </div>
+                </div>
             </div>
         </div>
         
