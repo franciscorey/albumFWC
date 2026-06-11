@@ -1,6 +1,5 @@
 /**
- * FWC 2026 Album Tracker - Aplicación para gestionar el álbum Panini
- * Características: Registro de láminas, filtro por país/grupo, exportación PDF y menús dinámicos
+ * FWC 2026 Album Tracker - Versión Optimizada y Corregida
  */
 
 const CONFIG = {
@@ -9,20 +8,17 @@ const CONFIG = {
     TOAST_DURATION: 2500
 };
 
-// Estado global de la aplicación
 const AppState = {
     albumData: null,
     inventory: {},
     stats: { total: 0, groups: 0, countries: 0, specials: 0 },
-    modeState: 0, // 0 = Solo Vista/Bloqueado (Seguro), 1 = Añadir (+), 2 = Quitar (-)
-    activeGroup: null,
-    activeCountry: null,
-    allCountries: [],
-    viewMode: 'all', // all, missing, owned, repeated
-    listMode: false // false = grid, true = list
+    modeState: 0, // 0 = Solo Vista (Seguro), 1 = Sumar (+), 2 = Quitar (-)
+    activeSection: 'A', // Guarda la sección activa para restaurarla al borrar la búsqueda
+    isSpecial: false,
+    viewMode: 'all',
+    listMode: false
 };
 
-// Referencias DOM cacheadas
 const DOM = {};
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -37,13 +33,14 @@ function cacheDOM() {
     DOM.searchInput = document.getElementById('search-input');
     DOM.btnModeSwitch = document.getElementById('btn-mode'); 
     
-    // Elementos del nuevo menú desplegable
+    // Elementos del Dropdown de Exportación
     DOM.dropdownBtn = document.getElementById('dropdown-export-btn');
     DOM.dropdownContent = document.getElementById('dropdown-export-content');
     DOM.btnExport = document.getElementById('btn-export');
     DOM.btnWhatsapp = document.getElementById('btn-whatsapp');
     DOM.btnWhatsappDup = document.getElementById('btn-whatsapp-dup');
     
+    // Cuadro de mandos y progreso
     DOM.dashboard = document.getElementById('dashboard');
     DOM.progressBarFill = document.getElementById('progress-bar-fill');
     DOM.progressPercentage = document.getElementById('progress-percentage');
@@ -64,7 +61,6 @@ function loadInventory() {
     try {
         AppState.inventory = JSON.parse(localStorage.getItem(CONFIG.STORAGE_KEY)) || {};
     } catch (e) {
-        console.error('Error cargando inventario:', e);
         AppState.inventory = {};
     }
 }
@@ -75,25 +71,21 @@ function saveInventory() {
 
 async function initApp() {
     try {
-        await loadAlbumData();
+        const response = await fetch(CONFIG.JSON_FILE);
+        AppState.albumData = await response.json();
+        
         calculateStats();
         renderDashboard();
         buildNavigation();
         buildCountryFilter();
-        renderSection('A');
+        renderSection('A', false);
         updateProgress();
         updateModeButton(); 
         setupEventListeners();
     } catch (error) {
-        console.error('Error inicializando app:', error);
-        showError('No se pudo cargar el álbum. Verifica tu conexión.');
+        console.error(error);
+        if (DOM.mainContainer) DOM.mainContainer.innerHTML = '<div class="error-msg">Error cargando los datos.</div>';
     }
-}
-
-async function loadAlbumData() {
-    const response = await fetch(CONFIG.JSON_FILE);
-    if (!response.ok) throw new Error('No se pudo cargar el JSON');
-    AppState.albumData = await response.json();
 }
 
 function calculateStats() {
@@ -107,13 +99,7 @@ function calculateStats() {
         AppState.stats.countries += group.length;
         group.forEach(country => {
             AppState.stats.total += country.stickers.length;
-            AppState.allCountries.push({
-                name: country.country,
-                flag: country.flag || '🏳️',
-                group: Object.keys(AppState.albumData.groups).find(g => 
-                    AppState.albumData.groups[g].some(c => c.country === country.country)
-                )
-            });
+            AppState.allCountries.push({ name: country.country, flag: country.flag || '🏳️' });
         });
     });
     
@@ -123,26 +109,19 @@ function calculateStats() {
 }
 
 function renderDashboard() {
-    const uniqueOwned = getUniqueOwnedCount();
+    const uniqueOwned = Object.keys(AppState.inventory).filter(id => AppState.inventory[id] > 0).length;
+    if (!DOM.dashboard) return;
     DOM.dashboard.innerHTML = `
         <div class="stat-card"><span class="stat-value">${AppState.stats.total}</span><span class="stat-label">Total Láminas</span></div>
         <div class="stat-card"><span class="stat-value">${AppState.stats.countries}</span><span class="stat-label">Países</span></div>
         <div class="stat-card"><span class="stat-value">${AppState.stats.groups}</span><span class="stat-label">Grupos</span></div>
-        <div class="stat-card highlight"><span class="stat-value" id="dash-owned">${uniqueOwned}</span><span class="stat-label">Completadas</span></div>
+        <div class="stat-card highlight"><span class="stat-value" id="dash-owned">${uniqueOwned}</span><span class="stat-label">Obtenidas</span></div>
     `;
 }
 
-function getUniqueOwnedCount() {
-    return Object.keys(AppState.inventory).filter(id => AppState.inventory[id] > 0).length;
-}
-
-function getTotalRepeatedCount() {
-    return Object.values(AppState.inventory).reduce((sum, count) => sum + Math.max(0, count - 1), 0);
-}
-
 function updateProgress() {
-    const uniqueOwned = getUniqueOwnedCount();
-    const totalRepeated = getTotalRepeatedCount();
+    const uniqueOwned = Object.keys(AppState.inventory).filter(id => AppState.inventory[id] > 0).length;
+    const totalRepeated = Object.values(AppState.inventory).reduce((sum, count) => sum + Math.max(0, count - 1), 0);
     const percentage = AppState.stats.total > 0 ? ((uniqueOwned / AppState.stats.total) * 100).toFixed(1) : 0;
     
     if(DOM.progressPercentage) DOM.progressPercentage.textContent = `${percentage}%`;
@@ -156,32 +135,38 @@ function updateProgress() {
 }
 
 function setupEventListeners() {
-    // Interactividad del Botón de 3 Modos Seguros
+    // Manejo del botón de Modos Operativos (Ciclo Seguro)
     if (DOM.btnModeSwitch) {
         DOM.btnModeSwitch.addEventListener('click', (e) => {
             e.preventDefault();
-            cycleMode();
+            AppState.modeState = (AppState.modeState + 1) % 3;
+            updateModeButton();
         });
     }
     
-    // Toggle para el menú desplegable de Exportación
+    // Desplegar / Ocultar Menú de Exportación
     if (DOM.dropdownBtn) {
         DOM.dropdownBtn.addEventListener('click', (e) => {
+            e.preventDefault();
             e.stopPropagation();
             DOM.dropdownContent.classList.toggle('show');
         });
     }
 
-    // Cerrar el menú flotante si se hace clic fuera de él
+    // Cerrar menú si se hace clic en el documento exterior
     document.addEventListener('click', () => {
         if (DOM.dropdownContent) DOM.dropdownContent.classList.remove('show');
     });
 
+    // Eventos internos del menú desplegable de exportación
     if (DOM.btnExport) DOM.btnExport.addEventListener('click', () => { exportToPDF(); });
     if (DOM.btnWhatsapp) DOM.btnWhatsapp.addEventListener('click', () => { shareToWhatsApp(); });
     if (DOM.btnWhatsappDup) DOM.btnWhatsappDup.addEventListener('click', () => { shareDuplicatesToWhatsApp(); });
     
-    if (DOM.searchInput) DOM.searchInput.addEventListener('input', handleSearch);
+    // Búsqueda en tiempo real
+    if (DOM.searchInput) DOM.searchInput.addEventListener('input', handleGlobalSearch);
+    
+    // Paneles auxiliares y filtros visuales
     if (DOM.btnFilterCountry) DOM.btnFilterCountry.addEventListener('click', toggleCountryFilter);
     if (DOM.btnCloseFilter) {
         DOM.btnCloseFilter.addEventListener('click', () => {
@@ -201,47 +186,93 @@ function setupEventListeners() {
     if (DOM.btnViewList) DOM.btnViewList.addEventListener('click', () => setListView(true));
 }
 
-function cycleMode() {
-    AppState.modeState = (AppState.modeState + 1) % 3;
-    
-    // Cambiar clases del body para control visual y cursores personalizados
-    document.body.classList.remove('mode-safe', 'mode-adding', 'mode-removing');
-    
-    const modeNames = ['Solo Vista 🔒', 'Añadir Láminas ➕', 'Quitar Láminas ➖'];
-    let toastType = 'info';
-
-    if (AppState.modeState === 0) {
-        document.body.classList.add('mode-safe');
-    } else if (AppState.modeState === 1) {
-        document.body.classList.add('mode-adding');
-        toastType = 'success';
-    } else if (AppState.modeState === 2) {
-        document.body.classList.add('mode-removing');
-        toastType = 'error';
-    }
-    
-    updateModeButton();
-    showToast(`Modo: ${modeNames[AppState.modeState]}`, toastType);
-}
-
 function updateModeButton() {
     if (!DOM.btnModeSwitch) return;
+    
     const icons = ['🔒', '➕', '➖'];
-    const texts = ['Vista', 'Sumar', 'Quitar'];
-    const classes = ['mode-none', 'mode-add', 'mode-sub'];
+    const texts = ['Solo Vista', 'Modo Añadir', 'Modo Quitar'];
+    const classes = ['mode-safe', 'mode-adding', 'mode-removing'];
     
     DOM.btnModeSwitch.className = 'action-btn ' + classes[AppState.modeState];
+    
     const iconEl = DOM.btnModeSwitch.querySelector('.btn-icon');
     const textEl = DOM.btnModeSwitch.querySelector('.btn-text');
     
     if (iconEl) iconEl.textContent = icons[AppState.modeState];
     if (textEl) textEl.textContent = texts[AppState.modeState];
+    
+    // Sincronizar clases con el body para cambiar el cursor de la app completa
+    document.body.classList.remove('cursor-safe', 'cursor-add', 'cursor-remove');
+    const bodyCursors = ['cursor-safe', 'cursor-add', 'cursor-remove'];
+    document.body.classList.add(bodyCursors[AppState.modeState]);
+
+    showToast(`Cambiado a: ${texts[AppState.modeState]}`);
+}
+
+/**
+ * BÚSQUEDA GLOBAL REAL: Escanea todo el JSON inmediatamente y renderiza los bloques
+ */
+function handleGlobalSearch(e) {
+    const query = e.target.value.toLowerCase().trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    
+    if (query === '') {
+        // Restaurar la sección donde estaba el usuario antes de buscar
+        if (AppState.isSpecial) {
+            renderSpecial(AppState.activeSection);
+        } else {
+            renderSection(AppState.activeSection, false);
+        }
+        return;
+    }
+    
+    DOM.mainContainer.innerHTML = '';
+    
+    const searchSection = document.createElement('section');
+    searchSection.className = 'country-section';
+    searchSection.innerHTML = `
+        <div class="country-header"><span>🔍</span> Resultados de Búsqueda Global</div>
+        <div class="sticker-grid" id="search-results-grid"></div>
+    `;
+    DOM.mainContainer.appendChild(searchSection);
+    const grid = document.getElementById('search-results-grid');
+    
+    let totalMatches = 0;
+
+    // 1. Buscar en grupos de países
+    Object.values(AppState.albumData.groups).flat().forEach(country => {
+        const prefix = country.stickers[0] ? country.stickers[0].id.match(/^[A-Z]+/)[0] : '';
+        country.stickers.forEach(sticker => {
+            const stickerName = (sticker.name || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            if (sticker.id.toLowerCase().includes(query) || stickerName.includes(query)) {
+                grid.appendChild(createStickerElement(sticker, prefix, country));
+                totalMatches++;
+            }
+        });
+    });
+    
+    // 2. Buscar en secciones especiales
+    Object.entries(AppState.albumData.specials).forEach(([key, stickers]) => {
+        stickers.forEach(sticker => {
+            const stickerName = (sticker.name || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            if (sticker.id.toLowerCase().includes(query) || stickerName.includes(query)) {
+                grid.appendChild(createStickerElement(sticker, '', null, key));
+                totalMatches++;
+            }
+        });
+    });
+
+    if (totalMatches === 0) {
+        grid.innerHTML = '<div style="grid-column: 1/-1; padding: 20px; text-align: center; color: var(--text-secondary);">No se encontraron láminas coordinadas con la búsqueda.</div>';
+    }
+
+    applyViewFilters();
+    setListView(AppState.listMode);
 }
 
 function handleStickerClick(stickerId, element, name) {
     if (AppState.modeState === 0) {
-        // En modo seguro/bloqueado, el clic muestra información detallada sin modificar el inventario
-        showToast(`Lámina: ${stickerId} - ${name}`, 'info');
+        // Evita errores: Solo muestra información en modo seguro sin alterar datos
+        showToast(`📌 [${stickerId}] - ${name}`, 'info');
         return;
     }
     
@@ -265,10 +296,8 @@ function handleStickerClick(stickerId, element, name) {
 function updateStickerVisual(element) {
     const stickerId = element.dataset.id;
     const count = AppState.inventory[stickerId] || 0;
-    const isHiddenByFilter = shouldHideByFilter(count);
     
     element.className = 'sticker-item';
-    if (isHiddenByFilter) element.classList.add('filter-hidden');
     element.innerHTML = element.dataset.originalHtml;
     
     if (count === 1) {
@@ -279,19 +308,10 @@ function updateStickerVisual(element) {
     }
 }
 
-function shouldHideByFilter(count) {
-    switch (AppState.viewMode) {
-        case 'missing': return count !== 0;
-        case 'owned': return count !== 1;
-        case 'repeated': return count <= 1;
-        default: return false;
-    }
-}
-
 function createStickerElement(sticker, prefixToRemove = '', countryData = null, specialKey = null) {
     const el = document.createElement('div');
     const displayId = sticker.id.replace(prefixToRemove, '');
-    const name = sticker.name || 'Lámina Especial';
+    const name = sticker.name || 'Lámina';
     
     let emoji = '👤';
     if (countryData) {
@@ -324,8 +344,14 @@ function buildNavigation() {
     Object.keys(AppState.albumData.groups).forEach(group => {
         const btn = document.createElement('button');
         btn.className = 'nav-btn';
+        if(group === 'A') btn.classList.add('active');
         btn.textContent = `Grupo ${group}`;
-        btn.onclick = () => { setActiveNavButton(btn); renderSection(group); };
+        btn.onclick = () => { 
+            setActiveNavButton(btn); 
+            AppState.isSpecial = false;
+            AppState.activeSection = group;
+            renderSection(group, true); 
+        };
         DOM.navContainer.appendChild(btn);
     });
     
@@ -333,7 +359,12 @@ function buildNavigation() {
         const btn = document.createElement('button');
         btn.className = 'nav-btn';
         btn.textContent = key.replace('_', ' ').toUpperCase();
-        btn.onclick = () => { setActiveNavButton(btn); renderSpecial(key); };
+        btn.onclick = () => { 
+            setActiveNavButton(btn); 
+            AppState.isSpecial = true;
+            AppState.activeSection = key;
+            renderSpecial(key); 
+        };
         DOM.navContainer.appendChild(btn);
     });
 }
@@ -341,58 +372,16 @@ function buildNavigation() {
 function setActiveNavButton(activeBtn) {
     DOM.navContainer.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
     activeBtn.classList.add('active');
+    if(DOM.searchInput) DOM.searchInput.value = ''; // Limpiar buscador al cambiar de pestaña
 }
 
-function buildCountryFilter() {
-    if (!DOM.countryList) return;
-    DOM.countryList.innerHTML = '';
-    AppState.allCountries.forEach(country => {
-        const chip = document.createElement('div');
-        chip.className = 'country-chip';
-        chip.innerHTML = `<span>${country.flag}</span> <span>${country.name}</span>`;
-        chip.onclick = () => filterByCountry(country.name, chip);
-        DOM.countryList.appendChild(chip);
-    });
-}
-
-function toggleCountryFilter() {
-    DOM.countryFilterPanel.classList.toggle('open');
-    DOM.btnFilterCountry.classList.toggle('active');
-}
-
-function filterByCountry(countryName, chipElement) {
-    const isActive = chipElement.classList.contains('active');
-    DOM.countryList.querySelectorAll('.country-chip').forEach(c => c.classList.remove('active'));
-    
-    if (!isActive) {
-        chipElement.classList.add('active');
-        searchAndDisplayCountry(countryName);
-    } else {
-        if (AppState.activeGroup) renderSection(AppState.activeGroup);
-    }
-}
-
-function searchAndDisplayCountry(countryName) {
+function renderSection(groupKey, clearSearch = false) {
+    if(clearSearch && DOM.searchInput) DOM.searchInput.value = '';
     DOM.mainContainer.innerHTML = '';
-    for (const [groupName, countries] of Object.entries(AppState.albumData.groups)) {
-        const countryData = countries.find(c => c.country === countryName);
-        if (countryData) {
-            DOM.mainContainer.appendChild(createCountrySection(countryData));
-            applyViewFilters();
-            setListView(AppState.listMode);
-            break;
-        }
-    }
-}
-
-function renderSection(groupKey) {
-    DOM.mainContainer.innerHTML = '';
-    AppState.activeGroup = groupKey;
     
     AppState.albumData.groups[groupKey].forEach(countryData => {
         DOM.mainContainer.appendChild(createCountrySection(countryData));
     });
-    
     applyViewFilters();
     setListView(AppState.listMode);
 }
@@ -419,8 +408,6 @@ function createCountrySection(countryData) {
 
 function renderSpecial(specialKey) {
     DOM.mainContainer.innerHTML = '';
-    AppState.activeGroup = null;
-    
     const section = document.createElement('section');
     section.className = 'country-section';
     section.innerHTML = `
@@ -434,56 +421,31 @@ function renderSpecial(specialKey) {
     AppState.albumData.specials[specialKey].forEach(sticker => {
         grid.appendChild(createStickerElement(sticker, '', null, specialKey));
     });
-    
     applyViewFilters();
     setListView(AppState.listMode);
 }
 
-/**
- * Búsqueda global mejorada (Grupos + Especiales en simultáneo)
- */
-function handleSearch(e) {
-    const term = e.target.value.toLowerCase().trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-    
-    if (term === '') {
-        if (AppState.activeGroup) renderSection(AppState.activeGroup);
-        else renderSection('A');
-        return;
-    }
-    
-    DOM.mainContainer.innerHTML = '';
-    
-    const section = document.createElement('section');
-    section.className = 'country-section';
-    section.innerHTML = `
-        <div class="country-header"><span>🔍</span> Resultadados Globales</div>
-        <div class="sticker-grid"></div>
-    `;
-    DOM.mainContainer.appendChild(section);
-    const grid = section.querySelector('.sticker-grid');
-    
-    // 1. Buscar en países / grupos
-    Object.values(AppState.albumData.groups).flat().forEach(country => {
-        country.stickers.forEach(s => {
-            const matchName = (s.name || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-            if (s.id.toLowerCase().includes(term) || matchName.includes(term)) {
-                grid.appendChild(createStickerElement(s, '', country));
-            }
-        });
+function buildCountryFilter() {
+    if (!DOM.countryList) return;
+    DOM.countryList.innerHTML = '';
+    AppState.allCountries.forEach(country => {
+        const chip = document.createElement('div');
+        chip.className = 'country-chip';
+        chip.innerHTML = `<span>${country.flag}</span> <span>${country.name}</span>`;
+        chip.onclick = () => {
+            DOM.countryList.querySelectorAll('.country-chip').forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
+            if(DOM.searchInput) DOM.searchInput.value = country.name;
+            handleGlobalSearch({ target: { value: country.name } });
+            DOM.countryFilterPanel.classList.remove('open');
+        };
+        DOM.countryList.appendChild(chip);
     });
-    
-    // 2. Buscar en las categorías especiales
-    Object.entries(AppState.albumData.specials).forEach(([key, stickers]) => {
-        stickers.forEach(s => {
-            const matchName = (s.name || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-            if (s.id.toLowerCase().includes(term) || matchName.includes(term)) {
-                grid.appendChild(createStickerElement(s, '', null, key));
-            }
-        });
-    });
-    
-    applyViewFilters();
-    setListView(AppState.listMode);
+}
+
+function toggleCountryFilter() {
+    DOM.countryFilterPanel.classList.toggle('open');
+    DOM.btnFilterCountry.classList.toggle('active');
 }
 
 function applyViewFilters() {
@@ -511,23 +473,43 @@ function setListView(isList) {
 }
 
 function exportToPDF() {
-    const printContent = document.getElementById('print-content');
-    if (!printContent) return;
+    let html = `
+        <div style="font-family:'Space Grotesk', sans-serif; padding:20px; color:#1a1a2e;">
+            <h1 style="border-bottom:4px solid #1a1a2e; padding-bottom:10px; margin-bottom:20px;">🏆 MIS FALTANTES FWC 2026</h1>
+            <p>Generado el: ${new Date().toLocaleDateString('es-CH')}</p>
+            <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap:10px; margin-top:20px;">
+    `;
     
-    let html = '';
     let missingCount = 0;
     
+    // Recorrer grupos normales
     Object.values(AppState.albumData.groups).flat().forEach(c => {
-        const missing = c.stickers.filter(s => !AppState.inventory[s.id]);
-        if (missing.length > 0) {
-            missingCount += missing.length;
-            html += `<div class="print-section-title">${c.flag || ''} ${c.country}</div>`;
-            html += missing.map(s => `<div class="print-missing-item">${s.id} - ${s.name}</div>`).join('');
+        c.stickers.forEach(s => {
+            if (!AppState.inventory[s.id]) {
+                html += `<div style="padding:8px; border:2px solid #1a1a2e; background:#fff; font-weight:bold;">❌ ${s.id}</div>`;
+                missingCount++;
+            }
+        });
+    });
+
+    // Recorrer especiales
+    Object.values(AppState.albumData.specials).flat().forEach(s => {
+        if (!AppState.inventory[s.id]) {
+            html += `<div style="padding:8px; border:2px solid #1a1a2e; background:#fff; font-weight:bold;">⭐ ${s.id}</div>`;
+            missingCount++;
         }
     });
     
-    printContent.innerHTML = html || '<p>¡Álbum Completado! 🏆</p>';
-    setTimeout(() => window.print(), 300);
+    html += `</div></div>`;
+    
+    if (missingCount === 0) {
+        showToast('¡Felicidades! Tienes el álbum completo.', 'success');
+        return;
+    }
+
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`<html><head><title>Faltantes FWC 2026</title></head><body onload="window.print()">${html}</body></html>`);
+    printWindow.document.close();
 }
 
 function shareToWhatsApp() {
@@ -535,9 +517,13 @@ function shareToWhatsApp() {
     Object.values(AppState.albumData.groups).flat().forEach(c => {
         c.stickers.forEach(s => { if (!AppState.inventory[s.id]) missing.push(s.id); });
     });
+    Object.values(AppState.albumData.specials).flat().forEach(s => {
+        if (!AppState.inventory[s.id]) missing.push(s.id);
+    });
+
     if(missing.length === 0) { showToast('¡No tienes láminas faltantes! 😎', 'success'); return; }
     
-    let message = `🏆 *MIS FALTANTES FWC 2026:*\n${missing.join(', ')}`;
+    let message = `🏆 *MIS FALTANTES FWC 2026 (${missing.length}):*\n${missing.join(', ')}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
 }
 
@@ -546,6 +532,10 @@ function shareDuplicatesToWhatsApp() {
     Object.values(AppState.albumData.groups).flat().forEach(c => {
         c.stickers.forEach(s => { if (AppState.inventory[s.id] > 1) dups.push(`${s.id}(x${AppState.inventory[s.id]-1})`); });
     });
+    Object.values(AppState.albumData.specials).flat().forEach(s => {
+        if (AppState.inventory[s.id] > 1) dups.push(`${s.id}(x${AppState.inventory[s.id]-1})`);
+    });
+
     if(dups.length === 0) { showToast('No tienes repetidas aún 🔄', 'info'); return; }
     
     let message = `🔄 *MIS REPETIDAS FWC 2026:*\n${dups.join(', ')}`;
@@ -557,8 +547,4 @@ function showToast(message, type = 'info') {
     DOM.toast.textContent = message;
     DOM.toast.className = `toast ${type} show`;
     setTimeout(() => DOM.toast.classList.remove('show'), CONFIG.TOAST_DURATION);
-}
-
-function showError(message) {
-    if (DOM.mainContainer) DOM.mainContainer.innerHTML = `<div class="error-msg">⚠️ ${message}</div>`;
 }
