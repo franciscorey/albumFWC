@@ -825,3 +825,59 @@ body {
     color: var(--text-secondary);
     font-size: 0.9rem;
 }
+
+/* Contenedor relativo del Dropdown */
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* El menú flotante oculto por defecto */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 105%;
+    background-color: #ffffff;
+    min-width: 200px;
+    border: 3px solid #1a1a2e;
+    box-shadow: 5px 5px 0px #1a1a2e;
+    z-index: 1000;
+}
+
+/* Mostrar cuando tiene la clase activa */
+.dropdown-content.show {
+    display: block;
+}
+
+/* Botones internos del menú desplegable */
+.dropdown-content button {
+    width: 100%;
+    padding: 10px 15px;
+    background: none;
+    border: none;
+    text-align: left;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem;
+    color: #1a1a2e;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.dropdown-content button:hover {
+    background-color: #00d4aa;
+    color: #1a1a2e;
+}
+
+/* ==================== CURSORES DINÁMICOS POR MODO ==================== */
+body.mode-safe .sticker-item {
+    cursor: help; /* Indica que al hacer clic se inspecciona información */
+}
+
+body.mode-adding .sticker-item {
+    cursor: cell; /* Icono de suma o adición */
+}
+
+body.mode-removing .sticker-item {
+    cursor: no-drop; /* Icono de remoción segura */
+}
