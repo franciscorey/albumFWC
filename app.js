@@ -1,5 +1,5 @@
 /**
- * FWC 2026 Album Tracker - Versión Optimizada y Corregida
+ * FWC 2026 Album Tracker - Versión Optimizada con Estilos Originales de Impresión
  */
 
 const CONFIG = {
@@ -13,7 +13,7 @@ const AppState = {
     inventory: {},
     stats: { total: 0, groups: 0, countries: 0, specials: 0 },
     modeState: 0, // 0 = Solo Vista (Seguro), 1 = Sumar (+), 2 = Quitar (-)
-    activeSection: 'A', // Guarda la sección activa para restaurarla al borrar la búsqueda
+    activeSection: 'A',
     isSpecial: false,
     viewMode: 'all',
     listMode: false
@@ -40,7 +40,13 @@ function cacheDOM() {
     DOM.btnWhatsapp = document.getElementById('btn-whatsapp');
     DOM.btnWhatsappDup = document.getElementById('btn-whatsapp-dup');
     
-    // Cuadro de mandos y progreso
+    // Contenedores originales de Impresión nativa
+    DOM.printContent = document.getElementById('print-content');
+    DOM.printDate = document.getElementById('print-date');
+    DOM.printTotalMissing = document.getElementById('print-total-missing');
+    DOM.printTotal = document.getElementById('print-total');
+
+    // Paneles auxiliares
     DOM.dashboard = document.getElementById('dashboard');
     DOM.progressBarFill = document.getElementById('progress-bar-fill');
     DOM.progressPercentage = document.getElementById('progress-percentage');
@@ -80,7 +86,7 @@ async function initApp() {
         buildCountryFilter();
         renderSection('A', false);
         updateProgress();
-        updateModeButton(); 
+        setupModeButton(); 
         setupEventListeners();
     } catch (error) {
         console.error(error);
@@ -135,7 +141,6 @@ function updateProgress() {
 }
 
 function setupEventListeners() {
-    // Manejo del botón de Modos Operativos (Ciclo Seguro)
     if (DOM.btnModeSwitch) {
         DOM.btnModeSwitch.addEventListener('click', (e) => {
             e.preventDefault();
@@ -144,7 +149,7 @@ function setupEventListeners() {
         });
     }
     
-    // Desplegar / Ocultar Menú de Exportación
+    // Toggle para desplegar menú de exportación
     if (DOM.dropdownBtn) {
         DOM.dropdownBtn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -153,20 +158,15 @@ function setupEventListeners() {
         });
     }
 
-    // Cerrar menú si se hace clic en el documento exterior
     document.addEventListener('click', () => {
         if (DOM.dropdownContent) DOM.dropdownContent.classList.remove('show');
     });
 
-    // Eventos internos del menú desplegable de exportación
     if (DOM.btnExport) DOM.btnExport.addEventListener('click', () => { exportToPDF(); });
     if (DOM.btnWhatsapp) DOM.btnWhatsapp.addEventListener('click', () => { shareToWhatsApp(); });
     if (DOM.btnWhatsappDup) DOM.btnWhatsappDup.addEventListener('click', () => { shareDuplicatesToWhatsApp(); });
     
-    // Búsqueda en tiempo real
     if (DOM.searchInput) DOM.searchInput.addEventListener('input', handleGlobalSearch);
-    
-    // Paneles auxiliares y filtros visuales
     if (DOM.btnFilterCountry) DOM.btnFilterCountry.addEventListener('click', toggleCountryFilter);
     if (DOM.btnCloseFilter) {
         DOM.btnCloseFilter.addEventListener('click', () => {
@@ -186,6 +186,11 @@ function setupEventListeners() {
     if (DOM.btnViewList) DOM.btnViewList.addEventListener('click', () => setListView(true));
 }
 
+function setupModeButton() {
+    document.body.classList.remove('cursor-safe', 'cursor-add', 'cursor-remove');
+    document.body.classList.add('cursor-safe');
+}
+
 function updateModeButton() {
     if (!DOM.btnModeSwitch) return;
     
@@ -201,7 +206,6 @@ function updateModeButton() {
     if (iconEl) iconEl.textContent = icons[AppState.modeState];
     if (textEl) textEl.textContent = texts[AppState.modeState];
     
-    // Sincronizar clases con el body para cambiar el cursor de la app completa
     document.body.classList.remove('cursor-safe', 'cursor-add', 'cursor-remove');
     const bodyCursors = ['cursor-safe', 'cursor-add', 'cursor-remove'];
     document.body.classList.add(bodyCursors[AppState.modeState]);
@@ -209,14 +213,10 @@ function updateModeButton() {
     showToast(`Cambiado a: ${texts[AppState.modeState]}`);
 }
 
-/**
- * BÚSQUEDA GLOBAL REAL: Escanea todo el JSON inmediatamente y renderiza los bloques
- */
 function handleGlobalSearch(e) {
     const query = e.target.value.toLowerCase().trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     
     if (query === '') {
-        // Restaurar la sección donde estaba el usuario antes de buscar
         if (AppState.isSpecial) {
             renderSpecial(AppState.activeSection);
         } else {
@@ -238,24 +238,21 @@ function handleGlobalSearch(e) {
     
     let totalMatches = 0;
 
-    // 1. Buscar en grupos de países
     Object.values(AppState.albumData.groups).flat().forEach(country => {
-        const prefix = country.stickers[0] ? country.stickers[0].id.match(/^[A-Z]+/)[0] : '';
         country.stickers.forEach(sticker => {
             const stickerName = (sticker.name || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
             if (sticker.id.toLowerCase().includes(query) || stickerName.includes(query)) {
-                grid.appendChild(createStickerElement(sticker, prefix, country));
+                grid.appendChild(createStickerElement(sticker, country));
                 totalMatches++;
             }
         });
     });
     
-    // 2. Buscar en secciones especiales
     Object.entries(AppState.albumData.specials).forEach(([key, stickers]) => {
         stickers.forEach(sticker => {
             const stickerName = (sticker.name || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
             if (sticker.id.toLowerCase().includes(query) || stickerName.includes(query)) {
-                grid.appendChild(createStickerElement(sticker, '', null, key));
+                grid.appendChild(createStickerElement(sticker, null, key));
                 totalMatches++;
             }
         });
@@ -271,7 +268,6 @@ function handleGlobalSearch(e) {
 
 function handleStickerClick(stickerId, element, name) {
     if (AppState.modeState === 0) {
-        // Evita errores: Solo muestra información en modo seguro sin alterar datos
         showToast(`📌 [${stickerId}] - ${name}`, 'info');
         return;
     }
@@ -308,9 +304,11 @@ function updateStickerVisual(element) {
     }
 }
 
-function createStickerElement(sticker, prefixToRemove = '', countryData = null, specialKey = null) {
+/**
+ * Código de País Preservado Completo (Mantiene ID completo como MEX01, ARG05 sin recortar)
+ */
+function createStickerElement(sticker, countryData = null, specialKey = null) {
     const el = document.createElement('div');
-    const displayId = sticker.id.replace(prefixToRemove, '');
     const name = sticker.name || 'Lámina';
     
     let emoji = '👤';
@@ -327,7 +325,7 @@ function createStickerElement(sticker, prefixToRemove = '', countryData = null, 
     el.dataset.id = sticker.id;
     el.dataset.originalHtml = `
         <div class="sticker-emoji">${emoji}</div>
-        <div class="sticker-id">${displayId}</div>
+        <div class="sticker-id">${sticker.id}</div>
         <div class="sticker-name">${name}</div>
     `;
     
@@ -372,7 +370,7 @@ function buildNavigation() {
 function setActiveNavButton(activeBtn) {
     DOM.navContainer.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
     activeBtn.classList.add('active');
-    if(DOM.searchInput) DOM.searchInput.value = ''; // Limpiar buscador al cambiar de pestaña
+    if(DOM.searchInput) DOM.searchInput.value = '';
 }
 
 function renderSection(groupKey, clearSearch = false) {
@@ -389,7 +387,6 @@ function renderSection(groupKey, clearSearch = false) {
 function createCountrySection(countryData) {
     const section = document.createElement('section');
     section.className = 'country-section';
-    const prefix = countryData.stickers[0] ? countryData.stickers[0].id.match(/^[A-Z]+/)[0] : '';
     
     section.innerHTML = `
         <div class="country-header">
@@ -401,7 +398,7 @@ function createCountrySection(countryData) {
     
     const grid = section.querySelector('.sticker-grid');
     countryData.stickers.forEach(sticker => {
-        grid.appendChild(createStickerElement(sticker, prefix, countryData));
+        grid.appendChild(createStickerElement(sticker, countryData));
     });
     return section;
 }
@@ -419,7 +416,7 @@ function renderSpecial(specialKey) {
     const grid = section.querySelector('.sticker-grid');
     
     AppState.albumData.specials[specialKey].forEach(sticker => {
-        grid.appendChild(createStickerElement(sticker, '', null, specialKey));
+        grid.appendChild(createStickerElement(sticker, null, specialKey));
     });
     applyViewFilters();
     setListView(AppState.listMode);
@@ -472,44 +469,53 @@ function setListView(isList) {
     });
 }
 
+/**
+ * EXPORTAR A PDF: Sistema nativo original restaurado
+ * Utiliza los estilos e IDs exactos de tu CSS original (.print-only, #print-view, etc.)
+ */
 function exportToPDF() {
-    let html = `
-        <div style="font-family:'Space Grotesk', sans-serif; padding:20px; color:#1a1a2e;">
-            <h1 style="border-bottom:4px solid #1a1a2e; padding-bottom:10px; margin-bottom:20px;">🏆 MIS FALTANTES FWC 2026</h1>
-            <p>Generado el: ${new Date().toLocaleDateString('es-CH')}</p>
-            <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap:10px; margin-top:20px;">
-    `;
+    if (!DOM.printContent) return;
     
-    let missingCount = 0;
+    let html = '';
+    let totalMissing = 0;
     
-    // Recorrer grupos normales
+    // Agrupar faltantes por país usando la estructura original
     Object.values(AppState.albumData.groups).flat().forEach(c => {
-        c.stickers.forEach(s => {
-            if (!AppState.inventory[s.id]) {
-                html += `<div style="padding:8px; border:2px solid #1a1a2e; background:#fff; font-weight:bold;">❌ ${s.id}</div>`;
-                missingCount++;
-            }
-        });
+        const missingStickers = c.stickers.filter(s => !AppState.inventory[s.id]);
+        if (missingStickers.length > 0) {
+            totalMissing += missingStickers.length;
+            html += `<div class="print-section-title">${c.flag || '🏳️'} ${c.country}</div>`;
+            missingStickers.forEach(s => {
+                html += `<div class="print-missing-item">${s.id} - ${s.name}</div>`;
+            });
+        }
     });
 
-    // Recorrer especiales
-    Object.values(AppState.albumData.specials).flat().forEach(s => {
-        if (!AppState.inventory[s.id]) {
-            html += `<div style="padding:8px; border:2px solid #1a1a2e; background:#fff; font-weight:bold;">⭐ ${s.id}</div>`;
-            missingCount++;
+    // Secciones especiales
+    Object.entries(AppState.albumData.specials).forEach(([key, stickers]) => {
+        const missingStickers = stickers.filter(s => !AppState.inventory[s.id]);
+        if (missingStickers.length > 0) {
+            totalMissing += missingStickers.length;
+            html += `<div class="print-section-title">⭐ ${key.replace('_', ' ').toUpperCase()}</div>`;
+            missingStickers.forEach(s => {
+                html += `<div class="print-missing-item">${s.id} - ${s.name}</div>`;
+            });
         }
     });
     
-    html += `</div></div>`;
-    
-    if (missingCount === 0) {
-        showToast('¡Felicidades! Tienes el álbum completo.', 'success');
+    if (totalMissing === 0) {
+        showToast('¡No tienes láminas faltantes! El álbum está completo. 🏆', 'success');
         return;
     }
 
-    const printWindow = window.open('', '_blank');
-    printWindow.document.write(`<html><head><title>Faltantes FWC 2026</title></head><body onload="window.print()">${html}</body></html>`);
-    printWindow.document.close();
+    // Inyectar datos en los campos nativos de tu HTML para impresión
+    DOM.printContent.innerHTML = html;
+    if (DOM.printDate) DOM.printDate.textContent = new Date().toLocaleDateString('es-CH');
+    if (DOM.printTotalMissing) DOM.printTotalMissing.textContent = totalMissing;
+    if (DOM.printTotal) DOM.printTotal.textContent = AppState.stats.total;
+
+    // Disparar diálogo nativo respetando tus media queries de CSS original
+    window.print();
 }
 
 function shareToWhatsApp() {
