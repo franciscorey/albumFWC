@@ -1,5 +1,5 @@
 /**
- * FWC 2026 Album Tracker - Versión Optimizada con Estilos Originales de Impresión
+ * FWC 2026 Album Tracker - Versión Definitiva con Progreso por Sección
  */
 
 const CONFIG = {
@@ -138,6 +138,30 @@ function updateProgress() {
     
     const dashOwned = document.getElementById('dash-owned');
     if (dashOwned) dashOwned.textContent = uniqueOwned;
+
+    // Actualizar también los miniprogresos de las secciones visibles
+    updateSectionProgressBars();
+}
+
+function updateSectionProgressBars() {
+    DOM.mainContainer.querySelectorAll('.country-section').forEach(section => {
+        const stickers = section.querySelectorAll('.sticker-item');
+        if (stickers.length === 0) return;
+
+        let ownedInSection = 0;
+        stickers.forEach(el => {
+            if (AppState.inventory[el.dataset.id] > 0) ownedInSection++;
+        });
+
+        const totalInSection = stickers.length;
+        const pct = totalInSection > 0 ? (ownedInSection / totalInSection) * 100 : 0;
+
+        const fillEl = section.querySelector('.sec-progress-fill');
+        const textEl = section.querySelector('.sec-progress-text');
+
+        if (fillEl) fillEl.style.width = `${pct}%`;
+        if (textEl) textEl.textContent = `${ownedInSection}/${totalInSection}`;
+    });
 }
 
 function setupEventListeners() {
@@ -149,7 +173,6 @@ function setupEventListeners() {
         });
     }
     
-    // Toggle para desplegar menú de exportación
     if (DOM.dropdownBtn) {
         DOM.dropdownBtn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -230,7 +253,15 @@ function handleGlobalSearch(e) {
     const searchSection = document.createElement('section');
     searchSection.className = 'country-section';
     searchSection.innerHTML = `
-        <div class="country-header"><span>🔍</span> Resultados de Búsqueda Global</div>
+        <div class="country-header">
+            <div class="country-title-side">
+                <span>🔍</span> Resultados de Búsqueda Global
+            </div>
+            <div class="section-progress-container">
+                <div class="sec-progress-bar"><div class="sec-progress-fill" style="width: 0%"></div></div>
+                <span class="sec-progress-text">0/0</span>
+            </div>
+        </div>
         <div class="sticker-grid" id="search-results-grid"></div>
     `;
     DOM.mainContainer.appendChild(searchSection);
@@ -264,6 +295,7 @@ function handleGlobalSearch(e) {
 
     applyViewFilters();
     setListView(AppState.listMode);
+    updateSectionProgressBars();
 }
 
 function handleStickerClick(stickerId, element, name) {
@@ -304,9 +336,6 @@ function updateStickerVisual(element) {
     }
 }
 
-/**
- * Código de País Preservado Completo (Mantiene ID completo como MEX01, ARG05 sin recortar)
- */
 function createStickerElement(sticker, countryData = null, specialKey = null) {
     const el = document.createElement('div');
     const name = sticker.name || 'Lámina';
@@ -382,6 +411,7 @@ function renderSection(groupKey, clearSearch = false) {
     });
     applyViewFilters();
     setListView(AppState.listMode);
+    updateSectionProgressBars();
 }
 
 function createCountrySection(countryData) {
@@ -390,8 +420,14 @@ function createCountrySection(countryData) {
     
     section.innerHTML = `
         <div class="country-header">
-            <span>${countryData.flag || '🏳️'}</span>
-            <span>${countryData.country}</span>
+            <div class="country-title-side">
+                <span>${countryData.flag || '🏳️'}</span>
+                <span>${countryData.country}</span>
+            </div>
+            <div class="section-progress-container">
+                <div class="sec-progress-bar"><div class="sec-progress-fill"></div></div>
+                <span class="sec-progress-text">0/0</span>
+            </div>
         </div>
         <div class="sticker-grid"></div>
     `;
@@ -408,7 +444,15 @@ function renderSpecial(specialKey) {
     const section = document.createElement('section');
     section.className = 'country-section';
     section.innerHTML = `
-        <div class="country-header"><span>⭐</span> <span>${specialKey.replace('_', ' ').toUpperCase()}</span></div>
+        <div class="country-header">
+            <div class="country-title-side">
+                <span>⭐</span> <span>${specialKey.replace('_', ' ').toUpperCase()}</span>
+            </div>
+            <div class="section-progress-container">
+                <div class="sec-progress-bar"><div class="sec-progress-fill"></div></div>
+                <span class="sec-progress-text">0/0</span>
+            </div>
+        </div>
         <div class="sticker-grid"></div>
     `;
     
@@ -420,6 +464,7 @@ function renderSpecial(specialKey) {
     });
     applyViewFilters();
     setListView(AppState.listMode);
+    updateSectionProgressBars();
 }
 
 function buildCountryFilter() {
@@ -469,17 +514,12 @@ function setListView(isList) {
     });
 }
 
-/**
- * EXPORTAR A PDF: Sistema nativo original restaurado
- * Utiliza los estilos e IDs exactos de tu CSS original (.print-only, #print-view, etc.)
- */
 function exportToPDF() {
     if (!DOM.printContent) return;
     
     let html = '';
     let totalMissing = 0;
     
-    // Agrupar faltantes por país usando la estructura original
     Object.values(AppState.albumData.groups).flat().forEach(c => {
         const missingStickers = c.stickers.filter(s => !AppState.inventory[s.id]);
         if (missingStickers.length > 0) {
@@ -491,7 +531,6 @@ function exportToPDF() {
         }
     });
 
-    // Secciones especiales
     Object.entries(AppState.albumData.specials).forEach(([key, stickers]) => {
         const missingStickers = stickers.filter(s => !AppState.inventory[s.id]);
         if (missingStickers.length > 0) {
@@ -508,43 +547,69 @@ function exportToPDF() {
         return;
     }
 
-    // Inyectar datos en los campos nativos de tu HTML para impresión
     DOM.printContent.innerHTML = html;
     if (DOM.printDate) DOM.printDate.textContent = new Date().toLocaleDateString('es-CH');
     if (DOM.printTotalMissing) DOM.printTotalMissing.textContent = totalMissing;
     if (DOM.printTotal) DOM.printTotal.textContent = AppState.stats.total;
 
-    // Disparar diálogo nativo respetando tus media queries de CSS original
     window.print();
 }
 
+/**
+ * COMPARTIR WHATSAPP: Formato original restaurado
+ */
 function shareToWhatsApp() {
-    let missing = [];
+    const missing = [];
+    
     Object.values(AppState.albumData.groups).flat().forEach(c => {
-        c.stickers.forEach(s => { if (!AppState.inventory[s.id]) missing.push(s.id); });
+        const countryMissing = c.stickers.filter(s => !AppState.inventory[s.id]).map(s => s.id);
+        if(countryMissing.length > 0) {
+            missing.push(`*${c.country}:* ${countryMissing.join(', ')}`);
+        }
     });
-    Object.values(AppState.albumData.specials).flat().forEach(s => {
-        if (!AppState.inventory[s.id]) missing.push(s.id);
+    
+    Object.entries(AppState.albumData.specials).forEach(([key, stickers]) => {
+        const specialMissing = stickers.filter(s => !AppState.inventory[s.id]).map(s => s.id);
+        if(specialMissing.length > 0) {
+            missing.push(`*${key.replace('_',' ').toUpperCase()}:* ${specialMissing.join(', ')}`);
+        }
     });
 
-    if(missing.length === 0) { showToast('¡No tienes láminas faltantes! 😎', 'success'); return; }
-    
-    let message = `🏆 *MIS FALTANTES FWC 2026 (${missing.length}):*\n${missing.join(', ')}`;
+    if (missing.length === 0) {
+        showToast('¡No tienes láminas faltantes! 😎', 'success');
+        return;
+    }
+
+    const totalMissing = Object.values(AppState.albumData.groups).flat().reduce((sum, c) => sum + c.stickers.filter(s => !AppState.inventory[s.id]).length, 0) +
+                         Object.values(AppState.albumData.specials).flat().reduce((sum, s) => sum + (!AppState.inventory[s.id] ? 1 : 0), 0);
+
+    const message = `🏆 *MIS FALTANTES PANINI FWC 2026 (${totalMissing})*\n\n${missing.join('\n')}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
 }
 
 function shareDuplicatesToWhatsApp() {
-    let dups = [];
+    const dups = [];
+    
     Object.values(AppState.albumData.groups).flat().forEach(c => {
-        c.stickers.forEach(s => { if (AppState.inventory[s.id] > 1) dups.push(`${s.id}(x${AppState.inventory[s.id]-1})`); });
+        const countryDups = c.stickers.filter(s => AppState.inventory[s.id] > 1).map(s => `${s.id} (x${AppState.inventory[s.id] - 1})`);
+        if(countryDups.length > 0) {
+            dups.push(`*${c.country}:* ${countryDups.join(', ')}`);
+        }
     });
-    Object.values(AppState.albumData.specials).flat().forEach(s => {
-        if (AppState.inventory[s.id] > 1) dups.push(`${s.id}(x${AppState.inventory[s.id]-1})`);
+    
+    Object.entries(AppState.albumData.specials).forEach(([key, stickers]) => {
+        const specialDups = stickers.filter(s => AppState.inventory[s.id] > 1).map(s => `${s.id} (x${AppState.inventory[s.id] - 1})`);
+        if(specialDups.length > 0) {
+            dups.push(`*${key.replace('_',' ').toUpperCase()}:* ${specialDups.join(', ')}`);
+        }
     });
 
-    if(dups.length === 0) { showToast('No tienes repetidas aún 🔄', 'info'); return; }
-    
-    let message = `🔄 *MIS REPETIDAS FWC 2026:*\n${dups.join(', ')}`;
+    if (dups.length === 0) {
+        showToast('No tienes láminas repetidas aún 🔄', 'info');
+        return;
+    }
+
+    const message = `🔄 *MIS REPETIDAS PANINI FWC 2026*\n\n${dups.join('\n')}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
 }
 
