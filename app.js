@@ -322,22 +322,62 @@ function shouldHideByFilter(count) {
 }
 
 /**
- * Crea un elemento de lámina
+ * Crea un elemento de lámina con emoji según tipo
  */
-function createStickerElement(sticker, prefixToRemove = '') {
+function createStickerElement(sticker, prefixToRemove = '', countryData = null, specialKey = null) {
     const el = document.createElement('div');
     const displayId = sticker.id.replace(prefixToRemove, '');
     const name = sticker.name || '';
     
+    // Determinar emoji según tipo de lámina
+    let emoji = '';
+    let displayName = name;
+    
+    if (countryData) {
+        // Láminas de países
+        const idNum = parseInt(sticker.id.replace(/^[A-Z]+/, ''));
+        if (sticker.type === 'ESCUDO' || idNum === 1) {
+            emoji = '🛡️';
+        } else if (sticker.type === 'EQUIPO' || idNum === 13) {
+            emoji = '👥';
+        } else {
+            emoji = '👤';
+        }
+        // Mostrar sigla + nombre
+        displayName = `${displayId} ${name}`;
+    } else if (specialKey) {
+        // Láminas especiales
+        if (specialKey === 'fwc_panini') {
+            emoji = '⚽';
+        } else if (specialKey === 'fwc_champions') {
+            emoji = '🏆';
+        } else if (specialKey === 'coca_cola') {
+            emoji = '🥤';
+        }
+        displayName = `${displayId} ${name}`;
+    }
+    
     el.dataset.id = sticker.id;
     el.dataset.originalHtml = `
+        <div class="sticker-emoji">${emoji}</div>
         <div class="sticker-id">${displayId}</div>
-        <div class="sticker-name">${name}</div>
+        <div class="sticker-name">${displayName}</div>
     `;
     // Mejora: búsqueda incluye ID, nombre y país
     el.dataset.searchable = `${sticker.id.toLowerCase()} ${name.toLowerCase()}`.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     el.dataset.stickerName = name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     el.dataset.stickerId = sticker.id.toLowerCase();
+    
+    // Guardar referencia al grupo/país/especial para navegación
+    if (countryData) {
+        el.dataset.country = countryData.country;
+        el.dataset.group = Object.keys(AppState.albumData.groups).find(g => 
+            AppState.albumData.groups[g].some(c => c.country === countryData.country)
+        );
+    }
+    if (specialKey) {
+        el.dataset.special = specialKey;
+    }
     
     updateStickerVisual(el);
     el.onclick = () => handleStickerClick(sticker.id, el);
@@ -435,7 +475,7 @@ function filterByCountry(countryName, chipElement) {
 }
 
 /**
- * Busca y muestra un país específico
+ * Busca y muestra un país específico manteniendo el modo de vista
  */
 function searchAndDisplayCountry(countryName) {
     DOM.mainContainer.innerHTML = '';
@@ -446,6 +486,10 @@ function searchAndDisplayCountry(countryName) {
         if (countryData) {
             const section = createCountrySection(countryData);
             DOM.mainContainer.appendChild(section);
+            
+            // Aplicar filtros de vista y modo lista/grilla
+            applyViewFilters();
+            setListView(AppState.listMode);
             
             // Scroll suave hacia la sección
             setTimeout(() => {
@@ -471,6 +515,10 @@ function renderSection(groupKey) {
         const section = createCountrySection(countryData);
         DOM.mainContainer.appendChild(section);
     });
+    
+    // Aplicar filtros de vista y modo lista/grilla
+    applyViewFilters();
+    setListView(AppState.listMode);
 }
 
 /**
@@ -493,14 +541,14 @@ function createCountrySection(countryData) {
     
     const grid = section.querySelector('.sticker-grid');
     countryData.stickers.forEach(sticker => {
-        grid.appendChild(createStickerElement(sticker, prefix));
+        grid.appendChild(createStickerElement(sticker, prefix, countryData));
     });
     
     return section;
 }
 
 /**
- * Renderiza una sección especial
+ * Renderiza una sección especial manteniendo el modo de vista
  */
 function renderSpecial(specialKey) {
     DOM.mainContainer.innerHTML = '';
@@ -520,34 +568,148 @@ function renderSpecial(specialKey) {
     const grid = section.querySelector('.sticker-grid');
     
     AppState.albumData.specials[specialKey].forEach(sticker => {
-        grid.appendChild(createStickerElement(sticker, ''));
+        grid.appendChild(createStickerElement(sticker, '', null, specialKey));
     });
+    
+    // Aplicar filtros de vista y modo lista/grilla
+    applyViewFilters();
+    setListView(AppState.listMode);
 }
 
 /**
  * Maneja la búsqueda de láminas - mejorada para buscar por nombre
  */
+/**
+ * Maneja la búsqueda global de láminas - busca en todo el álbum y muestra resultados clickeables
+ */
 function handleSearch(e) {
     const term = e.target.value.toLowerCase().trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     
-    DOM.mainContainer.querySelectorAll('.sticker-item').forEach(el => {
-        const searchable = el.dataset.searchable || '';
-        const stickerName = el.dataset.stickerName || '';
-        const stickerId = el.dataset.stickerId || '';
-        
-        // Búsqueda flexible: coincide con ID o nombre (sin acentos)
-        const matches = searchable.includes(term) || 
-                       stickerName.includes(term) || 
-                       stickerId.includes(term);
-        
-        el.classList.toggle('hidden', !matches);
+    // Si el término está vacío, restaurar vista normal
+    if (term === '') {
+        DOM.mainContainer.innerHTML = '';
+        if (AppState.activeGroup) {
+            renderSection(AppState.activeGroup);
+        } else {
+            renderDashboard();
+        }
+        applyViewFilters();
+        setListView(AppState.listMode);
+        return;
+    }
+    
+    // Búsqueda global en todos los grupos y especiales
+    const results = [];
+    
+    // Buscar en grupos regulares
+    Object.entries(AppState.albumData.groups).forEach(([groupName, countries]) => {
+        countries.forEach(countryData => {
+            countryData.stickers.forEach(sticker => {
+                const searchable = `${sticker.id} ${sticker.name}`.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                if (searchable.includes(term)) {
+                    results.push({
+                        sticker,
+                        country: countryData.country,
+                        flag: countryData.flag || '🏳️',
+                        group: groupName,
+                        type: 'country'
+                    });
+                }
+            });
+        });
     });
     
-    // Ocultar secciones vacías
-    DOM.mainContainer.querySelectorAll('.country-section').forEach(section => {
-        const visibleStickers = section.querySelectorAll('.sticker-item:not(.hidden)').length;
-        section.style.display = visibleStickers === 0 ? 'none' : 'block';
+    // Buscar en especiales
+    Object.entries(AppState.albumData.specials).forEach(([specialKey, stickers]) => {
+        stickers.forEach(sticker => {
+            const searchable = `${sticker.id} ${sticker.name}`.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            if (searchable.includes(term)) {
+                results.push({
+                    sticker,
+                    special: specialKey,
+                    specialName: specialKey.replace('_', ' ').toUpperCase(),
+                    type: 'special'
+                });
+            }
+        });
     });
+    
+    // Mostrar resultados en un contenedor especial
+    displaySearchResults(results, term);
+}
+
+/**
+ * Muestra los resultados de búsqueda global con navegación al hacer click
+ */
+function displaySearchResults(results, term) {
+    DOM.mainContainer.innerHTML = '';
+    
+    const section = document.createElement('section');
+    section.className = 'country-section';
+    section.innerHTML = `
+        <div class="country-header">
+            <span>🔍</span>
+            <span>Resultados para "${term}" (${results.length})</span>
+        </div>
+        <div class="sticker-grid"></div>
+    `;
+    
+    DOM.mainContainer.appendChild(section);
+    const grid = section.querySelector('.sticker-grid');
+    
+    results.forEach(result => {
+        let stickerElement;
+        if (result.type === 'country') {
+            const prefix = result.sticker.id.match(/^[A-Z]+/)[0];
+            stickerElement = createStickerElement(result.sticker, prefix, { country: result.country, flag: result.flag });
+        } else {
+            stickerElement = createStickerElement(result.sticker, '', null, result.special);
+        }
+        
+        // Añadir evento click para navegar al grupo/país
+        stickerElement.addEventListener('click', () => {
+            if (result.type === 'country') {
+                // Navegar al grupo y mostrar el país específico
+                AppState.activeGroup = result.group;
+                setActiveNavButtonByGroup(result.group);
+                searchAndDisplayCountry(result.country);
+                DOM.searchInput.value = '';
+            } else {
+                // Navegar a la sección especial
+                AppState.activeGroup = null;
+                const specialBtn = Array.from(DOM.navContainer.querySelectorAll('.nav-btn'))
+                    .find(btn => btn.dataset.special === result.special);
+                if (specialBtn) {
+                    setActiveNavButton(specialBtn);
+                }
+                renderSpecial(result.special);
+                DOM.searchInput.value = '';
+            }
+            // Mantener el modo de vista actual
+            setListView(AppState.listMode);
+        });
+        
+        grid.appendChild(stickerElement);
+    });
+    
+    if (results.length === 0) {
+        grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 2rem; color: var(--text-secondary);">No se encontraron resultados</div>';
+    }
+    
+    applyViewFilters();
+    setListView(AppState.listMode);
+}
+
+/**
+ * Establece el botón de navegación activo por nombre de grupo
+ */
+function setActiveNavButtonByGroup(groupName) {
+    DOM.navContainer.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    const btn = Array.from(DOM.navContainer.querySelectorAll('.nav-btn'))
+        .find(b => b.dataset.group === groupName);
+    if (btn) {
+        btn.classList.add('active');
+    }
 }
 
 /**

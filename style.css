@@ -189,6 +189,12 @@ body {
     min-width: 50px;
 }
 
+.sticker-grid.list-view .sticker-emoji {
+    margin-bottom: 0;
+    margin-right: 0.75rem;
+    font-size: 1.4rem;
+}
+
 .sticker-grid.list-view .sticker-name {
     font-size: 0.75rem;
     -webkit-line-clamp: 1;
@@ -598,6 +604,17 @@ body {
     font-weight: 700;
     color: var(--text-secondary);
     margin-bottom: 0.25rem;
+}
+
+.sticker-item .sticker-emoji {
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+    line-height: 1;
+}
+
+.sticker-item.owned .sticker-emoji,
+.sticker-item.repeated .sticker-emoji {
+    filter: brightness(0) invert(1);
 }
 
 .sticker-item .sticker-name {
