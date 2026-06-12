@@ -826,47 +826,71 @@ body {
     font-size: 0.9rem;
 }
 
-/* ==================== DROPDOWN MENÚ DE EXPORTACIÓN ==================== */
+/* ============================================================================
+   COMPONENTE: MENÚ DESPLEGABLE DE EXPORTACIÓN (DROPDOWN)
+   ============================================================================ */
+
+/* Contenedor relativo para posicionar el menú */
 .dropdown-container {
     position: relative;
     display: inline-block;
 }
 
-.dropdown-menu {
+/* Estado inicial oculto del menú */
+.dropdown-content {
     display: none;
     position: absolute;
     right: 0;
-    top: 110%;
+    top: calc(100% + 6px);
     background-color: var(--bg-secondary, #ffffff);
-    min-width: 210px;
-    border: 2px solid var(--text-primary, #1a1a2e);
+    min-width: 240px;
+    box-shadow: var(--shadow-lg, 0 8px 24px rgba(0,0,0,0.15));
     border-radius: var(--border-radius-md, 10px);
-    box-shadow: var(--shadow-lg, 0 8px 24px rgba(0,0,0,0.12));
-    z-index: 3000;
-    padding: 6px 0;
+    border: 2px solid var(--brand-primary, #1a1a2e);
+    z-index: 1000;
     overflow: hidden;
+    padding: 0.25rem 0;
 }
 
-.dropdown-menu.show {
+/* Clase dinámica que inyecta JavaScript al hacer clic */
+.dropdown-content.show {
     display: block;
+    animation: fadeInDropdown 0.15s ease-out;
 }
 
-.dropdown-menu button {
+/* Estilos de los botones internos del menú */
+.dropdown-item {
     width: 100%;
-    padding: 12px 16px;
     background: none;
     border: none;
+    padding: 0.75rem 1rem;
     text-align: left;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.95rem;
+    font-family: inherit;
+    font-size: 0.9rem;
     color: var(--text-primary, #1a1a2e);
     cursor: pointer;
-    transition: background 0.15s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.2s ease;
 }
 
-.dropdown-menu button:hover {
-    background-color: var(--brand-accent, #00d4aa);
-    color: var(--text-primary, #1a1a2e);
+/* Efecto Hover para las opciones */
+.dropdown-item:hover {
+    background-color: rgba(0, 212, 170, 0.1); /* Color sutil basado en tu acento brand-accent */
+    color: var(--brand-primary, #1a1a2e);
+}
+
+/* Animación de aparición fluida */
+@keyframes fadeInDropdown {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* ==================== BARRA DE PROGRESO POR SECCIÓN ==================== */
