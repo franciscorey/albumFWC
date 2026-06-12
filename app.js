@@ -428,7 +428,7 @@ function toggleCountryFilter() {
     DOM.btnFilterCountry.classList.toggle('active');
 }
 
-// Filtro en tiempo real: Oculta o muestra elementos según coincidan por ID o por nombre normalizado
+// Filtro en tiempo real: Muestra elementos si coinciden con el ID, el nombre de la lámina, o el nombre del país
 function handleGlobalSearch(e) {
     const query = e.target.value.toLowerCase().trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     
@@ -462,20 +462,32 @@ function handleGlobalSearch(e) {
     
     let totalMatches = 0;
 
+    // 1. Búsqueda en Grupos / Países
     Object.values(AppState.albumData.groups).flat().forEach(country => {
+        // Normalizamos el nombre del país para la comparación (ej: "Marruecos" -> "marruecos")
+        const countryName = (country.country || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        const isCountryMatch = countryName.includes(query);
+
         country.stickers.forEach(sticker => {
             const stickerName = (sticker.name || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-            if (sticker.id.toLowerCase().includes(query) || stickerName.includes(query)) {
+            
+            // CORRECCIÓN: Si coincide el país, o el ID, o el nombre del sticker, se agrega al resultado
+            if (isCountryMatch || sticker.id.toLowerCase().includes(query) || stickerName.includes(query)) {
                 grid.appendChild(createStickerElement(sticker, country));
                 totalMatches++;
             }
         });
     });
     
+    // 2. Búsqueda en Secciones Especiales
     Object.entries(AppState.albumData.specials).forEach(([key, stickers]) => {
+        const specialKeyName = key.toLowerCase().replace('_', ' ');
+        const isSpecialKeyMatch = specialKeyName.includes(query);
+
         stickers.forEach(sticker => {
             const stickerName = (sticker.name || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-            if (sticker.id.toLowerCase().includes(query) || stickerName.includes(query)) {
+            
+            if (isSpecialKeyMatch || sticker.id.toLowerCase().includes(query) || stickerName.includes(query)) {
                 grid.appendChild(createStickerElement(sticker, null, key));
                 totalMatches++;
             }
