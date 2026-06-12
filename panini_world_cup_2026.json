@@ -12,7 +12,7 @@
             "id": "MEX01",
             "team": "MEXICO",
             "type": "ESCUDO",
-            "name": "SELECCION MEXICANA DE FÚTBOL"
+            "name": "ESCUDO"
           },
           {
             "id": "MEX02",
@@ -138,7 +138,7 @@
             "id": "RSA01",
             "team": "SUDAFRICA",
             "type": "ESCUDO",
-            "name": "SELECCION SUDAFRICANA DE FUTBOL"
+            "name": "ESCUDO"
           },
           {
             "id": "RSA02",
@@ -264,7 +264,7 @@
             "id": "KOR01",
             "team": "COREA DEL SUR",
             "type": "ESCUDO",
-            "name": "SELECCION NACIONAL DE COREA DEL SUR"
+            "name": "ESCUDO"
           },
           {
             "id": "KOR02",
@@ -390,7 +390,7 @@
             "id": "CZE01",
             "team": "REPÚBLICA CHECA",
             "type": "ESCUDO",
-            "name": "SELECCION NACIONAL DE REPÚBLICA CHECA"
+            "name": "ESCUDO"
           },
           {
             "id": "CZE02",
@@ -518,7 +518,7 @@
             "id": "CAN01",
             "team": "CANADA",
             "type": "ESCUDO",
-            "name": "SELECCION CANADIENSE DE FÚTBOL"
+            "name": "ESCUDO"
           },
           {
             "id": "CAN02",
@@ -644,7 +644,7 @@
             "id": "BIH01",
             "team": "BOSNIA HERZEGOVINA",
             "type": "ESCUDO",
-            "name": "SELECCION DE FUTBOL DE BOSNIA HERZEGOVINA"
+            "name": "ESCUDO"
           },
           {
             "id": "BIH02",
@@ -770,7 +770,7 @@
             "id": "QAT01",
             "team": "QATAR",
             "type": "ESCUDO",
-            "name": "SELECCION NACIONAL DE QATAR"
+            "name": "ESCUDO"
           },
           {
             "id": "QAT02",
@@ -896,7 +896,7 @@
             "id": "SUI01",
             "team": "SUIZA",
             "type": "ESCUDO",
-            "name": "SELECCION NACIONAL DE SUIZA"
+            "name": "ESCUDO"
           },
           {
             "id": "SUI02",
@@ -1024,7 +1024,7 @@
             "id": "BRA01",
             "team": "BRASIL",
             "type": "ESCUDO",
-            "name": "SELECCION BRASILEÑA DE FÚTBOL"
+            "name": "ESCUDO"
           },
           {
             "id": "BRA02",
@@ -1150,7 +1150,7 @@
             "id": "MAR01",
             "team": "MARRUECOS",
             "type": "ESCUDO",
-            "name": "SELECCION DE FUTBOL DE MARRUECOS"
+            "name": "ESCUDO"
           },
           {
             "id": "MAR02",
@@ -1276,7 +1276,7 @@
             "id": "HAI 01",
             "team": "HAITI",
             "type": "ESCUDO",
-            "name": "SELECCION NACIONAL DE HAITI"
+            "name": "ESCUDO"
           },
           {
             "id": "HAI 02",
@@ -1402,7 +1402,7 @@
             "id": "SCO01",
             "team": "ESCOCIA",
             "type": "ESCUDO",
-            "name": "SELECCION NACIONAL DE ESCOCIA"
+            "name": "ESCUDO"
           },
           {
             "id": "SCO02",
@@ -1530,7 +1530,7 @@
             "id": "USA01",
             "team": "ESTADOS UNIDOS",
             "type": "ESCUDO",
-            "name": "SELECCION DE FUTBOL DE ESTADOS UNIDOS"
+            "name": "ESCUDO"
           },
           {
             "id": "USA02",
@@ -1656,7 +1656,7 @@
             "id": "PAR01",
             "team": "PARAGUAY",
             "type": "ESCUDO",
-            "name": "SELECCION DE FUTBOL DE PARAGUAY"
+            "name": "ESCUDO"
           },
           {
             "id": "PAR02",
@@ -1782,7 +1782,7 @@
             "id": "AUS01",
             "team": "AUSTRALIA",
             "type": "ESCUDO",
-            "name": "SELECCION NACIONAL DE AUSTRALIA"
+            "name": "ESCUDO"
           },
           {
             "id": "AUS02",
@@ -1908,7 +1908,7 @@
             "id": "TUR01",
             "team": "TURQUIA",
             "type": "ESCUDO",
-            "name": "SELECCION NACIONAL DE TURQUIA"
+            "name": "ESCUDO"
           },
           {
             "id": "TUR02",
@@ -2036,7 +2036,7 @@
             "id": "GER01",
             "team": "ALEMANIA",
             "type": "ESCUDO",
-            "name": "SELECCION DE FUTBOL DE ALEMANIA"
+            "name": "ESCUDO"
           },
           {
             "id": "GER02",
@@ -2162,7 +2162,7 @@
             "id": "CUW01",
             "team": "CURAZAO",
             "type": "ESCUDO",
-            "name": "SELECCION DE FUTBOL DE CURAZAO"
+            "name": "ESCUDO"
           },
           {
             "id": "CUW02",
@@ -2288,7 +2288,7 @@
             "id": "CIV01",
             "team": "COSTA DE MARFIL",
             "type": "ESCUDO",
-            "name": "SELECCION NACIONAL DE COSTA DE MARFIL"
+            "name": "ESCUDO"
           },
           {
             "id": "CIV02",
@@ -2414,7 +2414,7 @@
             "id": "ECU01",
             "team": "ECUADOR",
             "type": "ESCUDO",
-            "name": "SELECCION NACIONAL DE ECUADOR"
+            "name": "ESCUDO"
           },
           {
             "id": "ECU02",
@@ -2542,7 +2542,7 @@
             "id": "NED01",
             "team": "HOLANDA",
             "type": "ESCUDO",
-            "name": "SELECCION DE FUTBOL DE HOLANDA"
+            "name": "ESCUDO"
           },
           {
             "id": "NED02",
@@ -2668,7 +2668,7 @@
             "id": "JAP01",
             "team": "JAPON",
             "type": "ESCUDO",
-            "name": "SELECCION DE FUTBOL DE JAPON"
+            "name": "ESCUDO"
           },
           {
             "id": "JAP02",
@@ -2794,7 +2794,7 @@
             "id": "SWE01",
             "team": "SUECIA",
             "type": "ESCUDO",
-            "name": "SELECCION NACIONAL DE SUECIA"
+            "name": "ESCUDO"
           },
           {
             "id": "SWE02",
@@ -2920,7 +2920,7 @@
             "id": "TUN01",
             "team": "TUNEZ",
             "type": "ESCUDO",
-            "name": "SELECCION NACIONAL DE TUNEZ"
+            "name": "ESCUDO"
           },
           {
             "id": "TUN02",
@@ -3048,7 +3048,7 @@
             "id": "BEL01",
             "team": "BELGICA",
             "type": "ESCUDO",
-            "name": "SELECCION DE FUTBOL DE BELGICA"
+            "name": "ESCUDO"
           },
           {
             "id": "BEL02",
@@ -3174,7 +3174,7 @@
             "id": "EGY01",
             "team": "EGIPTO",
             "type": "ESCUDO",
-            "name": "SELECCION DE FUTBOL DE EGIPTO"
+            "name": "ESCUDO"
           },
           {
             "id": "EGY02",
@@ -3426,7 +3426,7 @@
             "id": "NZL01",
             "team": "NUEVA ZELANDA",
             "type": "ESCUDO",
-            "name": "SELECCION NACIONAL DE NUEVA ZELANDA"
+            "name": "ESCUDO"
           },
           {
             "id": "NZL02",
@@ -3554,7 +3554,7 @@
             "id": "ESP01",
             "team": "ESPAÑA",
             "type": "ESCUDO",
-            "name": "SELECCION DE FUTBOL DE ESPAÑA"
+            "name": "ESCUDO"
           },
           {
             "id": "ESP02",
@@ -3680,7 +3680,7 @@
             "id": "CPV01",
             "team": "CABO VERDE",
             "type": "ESCUDO",
-            "name": "SELECCION DE FUTBOL DE CABO VERDE"
+            "name": "ESCUDO"
           },
           {
             "id": "CPV02",
@@ -3806,7 +3806,7 @@
             "id": "KSA01",
             "team": "ARABIA SAUDITA",
             "type": "ESCUDO",
-            "name": "SELECCION NACIONAL DE ARABIA SAUDITA"
+            "name": "ESCUDO"
           },
           {
             "id": "KSA02",
@@ -3932,7 +3932,7 @@
             "id": "URU01",
             "team": "URUGUAY",
             "type": "ESCUDO",
-            "name": "SELECCION NACIONAL DE URUGUAY"
+            "name": "ESCUDO"
           },
           {
             "id": "URU02",
@@ -4060,7 +4060,7 @@
             "id": "FRA01",
             "team": "FRANCIA",
             "type": "ESCUDO",
-            "name": "SELECCION DE FUTBOL DE FRANCIA"
+            "name": "ESCUDO"
           },
           {
             "id": "FRA02",
@@ -4186,7 +4186,7 @@
             "id": "SEN01",
             "team": "SENEGAL",
             "type": "ESCUDO",
-            "name": "SELECCION DE FUTBOL DE SENEGAL"
+            "name": "ESCUDO"
           },
           {
             "id": "SEN02",
@@ -4312,7 +4312,7 @@
             "id": "IRQ01",
             "team": "IRAQ",
             "type": "ESCUDO",
-            "name": "SELECCION NACIONAL DE IRAQ"
+            "name": "ESCUDO"
           },
           {
             "id": "IRQ02",
@@ -4438,7 +4438,7 @@
             "id": "NOR01",
             "team": "NORUEGA",
             "type": "ESCUDO",
-            "name": "SELECCION NACIONAL DE NORUEGA"
+            "name": "ESCUDO"
           },
           {
             "id": "NOR02",
@@ -4566,7 +4566,7 @@
             "id": "ARG01",
             "team": "ARGENTINA",
             "type": "ESCUDO",
-            "name": "SELECCION DE FUTBOL DE ARGENTINA"
+            "name": "ESCUDO"
           },
           {
             "id": "ARG02",
@@ -4692,7 +4692,7 @@
             "id": "ALG01",
             "team": "ALGERIA",
             "type": "ESCUDO",
-            "name": "SELECCION DE FUTBOL DE ALGERIA"
+            "name": "ESCUDO"
           },
           {
             "id": "ALG02",
@@ -4818,7 +4818,7 @@
             "id": "AUT01",
             "team": "AUSTRIA",
             "type": "ESCUDO",
-            "name": "SELECCION NACIONAL DE AUSTRIA"
+            "name": "ESCUDO"
           },
           {
             "id": "AUT02",
@@ -4944,7 +4944,7 @@
             "id": "JOR01",
             "team": "JORDANIA",
             "type": "ESCUDO",
-            "name": "SELECCION NACIONAL DE JORDANIA"
+            "name": "ESCUDO"
           },
           {
             "id": "JOR02",
@@ -5072,7 +5072,7 @@
             "id": "POR 01",
             "team": "PORTUGAL",
             "type": "ESCUDO",
-            "name": "SELECCION DE FUTBOL DE PORTUGAL"
+            "name": "ESCUDO"
           },
           {
             "id": "POR 02",
@@ -5198,7 +5198,7 @@
             "id": "COD01",
             "team": "REPUBLICA DEMOCRATICA DEL CONGO",
             "type": "ESCUDO",
-            "name": "SELECCION DE FUTBOL DE RD CONGO"
+            "name": "ESCUDO"
           },
           {
             "id": "COD02",
@@ -5324,7 +5324,7 @@
             "id": "UZB01",
             "team": "UZBEKISTAN",
             "type": "ESCUDO",
-            "name": "SELECCION NACIONAL DE UZBEKISTAN"
+            "name": "ESCUDO"
           },
           {
             "id": "UZB02",
@@ -5450,7 +5450,7 @@
             "id": "COL01",
             "team": "COLOMBIA",
             "type": "ESCUDO",
-            "name": "SELECCION NACIONAL DE COLOMBIA"
+            "name": "ESCUDO"
           },
           {
             "id": "COL02",
@@ -5578,7 +5578,7 @@
             "id": "ENG 01",
             "team": "INGLATERRA",
             "type": "ESCUDO",
-            "name": "SELECCION DE FUTBOL DE INGLATERRA"
+            "name": "ESCUDO"
           },
           {
             "id": "ENG 02",
@@ -5704,7 +5704,7 @@
             "id": "CRO01",
             "team": "CROACIA",
             "type": "ESCUDO",
-            "name": "SELECCION DE FUTBOL DE CROACIA"
+            "name": "ESCUDO"
           },
           {
             "id": "CRO02",
@@ -5830,7 +5830,7 @@
             "id": "GHA01",
             "team": "GHANA",
             "type": "ESCUDO",
-            "name": "SELECCION NACIONAL DE GHANA"
+            "name": "ESCUDO"
           },
           {
             "id": "GHA02",
@@ -5956,7 +5956,7 @@
             "id": "PAN01",
             "team": "PANAMA",
             "type": "ESCUDO",
-            "name": "SELECCION NACIONAL DE PANAMA"
+            "name": "ESCUDO"
           },
           {
             "id": "PAN02",
