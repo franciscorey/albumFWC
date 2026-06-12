@@ -22,15 +22,17 @@
                     <span class="btn-text">Solo Vista</span>
                 </button>
 
-                <div class="dropdown-container">
-                    <button id="dropdown-export-btn" class="action-btn" title="Opciones de exportación">
+                <div class="dropdown-container" style="position: relative; display: inline-block;">
+                    <button id="dropdown-export-btn" class="action-btn btn-export" title="Exportar opciones">
                         <span class="btn-icon">📄</span>
-                        <span class="btn-text">Exportar ▾</span>
+                        <span class="btn-text">Exportar</span>
                     </button>
+                    
                     <div id="dropdown-export-content" class="dropdown-content">
-                        <button id="btn-export" class="dropdown-item">📄 Exportar Faltantes (PDF)</button>
-                        <button id="btn-export-dup" class="dropdown-item">🔄 Exportar Repetidas (PDF)</button> <button id="btn-whatsapp" class="dropdown-item">💬 Compartir Faltantes (WhatsApp)</button>
-                        <button id="btn-whatsapp-dup" class="dropdown-item">🔁 Compartir Repetidas (WhatsApp)</button>
+                        <button id="btn-export" class="dropdown-item">📄 Faltantes (PDF)</button>
+                        <button id="btn-export-dup" class="dropdown-item">🔄 Repetidas (PDF)</button>
+                        <button id="btn-whatsapp" class="dropdown-item">💬 Faltantes (WhatsApp)</button>
+                        <button id="btn-whatsapp-dup" class="dropdown-item">🔁 Repetidas (WhatsApp)</button>
                     </div>
                 </div>
             </div>
