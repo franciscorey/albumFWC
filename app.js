@@ -47,22 +47,24 @@ function cacheDOM() {
     DOM.searchInput = document.getElementById('search-input');
     DOM.btnModeSwitch = document.getElementById('btn-mode'); 
     
-    // Elementos del Dropdown de Exportación y Compartir
+    // NUEVO: Captura el botón de configuración del header
+    DOM.btnConfigToggle = document.getElementById('btn-config-toggle');
+    
     DOM.dropdownBtn = document.getElementById('dropdown-export-btn');
     DOM.dropdownContent = document.getElementById('dropdown-export-content');
+    
     DOM.btnExport = document.getElementById('btn-export');
-    DOM.btnExportDup = document.getElementById('btn-export-dup'); // <-- Nuevo botón asignado en setupEventListeners
+    DOM.btnExportDup = document.getElementById('btn-export-dup');
     DOM.btnWhatsapp = document.getElementById('btn-whatsapp');
     DOM.btnWhatsappDup = document.getElementById('btn-whatsapp-dup');
+    DOM.importFileInput = document.getElementById('import-file-input'); 
     
-    // Contenedores para el sistema de Impresión Nativa (CSS Print)
     DOM.printView = document.getElementById('print-view');
     DOM.printContent = document.getElementById('print-content');
     DOM.printDate = document.getElementById('print-date');
     DOM.printTotalMissing = document.getElementById('print-total-missing');
     DOM.printTotal = document.getElementById('print-total');
 
-    // Paneles de control, Contadores y Modales de Filtrado
     DOM.dashboard = document.getElementById('dashboard');
     DOM.progressBarFill = document.getElementById('progress-bar-fill');
     DOM.progressPercentage = document.getElementById('progress-percentage');
@@ -218,7 +220,7 @@ function updateModeButton() {
     if (!DOM.btnModeSwitch) return;
     
     const icons = ['🔒', '➕', '➖'];
-    const texts = ['Solo Vista', 'Modo Añadir', 'Modo Quitar'];
+    const texts = ['Selección', 'Modo Añadir', 'Modo Quitar'];
     const classes = ['mode-safe', 'mode-adding', 'mode-removing'];
     
     DOM.btnModeSwitch.className = 'action-btn ' + classes[AppState.modeState];
@@ -293,10 +295,11 @@ function buildNavigation() {
     if (!DOM.navContainer) return;
     DOM.navContainer.innerHTML = '';
     
+    // 1. Botones de Grupos Tradicionales
     Object.keys(AppState.albumData.groups).forEach(group => {
         const btn = document.createElement('button');
         btn.className = 'nav-btn';
-        if(group === 'A') btn.classList.add('active');
+        if(group === AppState.activeSection && !AppState.isSpecial) btn.classList.add('active');
         btn.textContent = `Grupo ${group}`;
         btn.onclick = () => { 
             setActiveNavButton(btn); 
@@ -307,6 +310,7 @@ function buildNavigation() {
         DOM.navContainer.appendChild(btn);
     });
     
+    // 2. Botones de Secciones Especiales
     Object.keys(AppState.albumData.specials).forEach(key => {
         const btn = document.createElement('button');
         btn.className = 'nav-btn';
@@ -319,6 +323,16 @@ function buildNavigation() {
         };
         DOM.navContainer.appendChild(btn);
     });
+
+    // 3. Pestaña Fija de Configuración Avanzada (Al final del scroll horizontal)
+    const configBtn = document.createElement('button');
+    configBtn.className = 'nav-btn config-nav-item'; // Clase única para identificarla
+    configBtn.innerHTML = '⚙️ Configuración';
+    configBtn.onclick = () => {
+        setActiveNavButton(configBtn);
+        renderConfigPanel();
+    };
+    DOM.navContainer.appendChild(configBtn);
 }
 
 // Marca como activa la pestaña cliqueada y restablece los inputs de búsqueda secundaria
@@ -407,6 +421,7 @@ function renderSpecial(specialKey) {
 function buildCountryFilter() {
     if (!DOM.countryList) return;
     DOM.countryList.innerHTML = '';
+    
     AppState.allCountries.forEach(country => {
         const chip = document.createElement('div');
         chip.className = 'country-chip';
@@ -417,6 +432,7 @@ function buildCountryFilter() {
             if(DOM.searchInput) DOM.searchInput.value = country.name;
             handleGlobalSearch({ target: { value: country.name } });
             DOM.countryFilterPanel.classList.remove('open');
+            DOM.btnFilterCountry.classList.remove('active');
         };
         DOM.countryList.appendChild(chip);
     });
@@ -545,8 +561,20 @@ function setupEventListeners() {
             updateModeButton();
         });
     }
+
+    // NUEVO: Al hacer clic en el engranaje, renderiza el panel avanzado en la zona principal
+    if (DOM.btnConfigToggle) {
+        DOM.btnConfigToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Desmarcar pestañas activas de grupos si las hay
+            if (DOM.navContainer) {
+                DOM.navContainer.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            }
+            renderConfigPanel();
+        });
+    }
     
-    if (DOM.dropdownBtn) {
+    if (DOM.dropdownBtn && DOM.dropdownContent) {
         DOM.dropdownBtn.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -559,7 +587,7 @@ function setupEventListeners() {
     });
 
     if (DOM.btnExport) DOM.btnExport.addEventListener('click', () => { exportToPDF(); });
-    if (DOM.btnExportDup) DOM.btnExportDup.addEventListener('click', () => { exportDuplicatesToPDF(); }); // <-- Evento de nuevo botón PDF repetidas
+    if (DOM.btnExportDup) DOM.btnExportDup.addEventListener('click', () => { exportDuplicatesToPDF(); }); 
     if (DOM.btnWhatsapp) DOM.btnWhatsapp.addEventListener('click', () => { shareToWhatsApp(); });
     if (DOM.btnWhatsappDup) DOM.btnWhatsappDup.addEventListener('click', () => { shareDuplicatesToWhatsApp(); });
     
@@ -581,6 +609,10 @@ function setupEventListeners() {
     
     if (DOM.btnViewGrid) DOM.btnViewGrid.addEventListener('click', () => setListView(false));
     if (DOM.btnViewList) DOM.btnViewList.addEventListener('click', () => setListView(true));
+
+    if (DOM.importFileInput) {
+        DOM.importFileInput.addEventListener('change', handleImportFile);
+    }
 }
 
 // Administra el clic sobre una lámina individual ejecutando sumas o restas según el modo activo
@@ -768,7 +800,7 @@ function shareDuplicatesToWhatsApp() {
     });
 
     if (dups.length === 0) {
-        showToast('No tienes láminas repetidas aún 🔄', 'info');
+        showToast('No tienes láminas repetidas aún. 🔄', 'info');
         return;
     }
 
@@ -776,6 +808,113 @@ function shareDuplicatesToWhatsApp() {
     window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
 }
 
+/**
+ * ============================================================================
+ * PANEL DE CONFIGURACIÓN Y SISTEMA DE RESPALDO JSON
+ * ============================================================================
+ */
+
+// Renders el panel completo de configuración y utilidades de base de datos
+function renderConfigPanel() {
+    if(DOM.searchInput) DOM.searchInput.value = '';
+    DOM.mainContainer.innerHTML = '';
+
+    const configSection = document.createElement('div');
+    configSection.className = 'config-container';
+
+    configSection.innerHTML = `
+        <div class="config-card">
+            <h2>💾 Copias de Seguridad</h2>
+            <p>Descarga un archivo local con tu progreso guardado para transferirlo a otro navegador o tener un respaldo seguro.</p>
+            <div class="config-buttons-grid">
+                <button class="panel-btn btn-accent-blue" id="panel-export-json">📤 Guardar Respaldo (.json)</button>
+                <button class="panel-btn" id="panel-import-json">📥 Cargar Respaldo desde archivo</button>
+            </div>
+        </div>
+
+        <div class="config-card">
+            <h2>📄 Guardar listados en PDF</h2>
+            <p>Genera un documento listo de tus laminas faltantes o repetidas para guardar o imprimir de forma fácil.</p>
+            <div class="config-buttons-grid">
+                <button class="panel-btn" id="panel-export-pdf-missing">📄 Láminas Faltantes (PDF)</button>
+                <button class="panel-btn" id="panel-export-pdf-dup">🔄 Láminas Repetidas (PDF)</button>
+            </div>
+        </div>
+
+        <div class="config-card">
+            <h2>💬 Intercambio por Mensaje Whatsapp</h2>
+            <p>Genera listas compactas formateadas para enviarlas directamente a tus grupos de intercambio.</p>
+            <div class="config-buttons-grid">
+                <button class="panel-btn" id="panel-share-wa-missing">💬 Enviar Faltantes (WhatsApp)</button>
+                <button class="panel-btn" id="panel-share-wa-dup">🔁 Enviar Repetidas (WhatsApp)</button>
+            </div>
+        </div>
+    `;
+
+    DOM.mainContainer.appendChild(configSection);
+
+    // Mapear los eventos de los botones internos una vez inyectados en el contenedor
+    document.getElementById('panel-export-json').onclick = exportInventoryToJSON;
+    document.getElementById('panel-import-json').onclick = () => DOM.importFileInput.click();
+    document.getElementById('panel-export-pdf-missing').onclick = exportToPDF;
+    document.getElementById('panel-export-pdf-dup').onclick = exportDuplicatesToPDF;
+    document.getElementById('panel-share-wa-missing').onclick = shareToWhatsApp;
+    document.getElementById('panel-share-wa-dup').onclick = shareDuplicatesToWhatsApp;
+}
+
+// EXPORTAR JSON: Transforma el inventario actual en un archivo de texto plano descargable
+function exportInventoryToJSON() {
+    if (Object.keys(AppState.inventory).length === 0) {
+        showToast('No tienes láminas registradas para respaldar aún.', 'info');
+        return;
+    }
+
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(AppState.inventory, null, 2));
+    const downloadAnchor = document.createElement('a');
+    
+    const dateStr = new Date().toISOString().slice(0,10);
+    downloadAnchor.setAttribute("href", dataStr);
+    downloadAnchor.setAttribute("download", `album_fwc2026_backup_${dateStr}.json`);
+    
+    document.body.appendChild(downloadAnchor);
+    downloadAnchor.click();
+    downloadAnchor.remove();
+
+    showToast('¡Archivo de respaldo generado! 💾', 'success');
+}
+
+// IMPORTAR JSON: Lee el archivo seleccionado por el usuario, valida y actualiza el almacenamiento
+function handleImportFile(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(event) {
+        try {
+            const parsedInventory = JSON.parse(event.target.result);
+            
+            if (typeof parsedInventory !== 'object' || parsedInventory === null) {
+                throw new Error("Formato inválido");
+            }
+
+            if (confirm("¿Deseas importar este respaldo? Esto reemplazará tu progreso actual.")) {
+                AppState.inventory = parsedInventory;
+                saveInventory();
+                updateProgress();
+                showToast('¡Progreso restaurado! 📥', 'success');
+                
+                // Redirigir al primer grupo para refrescar la vista
+                const firstNavBtn = DOM.navContainer.querySelector('.nav-btn');
+                if(firstNavBtn) firstNavBtn.click();
+            }
+        } catch (err) {
+            alert("Error: El archivo no es un respaldo válido.");
+            console.error(err);
+        }
+        DOM.importFileInput.value = '';
+    };
+    reader.readAsText(file);
+}
 
 /**
  * ============================================================================

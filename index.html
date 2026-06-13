@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -9,17 +10,24 @@
     <meta name="theme-color" content="#1a1a2e">
     <meta name="description" content="Tracker del álbum Panini FIFA World Cup 2026">
 </head>
+
 <body>
     <header class="app-header hide-print">
         <div class="header-top">
             <div class="brand">
-                <h1>🏆 FWC 2026</h1>
-                <span class="subtitle">Álbum Panini Tracker</span>
+                <h1>📗 MUNDIAL 2026</h1>
+                <span class="subtitle">Álbum Tracker</span>
             </div>
-           <div class="header-actions">
+            <div class="header-actions">
                 <button id="btn-mode" class="action-btn mode-safe" title="Cambiar modo de edición">
                     <span class="btn-icon">🔒</span>
-                    <span class="btn-text">Solo Vista</span>
+                    <span class="btn-text">Selección</span>
+                </button>
+
+                <button id="btn-config-toggle" class="action-btn btn-config-head"
+                    title="Configuraciones Avanzadas y Respaldos">
+                    <span class="btn-icon">⚙️</span>
+                    <span class="btn-text">Configuración</span>
                 </button>
 
                 <div class="dropdown-container" style="position: relative; display: inline-block;">
@@ -27,7 +35,7 @@
                         <span class="btn-icon">📄</span>
                         <span class="btn-text">Exportar</span>
                     </button>
-                    
+
                     <div id="dropdown-export-content" class="dropdown-content">
                         <button id="btn-export" class="dropdown-item">📄 Faltantes (PDF)</button>
                         <button id="btn-export-dup" class="dropdown-item">🔄 Repetidas (PDF)</button>
@@ -37,7 +45,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="progress-section">
             <div class="progress-info">
                 <span class="progress-label">Progreso del álbum</span>
@@ -47,8 +55,8 @@
                 <div id="progress-bar-fill" class="progress-bar-fill"></div>
             </div>
             <div class="progress-stats">
-                <span class="stat-mini"><strong id="progress-count">0/0</strong> completadas</span>
-                <span class="stat-mini"><strong id="unique-owned">0</strong> únicas</span>
+                <span class="stat-mini"><strong id="progress-count">0/0</strong> láminas</span>
+                <span class="stat-mini"><strong id="unique-owned">0</strong> pegadas</span>
                 <span class="stat-mini"><strong id="total-repeated">0</strong> repetidas</span>
             </div>
         </div>
@@ -56,7 +64,8 @@
         <div class="search-filter-container">
             <div class="search-box">
                 <span class="search-icon">🔍</span>
-                <input type="text" id="search-input" class="search-input" placeholder="Buscar lámina (ID, jugador, país...)" autocomplete="off">
+                <input type="text" id="search-input" class="search-input"
+                    placeholder="Buscar lámina (ID, jugador, país...)" autocomplete="off">
             </div>
             <button id="btn-filter-country" class="filter-btn" title="Filtrar por país">
                 🌎 Países
@@ -64,8 +73,7 @@
         </div>
 
         <nav id="nav-groups" class="scroll-nav"></nav>
-        
-        <!-- Nuevo menú de filtros y vistas -->
+
         <div class="view-controls hide-print">
             <div class="filter-group">
                 <label class="filter-label">Ver:</label>
@@ -82,7 +90,7 @@
                 <button id="btn-view-list" class="view-btn" title="Vista lista">☰</button>
             </div>
         </div>
-        
+
         <div id="country-filter-panel" class="country-filter-panel hide-print">
             <div class="filter-header">
                 <span>Filtrar por país</span>
@@ -100,13 +108,17 @@
         <div class="print-header">
             <h1>🏆 Láminas Faltantes - FWC 2026</h1>
             <p class="print-date">Generado: <span id="print-date"></span></p>
-            <p class="print-summary">Total faltantes: <span id="print-total-missing">0</span> de <span id="print-total">0</span></p>
+            <p class="print-summary">Total faltantes: <span id="print-total-missing">0</span> de <span
+                    id="print-total">0</span></p>
         </div>
         <div id="print-content"></div>
     </div>
 
     <div id="toast" class="toast hide-print"></div>
 
+    <input type="file" id="import-file-input" accept=".json" style="display: none;">
+
     <script src="app.js"></script>
 </body>
+
 </html>
