@@ -20,7 +20,8 @@ const AppState = {
     activeSection: 'A',
     isSpecial: false,
     viewMode: 'all',
-    listMode: false
+    listMode: false,
+    username: ''
 };
 
 // --- CONTENEDOR DE REFERENCIAS AL DOM ---
@@ -85,14 +86,19 @@ function cacheDOM() {
 function loadInventory() {
     try {
         AppState.inventory = JSON.parse(localStorage.getItem(CONFIG.STORAGE_KEY)) || {};
+        // NUEVO: Cargar el nombre guardado (por defecto vacío si no existe)
+        AppState.username = localStorage.getItem(CONFIG.STORAGE_KEY + '_user') || '';
     } catch (e) {
         AppState.inventory = {};
+        AppState.username = '';
     }
 }
 
 // Guarda de forma persistente el inventario actual en formato JSON
 function saveInventory() {
     localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(AppState.inventory));
+    // NUEVO: Guardar el nombre de forma independiente
+    localStorage.setItem(CONFIG.STORAGE_KEY + '_user', AppState.username);
 }
 
 // Carga el archivo JSON base del álbum y levanta los componentes iniciales de la UI
@@ -176,6 +182,17 @@ function updateProgress() {
     
     const dashOwned = document.getElementById('dash-owned');
     if (dashOwned) dashOwned.textContent = uniqueOwned;
+
+    // --- NUEVO: Actualizar el título con el nombre del usuario ---
+    const labelEl = document.querySelector('.progress-label');
+    if (labelEl) {
+        if (AppState.username && AppState.username.trim() !== '') {
+            // Inyectamos el nombre destacado con una clase CSS personalizada
+            labelEl.innerHTML = `Progreso del Álbum de <span class="user-name-highlight">${AppState.username.toUpperCase()}</span>`;
+        } else {
+            labelEl.textContent = 'Progreso del álbum';
+        }
+    }
 
     updateSectionProgressBars();
 }
@@ -824,6 +841,14 @@ function renderConfigPanel() {
 
     configSection.innerHTML = `
         <div class="config-card">
+            <h2>👤 Personalización del Álbum</h2>
+            <p>Escribe tu nombre para personalizar esta App.</p>
+            <div class="search-box" style="margin-top: 10px;">
+                <input type="text" id="input-username" class="search-input" placeholder="Ej: Tu Nombre..." value="${AppState.username}" style="width: 100%; border: 2px solid var(--text-primary);">
+            </div>
+        </div>
+        
+        <div class="config-card">
             <h2>💾 Copias de Seguridad</h2>
             <p>Descarga un archivo local con tu progreso guardado para transferirlo a otro navegador o tener un respaldo seguro.</p>
             <div class="config-buttons-grid">
@@ -852,6 +877,16 @@ function renderConfigPanel() {
     `;
 
     DOM.mainContainer.appendChild(configSection);
+
+    // Escucha de cambios en el input del nombre en tiempo real
+    const inputUser = document.getElementById('input-username');
+    if (inputUser) {
+        inputUser.addEventListener('input', (e) => {
+            AppState.username = e.target.value;
+            saveInventory(); // Guarda el nombre de inmediato
+            updateProgress(); // Refresca la barra superior en tiempo real
+        });
+    }
 
     // Mapear los eventos de los botones internos una vez inyectados en el contenedor
     document.getElementById('panel-export-json').onclick = exportInventoryToJSON;
