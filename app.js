@@ -657,169 +657,162 @@ function handleStickerClick(stickerId, element, name) {
 }
 
 
-/**
- * ============================================================================
- * MÓDULO NATIVO DE EXPORTACIÓN (SISTEMA DE IMPRESIÓN PDF)
- * ============================================================================
- */
+// ============================================================================
+// REPORTES DE IMPRESIÓN (PDF)
+// ============================================================================
 
-// Filtra las láminas faltantes, renderiza el HTML oculto de impresión y ejecuta el comando de guardado nativo
-    function exportToPDF() {
-        if (!DOM.printView || !DOM.printContent) return;
+// RESTAURADO: Tu formato original detallado para las láminas FALTANTES
+function exportToPDF() {
+    if (!DOM.printView || !DOM.printContent) return;
+
+    if (DOM.printDate) DOM.printDate.textContent = new Date().toLocaleDateString();
     
-        // Configurar encabezados de impresión nativos
-        if (DOM.printDate) DOM.printDate.textContent = new Date().toLocaleDateString();
+    const titleEl = DOM.printView.querySelector('h1');
+    if (titleEl) titleEl.textContent = AppState.username ? `📋 Láminas Faltantes - Álbum de ${AppState.username.toUpperCase()}` : '📋 Láminas Faltantes - FWC 2026';
+
+    let totalMissing = 0;
+    let htmlContent = '';
+
+    // Mapear Grupos
+    Object.values(AppState.albumData.groups).flat().forEach(c => {
+        const missingStickers = c.stickers.filter(s => (AppState.inventory[s.id] || 0) === 0);
         
-        // Cambiar título de impresión principal
-        const titleEl = DOM.printView.querySelector('h1');
-        if (titleEl) titleEl.textContent = AppState.username ? `📋 Láminas Faltantes - Álbum de ${AppState.username.toUpperCase()}` : '📋 Láminas Faltantes - FWC 2026';
-    
-        let totalMissing = 0;
-        let htmlContent = '';
-    
-        // Mapear Grupos
-        Object.values(AppState.albumData.groups).flat().forEach(c => {
-            const missingStickers = c.stickers.filter(s => (AppState.inventory[s.id] || 0) === 0);
+        if (missingStickers.length > 0) {
+            totalMissing += missingStickers.length;
+            const flag = getCountryFlag(c.country);
             
-            if (missingStickers.length > 0) {
-                totalMissing += missingStickers.length;
-                const flag = getCountryFlag(c.country);
-                
-                htmlContent += `
-                    <div class="print-country-block">
-                        <h3>${flag} ${c.country.toUpperCase()}</h3>
-                        <table class="print-table-detailed">
-                            <thead>
+            htmlContent += `
+                <div class="print-country-block">
+                    <h3>${flag} ${c.country.toUpperCase()}</h3>
+                    <table class="print-table-detailed">
+                        <thead>
+                            <tr>
+                                <th style="width: 25%">Código</th>
+                                <th style="width: 75%">Descripción / Jugador</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${missingStickers.map(s => `
                                 <tr>
-                                    <th style="width: 25%">Código</th>
-                                    <th style="width: 75%">Descripción / Jugador</th>
+                                    <td><strong>${formatStickerId(s.id)}</strong></td>
+                                    <td>${s.name || 'Lámina estándar'}</td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                ${missingStickers.map(s => `
-                                    <tr>
-                                        <td><strong>${formatStickerId(s.id)}</strong></td>
-                                        <td>${s.name || 'Lámina estándar'}</td>
-                                    </tr>
-                                `).join('')}
-                            </tbody>
-                        </table>
-                    </div>
-                `;
-            }
-        });
-    
-        // Mapear Especiales
-        Object.entries(AppState.albumData.specials).forEach(([key, stickers]) => {
-            const missingStickers = stickers.filter(s => (AppState.inventory[s.id] || 0) === 0);
-            
-            if (missingStickers.length > 0) {
-                totalMissing += missingStickers.length;
-                htmlContent += `
-                    <div class="print-country-block">
-                        <h3>✨ ${key.replace('_', ' ').toUpperCase()}</h3>
-                        <table class="print-table-detailed">
-                            <thead>
-                                <tr>
-                                    <th style="width: 25%">Código</th>
-                                    <th style="width: 75%">Descripción</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                ${missingStickers.map(s => `
-                                    <tr>
-                                        <td><strong>${formatStickerId(s.id)}</strong></td>
-                                        <td>${s.name || 'Sección Especial'}</td>
-                                    </tr>
-                                `).join('')}
-                            </tbody>
-                        </table>
-                    </div>
-                `;
-            }
-        });
-    
-        if (DOM.printTotalMissing) DOM.printTotalMissing.textContent = totalMissing;
-        if (DOM.printTotal) DOM.printTotal.textContent = AppState.stats.total;
-    
-        if (totalMissing === 0) {
-            DOM.printContent.innerHTML = '<p style="text-align:center; padding: 20px;">¡Álbum completo! No tienes láminas faltantes. 🎉</p>';
-        } else {
-            DOM.printContent.innerHTML = htmlContent;
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
         }
-    
-        window.print();
+    });
+
+    // Mapear Especiales
+    Object.entries(AppState.albumData.specials).forEach(([key, stickers]) => {
+        const missingStickers = stickers.filter(s => (AppState.inventory[s.id] || 0) === 0);
+        
+        if (missingStickers.length > 0) {
+            totalMissing += missingStickers.length;
+            htmlContent += `
+                <div class="print-country-block">
+                    <h3>✨ ${key.replace('_', ' ').toUpperCase()}</h3>
+                    <table class="print-table-detailed">
+                        <thead>
+                            <tr>
+                                <th style="width: 25%">Código</th>
+                                <th style="width: 75%">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${missingStickers.map(s => `
+                                <tr>
+                                    <td><strong>${formatStickerId(s.id)}</strong></td>
+                                    <td>${s.name || 'Sección Especial'}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        }
+    });
+
+    if (DOM.printTotalMissing) DOM.printTotalMissing.textContent = totalMissing;
+    if (DOM.printTotal) DOM.printTotal.textContent = AppState.stats.total;
+
+    if (totalMissing === 0) {
+        DOM.printContent.innerHTML = '<p style="text-align:center; padding: 20px;">¡Álbum completo! No tienes láminas faltantes. 🎉</p>';
+    } else {
+        DOM.printContent.innerHTML = htmlContent;
     }
 
-// NUEVA FUNCIÓN: Filtra las láminas repetidas (>1), reestructura temporalmente la hoja oculta y lanza el PDF nativo
-    function exportDuplicatesToPDF() {
-        if (!DOM.printView || !DOM.printContent) return;
+    window.print();
+}
+
+// OPTIMIZADO: Formato ultra resumido, en línea y sin nombres para las REPETIDAS
+function exportDuplicatesToPDF() {
+    if (!DOM.printView || !DOM.printContent) return;
+
+    if (DOM.printDate) DOM.printDate.textContent = new Date().toLocaleDateString();
     
-        if (DOM.printDate) DOM.printDate.textContent = new Date().toLocaleDateString();
+    const titleEl = DOM.printView.querySelector('h1');
+    if (titleEl) titleEl.textContent = AppState.username ? `🔄 Repetidas: ${AppState.username.toUpperCase()}` : '🔄 Lista de Repetidas';
+
+    let totalDups = 0;
+    let htmlContent = '<div class="print-dense-container">';
+
+    // Mapear Grupos
+    Object.values(AppState.albumData.groups).flat().forEach(c => {
+        const dupStickers = c.stickers.filter(s => (AppState.inventory[s.id] || 0) > 1);
         
-        // Cambiar título para reflejar que es la lista de intercambio público
-        const titleEl = DOM.printView.querySelector('h1');
-        if (titleEl) titleEl.textContent = AppState.username ? `🔄 Láminas Repetidas - Lista de ${AppState.username.toUpperCase()}` : '🔄 Láminas Repetidas - Para Intercambio';
-    
-        let totalDups = 0;
-        let htmlContent = '<p style="margin-bottom: 20px; font-style: italic; color: #555;">Lista optimizada para revisión rápida. El formato indica el código y la cantidad disponible si tienes más de una.</p>';
-    
-        // Mapear Grupos
-        Object.values(AppState.albumData.groups).flat().forEach(c => {
-            const dupStickers = c.stickers.filter(s => (AppState.inventory[s.id] || 0) > 1);
-            
-            if (dupStickers.length > 0) {
-                const flag = getCountryFlag(c.country);
-                const formattedDups = dupStickers.map(s => {
-                    const amount = AppState.inventory[s.id] - 1;
-                    totalDups += amount;
-                    return `<span class="print-dup-chip"><strong>${formatStickerId(s.id)}</strong>${amount > 1 ? ` <small>(x${amount})</small>` : ''}</span>`;
-                });
-    
-                htmlContent += `
-                    <div class="print-country-block" style="break-inside: avoid; margin-bottom: 15px;">
-                        <h3 style="border-bottom: 1px solid #ccc; padding-bottom: 3px; margin-bottom: 8px;">${flag} ${c.country.toUpperCase()}</h3>
-                        <div class="print-dup-grid-compact" style="display: flex; flex-wrap: wrap; gap: 8px;">
-                            ${formattedDups.join('')}
-                        </div>
-                    </div>
-                `;
-            }
-        });
-    
-        // Mapear Especiales
-        Object.entries(AppState.albumData.specials).forEach(([key, stickers]) => {
-            const dupStickers = stickers.filter(s => (AppState.inventory[s.id] || 0) > 1);
-            
-            if (dupStickers.length > 0) {
-                const formattedDups = dupStickers.map(s => {
-                    const amount = AppState.inventory[s.id] - 1;
-                    totalDups += amount;
-                    return `<span class="print-dup-chip"><strong>${formatStickerId(s.id)}</strong>${amount > 1 ? ` <small>(x${amount})</small>` : ''}</span>`;
-                });
-    
-                htmlContent += `
-                    <div class="print-country-block" style="break-inside: avoid; margin-bottom: 15px;">
-                        <h3 style="border-bottom: 1px solid #ccc; padding-bottom: 3px; margin-bottom: 8px;">✨ ${key.replace('_', ' ').toUpperCase()}</h3>
-                        <div class="print-dup-grid-compact" style="display: flex; flex-wrap: wrap; gap: 8px;">
-                            ${formattedDups.join('')}
-                        </div>
-                    </div>
-                `;
-            }
-        });
-    
-        const summaryEl = DOM.printView.querySelector('.print-summary');
-        if (summaryEl) summaryEl.innerHTML = `Total repetidas disponibles: <strong>${totalDups}</strong>`;
-    
-        if (totalDups === 0) {
-            DOM.printContent.innerHTML = '<p style="text-align:center; padding: 20px;">No tienes láminas repetidas registradas aún. 🔄</p>';
-        } else {
-            DOM.printContent.innerHTML = htmlContent;
+        if (dupStickers.length > 0) {
+            const flag = getCountryFlag(c.country);
+            const stickersLine = dupStickers.map(s => {
+                const amount = AppState.inventory[s.id] - 1;
+                totalDups += amount;
+                return `<strong>${formatStickerId(s.id)}</strong>${amount > 1 ? `(x${amount})` : ''}`;
+            }).join(', ');
+
+            htmlContent += `
+                <div class="print-row-dense">
+                    <span class="print-country-label">${flag} ${c.country.toUpperCase()}:</span>
+                    <span class="print-inline-list">${stickersLine}</span>
+                </div>
+            `;
         }
-    
-        window.print();
+    });
+
+    // Mapear Especiales
+    Object.entries(AppState.albumData.specials).forEach(([key, stickers]) => {
+        const dupStickers = stickers.filter(s => (AppState.inventory[s.id] || 0) > 1);
+        
+        if (dupStickers.length > 0) {
+            const stickersLine = dupStickers.map(s => {
+                const amount = AppState.inventory[s.id] - 1;
+                totalDups += amount;
+                return `<strong>${formatStickerId(s.id)}</strong>${amount > 1 ? `(x${amount})` : ''}`;
+            }).join(', ');
+
+            htmlContent += `
+                <div class="print-row-dense">
+                    <span class="print-country-label">🔄 ${key.replace('_', ' ').toUpperCase()}:</span>
+                    <span class="print-inline-list">${stickersLine}</span>
+                </div>
+            `;
+        }
+    });
+
+    htmlContent += '</div>';
+
+    const summaryEl = DOM.printView.querySelector('.print-summary');
+    if (summaryEl) summaryEl.innerHTML = `Total repetidas: <strong>${totalDups}</strong>`;
+
+    if (totalDups === 0) {
+        DOM.printContent.innerHTML = '<p style="text-align:center; padding: 20px;">No tienes láminas repetidas registradas aún. 🔄</p>';
+    } else {
+        DOM.printContent.innerHTML = htmlContent;
     }
+
+    window.print();
+}
 
 
 /**
