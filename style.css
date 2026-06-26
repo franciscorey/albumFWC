@@ -811,69 +811,84 @@ body {
         font-size: 9px;
     }
 
-    .print-missing-item {
-        padding: 2px 0;
-        border-bottom: 1px dotted #ccc;
+/* --- CONFIGURACIÓN DE IMPRESIÓN REVISADA --- */
+@media print {
+    body {
+        font-size: 13px;
+        line-height: 1.4;
+        background: white;
+        color: black;
+    }
+
+    /* --- ESTILOS PARA TU LISTADO ORIGINAL DE FALTANTES --- */
+    .print-country-group-block {
+        margin-bottom: 18px;
         page-break-inside: avoid;
     }
 
-/* --- ESTILOS DE TU TABLA ORIGINAL DE FALTANTES --- */
-    .print-table-detailed {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 5px;
-        margin-bottom: 15px;
-    }
-    .print-table-detailed th, 
-    .print-table-detailed td {
-        border: 1px solid #111;
-        padding: 6px 10px;
-        text-align: left;
-    }
-    .print-table-detailed th {
-        background-color: #f0f0f0 !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
+    .print-country-title {
+        font-size: 14px;
+        font-weight: 700;
+        border-bottom: 1px solid #646464;
+        padding-bottom: 3px;
+        margin-bottom: 6px;
+        text-transform: uppercase;
     }
 
-    /* --- ESTILOS DEL MODO RESUMIDO DE REPETIDAS --- */
-    .print-dense-container {
+    .print-clean-list {
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+    }
+
+    .print-clean-list li {
+        padding: 2px 0;
+        border-bottom: 1px dotted #ccc; /* Separador sutil sin usar tablas */
+    }
+
+    /* --- ESTILOS PARA REPETIDAS RESUMIDAS CON AIRE --- */
+    .print-spaced-dups-container {
         display: flex;
         flex-direction: column;
-        gap: 6px;
+        gap: 14px; /* Genera separación limpia entre los países */
         margin-top: 15px;
     }
-    .print-row-dense {
-        display: block;
-        text-align: left;
+
+    .print-dup-row {
         page-break-inside: avoid;
     }
-    .print-country-label {
+
+    .print-dup-country-header {
+        font-size: 13px;
         font-weight: 700;
+        color: #646464;
+        margin: 0 0 4px 0; /* Espaciado controlado debajo del título */
         text-transform: uppercase;
-        margin-right: 6px;
-        display: inline;
-    }
-    .print-inline-list {
-        display: inline;
-        word-wrap: break-word;
+        border-bottom: 1px solid #646464;
+        padding-bottom: 3px;
     }
 
-    /* Estructura ultra compacta para tus Repetidas (Para compartir) */
-    .print-dup-chip {
-        display: inline-block;
-        border: 1px solid #333;
-        padding: 4px 8px;
+    .print-dup-inline-codes {
         font-size: 12px;
-        background-color: #fff;
-        border-radius: 3px;
-        font-family: 'Space Grotesk', sans-serif;
+        letter-spacing: 0.5px;
+        line-height: 1.5; /* Más aire entre líneas de códigos */
     }
-    .print-dup-chip small {
+
+    .print-dup-code {
+        display: inline-block; /* Evita que un código se parta a la mitad al final de línea */
+        white-space: nowrap;
+        margin-right: 4px;
+    }
+
+    .dup-count {
         color: #ff3e3e;
         font-weight: bold;
-        margin-left: 3px;
+        font-size: 11px;
+        margin-left: 1px;
     }
+}
+
+
 }
 
 /* ==================== RESPONSIVE ==================== */

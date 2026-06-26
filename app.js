@@ -661,17 +661,17 @@ function handleStickerClick(stickerId, element, name) {
 // REPORTES DE IMPRESIÓN (PDF)
 // ============================================================================
 
-// RESTAURADO: Tu formato original detallado para las láminas FALTANTES
+// FALTANTES: Formato de listado original (Limpio, vertical, con nombres de jugadores y sin tablas)
 function exportToPDF() {
     if (!DOM.printView || !DOM.printContent) return;
 
     if (DOM.printDate) DOM.printDate.textContent = new Date().toLocaleDateString();
     
     const titleEl = DOM.printView.querySelector('h1');
-    if (titleEl) titleEl.textContent = AppState.username ? `📋 Láminas Faltantes - Álbum de ${AppState.username.toUpperCase()}` : '📋 Láminas Faltantes - FWC 2026';
+    if (titleEl) titleEl.textContent = AppState.username ? `📋 Láminas Faltantes - Álbum de ${AppState.username.toUpperCase()}` : '📋 Láminas Faltantes';
 
     let totalMissing = 0;
-    let htmlContent = '';
+    let htmlContent = '<div class="print-original-list-view">';
 
     // Mapear Grupos
     Object.values(AppState.albumData.groups).flat().forEach(c => {
@@ -682,24 +682,13 @@ function exportToPDF() {
             const flag = getCountryFlag(c.country);
             
             htmlContent += `
-                <div class="print-country-block">
-                    <h3>${flag} ${c.country.toUpperCase()}</h3>
-                    <table class="print-table-detailed">
-                        <thead>
-                            <tr>
-                                <th style="width: 25%">Código</th>
-                                <th style="width: 75%">Descripción / Jugador</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${missingStickers.map(s => `
-                                <tr>
-                                    <td><strong>${formatStickerId(s.id)}</strong></td>
-                                    <td>${s.name || 'Lámina estándar'}</td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
+                <div class="print-country-group-block">
+                    <h3 class="print-country-title">${flag} ${c.country.toUpperCase()}</h3>
+                    <ul class="print-clean-list">
+                        ${missingStickers.map(s => `
+                            <li><strong>${formatStickerId(s.id)}</strong> — ${s.name || 'Lámina estándar'}</li>
+                        `).join('')}
+                    </ul>
                 </div>
             `;
         }
@@ -712,34 +701,25 @@ function exportToPDF() {
         if (missingStickers.length > 0) {
             totalMissing += missingStickers.length;
             htmlContent += `
-                <div class="print-country-block">
-                    <h3>✨ ${key.replace('_', ' ').toUpperCase()}</h3>
-                    <table class="print-table-detailed">
-                        <thead>
-                            <tr>
-                                <th style="width: 25%">Código</th>
-                                <th style="width: 75%">Descripción</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${missingStickers.map(s => `
-                                <tr>
-                                    <td><strong>${formatStickerId(s.id)}</strong></td>
-                                    <td>${s.name || 'Sección Especial'}</td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
+                <div class="print-country-group-block">
+                    <h3 class="print-country-title">✨ ${key.replace('_', ' ').toUpperCase()}</h3>
+                    <ul class="print-clean-list">
+                        ${missingStickers.map(s => `
+                            <li><strong>${formatStickerId(s.id)}</strong> — ${s.name || 'Sección Especial'}</li>
+                        `).join('')}
+                    </ul>
                 </div>
             `;
         }
     });
 
+    htmlContent += '</div>';
+
     if (DOM.printTotalMissing) DOM.printTotalMissing.textContent = totalMissing;
     if (DOM.printTotal) DOM.printTotal.textContent = AppState.stats.total;
 
     if (totalMissing === 0) {
-        DOM.printContent.innerHTML = '<p style="text-align:center; padding: 20px;">¡Álbum completo! No tienes láminas faltantes. 🎉</p>';
+        DOM.printContent.innerHTML = '<p style="text-align:center; padding: 20px;">¡Álbum completo! 🎉</p>';
     } else {
         DOM.printContent.innerHTML = htmlContent;
     }
@@ -747,7 +727,7 @@ function exportToPDF() {
     window.print();
 }
 
-// OPTIMIZADO: Formato ultra resumido, en línea y sin nombres para las REPETIDAS
+// REPETIDAS: Versión resumida pero con "aire" (Títulos separados y códigos legibles por bloques)
 function exportDuplicatesToPDF() {
     if (!DOM.printView || !DOM.printContent) return;
 
@@ -757,7 +737,7 @@ function exportDuplicatesToPDF() {
     if (titleEl) titleEl.textContent = AppState.username ? `🔄 Repetidas: ${AppState.username.toUpperCase()}` : '🔄 Lista de Repetidas';
 
     let totalDups = 0;
-    let htmlContent = '<div class="print-dense-container">';
+    let htmlContent = '<div class="print-spaced-dups-container">';
 
     // Mapear Grupos
     Object.values(AppState.albumData.groups).flat().forEach(c => {
@@ -768,13 +748,13 @@ function exportDuplicatesToPDF() {
             const stickersLine = dupStickers.map(s => {
                 const amount = AppState.inventory[s.id] - 1;
                 totalDups += amount;
-                return `<strong>${formatStickerId(s.id)}</strong>${amount > 1 ? `(x${amount})` : ''}`;
+                return `<span class="print-dup-code"><strong>${formatStickerId(s.id)}</strong>${amount > 1 ? `<span class="dup-count">(x${amount})</span>` : ''}</span>`;
             }).join(', ');
 
             htmlContent += `
-                <div class="print-row-dense">
-                    <span class="print-country-label">${flag} ${c.country.toUpperCase()}:</span>
-                    <span class="print-inline-list">${stickersLine}</span>
+                <div class="print-dup-row">
+                    <h4 class="print-dup-country-header">${flag} ${c.country.toUpperCase()}</h4>
+                    <div class="print-dup-inline-codes">${stickersLine}</div>
                 </div>
             `;
         }
@@ -788,13 +768,13 @@ function exportDuplicatesToPDF() {
             const stickersLine = dupStickers.map(s => {
                 const amount = AppState.inventory[s.id] - 1;
                 totalDups += amount;
-                return `<strong>${formatStickerId(s.id)}</strong>${amount > 1 ? `(x${amount})` : ''}`;
+                return `<span class="print-dup-code"><strong>${formatStickerId(s.id)}</strong>${amount > 1 ? `<span class="dup-count">(x${amount})</span>` : ''}</span>`;
             }).join(', ');
 
             htmlContent += `
-                <div class="print-row-dense">
-                    <span class="print-country-label">🔄 ${key.replace('_', ' ').toUpperCase()}:</span>
-                    <span class="print-inline-list">${stickersLine}</span>
+                <div class="print-dup-row">
+                    <h4 class="print-dup-country-header">🔄 ${key.replace('_', ' ').toUpperCase()}</h4>
+                    <div class="print-dup-inline-codes">${stickersLine}</div>
                 </div>
             `;
         }
@@ -806,7 +786,7 @@ function exportDuplicatesToPDF() {
     if (summaryEl) summaryEl.innerHTML = `Total repetidas: <strong>${totalDups}</strong>`;
 
     if (totalDups === 0) {
-        DOM.printContent.innerHTML = '<p style="text-align:center; padding: 20px;">No tienes láminas repetidas registradas aún. 🔄</p>';
+        DOM.printContent.innerHTML = '<p style="text-align:center; padding: 20px;">No tienes láminas repetidas. 🔄</p>';
     } else {
         DOM.printContent.innerHTML = htmlContent;
     }
