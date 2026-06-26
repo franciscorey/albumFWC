@@ -816,6 +816,42 @@ body {
         border-bottom: 1px dotted #ccc;
         page-break-inside: avoid;
     }
+
+    /* Estructura limpia para la lista de Faltantes (Tuya) */
+    .print-table-detailed {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        font-size: 13px;
+    }
+    .print-table-detailed th, 
+    .print-table-detailed td {
+        border: 1px solid #111;
+        padding: 6px 10px;
+        text-align: left;
+    }
+    .print-table-detailed th {
+        background-color: #f0f0f0 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    /* Estructura ultra compacta para tus Repetidas (Para compartir) */
+    .print-dup-chip {
+        display: inline-block;
+        border: 1px solid #333;
+        padding: 4px 8px;
+        font-size: 12px;
+        background-color: #fff;
+        border-radius: 3px;
+        font-family: 'Space Grotesk', sans-serif;
+    }
+    .print-dup-chip small {
+        color: #ff3e3e;
+        font-weight: bold;
+        margin-left: 3px;
+    }
 }
 
 /* ==================== RESPONSIVE ==================== */
