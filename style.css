@@ -301,6 +301,16 @@ body {
     color: var(--repeated-color);
 }
 
+/* --- ESTILO PARA EL NOMBRE DEL DUEÑO DEL ÁLBUM --- */
+.user-name-highlight {
+    color: #ff3e3e; /* Rojo vibrante neobrutalista */
+    font-weight: 700; /* Super negrita */
+    text-transform: uppercase;
+    border-bottom: 2px dashed #ff3e3e; /* Subrayado punteado estético */
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
 /* ==================== SEARCH & FILTER ==================== */
 .search-filter-container {
     display: flex;
