@@ -868,23 +868,24 @@ body {
         padding-bottom: 3px;
     }
 
-    .print-dup-inline-codes {
-        font-size: 12px;
-        letter-spacing: 0.5px;
-        line-height: 1.5; /* Más aire entre líneas de códigos */
+/* AJUSTE PARA NÚMEROS DE REPETIDAS EN LÍNEA */
+    .print-dup-number {
+        display: inline-block;
+        white-space: nowrap; /* Evita que el número se separe de su (x2) */
     }
 
-    .print-dup-code {
-        display: inline-block; /* Evita que un código se parta a la mitad al final de línea */
-        white-space: nowrap;
-        margin-right: 4px;
+    .print-dup-inline-codes {
+        font-size: 13px; /* Un puntito más grande ya que solo son números */
+        letter-spacing: 0.8px; /* Espaciado horizontal sutil para facilitar la lectura */
+        line-height: 1.6; /* Buen aire entre renglones */
+        color: #222;
     }
 
     .dup-count {
-        color: #ff3e3e;
-        font-weight: bold;
+        color: #ff3e3e !important;
+        font-weight: 700;
         font-size: 11px;
-        margin-left: 1px;
+        margin-left: 2px;
     }
 }
 

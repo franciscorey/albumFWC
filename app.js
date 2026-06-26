@@ -745,15 +745,22 @@ function exportDuplicatesToPDF() {
         
         if (dupStickers.length > 0) {
             const flag = getCountryFlag(c.country);
+            
+            // Extraer el prefijo de letras del primer sticker (ej: de "MEX03" toma "MEX")
+            const sampleId = dupStickers[0].id;
+            const codePrefix = sampleId.match(/^([A-Z]+)/)[1];
+
             const stickersLine = dupStickers.map(s => {
                 const amount = AppState.inventory[s.id] - 1;
                 totalDups += amount;
-                return `<span class="print-dup-code"><strong>${formatStickerId(s.id)}</strong>${amount > 1 ? `<span class="dup-count">(x${amount})</span>` : ''}</span>`;
+                // Extraer solo los números (ej: de "MEX03" toma "03")
+                const justNumber = s.id.match(/\d+$/)[0];
+                return `<span class="print-dup-number"><strong>${justNumber}</strong>${amount > 1 ? `<span class="dup-count">(x${amount})</span>` : ''}</span>`;
             }).join(', ');
 
             htmlContent += `
                 <div class="print-dup-row">
-                    <h4 class="print-dup-country-header">${flag} ${c.country.toUpperCase()}</h4>
+                    <h4 class="print-dup-country-header">${flag} ${c.country.toUpperCase()} (${codePrefix}):</h4>
                     <div class="print-dup-inline-codes">${stickersLine}</div>
                 </div>
             `;
@@ -765,15 +772,22 @@ function exportDuplicatesToPDF() {
         const dupStickers = stickers.filter(s => (AppState.inventory[s.id] || 0) > 1);
         
         if (dupStickers.length > 0) {
+            const sampleId = dupStickers[0].id;
+            const prefixMatch = sampleId.match(/^([A-Z]+)/);
+            const codePrefix = prefixMatch ? ` (${prefixMatch[1]})` : '';
+
             const stickersLine = dupStickers.map(s => {
                 const amount = AppState.inventory[s.id] - 1;
                 totalDups += amount;
-                return `<span class="print-dup-code"><strong>${formatStickerId(s.id)}</strong>${amount > 1 ? `<span class="dup-count">(x${amount})</span>` : ''}</span>`;
+                // Si la sección especial tiene números enteros los extrae, si no, usa el ID limpio
+                const numberMatch = s.id.match(/\d+$/);
+                const displayId = numberMatch ? numberMatch[0] : s.id;
+                return `<span class="print-dup-number"><strong>${displayId}</strong>${amount > 1 ? `<span class="dup-count">(x${amount})</span>` : ''}</span>`;
             }).join(', ');
 
             htmlContent += `
                 <div class="print-dup-row">
-                    <h4 class="print-dup-country-header">🔄 ${key.replace('_', ' ').toUpperCase()}</h4>
+                    <h4 class="print-dup-country-header">🔄 ${key.replace('_', ' ').toUpperCase()}${codePrefix}:</h4>
                     <div class="print-dup-inline-codes">${stickersLine}</div>
                 </div>
             `;
