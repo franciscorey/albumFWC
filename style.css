@@ -817,13 +817,12 @@ body {
         page-break-inside: avoid;
     }
 
-    /* Estructura limpia para la lista de Faltantes (Tuya) */
+/* --- ESTILOS DE TU TABLA ORIGINAL DE FALTANTES --- */
     .print-table-detailed {
         width: 100%;
         border-collapse: collapse;
         margin-top: 5px;
         margin-bottom: 15px;
-        font-size: 13px;
     }
     .print-table-detailed th, 
     .print-table-detailed td {
@@ -835,6 +834,29 @@ body {
         background-color: #f0f0f0 !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
+    }
+
+    /* --- ESTILOS DEL MODO RESUMIDO DE REPETIDAS --- */
+    .print-dense-container {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-top: 15px;
+    }
+    .print-row-dense {
+        display: block;
+        text-align: left;
+        page-break-inside: avoid;
+    }
+    .print-country-label {
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-right: 6px;
+        display: inline;
+    }
+    .print-inline-list {
+        display: inline;
+        word-wrap: break-word;
     }
 
     /* Estructura ultra compacta para tus Repetidas (Para compartir) */
