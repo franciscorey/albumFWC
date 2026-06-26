@@ -780,11 +780,11 @@ body {
         text-align: center;
         margin-bottom: 20px;
         border-bottom: 2px solid #000;
-        padding-bottom: 15px;
+        padding-bottom: 12px;
     }
 
     .print-header h1 {
-        font-size: 18px;
+        font-size: 14px;
         margin-bottom: 5px;
     }
 
@@ -814,8 +814,8 @@ body {
 /* --- CONFIGURACIÓN DE IMPRESIÓN REVISADA --- */
 @media print {
     body {
-        font-size: 13px;
-        line-height: 1.4;
+        font-size: 12px;
+        line-height: 1.2;
         background: white;
         color: black;
     }
@@ -827,11 +827,11 @@ body {
     }
 
     .print-country-title {
-        font-size: 14px;
+        font-size: 13px;
         font-weight: 700;
         border-bottom: 1px solid #646464;
         padding-bottom: 3px;
-        margin-bottom: 6px;
+        margin-bottom: 4px;
         text-transform: uppercase;
     }
 
@@ -851,7 +851,7 @@ body {
         display: flex;
         flex-direction: column;
         gap: 14px; /* Genera separación limpia entre los países */
-        margin-top: 15px;
+        margin-bottom: 15px;
     }
 
     .print-dup-row {
@@ -859,7 +859,7 @@ body {
     }
 
     .print-dup-country-header {
-        font-size: 13px;
+        font-size: 12px;
         font-weight: 700;
         color: #646464;
         margin: 0 0 4px 0; /* Espaciado controlado debajo del título */
@@ -875,9 +875,9 @@ body {
     }
 
     .print-dup-inline-codes {
-        font-size: 13px; /* Un puntito más grande ya que solo son números */
+        font-size: 12px; /* Un puntito más grande ya que solo son números */
         letter-spacing: 0.8px; /* Espaciado horizontal sutil para facilitar la lectura */
-        line-height: 1.6; /* Buen aire entre renglones */
+        line-height: 1.4; /* Buen aire entre renglones */
         color: #222;
     }
 
