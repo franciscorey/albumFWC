@@ -662,6 +662,7 @@ function handleStickerClick(stickerId, element, name) {
 // ============================================================================
 
 // FALTANTES: Formato de listado original (Limpio, vertical, con nombres de jugadores y sin tablas)
+// FALTANTES: Formato de listado original (Limpio, vertical, con nombres de jugadores y sin tablas)
 function exportToPDF() {
     if (!DOM.printView || !DOM.printContent) return;
 
@@ -715,8 +716,12 @@ function exportToPDF() {
 
     htmlContent += '</div>';
 
-    if (DOM.printTotalMissing) DOM.printTotalMissing.textContent = totalMissing;
-    if (DOM.printTotal) DOM.printTotal.textContent = AppState.stats.total;
+    // CORRECCIÓN: Inyección limpia del resumen correcto de Faltantes y Pegadas
+    const uniqueOwned = AppState.stats.total - totalMissing;
+    const summaryEl = DOM.printView.querySelector('.print-summary');
+    if (summaryEl) {
+        summaryEl.innerHTML = `Pegadas: <strong>${uniqueOwned}</strong> | Faltantes: <strong>${totalMissing}</strong> de <strong>${AppState.stats.total}</strong>`;
+    }
 
     if (totalMissing === 0) {
         DOM.printContent.innerHTML = '<p style="text-align:center; padding: 20px;">¡Álbum completo! 🎉</p>';
