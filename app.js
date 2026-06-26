@@ -664,102 +664,162 @@ function handleStickerClick(stickerId, element, name) {
  */
 
 // Filtra las láminas faltantes, renderiza el HTML oculto de impresión y ejecuta el comando de guardado nativo
-function exportToPDF() {
-    if (!DOM.printContent) return;
+    function exportToPDF() {
+        if (!DOM.printView || !DOM.printContent) return;
     
-    let html = '';
-    let totalMissing = 0;
-    
-    Object.values(AppState.albumData.groups).flat().forEach(c => {
-        const missingStickers = c.stickers.filter(s => !AppState.inventory[s.id]);
-        if (missingStickers.length > 0) {
-            totalMissing += missingStickers.length;
-            html += `<div class="print-section-title">${c.flag || '🏳️'} ${c.country}</div>`;
-            missingStickers.forEach(s => {
-                html += `<div class="print-missing-item">${s.id} - ${s.name}</div>`;
-            });
-        }
-    });
-
-    Object.entries(AppState.albumData.specials).forEach(([key, stickers]) => {
-        const missingStickers = stickers.filter(s => !AppState.inventory[s.id]);
-        if (missingStickers.length > 0) {
-            totalMissing += missingStickers.length;
-            html += `<div class="print-section-title">⭐ ${key.replace('_', ' ').toUpperCase()}</div>`;
-            missingStickers.forEach(s => {
-                html += `<div class="print-missing-item">${s.id} - ${s.name}</div>`;
-            });
-        }
-    });
-    
-    if (totalMissing === 0) {
-        showToast('¡No tienes láminas faltantes! El álbum está completo. 🏆', 'success');
-        return;
-    }
-
-    // Configura la cabecera estándar de láminas faltantes
-    if (DOM.printView) {
+        // Configurar encabezados de impresión nativos
+        if (DOM.printDate) DOM.printDate.textContent = new Date().toLocaleDateString();
+        
+        // Cambiar título de impresión principal
         const titleEl = DOM.printView.querySelector('h1');
-        const summaryEl = DOM.printView.querySelector('.print-summary');
-        if (titleEl) titleEl.innerHTML = '🏆 Láminas Faltantes - FWC 2026';
-        if (summaryEl) summaryEl.innerHTML = `Total faltantes: <span id="print-total-missing">${totalMissing}</span> de <span id="print-total">${AppState.stats.total}</span>`;
+        if (titleEl) titleEl.textContent = AppState.username ? `📋 Láminas Faltantes - Álbum de ${AppState.username.toUpperCase()}` : '📋 Láminas Faltantes - FWC 2026';
+    
+        let totalMissing = 0;
+        let htmlContent = '';
+    
+        // Mapear Grupos
+        Object.values(AppState.albumData.groups).flat().forEach(c => {
+            const missingStickers = c.stickers.filter(s => (AppState.inventory[s.id] || 0) === 0);
+            
+            if (missingStickers.length > 0) {
+                totalMissing += missingStickers.length;
+                const flag = getCountryFlag(c.country);
+                
+                htmlContent += `
+                    <div class="print-country-block">
+                        <h3>${flag} ${c.country.toUpperCase()}</h3>
+                        <table class="print-table-detailed">
+                            <thead>
+                                <tr>
+                                    <th style="width: 25%">Código</th>
+                                    <th style="width: 75%">Descripción / Jugador</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${missingStickers.map(s => `
+                                    <tr>
+                                        <td><strong>${formatStickerId(s.id)}</strong></td>
+                                        <td>${s.name || 'Lámina estándar'}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            }
+        });
+    
+        // Mapear Especiales
+        Object.entries(AppState.albumData.specials).forEach(([key, stickers]) => {
+            const missingStickers = stickers.filter(s => (AppState.inventory[s.id] || 0) === 0);
+            
+            if (missingStickers.length > 0) {
+                totalMissing += missingStickers.length;
+                htmlContent += `
+                    <div class="print-country-block">
+                        <h3>✨ ${key.replace('_', ' ').toUpperCase()}</h3>
+                        <table class="print-table-detailed">
+                            <thead>
+                                <tr>
+                                    <th style="width: 25%">Código</th>
+                                    <th style="width: 75%">Descripción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${missingStickers.map(s => `
+                                    <tr>
+                                        <td><strong>${formatStickerId(s.id)}</strong></td>
+                                        <td>${s.name || 'Sección Especial'}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            }
+        });
+    
+        if (DOM.printTotalMissing) DOM.printTotalMissing.textContent = totalMissing;
+        if (DOM.printTotal) DOM.printTotal.textContent = AppState.stats.total;
+    
+        if (totalMissing === 0) {
+            DOM.printContent.innerHTML = '<p style="text-align:center; padding: 20px;">¡Álbum completo! No tienes láminas faltantes. 🎉</p>';
+        } else {
+            DOM.printContent.innerHTML = htmlContent;
+        }
+    
+        window.print();
     }
-
-    DOM.printContent.innerHTML = html;
-    if (DOM.printDate) DOM.printDate.textContent = new Date().toLocaleDateString('es-CH');
-
-    window.print();
-}
 
 // NUEVA FUNCIÓN: Filtra las láminas repetidas (>1), reestructura temporalmente la hoja oculta y lanza el PDF nativo
-function exportDuplicatesToPDF() {
-    if (!DOM.printContent) return;
+    function exportDuplicatesToPDF() {
+        if (!DOM.printView || !DOM.printContent) return;
     
-    let html = '';
-    let totalRepeated = 0;
-    
-    Object.values(AppState.albumData.groups).flat().forEach(c => {
-        const repeatedStickers = c.stickers.filter(s => AppState.inventory[s.id] > 1);
-        if (repeatedStickers.length > 0) {
-            html += `<div class="print-section-title">${c.flag || '🏳️'} ${c.country}</div>`;
-            repeatedStickers.forEach(s => {
-                const count = AppState.inventory[s.id] - 1;
-                totalRepeated += count;
-                html += `<div class="print-missing-item">${s.id} - ${s.name} <strong>(x${count})</strong></div>`;
-            });
-        }
-    });
-
-    Object.entries(AppState.albumData.specials).forEach(([key, stickers]) => {
-        const repeatedStickers = stickers.filter(s => AppState.inventory[s.id] > 1);
-        if (repeatedStickers.length > 0) {
-            html += `<div class="print-section-title">⭐ ${key.replace('_', ' ').toUpperCase()}</div>`;
-            repeatedStickers.forEach(s => {
-                const count = AppState.inventory[s.id] - 1;
-                totalRepeated += count;
-                html += `<div class="print-missing-item">${s.id} - ${s.name} <strong>(x${count})</strong></div>`;
-            });
-        }
-    });
-    
-    if (totalRepeated === 0) {
-        showToast('No tienes láminas repetidas para exportar. 🔄', 'info');
-        return;
-    }
-
-    // Modifica dinámicamente la cabecera de la hoja oculta para que indique "Repetidas"
-    if (DOM.printView) {
+        if (DOM.printDate) DOM.printDate.textContent = new Date().toLocaleDateString();
+        
+        // Cambiar título para reflejar que es la lista de intercambio público
         const titleEl = DOM.printView.querySelector('h1');
+        if (titleEl) titleEl.textContent = AppState.username ? `🔄 Láminas Repetidas - Lista de ${AppState.username.toUpperCase()}` : '🔄 Láminas Repetidas - Para Intercambio';
+    
+        let totalDups = 0;
+        let htmlContent = '<p style="margin-bottom: 20px; font-style: italic; color: #555;">Lista optimizada para revisión rápida. El formato indica el código y la cantidad disponible si tienes más de una.</p>';
+    
+        // Mapear Grupos
+        Object.values(AppState.albumData.groups).flat().forEach(c => {
+            const dupStickers = c.stickers.filter(s => (AppState.inventory[s.id] || 0) > 1);
+            
+            if (dupStickers.length > 0) {
+                const flag = getCountryFlag(c.country);
+                const formattedDups = dupStickers.map(s => {
+                    const amount = AppState.inventory[s.id] - 1;
+                    totalDups += amount;
+                    return `<span class="print-dup-chip"><strong>${formatStickerId(s.id)}</strong>${amount > 1 ? ` <small>(x${amount})</small>` : ''}</span>`;
+                });
+    
+                htmlContent += `
+                    <div class="print-country-block" style="break-inside: avoid; margin-bottom: 15px;">
+                        <h3 style="border-bottom: 1px solid #ccc; padding-bottom: 3px; margin-bottom: 8px;">${flag} ${c.country.toUpperCase()}</h3>
+                        <div class="print-dup-grid-compact" style="display: flex; flex-wrap: wrap; gap: 8px;">
+                            ${formattedDups.join('')}
+                        </div>
+                    </div>
+                `;
+            }
+        });
+    
+        // Mapear Especiales
+        Object.entries(AppState.albumData.specials).forEach(([key, stickers]) => {
+            const dupStickers = stickers.filter(s => (AppState.inventory[s.id] || 0) > 1);
+            
+            if (dupStickers.length > 0) {
+                const formattedDups = dupStickers.map(s => {
+                    const amount = AppState.inventory[s.id] - 1;
+                    totalDups += amount;
+                    return `<span class="print-dup-chip"><strong>${formatStickerId(s.id)}</strong>${amount > 1 ? ` <small>(x${amount})</small>` : ''}</span>`;
+                });
+    
+                htmlContent += `
+                    <div class="print-country-block" style="break-inside: avoid; margin-bottom: 15px;">
+                        <h3 style="border-bottom: 1px solid #ccc; padding-bottom: 3px; margin-bottom: 8px;">✨ ${key.replace('_', ' ').toUpperCase()}</h3>
+                        <div class="print-dup-grid-compact" style="display: flex; flex-wrap: wrap; gap: 8px;">
+                            ${formattedDups.join('')}
+                        </div>
+                    </div>
+                `;
+            }
+        });
+    
         const summaryEl = DOM.printView.querySelector('.print-summary');
-        if (titleEl) titleEl.innerHTML = '🔄 Láminas Repetidas - FWC 2026';
-        if (summaryEl) summaryEl.innerHTML = `Total repetidas acumuladas: <strong>${totalRepeated}</strong>`;
+        if (summaryEl) summaryEl.innerHTML = `Total repetidas disponibles: <strong>${totalDups}</strong>`;
+    
+        if (totalDups === 0) {
+            DOM.printContent.innerHTML = '<p style="text-align:center; padding: 20px;">No tienes láminas repetidas registradas aún. 🔄</p>';
+        } else {
+            DOM.printContent.innerHTML = htmlContent;
+        }
+    
+        window.print();
     }
-
-    DOM.printContent.innerHTML = html;
-    if (DOM.printDate) DOM.printDate.textContent = new Date().toLocaleDateString('es-CH');
-
-    window.print();
-}
 
 
 /**
@@ -768,60 +828,93 @@ function exportDuplicatesToPDF() {
  * ============================================================================
  */
 
-// Filtra las faltantes y abre un hilo directo de WhatsApp con la lista limpia y compacta original
+// Helper para obtener el emoji de la bandera desde los datos del país
+function getCountryFlag(countryName) {
+    const found = AppState.allCountries.find(c => c.name.toLowerCase() === countryName.toLowerCase());
+    return found ? found.flag : '🏴';
+}
+
+// Helper para formatear el ID (de MEX03 a MEX-03)
+function formatStickerId(id) {
+    // Separa las letras de los números usando una expresión regular
+    return id.replace(/^([A-Z]+)(\d+)$/, '$1-$2');
+}
+
 function shareToWhatsApp() {
     const missing = [];
-    
+    let totalMissingCount = 0;
+
     Object.values(AppState.albumData.groups).flat().forEach(c => {
-        const countryMissing = c.stickers.filter(s => !AppState.inventory[s.id]).map(s => s.id);
+        const countryMissing = c.stickers
+            .filter(s => (AppState.inventory[s.id] || 0) === 0)
+            .map(s => formatStickerId(s.id));
+            
         if(countryMissing.length > 0) {
-            missing.push(`*${c.country}:* ${countryMissing.join(', ')}`);
+            totalMissingCount += countryMissing.length;
+            const flag = getCountryFlag(c.country);
+            missing.push(`${flag} *${c.country.toUpperCase()}:* ${countryMissing.join(', ')}`);
         }
     });
-    
+
     Object.entries(AppState.albumData.specials).forEach(([key, stickers]) => {
-        const specialMissing = stickers.filter(s => !AppState.inventory[s.id]).map(s => s.id);
+        const specialMissing = stickers
+            .filter(s => (AppState.inventory[s.id] || 0) === 0)
+            .map(s => formatStickerId(s.id));
+            
         if(specialMissing.length > 0) {
-            missing.push(`*${key.replace('_',' ').toUpperCase()}:* ${specialMissing.join(', ')}`);
+            totalMissingCount += specialMissing.length;
+            missing.push(`✨ *${key.replace('_',' ').toUpperCase()}:* ${specialMissing.join(', ')}`);
         }
     });
 
     if (missing.length === 0) {
-        showToast('¡No tienes láminas faltantes! 😎', 'success');
+        showToast('¡Felicitaciones! No tienes láminas faltantes. 🏆', 'success');
         return;
     }
 
-    const totalMissing = Object.values(AppState.albumData.groups).flat().reduce((sum, c) => sum + c.stickers.filter(s => !AppState.inventory[s.id]).length, 0) +
-                         Object.values(AppState.albumData.specials).flat().reduce((sum, s) => sum + (!AppState.inventory[s.id] ? 1 : 0), 0);
-
-    const message = `🏆 *MIS FALTANTES PANINI FWC 2026 (${totalMissing})*\n\n${missing.join('\n')}`;
+    const message = `📋 *MIS FALTANTES PANINI FWC 2026 (${totalMissingCount})*\n\n${missing.join('\n')}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
 }
 
-// Filtra las repetidas (>1) y comparte por WhatsApp la lista formateada mostrando las cantidades sobrantes
 function shareDuplicatesToWhatsApp() {
     const dups = [];
-    
+    let totalDupsCount = 0;
+
     Object.values(AppState.albumData.groups).flat().forEach(c => {
-        const countryDups = c.stickers.filter(s => AppState.inventory[s.id] > 1).map(s => `${s.id} (x${AppState.inventory[s.id] - 1})`);
+        const countryDups = c.stickers
+            .filter(s => (AppState.inventory[s.id] || 0) > 1)
+            .map(s => {
+                const count = AppState.inventory[s.id] - 1;
+                totalDupsCount += count;
+                return `${formatStickerId(s.id)}${count > 1 ? ` (x${count})` : ''}`;
+            });
+            
         if(countryDups.length > 0) {
-            dups.push(`*${c.country}:* ${countryDups.join(', ')}`);
+            const flag = getCountryFlag(c.country);
+            dups.push(`${flag} *${c.country.toUpperCase()}:* ${countryDups.join(', ')}`);
         }
     });
-    
+
     Object.entries(AppState.albumData.specials).forEach(([key, stickers]) => {
-        const specialDups = stickers.filter(s => AppState.inventory[s.id] > 1).map(s => `${s.id} (x${AppState.inventory[s.id] - 1})`);
+        const specialDups = stickers
+            .filter(s => (AppState.inventory[s.id] || 0) > 1)
+            .map(s => {
+                const count = AppState.inventory[s.id] - 1;
+                totalDupsCount += count;
+                return `${formatStickerId(s.id)}${count > 1 ? ` (x${count})` : ''}`;
+            });
+            
         if(specialDups.length > 0) {
-            dups.push(`*${key.replace('_',' ').toUpperCase()}:* ${specialDups.join(', ')}`);
+            dups.push(`🔄 *${key.replace('_',' ').toUpperCase()}:* ${specialDups.join(', ')}`);
         }
     });
 
     if (dups.length === 0) {
-        showToast('No tienes láminas repetidas aún. 🔄', 'info');
+        showToast('No tienes láminas repetidas para compartir aún. 🔄', 'info');
         return;
     }
 
-    const message = `🔄 *MIS REPETIDAS PANINI FWC 2026*\n\n${dups.join('\n')}`;
+    const message = `🔄 *MIS REPETIDAS PANINI FWC 2026 (${totalDupsCount})*\n\n${dups.join('\n')}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
 }
 
